@@ -14,6 +14,9 @@
 		FA9927821AABA1510017D069 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9927811AABA1510017D069 /* Images.xcassets */; };
 		FA9927851AABA1510017D069 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9927831AABA1510017D069 /* LaunchScreen.xib */; };
 		FA9927911AABA1520017D069 /* Archer_s_EyeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927901AABA1520017D069 /* Archer_s_EyeTests.m */; };
+		FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99279B1AABA9070017D069 /* RoundInfo.m */; };
+		FA9927A31AABB1540017D069 /* RoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A21AABB1540017D069 /* RoundCell.m */; };
+		FA9927A91AABB5340017D069 /* PastScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastScoresViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		FA99278A1AABA1520017D069 /* Archer's EyeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Archer's EyeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA99278F1AABA1520017D069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA9927901AABA1520017D069 /* Archer_s_EyeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Archer_s_EyeTests.m; sourceTree = "<group>"; };
+		FA99279A1AABA9070017D069 /* RoundInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundInfo.h; sourceTree = "<group>"; };
+		FA99279B1AABA9070017D069 /* RoundInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundInfo.m; sourceTree = "<group>"; };
+		FA9927A11AABB1540017D069 /* RoundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCell.h; sourceTree = "<group>"; };
+		FA9927A21AABB1540017D069 /* RoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCell.m; sourceTree = "<group>"; };
+		FA9927A71AABB5340017D069 /* PastScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastScoresViewController.h; sourceTree = "<group>"; };
+		FA9927A81AABB5340017D069 /* PastScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastScoresViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +90,11 @@
 		FA9927731AABA1510017D069 /* Archer's Eye */ = {
 			isa = PBXGroup;
 			children = (
+				FA99279D1AABB0EE0017D069 /* Scores */,
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
+				FA9927A71AABB5340017D069 /* PastScoresViewController.h */,
+				FA9927A81AABB5340017D069 /* PastScoresViewController.m */,
 				FA99277B1AABA1510017D069 /* ViewController.h */,
 				FA99277C1AABA1510017D069 /* ViewController.m */,
 				FA99277E1AABA1510017D069 /* Main.storyboard */,
@@ -117,6 +129,17 @@
 				FA99278F1AABA1520017D069 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA99279D1AABB0EE0017D069 /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				FA99279A1AABA9070017D069 /* RoundInfo.h */,
+				FA99279B1AABA9070017D069 /* RoundInfo.m */,
+				FA9927A11AABB1540017D069 /* RoundCell.h */,
+				FA9927A21AABB1540017D069 /* RoundCell.m */,
+			);
+			name = Scores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +242,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9927A31AABB1540017D069 /* RoundCell.m in Sources */,
 				FA99277D1AABA1510017D069 /* ViewController.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
+				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
 				FA9927771AABA1510017D069 /* main.m in Sources */,
+				FA9927A91AABB5340017D069 /* PastScoresViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSMutableArray *_roundScores;
+}
 
-@property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic, strong)   UIWindow        *window;
+@property (nonatomic)           NSMutableArray  *roundScores;
 
 @end
 
