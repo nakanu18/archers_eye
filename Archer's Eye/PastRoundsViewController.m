@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
-#import "PastScoresViewController.h"
+#import "PastRoundsViewController.h"
 #import "RoundInfo.h"
 #import "RoundCell.h"
 
-@interface PastScoresViewController ()
+@interface PastRoundsViewController ()
 
 @end
 
-@implementation PastScoresViewController
+@implementation PastRoundsViewController
 
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -57,13 +57,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores = [_appDelegate roundScores];
-    RoundCell       *cell   = [tableView dequeueReusableCellWithIdentifier:@"RoundCell"];
-    RoundInfo       *info   = [scores objectAtIndex:indexPath.row];
+    NSMutableArray  *scores      = [_appDelegate roundScores];
+    RoundCell       *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
+    RoundInfo       *info        = [scores objectAtIndex:indexPath.row];
+    float            totalArrows = [info getTotalArrows];
+    float            totalScore  = [info getTotalScore];
 
-    [[cell dateLabel]   setText:[[info date] description]];
-    [[cell arrowsLabel] setText:@"12"];
-    [[cell scoreLabel]  setText:@"102"];
+    [[cell dateLabel]       setText:[[info date] description]];
+    [[cell arrowsLabel]     setText:[NSString stringWithFormat:@"%d",   (int)totalArrows]];
+    [[cell scoreLabel]      setText:[NSString stringWithFormat:@"%d",   (int)totalScore]];
+    [[cell averageLabel]    setText:[NSString stringWithFormat:@"%.1f", totalScore / totalArrows]];
     
     return cell;
 }

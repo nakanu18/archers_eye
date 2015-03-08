@@ -16,17 +16,16 @@
                     </tabBar>
                     <connections>
                         <segue destination="SFu-lv-WLF" kind="relationship" relationship="viewControllers" id="rNH-8m-CIe"/>
-                        <segue destination="czx-VP-xv0" kind="relationship" relationship="viewControllers" id="c4J-WC-GOG"/>
+                        <segue destination="cM5-6g-Wq1" kind="relationship" relationship="viewControllers" id="naB-tK-w4x"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpt-y6-qzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="360"/>
         </scene>
-        <!--Live Game-->
+        <!--Live Round-->
         <scene sceneID="opA-ay-pHx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="izl-oR-JwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="SFu-lv-WLF" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uX3-JV-0Bc"/>
@@ -37,62 +36,111 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Live Game" id="iVa-Q2-COU"/>
+                    <tabBarItem key="tabBarItem" title="Live Round" id="iVa-Q2-COU"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izl-oR-JwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1647" y="36"/>
         </scene>
-        <!--Past Games-->
-        <scene sceneID="9ch-t1-Etp">
+        <!--Past Rounds-->
+        <scene sceneID="NYE-0p-v4o">
             <objects>
-                <tableViewController id="czx-VP-xv0" customClass="PastScoresViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6sj-Zs-LYb">
+                <tableViewController id="WBN-EH-NFu" customClass="PastRoundsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FL5-55-g3N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RoundCell" id="OzM-Aa-LB4" customClass="RoundCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PastRoundCell" id="Uc5-RJ-j6N" customClass="RoundCell">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OzM-Aa-LB4" id="7AS-0L-2TK">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uc5-RJ-j6N" id="4QA-QO-LHN">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Arrows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtm-FD-f4j">
-                                            <rect key="frame" x="19" y="22" width="112" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAO-qo-WgO">
+                                            <rect key="frame" x="8" y="0.0" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k86-rj-eTf">
-                                            <rect key="frame" x="407" y="14" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Arrows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-th-Xbs">
+                                            <rect key="frame" x="65" y="2" width="100" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3er-wI-uAK">
-                                            <rect key="frame" x="19" y="0.0" width="269" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WR-d7-FB1">
+                                            <rect key="frame" x="173" y="1" width="51" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9E5-JF-172">
+                                            <rect key="frame" x="8" y="19" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Arrows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu3-wD-j7f">
+                                            <rect key="frame" x="65" y="21" width="100" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJW-yt-dZp">
+                                            <rect key="frame" x="173" y="21" width="51" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eu-U6-w8s">
+                                            <rect key="frame" x="226" y="2" width="63" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnt-Eo-Bdd">
+                                            <rect key="frame" x="226" y="21" width="63" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="arrowsLabel" destination="Rtm-FD-f4j" id="f8Q-M7-fgh"/>
-                                    <outlet property="dateLabel" destination="3er-wI-uAK" id="Lfn-Xb-cRd"/>
-                                    <outlet property="scoreLabel" destination="k86-rj-eTf" id="Cse-nN-imJ"/>
+                                    <outlet property="arrowsLabel" destination="pu3-wD-j7f" id="UOY-bI-OWG"/>
+                                    <outlet property="averageLabel" destination="Cnt-Eo-Bdd" id="KVC-YV-zPc"/>
+                                    <outlet property="dateLabel" destination="9E5-JF-172" id="sx3-Ib-jq8"/>
+                                    <outlet property="scoreLabel" destination="JJW-yt-dZp" id="NJN-dB-uly"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="czx-VP-xv0" id="Fhw-5Z-S9D"/>
-                            <outlet property="delegate" destination="czx-VP-xv0" id="4ry-0N-Fbt"/>
+                            <outlet property="dataSource" destination="WBN-EH-NFu" id="M3d-xd-pYg"/>
+                            <outlet property="delegate" destination="WBN-EH-NFu" id="ecK-eq-Dpg"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Past Games" id="YZp-pO-31s"/>
+                    <navigationItem key="navigationItem" title="Past Rounds" id="JFD-WI-VLH"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="itd-oL-6GQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6jO-fs-Oyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="695"/>
+            <point key="canvasLocation" x="2467" y="700"/>
+        </scene>
+        <!--Past Rounds-->
+        <scene sceneID="bXR-zf-PHd">
+            <objects>
+                <navigationController id="cM5-6g-Wq1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Past Rounds" id="D1s-An-zFM"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9vo-rf-t3c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WBN-EH-NFu" kind="relationship" relationship="rootViewController" id="mVz-ha-6Ui"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Su-O9-ATP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1647" y="700"/>
         </scene>
     </scenes>
 </document>

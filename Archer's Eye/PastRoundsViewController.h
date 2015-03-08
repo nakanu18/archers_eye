@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface PastScoresViewController : UITableViewController
+@interface PastRoundsViewController : UITableViewController
 {
     __weak AppDelegate *_appDelegate;
 }

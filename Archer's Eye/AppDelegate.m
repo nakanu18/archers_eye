@@ -25,7 +25,7 @@
     
     [self setRoundScores:[[NSMutableArray alloc] init]];
     
-    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6];
+    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:5];
     [_roundScores addObject:roundInfo];
     
     // Override point for customization after application launch.

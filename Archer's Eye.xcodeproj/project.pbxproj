@@ -16,7 +16,7 @@
 		FA9927911AABA1520017D069 /* Archer_s_EyeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927901AABA1520017D069 /* Archer_s_EyeTests.m */; };
 		FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99279B1AABA9070017D069 /* RoundInfo.m */; };
 		FA9927A31AABB1540017D069 /* RoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A21AABB1540017D069 /* RoundCell.m */; };
-		FA9927A91AABB5340017D069 /* PastScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastScoresViewController.m */; };
+		FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastRoundsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +47,8 @@
 		FA99279B1AABA9070017D069 /* RoundInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundInfo.m; sourceTree = "<group>"; };
 		FA9927A11AABB1540017D069 /* RoundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCell.h; sourceTree = "<group>"; };
 		FA9927A21AABB1540017D069 /* RoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCell.m; sourceTree = "<group>"; };
-		FA9927A71AABB5340017D069 /* PastScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastScoresViewController.h; sourceTree = "<group>"; };
-		FA9927A81AABB5340017D069 /* PastScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastScoresViewController.m; sourceTree = "<group>"; };
+		FA9927A71AABB5340017D069 /* PastRoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastRoundsViewController.h; sourceTree = "<group>"; };
+		FA9927A81AABB5340017D069 /* PastRoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastRoundsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +93,8 @@
 				FA99279D1AABB0EE0017D069 /* Scores */,
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
-				FA9927A71AABB5340017D069 /* PastScoresViewController.h */,
-				FA9927A81AABB5340017D069 /* PastScoresViewController.m */,
+				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
+				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
 				FA99277B1AABA1510017D069 /* ViewController.h */,
 				FA99277C1AABA1510017D069 /* ViewController.m */,
 				FA99277E1AABA1510017D069 /* Main.storyboard */,
@@ -247,7 +247,7 @@
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
 				FA9927771AABA1510017D069 /* main.m in Sources */,
-				FA9927A91AABB5340017D069 /* PastScoresViewController.m in Sources */,
+				FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
