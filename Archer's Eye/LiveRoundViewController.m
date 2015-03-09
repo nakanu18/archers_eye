@@ -1,20 +1,19 @@
 //
-//  PastScoresViewController.m
+//  LiveRoundViewController.m
 //  Archer's Eye
 //
-//  Created by Alex de Vera on 3/7/15.
+//  Created by Alex de Vera on 3/8/15.
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
-#import "PastRoundsViewController.h"
-#import "RoundInfo.h"
-#import "RoundCell.h"
+#import "LiveRoundViewController.h"
+#import "EndCell.h"
 
-@interface PastRoundsViewController ()
+@interface LiveRoundViewController ()
 
 @end
 
-@implementation PastRoundsViewController
+@implementation LiveRoundViewController
 
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -22,6 +21,7 @@
     [self setAppDelegate:(AppDelegate *)[UIApplication sharedApplication].delegate];
     
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 
@@ -48,7 +48,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[_appDelegate roundScores] count];
+    return 12;
 }
 
 
@@ -57,16 +57,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores      = [_appDelegate roundScores];
-    RoundCell       *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
-    RoundInfo       *info        = [scores objectAtIndex:indexPath.row];
-    float            totalArrows = [info getTotalArrows];
-    float            totalScore  = [info getTotalScore];
+    EndCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LiveEndCell"];
     
-    [[cell dateLabel]       setText:[[info date] description]];
-    [[cell arrowsLabel]     setText:[NSString stringWithFormat:@"%d",   (int)totalArrows]];
-    [[cell scoreLabel]      setText:[NSString stringWithFormat:@"%d",   (int)totalScore]];
-    [[cell averageLabel]    setText:[NSString stringWithFormat:@"%.1f", totalScore / totalArrows]];
+    [[cell endNumLabel]     setText:[NSString stringWithFormat:@"%ld:", (long)indexPath.row + 1]];
+    
+    [[cell arrow0Label]     setText:[NSString stringWithFormat:@"_"]];
+    [[cell arrow1Label]     setText:[NSString stringWithFormat:@"_"]];
+    [[cell arrow2Label]     setText:[NSString stringWithFormat:@"_"]];
+    [[cell arrow3Label]     setText:[NSString stringWithFormat:@"_"]];
+    [[cell arrow4Label]     setText:[NSString stringWithFormat:@"_"]];
+    [[cell arrow5Label]     setText:[NSString stringWithFormat:@"_"]];
+    
+    [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"0"]];
+    [[cell totalScoreLabel] setText:[NSString stringWithFormat:@"0"]];
     
     return cell;
 }
@@ -76,7 +79,7 @@
 //------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 24;
 }
 
 
@@ -84,7 +87,7 @@
 //------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 24;
 }
 
 @end

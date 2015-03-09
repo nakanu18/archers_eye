@@ -17,6 +17,8 @@
 		FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99279B1AABA9070017D069 /* RoundInfo.m */; };
 		FA9927A31AABB1540017D069 /* RoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A21AABB1540017D069 /* RoundCell.m */; };
 		FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastRoundsViewController.m */; };
+		FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AB1AAD118E0017D069 /* EndCell.m */; };
+		FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		FA9927A21AABB1540017D069 /* RoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCell.m; sourceTree = "<group>"; };
 		FA9927A71AABB5340017D069 /* PastRoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastRoundsViewController.h; sourceTree = "<group>"; };
 		FA9927A81AABB5340017D069 /* PastRoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastRoundsViewController.m; sourceTree = "<group>"; };
+		FA9927AA1AAD118E0017D069 /* EndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndCell.h; sourceTree = "<group>"; };
+		FA9927AB1AAD118E0017D069 /* EndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndCell.m; sourceTree = "<group>"; };
+		FA9927AD1AAD12780017D069 /* LiveRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveRoundViewController.h; sourceTree = "<group>"; };
+		FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveRoundViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,8 @@
 				FA99279D1AABB0EE0017D069 /* Scores */,
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
+				FA9927AD1AAD12780017D069 /* LiveRoundViewController.h */,
+				FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */,
 				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
 				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
 				FA99277B1AABA1510017D069 /* ViewController.h */,
@@ -138,6 +146,8 @@
 				FA99279B1AABA9070017D069 /* RoundInfo.m */,
 				FA9927A11AABB1540017D069 /* RoundCell.h */,
 				FA9927A21AABB1540017D069 /* RoundCell.m */,
+				FA9927AA1AAD118E0017D069 /* EndCell.h */,
+				FA9927AB1AAD118E0017D069 /* EndCell.m */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -245,7 +255,9 @@
 				FA9927A31AABB1540017D069 /* RoundCell.m in Sources */,
 				FA99277D1AABA1510017D069 /* ViewController.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
+				FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
+				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
 				FA9927771AABA1510017D069 /* main.m in Sources */,
 				FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */,
 			);
