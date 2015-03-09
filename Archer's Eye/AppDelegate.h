@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RoundInfo.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
+    RoundInfo      *_liveRound;
     NSMutableArray *_roundScores;
 }
 
-@property (nonatomic, strong)   UIWindow        *window;
-@property (nonatomic)           NSMutableArray  *roundScores;
+@property (nonatomic, strong) UIWindow          *window;
+@property (nonatomic, strong) RoundInfo         *liveRound;
+@property (nonatomic, strong) NSMutableArray    *roundScores;
+
+- (void)startLiveRound;
+- (void)endLiveRoundAndDiscard;
+- (void)endLiveRoundAndSave;
 
 @end
 

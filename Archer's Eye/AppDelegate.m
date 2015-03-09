@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "RoundInfo.h"
 
 @interface AppDelegate ()
 
@@ -23,9 +22,10 @@
     // TODO - remove this fake data
     RoundInfo *roundInfo = nil;
     
+    // TODO - restore this array from the save data
     [self setRoundScores:[[NSMutableArray alloc] init]];
     
-    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:5];
+    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6];
     [_roundScores addObject:roundInfo];
     
     // Override point for customization after application launch.
@@ -89,6 +89,62 @@
 {
     // Called when the application is about to terminate. Save data if
     // appropriate. See also applicationDidEnterBackground:.
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+- (void)startLiveRound
+{
+    if( _liveRound == nil )
+    {
+        NSLog( @"Creating new live round" );
+        [self setLiveRound:[[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6]];
+    }
+    else
+        NSLog( @"Live round already exists" );
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)endLiveRoundAndDiscard
+{
+    // Release the old live round
+    [self setLiveRound:nil];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)endLiveRoundAndSave
+{
+    if( _liveRound != nil )
+    {
+        // Add the current live round to the log of past scores
+        [_roundScores addObject:_liveRound];
+        
+        // Release the old live round
+        [self setLiveRound:nil];
+    }
 }
 
 @end

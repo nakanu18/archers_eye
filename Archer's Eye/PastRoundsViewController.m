@@ -68,6 +68,7 @@
     [[cell scoreLabel]      setText:[NSString stringWithFormat:@"%d",   (int)totalScore]];
     [[cell averageLabel]    setText:[NSString stringWithFormat:@"%.1f", totalScore / totalArrows]];
     
+    
     return cell;
 }
 

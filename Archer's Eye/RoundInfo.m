@@ -20,7 +20,20 @@
         [self setDate:date];
         _numEnds         = numEnds;
         _numArrowsPerEnd = numArrowsPerEnd;
+        
+        // Create the array that will hold the array of scores for each end
         [self setEndScores:[[NSMutableArray alloc] init]];
+        
+        for( int i = 0; i < _numEnds; ++i )
+        {
+            NSMutableArray *newEndScore = [[NSMutableArray alloc] init];
+            
+            for( int j = 0; j < _numArrowsPerEnd; ++j )
+            {
+                [newEndScore addObject:@(-1)];
+            }
+            [_endScores addObject:newEndScore];
+        }
     }
     return self;
 }
@@ -28,19 +41,14 @@
 
 
 //------------------------------------------------------------------------------
-- (void)addEnd:(NSMutableArray *)newEndScore
+- (void)setScore:(int)score forEnd:(int)endID forArrow:(int)arrowID
 {
-    // Safety check: don't add too many ends or arrows
-    if( [_endScores count] < _numEnds   &&  [newEndScore count] == _numArrowsPerEnd )
+    if( endID   >= 0  &&  endID   < _numEnds            &&
+        arrowID >= 0  &&  arrowID < _numArrowsPerEnd )
     {
-        [_endScores addObject:newEndScore];
+        NSMutableArray *endScore = [_endScores objectAtIndex:endID];
         
-        NSLog( @"New end score: " );
-        for( int i = 0; i < [newEndScore count]; ++i )
-        {
-            NSLog( @"%d ", (int)[newEndScore objectAtIndex:i] );
-        }
-        NSLog( @"\n" );
+        [endScore replaceObjectAtIndex:arrowID withObject:@(score)];
     }
 }
 
@@ -49,11 +57,7 @@
 //------------------------------------------------------------------------------
 - (int)getTotalArrows
 {
-    int totalArrows = 0;
-    
-    totalArrows = _numEnds * _numArrowsPerEnd;
-    
-    return totalArrows;
+    return _numEnds * _numArrowsPerEnd;
 }
 
 
@@ -69,7 +73,10 @@
         
         for( int j = 0; j < [currEndScore count]; ++j )
         {
-            totalScore += (int)[currEndScore objectAtIndex:j];
+            int arrowScore = [[currEndScore objectAtIndex:j] intValue];
+            
+            if( arrowScore >= 0 )
+                totalScore += arrowScore;
         }
     }
     
