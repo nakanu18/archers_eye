@@ -10,17 +10,15 @@
 #import "AppDelegate.h"
 #import "EndCell.h"
 
-@interface LiveRoundViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface LiveRoundViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 {
-    __weak AppDelegate *_appDelegate;
-    __weak UITableView *_tableView;
-    
     int _currEndID;
     int _currArrowID;
 }
 
 @property (nonatomic, weak)          AppDelegate *appDelegate;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIButton    *doneButton;
 
 - (EndCell *)getCurrEndCell;
 - (UILabel *)getCurrArrowLabel;

@@ -18,10 +18,11 @@
 - (void)viewDidLoad
 {
     [self setAppDelegate:(AppDelegate *)[UIApplication sharedApplication].delegate];
-    
     [_appDelegate startLiveRound];
+    [_doneButton  setEnabled:NO];
     
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
 
@@ -200,6 +201,9 @@
             {
                 _currArrowID  = 0;
                 _currEndID   += 1;
+                
+                if( _currEndID >= numEnds )
+                    [_doneButton setEnabled:YES];
             }
         }
         else
@@ -233,6 +237,8 @@
     }
     else
         _currArrowID -= 1;
+    
+    [_doneButton setEnabled:NO];
     
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
 }
@@ -310,7 +316,6 @@
     
     [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"%d", endScore]];
     [[cell totalScoreLabel] setText:[NSString stringWithFormat:@"%d", totalScore]];
-    
 }
 
 
@@ -442,7 +447,48 @@
 //------------------------------------------------------------------------------
 - (IBAction)doneButtonPressed:(id)sender
 {
+    UIAlertView *confirmDone = [[UIAlertView alloc] initWithTitle:@""
+                                                          message:@"Save now?"
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Save", nil];
     
+    [confirmDone show];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma UIAlertView delegate methods
+
+//------------------------------------------------------------------------------
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if( buttonIndex == 1 )
+    {
+        [_appDelegate endLiveRoundAndSave];
+        [_tableView reloadData];
+    }
 }
 
 @end
