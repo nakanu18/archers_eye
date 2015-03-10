@@ -10,8 +10,9 @@
 
 @interface EndCell : UITableViewCell
 {
-    
 }
+
+@property (nonatomic, strong) NSMutableArray *arrowLabels;
 
 @property (nonatomic, weak) IBOutlet UILabel *endNumLabel;
 

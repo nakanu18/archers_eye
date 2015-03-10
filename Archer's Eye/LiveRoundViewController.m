@@ -81,26 +81,19 @@
     
     [[cell endNumLabel]     setText:[NSString stringWithFormat:@"%ld:", (long)indexPath.row + 1]];
     
-    [self setScore:0 forLabel:[cell arrow0Label]];
-    [self setScore:0 forLabel:[cell arrow1Label]];
-    [self setScore:0 forLabel:[cell arrow2Label]];
-    [self setScore:0 forLabel:[cell arrow3Label]];
-    [self setScore:0 forLabel:[cell arrow4Label]];
-    [self setScore:0 forLabel:[cell arrow5Label]];
+    // Initialize the arrow scores
+    for( int i = 0; i < [[cell arrowLabels] count]; ++i )
+    {
+        [self setScore:-1 forLabel:[[cell arrowLabels] objectAtIndex:i]];
+    }
     
     [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"0"]];
     [[cell totalScoreLabel] setText:[NSString stringWithFormat:@"0"]];
     
     if( indexPath.row == _currEndID )
-    {
-        if( _currArrowID == 0 )     [[cell arrow0Label] setBackgroundColor:[UIColor greenColor]];
-        if( _currArrowID == 1 )     [[cell arrow1Label] setBackgroundColor:[UIColor greenColor]];
-        if( _currArrowID == 2 )     [[cell arrow2Label] setBackgroundColor:[UIColor greenColor]];
-        if( _currArrowID == 3 )     [[cell arrow3Label] setBackgroundColor:[UIColor greenColor]];
-        if( _currArrowID == 4 )     [[cell arrow4Label] setBackgroundColor:[UIColor greenColor]];
-        if( _currArrowID == 5 )     [[cell arrow5Label] setBackgroundColor:[UIColor greenColor]];
-    }
+        [[[cell arrowLabels] objectAtIndex:_currArrowID] setBackgroundColor:[UIColor greenColor]];
 
+    // Hide any slots we're not using
     if( numArrowsPerEnd < 1 )       [[cell arrow0Label] setHidden:YES];
     if( numArrowsPerEnd < 2 )       [[cell arrow1Label] setHidden:YES];
     if( numArrowsPerEnd < 3 )       [[cell arrow2Label] setHidden:YES];
@@ -109,6 +102,13 @@
     if( numArrowsPerEnd < 6 )       [[cell arrow5Label] setHidden:YES];
     
     return cell;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 }
 
 
@@ -165,12 +165,7 @@
     UILabel *label = nil;
     EndCell *cell  = [self getCurrEndCell];
     
-    if( _currArrowID == 0 )     label = [cell arrow0Label];
-    if( _currArrowID == 1 )     label = [cell arrow1Label];
-    if( _currArrowID == 2 )     label = [cell arrow2Label];
-    if( _currArrowID == 3 )     label = [cell arrow3Label];
-    if( _currArrowID == 4 )     label = [cell arrow4Label];
-    if( _currArrowID == 5 )     label = [cell arrow5Label];
+    label = [[cell arrowLabels] objectAtIndex:_currArrowID];
     
     return label;
 }
@@ -199,7 +194,7 @@
 //------------------------------------------------------------------------------
 - (void)decArrowID
 {
-    int numEnds         = [[_appDelegate liveRound] numEnds];
+//    int numEnds         = [[_appDelegate liveRound] numEnds];
     int numArrowsPerEnd = [[_appDelegate liveRound] numArrowsPerEnd];
     
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor grayColor]];
@@ -227,18 +222,14 @@
 //------------------------------------------------------------------------------
 - (void)setScoreForCurrArrow:(int)score
 {
-    EndCell *cell = [self getCurrEndCell];
+    EndCell *cell  = [self getCurrEndCell];
+    UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
 
     // Set the score in the data
     [[_appDelegate liveRound] setScore:score forEnd:_currEndID forArrow:_currArrowID];
     
     // Visually set the score
-    if( _currArrowID == 0 )     [self setScore:score forLabel:[cell arrow0Label]];
-    if( _currArrowID == 1 )     [self setScore:score forLabel:[cell arrow1Label]];
-    if( _currArrowID == 2 )     [self setScore:score forLabel:[cell arrow2Label]];
-    if( _currArrowID == 3 )     [self setScore:score forLabel:[cell arrow3Label]];
-    if( _currArrowID == 4 )     [self setScore:score forLabel:[cell arrow4Label]];
-    if( _currArrowID == 5 )     [self setScore:score forLabel:[cell arrow5Label]];
+    [self setScore:score forLabel:label];
     
     [self incArrowID];
 }
@@ -248,7 +239,10 @@
 //------------------------------------------------------------------------------
 - (void)setScore:(int)score forLabel:(UILabel *)label
 {
-    [label setText:[NSString stringWithFormat:@"%d", score]];
+    if( score >= 0 )
+        [label setText:[NSString stringWithFormat:@"%d", score]];
+    else
+        [label setText:@"?"];
     
     if( score >= 9 )
         [label setBackgroundColor:[UIColor yellowColor]];
@@ -260,6 +254,8 @@
         [label setBackgroundColor:[UIColor blackColor]];
     else if( score >= 0 )
         [label setBackgroundColor:[UIColor whiteColor]];
+    else
+        [label setBackgroundColor:[UIColor grayColor]];
 }
 
 
@@ -270,18 +266,13 @@
     [self decArrowID];
 
     EndCell *cell  = [self getCurrEndCell];
-    int      score = 0;
+    UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
     
     // Set the score in the data
-    [[_appDelegate liveRound] setScore:score forEnd:_currEndID forArrow:_currArrowID];
+    [[_appDelegate liveRound] setScore:-1 forEnd:_currEndID forArrow:_currArrowID];
     
     // Visually set the score
-    if( _currArrowID == 0 )     [self setScore:score forLabel:[cell arrow0Label]];
-    if( _currArrowID == 1 )     [self setScore:score forLabel:[cell arrow1Label]];
-    if( _currArrowID == 2 )     [self setScore:score forLabel:[cell arrow2Label]];
-    if( _currArrowID == 3 )     [self setScore:score forLabel:[cell arrow3Label]];
-    if( _currArrowID == 4 )     [self setScore:score forLabel:[cell arrow4Label]];
-    if( _currArrowID == 5 )     [self setScore:score forLabel:[cell arrow5Label]];
+    [self setScore:-1 forLabel:label];
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
 }
 
