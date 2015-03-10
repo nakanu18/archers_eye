@@ -84,7 +84,7 @@
     // Initialize the arrow scores
     for( int i = 0; i < [[cell arrowLabels] count]; ++i )
     {
-        [self setScore:-1 forLabel:[[cell arrowLabels] objectAtIndex:i]];
+        [self setVisualScore:-1 forLabel:[[cell arrowLabels] objectAtIndex:i]];
     }
     
     [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"0"]];
@@ -107,14 +107,8 @@
 
 
 //------------------------------------------------------------------------------
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-}
-
-
-
-//------------------------------------------------------------------------------
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+-               (CGFloat)tableView:(UITableView *)tableView
+  estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 24;
 }
@@ -122,7 +116,8 @@
 
 
 //------------------------------------------------------------------------------
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-       (CGFloat)tableView:(UITableView *)tableView
+   heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 24;
 }
@@ -173,18 +168,43 @@
 
 
 //------------------------------------------------------------------------------
+- (void)setCurrEndID:(int)currEndID andCurrArrowID:(int)currArrowID
+{
+    // Get the score of the currently selected slot
+    int      score = [[_appDelegate liveRound] getScoreForEnd:_currEndID andArrow:_currArrowID];
+    EndCell *cell  = [self getCurrEndCell];
+    UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
+    
+    // Visually reset the old slot
+    [self setVisualScore:score forLabel:label];
+    
+    // Highlight the new slot
+    _currEndID   = currEndID;
+    _currArrowID = currArrowID;
+    [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)incArrowID
 {
     int numEnds         = [[_appDelegate liveRound] numEnds];
     int numArrowsPerEnd = [[_appDelegate liveRound] numArrowsPerEnd];
 
-    if( _currArrowID + 1 >= numArrowsPerEnd )
+    if( _currEndID < numEnds )
     {
-        _currArrowID = 0;
-        _currEndID   = (_currEndID + 1) % numEnds;
+        if( _currArrowID + 1 >= numArrowsPerEnd )
+        {
+            if( _currEndID + 1 <= numEnds )
+            {
+                _currArrowID  = 0;
+                _currEndID   += 1;
+            }
+        }
+        else
+            _currArrowID += 1;
     }
-    else
-        _currArrowID += 1;
 
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
 }
@@ -226,10 +246,11 @@
     UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
 
     // Set the score in the data
-    [[_appDelegate liveRound] setScore:score forEnd:_currEndID forArrow:_currArrowID];
+    [[_appDelegate liveRound] setScore:score forEnd:_currEndID andArrow:_currArrowID];
     
     // Visually set the score
-    [self setScore:score forLabel:label];
+    [self setVisualScore:score forLabel:label];
+    [self updateTotalScores];
     
     [self incArrowID];
 }
@@ -237,7 +258,7 @@
 
 
 //------------------------------------------------------------------------------
-- (void)setScore:(int)score forLabel:(UILabel *)label
+- (void)setVisualScore:(int)score forLabel:(UILabel *)label
 {
     if( score >= 0 )
         [label setText:[NSString stringWithFormat:@"%d", score]];
@@ -269,13 +290,28 @@
     UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
     
     // Set the score in the data
-    [[_appDelegate liveRound] setScore:-1 forEnd:_currEndID forArrow:_currArrowID];
+    [[_appDelegate liveRound] setScore:-1 forEnd:_currEndID andArrow:_currArrowID];
     
     // Visually set the score
-    [self setScore:-1 forLabel:label];
+    [self setVisualScore:-1 forLabel:label];
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
+    
+    [self updateTotalScores];
 }
 
+
+
+//------------------------------------------------------------------------------
+- (void)updateTotalScores
+{
+    EndCell *cell       = [self getCurrEndCell];
+    int      endScore   = [[_appDelegate liveRound] getScoreForEnd:_currEndID];
+    int      totalScore = [[_appDelegate liveRound] getTotalScoreUpToEnd:_currEndID];
+    
+    [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"%d", endScore]];
+    [[cell totalScoreLabel] setText:[NSString stringWithFormat:@"%d", totalScore]];
+    
+}
 
 
 

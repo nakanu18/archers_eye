@@ -117,7 +117,7 @@
     if( _liveRound == nil )
     {
         NSLog( @"Creating new live round" );
-        [self setLiveRound:[[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6]];
+        [self setLiveRound:[[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:3]];
     }
     else
         NSLog( @"Live round already exists" );

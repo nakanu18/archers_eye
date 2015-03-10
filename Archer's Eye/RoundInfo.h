@@ -20,7 +20,10 @@
         andNumEnds:(int)numEnds
    andArrowsPerEnd:(int)numArrowsPerEnd;
 
-- (void)setScore:(int)score forEnd:(int)endID forArrow:(int)arrowID;
+- (void)setScore:(int)score forEnd:(int)endID andArrow:(int)arrowID;
+- (int)getScoreForEnd:(int)endID andArrow:(int)arrowID;
+- (int)getScoreForEnd:(int)endID;
+- (int)getTotalScoreUpToEnd:(int)endID;
 - (int)getTotalArrows;
 - (int)getTotalScore;
 

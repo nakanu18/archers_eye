@@ -41,7 +41,7 @@
 
 
 //------------------------------------------------------------------------------
-- (void)setScore:(int)score forEnd:(int)endID forArrow:(int)arrowID
+- (void)setScore:(int)score forEnd:(int)endID andArrow:(int)arrowID
 {
     if( endID   >= 0  &&  endID   < _numEnds            &&
         arrowID >= 0  &&  arrowID < _numArrowsPerEnd )
@@ -50,6 +50,61 @@
         
         [endScore replaceObjectAtIndex:arrowID withObject:@(score)];
     }
+}
+
+
+
+//------------------------------------------------------------------------------
+- (int)getScoreForEnd:(int)endID andArrow:(int)arrowID
+{
+    NSMutableArray *endScore = [_endScores objectAtIndex:endID];
+
+    return [[endScore objectAtIndex:arrowID] intValue];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (int)getScoreForEnd:(int)endID
+{
+    int endTotal = 0;
+
+    if( endID >= 0  &&  endID < _numEnds )
+    {
+        NSMutableArray *endScore = [_endScores objectAtIndex:endID];
+        
+        for( int i = 0; i < [endScore count]; ++i )
+        {
+            int arrowScore = [[endScore objectAtIndex:i] intValue];
+            
+            endTotal += (arrowScore > 0) ? arrowScore : 0;
+        }
+    }
+    return endTotal;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (int)getTotalScoreUpToEnd:(int)endID
+{
+    int currTotal = 0;
+    
+    if( endID >= 0  &&  endID < _numEnds )
+    {
+        for( int i = 0; i <= endID; ++i )
+        {
+            NSMutableArray *endScore = [_endScores objectAtIndex:i];
+            
+            for( int j = 0; j < [endScore count]; ++j )
+            {
+                int arrowScore = [[endScore objectAtIndex:j] intValue];
+                
+                currTotal += (arrowScore > 0) ? arrowScore : 0;
+            }
+        }
+    }
+    return currTotal;
 }
 
 

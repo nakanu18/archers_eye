@@ -25,11 +25,14 @@
 - (EndCell *)getCurrEndCell;
 - (UILabel *)getCurrArrowLabel;
 
+- (void)setCurrEndID:(int)currEndID andCurrArrowID:(int)currArrowID;
 - (void)incArrowID;
 - (void)decArrowID;
 - (void)setScoreForCurrArrow:(int)score;
-- (void)setScore:(int)score forLabel:(UILabel *)label;
+- (void)setVisualScore:(int)score forLabel:(UILabel *)label;
 - (void)eraseScoreForCurrArrow;
+
+- (void)updateTotalScores;
 
 - (IBAction)scoreXButtonPressed:(id)sender;
 - (IBAction)score10ButtonPressed:(id)sender;
