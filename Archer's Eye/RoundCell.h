@@ -13,9 +13,9 @@
     
 }
 
-@property (nonatomic, weak) IBOutlet UILabel *dateLabel;
-@property (nonatomic, weak) IBOutlet UILabel *arrowsLabel;
-@property (nonatomic, weak) IBOutlet UILabel *scoreLabel;
-@property (nonatomic, weak) IBOutlet UILabel *averageLabel;
+@property (weak) IBOutlet UILabel *dateLabel;
+@property (weak) IBOutlet UILabel *arrowsLabel;
+@property (weak) IBOutlet UILabel *scoreLabel;
+@property (weak) IBOutlet UILabel *averageLabel;
 
 @end

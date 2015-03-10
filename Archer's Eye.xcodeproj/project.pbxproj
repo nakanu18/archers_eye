@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FA9927771AABA1510017D069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927761AABA1510017D069 /* main.m */; };
 		FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927791AABA1510017D069 /* AppDelegate.m */; };
-		FA99277D1AABA1510017D069 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99277C1AABA1510017D069 /* ViewController.m */; };
 		FA9927801AABA1510017D069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA99277E1AABA1510017D069 /* Main.storyboard */; };
 		FA9927821AABA1510017D069 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9927811AABA1510017D069 /* Images.xcassets */; };
 		FA9927851AABA1510017D069 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9927831AABA1510017D069 /* LaunchScreen.xib */; };
@@ -37,8 +36,6 @@
 		FA9927761AABA1510017D069 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA9927781AABA1510017D069 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FA9927791AABA1510017D069 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FA99277B1AABA1510017D069 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FA99277C1AABA1510017D069 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FA99277F1AABA1510017D069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA9927811AABA1510017D069 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA9927841AABA1510017D069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -103,8 +100,6 @@
 				FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */,
 				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
 				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
-				FA99277B1AABA1510017D069 /* ViewController.h */,
-				FA99277C1AABA1510017D069 /* ViewController.m */,
 				FA99277E1AABA1510017D069 /* Main.storyboard */,
 				FA9927811AABA1510017D069 /* Images.xcassets */,
 				FA9927831AABA1510017D069 /* LaunchScreen.xib */,
@@ -253,7 +248,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9927A31AABB1540017D069 /* RoundCell.m in Sources */,
-				FA99277D1AABA1510017D069 /* ViewController.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
@@ -452,6 +446,7 @@
 				FA9927961AABA1520017D069 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA9927971AABA1520017D069 /* Build configuration list for PBXNativeTarget "Archer's EyeTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +455,7 @@
 				FA9927991AABA1520017D069 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

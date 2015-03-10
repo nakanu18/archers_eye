@@ -16,9 +16,9 @@
     int _currArrowID;
 }
 
-@property (nonatomic, weak)          AppDelegate *appDelegate;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UIButton    *doneButton;
+@property (weak)          AppDelegate *appDelegate;
+@property (weak) IBOutlet UITableView *tableView;
+@property (weak) IBOutlet UIButton    *doneButton;
 
 - (EndCell *)getCurrEndCell;
 - (UILabel *)getCurrArrowLabel;

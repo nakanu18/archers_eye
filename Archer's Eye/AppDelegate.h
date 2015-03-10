@@ -16,8 +16,8 @@
 }
 
 @property (nonatomic, strong) UIWindow          *window;
-@property (nonatomic, strong) RoundInfo         *liveRound;
-@property (nonatomic, strong) NSMutableArray    *roundScores;
+@property (strong)            RoundInfo         *liveRound;
+@property (strong)            NSMutableArray    *roundScores;
 
 - (void)startLiveRound;
 - (void)endLiveRoundAndDiscard;

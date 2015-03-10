@@ -27,9 +27,9 @@
 - (int)getTotalArrows;
 - (int)getTotalScore;
 
-@property (nonatomic, strong)   NSDate         *date;
-@property (nonatomic, strong)   NSMutableArray *endScores;
-@property (nonatomic, readonly) int             numEnds;
-@property (nonatomic, readonly) int             numArrowsPerEnd;
+@property (strong)   NSDate         *date;
+@property (strong)   NSMutableArray *endScores;
+@property (readonly) int             numEnds;
+@property (readonly) int             numArrowsPerEnd;
 
 @end

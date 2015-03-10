@@ -14,6 +14,6 @@
     __weak AppDelegate *_appDelegate;
 }
 
-@property (nonatomic, weak) AppDelegate *appDelegate;
+@property (weak) AppDelegate *appDelegate;
 
 @end
