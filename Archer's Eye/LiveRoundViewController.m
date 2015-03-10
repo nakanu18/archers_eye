@@ -85,14 +85,14 @@
     // Initialize the arrow scores
     for( int i = 0; i < [[cell arrowLabels] count]; ++i )
     {
-        [self setVisualScore:-1 forLabel:[[cell arrowLabels] objectAtIndex:i]];
+        [self setVisualScore:-1 forLabel:[cell arrowLabels][i]];
     }
     
     [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"0"]];
     [[cell totalScoreLabel] setText:[NSString stringWithFormat:@"0"]];
     
     if( indexPath.row == _currEndID )
-        [[[cell arrowLabels] objectAtIndex:_currArrowID] setBackgroundColor:[UIColor greenColor]];
+        [[cell arrowLabels][_currArrowID] setBackgroundColor:[UIColor greenColor]];
 
     // Hide any slots we're not using
     if( numArrowsPerEnd < 1 )       [[cell arrow0Label] setHidden:YES];
@@ -161,7 +161,7 @@
     UILabel *label = nil;
     EndCell *cell  = [self getCurrEndCell];
     
-    label = [[cell arrowLabels] objectAtIndex:_currArrowID];
+    label = [cell arrowLabels][_currArrowID];
     
     return label;
 }
@@ -174,7 +174,7 @@
     // Get the score of the currently selected slot
     int      score = [[_appDelegate liveRound] getScoreForEnd:_currEndID andArrow:_currArrowID];
     EndCell *cell  = [self getCurrEndCell];
-    UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
+    UILabel *label = [cell arrowLabels][_currArrowID];
     
     // Visually reset the old slot
     [self setVisualScore:score forLabel:label];
@@ -249,7 +249,7 @@
 - (void)setScoreForCurrArrow:(int)score
 {
     EndCell *cell  = [self getCurrEndCell];
-    UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
+    UILabel *label = [cell arrowLabels][_currArrowID];
 
     // Set the score in the data
     [[_appDelegate liveRound] setScore:score forEnd:_currEndID andArrow:_currArrowID];
@@ -293,7 +293,7 @@
     [self decArrowID];
 
     EndCell *cell  = [self getCurrEndCell];
-    UILabel *label = [[cell arrowLabels] objectAtIndex:_currArrowID];
+    UILabel *label = [cell arrowLabels][_currArrowID];
     
     // Set the score in the data
     [[_appDelegate liveRound] setScore:-1 forEnd:_currEndID andArrow:_currArrowID];

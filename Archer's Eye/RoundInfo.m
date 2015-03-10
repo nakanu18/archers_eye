@@ -59,7 +59,7 @@
 {
     NSMutableArray *endScore = [_endScores objectAtIndex:endID];
 
-    return [[endScore objectAtIndex:arrowID] intValue];
+    return [endScore[arrowID] intValue];
 }
 
 
@@ -75,7 +75,7 @@
         
         for( int i = 0; i < [endScore count]; ++i )
         {
-            int arrowScore = [[endScore objectAtIndex:i] intValue];
+            int arrowScore = [endScore[i] intValue];
             
             endTotal += (arrowScore > 0) ? arrowScore : 0;
         }
@@ -98,7 +98,7 @@
             
             for( int j = 0; j < [endScore count]; ++j )
             {
-                int arrowScore = [[endScore objectAtIndex:j] intValue];
+                int arrowScore = [endScore[j] intValue];
                 
                 currTotal += (arrowScore > 0) ? arrowScore : 0;
             }
@@ -128,7 +128,7 @@
         
         for( int j = 0; j < [currEndScore count]; ++j )
         {
-            int arrowScore = [[currEndScore objectAtIndex:j] intValue];
+            int arrowScore = [currEndScore[j] intValue];
             
             if( arrowScore >= 0 )
                 totalScore += arrowScore;

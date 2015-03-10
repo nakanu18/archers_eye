@@ -20,13 +20,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // TODO - remove this fake data
-    RoundInfo *roundInfo = nil;
+//    RoundInfo *roundInfo = nil;
     
     // TODO - restore this array from the save data
     [self setRoundScores:[[NSMutableArray alloc] init]];
     
-    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6];
-    [_roundScores addObject:roundInfo];
+//    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6];
+//    [_roundScores addObject:roundInfo];
     
     // Override point for customization after application launch.
     return YES;
