@@ -60,13 +60,13 @@
     NSMutableArray  *scores      = _appDelegate.roundScores;
     RoundCell       *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
     RoundInfo       *info        = scores[indexPath.row];
-    float            totalArrows = [info getTotalArrows];
-    float            totalScore  = [info getTotalScore];
+    NSInteger        totalArrows = [info getTotalArrows];
+    NSInteger        totalScore  = [info getTotalScore];
     
     cell.dateLabel.text     = [[info date] description];
-    cell.arrowsLabel.text   = [NSString stringWithFormat:@"%d",   (int)totalArrows];
-    cell.scoreLabel.text    = [NSString stringWithFormat:@"%d",   (int)totalScore];
-    cell.averageLabel.text  = [NSString stringWithFormat:@"%.1f", totalScore / totalArrows];
+    cell.arrowsLabel.text   = [NSString stringWithFormat:@"%ld",  totalArrows];
+    cell.scoreLabel.text    = [NSString stringWithFormat:@"%ld",  totalScore];
+    cell.averageLabel.text  = [NSString stringWithFormat:@"%.1f", (float)totalScore / (float)totalArrows];
     
     return cell;
 }

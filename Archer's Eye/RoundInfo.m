@@ -13,8 +13,8 @@
 //------------------------------------------------------------------------------
 // Initialize the round.
 - (id)initWithDate:(NSDate *)date
-        andNumEnds:(int)numEnds
-   andArrowsPerEnd:(int)numArrowsPerEnd
+        andNumEnds:(NSInteger)numEnds
+   andArrowsPerEnd:(NSInteger)numArrowsPerEnd
 {
     if( (self = [super init]) )
     {
@@ -25,11 +25,11 @@
         // Create the array that will hold the array of scores for each end
         [self setEndScores:[[NSMutableArray alloc] init]];
         
-        for( int i = 0; i < _numEnds; ++i )
+        for( NSInteger i = 0; i < _numEnds; ++i )
         {
             NSMutableArray *newEndScore = [[NSMutableArray alloc] init];
             
-            for( int j = 0; j < _numArrowsPerEnd; ++j )
+            for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
             {
                 [newEndScore addObject:@(-1)];
             }
@@ -43,7 +43,7 @@
 
 //------------------------------------------------------------------------------
 // Set the score for a specific arrow.
-- (void)setScore:(int)score forEnd:(int)endID andArrow:(int)arrowID
+- (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
     if( endID   >= 0  &&  endID   < _numEnds            &&
         arrowID >= 0  &&  arrowID < _numArrowsPerEnd )
@@ -58,28 +58,28 @@
 
 //------------------------------------------------------------------------------
 // Get the score for a specific arrow.
-- (int)getScoreForEnd:(int)endID andArrow:(int)arrowID
+- (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
     NSMutableArray *endScore = [_endScores objectAtIndex:endID];
 
-    return [endScore[arrowID] intValue];
+    return [endScore[arrowID] integerValue];
 }
 
 
 
 //------------------------------------------------------------------------------
 // Get the total score for a specific end.
-- (int)getScoreForEnd:(int)endID
+- (NSInteger)getScoreForEnd:(NSInteger)endID
 {
-    int endTotal = 0;
+    NSInteger endTotal = 0;
 
     if( endID >= 0  &&  endID < _numEnds )
     {
         NSMutableArray *endScore = [_endScores objectAtIndex:endID];
         
-        for( int i = 0; i < [endScore count]; ++i )
+        for( NSInteger i = 0; i < [endScore count]; ++i )
         {
-            int arrowScore = [endScore[i] intValue];
+            NSInteger arrowScore = [endScore[i] integerValue];
             
             endTotal += (arrowScore > 0) ? arrowScore : 0;
         }
@@ -91,19 +91,19 @@
 
 //------------------------------------------------------------------------------
 // Get the running total to this the specified end.
-- (int)getTotalScoreUpToEnd:(int)endID
+- (NSInteger)getTotalScoreUpToEnd:(NSInteger)endID
 {
-    int currTotal = 0;
+    NSInteger currTotal = 0;
     
     if( endID >= 0  &&  endID < _numEnds )
     {
-        for( int i = 0; i <= endID; ++i )
+        for( NSInteger i = 0; i <= endID; ++i )
         {
             NSMutableArray *endScore = [_endScores objectAtIndex:i];
             
             for( NSNumber *num in endScore )
             {
-                int arrowScore = [num intValue];
+                NSInteger arrowScore = [num integerValue];
                 
                 currTotal += (arrowScore > 0) ? arrowScore : 0;
             }
@@ -116,7 +116,7 @@
 
 //------------------------------------------------------------------------------
 // Get the total number of arrows in a round.
-- (int)getTotalArrows
+- (NSInteger)getTotalArrows
 {
     return _numEnds * _numArrowsPerEnd;
 }
@@ -125,15 +125,15 @@
 
 //------------------------------------------------------------------------------
 // Get the total score for the round.
-- (int)getTotalScore
+- (NSInteger)getTotalScore
 {
-    int totalScore = 0;
+    NSInteger totalScore = 0;
     
     for( NSMutableArray *currEndScore in _endScores )
     {
         for( NSNumber *num in currEndScore )
         {
-            int arrowScore = [num intValue];
+            NSInteger arrowScore = [num integerValue];
             
             if( arrowScore >= 0 )
                 totalScore += arrowScore;

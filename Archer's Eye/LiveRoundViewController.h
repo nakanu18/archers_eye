@@ -12,8 +12,8 @@
 
 @interface LiveRoundViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 {
-    int _currEndID;
-    int _currArrowID;
+    NSInteger _currEndID;
+    NSInteger _currArrowID;
 }
 
 @property (weak)          AppDelegate *appDelegate;
@@ -23,11 +23,11 @@
 - (EndCell *)getCurrEndCell;
 - (UILabel *)getCurrArrowLabel;
 
-- (void)setCurrEndID:(int)currEndID andCurrArrowID:(int)currArrowID;
+- (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID;
 - (void)incArrowID;
 - (void)decArrowID;
-- (void)setScoreForCurrArrow:(int)score;
-- (void)setVisualScore:(int)score forLabel:(UILabel *)label;
+- (void)setScoreForCurrArrow:(NSInteger)score;
+- (void)setVisualScore:(NSInteger)score forLabel:(UILabel *)label;
 - (void)eraseScoreForCurrArrow;
 
 - (void)updateTotalScores;

@@ -104,8 +104,8 @@
         
         cell.name.text      = @"LIVE";
         cell.name.textColor = [UIColor redColor];
-        cell.numArrows.text = [NSString stringWithFormat:@"%d", template.numArrowsPerEnd];
-        cell.numEnds.text   = [NSString stringWithFormat:@"%d", template.numEnds];
+        cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
+        cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
     }
     // Show the templates
     else
@@ -114,8 +114,8 @@
 
         cell.name.text      = @"TEMPLATE";
         cell.name.textColor = [UIColor blackColor];
-        cell.numArrows.text = [NSString stringWithFormat:@"%d", template.numArrowsPerEnd];
-        cell.numEnds.text   = [NSString stringWithFormat:@"%d", template.numEnds];
+        cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
+        cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
     }
     return cell;
 }

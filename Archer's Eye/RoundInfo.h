@@ -11,25 +11,25 @@
 @interface RoundInfo : NSObject
 {
     NSDate         *_date;
-    int             _numEnds;
-    int             _numArrowsPerEnd;
+    NSInteger       _numEnds;
+    NSInteger       _numArrowsPerEnd;
     NSMutableArray *_endScores;
 }
 
 - (id)initWithDate:(NSDate *)date
-        andNumEnds:(int)numEnds
-   andArrowsPerEnd:(int)numArrowsPerEnd;
+        andNumEnds:(NSInteger)numEnds
+   andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
-- (void)setScore:(int)score forEnd:(int)endID andArrow:(int)arrowID;
-- (int)getScoreForEnd:(int)endID andArrow:(int)arrowID;
-- (int)getScoreForEnd:(int)endID;
-- (int)getTotalScoreUpToEnd:(int)endID;
-- (int)getTotalArrows;
-- (int)getTotalScore;
+- (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
+- (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
+- (NSInteger)getScoreForEnd:(NSInteger)endID;
+- (NSInteger)getTotalScoreUpToEnd:(NSInteger)endID;
+- (NSInteger)getTotalArrows;
+- (NSInteger)getTotalScore;
 
 @property (strong)   NSDate         *date;
 @property (strong)   NSMutableArray *endScores;
-@property (readonly) int             numEnds;
-@property (readonly) int             numArrowsPerEnd;
+@property (readonly) NSInteger       numEnds;
+@property (readonly) NSInteger       numArrowsPerEnd;
 
 @end
