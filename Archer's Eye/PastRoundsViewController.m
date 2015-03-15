@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    [self setAppDelegate:(AppDelegate *)[UIApplication sharedApplication].delegate];
+    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     [super viewDidLoad];
 }
@@ -48,7 +48,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[_appDelegate roundScores] count];
+    return [_appDelegate.roundScores count];
 }
 
 
@@ -57,17 +57,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores      = [_appDelegate roundScores];
+    NSMutableArray  *scores      = _appDelegate.roundScores;
     RoundCell       *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
-    RoundInfo       *info        = [scores objectAtIndex:indexPath.row];
+    RoundInfo       *info        = scores[indexPath.row];
     float            totalArrows = [info getTotalArrows];
     float            totalScore  = [info getTotalScore];
     
-    [[cell dateLabel]       setText:[[info date] description]];
-    [[cell arrowsLabel]     setText:[NSString stringWithFormat:@"%d",   (int)totalArrows]];
-    [[cell scoreLabel]      setText:[NSString stringWithFormat:@"%d",   (int)totalScore]];
-    [[cell averageLabel]    setText:[NSString stringWithFormat:@"%.1f", totalScore / totalArrows]];
-    
+    cell.dateLabel.text     = [[info date] description];
+    cell.arrowsLabel.text   = [NSString stringWithFormat:@"%d",   (int)totalArrows];
+    cell.scoreLabel.text    = [NSString stringWithFormat:@"%d",   (int)totalScore];
+    cell.averageLabel.text  = [NSString stringWithFormat:@"%.1f", totalScore / totalArrows];
     
     return cell;
 }

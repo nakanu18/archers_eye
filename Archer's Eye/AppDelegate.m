@@ -19,21 +19,13 @@
 //------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self setRoundTemplates:[[NSMutableArray alloc] init]];
-    [self setRoundScores:[[NSMutableArray alloc] init]];
+    self.roundTemplates = [[NSMutableArray alloc] init];
+    self.roundScores    = [[NSMutableArray alloc] init];
 
     RoundInfo *fita600Round = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:20 andArrowsPerEnd:3];
     RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:12 andArrowsPerEnd:5];
     [_roundTemplates addObject:fita600Round];
     [_roundTemplates addObject:nfaa300Round];
-    
-    // TODO - remove this fake data
-//    RoundInfo *roundInfo = nil;
-    
-    // TODO - restore this array from the save data
-    
-//    roundInfo = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:10 andArrowsPerEnd:6];
-//    [_roundScores addObject:roundInfo];
     
     // Override point for customization after application launch.
     return YES;
@@ -124,7 +116,7 @@
     if( _liveRound == nil )
     {
         NSLog( @"Creating new live round" );
-        [self setLiveRound:roundTemplate];
+        self.liveRound = roundTemplate;
     }
     else
         NSLog( @"Live round already exists" );
@@ -136,7 +128,7 @@
 - (void)endLiveRoundAndDiscard
 {
     // Release the old live round
-    [self setLiveRound:nil];
+    self.liveRound = nil;
 }
 
 
@@ -150,7 +142,7 @@
         [_roundScores addObject:_liveRound];
         
         // Release the old live round
-        [self setLiveRound:nil];
+        self.liveRound = nil;
     }
 }
 
