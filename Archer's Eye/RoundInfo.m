@@ -42,6 +42,39 @@
 
 
 //------------------------------------------------------------------------------
+// Find the first empty slot and return it
+- (CGPoint)getCurrEndAndArrow
+{
+    CGPoint position    = CGPointMake( 0, 0 );
+    BOOL    foundEmpty  = NO;
+    
+    for( NSArray *endScore in _endScores )
+    {
+        position.x = 0;
+
+        for( NSNumber *arrow in endScore )
+        {
+            if( [arrow integerValue] == -1 )
+            {
+                foundEmpty = YES;
+                break;
+            }
+            
+            position.x += 1;
+        }
+        
+        if( foundEmpty )
+            break;
+        
+        position.y += 1;
+    }
+    
+    return position;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Set the score for a specific arrow.
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {

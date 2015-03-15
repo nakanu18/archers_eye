@@ -19,6 +19,11 @@
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _doneButton.enabled = NO;
+
+    CGPoint currEmpty = [_appDelegate.liveRound getCurrEndAndArrow];
+    
+    _currEndID   = currEmpty.y;
+    _currArrowID = currEmpty.x;
     
     [super viewDidLoad];
     

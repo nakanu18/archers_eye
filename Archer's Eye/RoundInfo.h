@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface RoundInfo : NSObject
 {
@@ -19,6 +20,8 @@
 - (id)initWithDate:(NSDate *)date
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
+
+- (CGPoint)getCurrEndAndArrow;  // y = end, x = arrow
 
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
 - (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
