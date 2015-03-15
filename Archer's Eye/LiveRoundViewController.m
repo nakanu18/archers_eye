@@ -18,11 +18,10 @@
 - (void)viewDidLoad
 {
     [self setAppDelegate:(AppDelegate *)[UIApplication sharedApplication].delegate];
-    [_appDelegate startLiveRound];
-    [_doneButton  setEnabled:NO];
+    [_doneButton setEnabled:NO];
     
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view.
 }
 
@@ -34,6 +33,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 
@@ -148,6 +148,7 @@
 
 
 //------------------------------------------------------------------------------
+// Returns the current end.
 - (EndCell *)getCurrEndCell
 {
     return (EndCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currEndID inSection:0]];
@@ -156,6 +157,7 @@
 
 
 //------------------------------------------------------------------------------
+// Returns the current arrow label for the current end.
 - (UILabel *)getCurrArrowLabel
 {
     UILabel *label = nil;
@@ -169,6 +171,7 @@
 
 
 //------------------------------------------------------------------------------
+// Sets the current arrow and end
 - (void)setCurrEndID:(int)currEndID andCurrArrowID:(int)currArrowID
 {
     // Get the score of the currently selected slot
@@ -188,6 +191,7 @@
 
 
 //------------------------------------------------------------------------------
+// Increments to the next arrow.
 - (void)incArrowID
 {
     int numEnds         = [[_appDelegate liveRound] numEnds];
@@ -216,6 +220,7 @@
 
 
 //------------------------------------------------------------------------------
+// Decrements to the previous arrow.
 - (void)decArrowID
 {
 //    int numEnds         = [[_appDelegate liveRound] numEnds];
@@ -246,6 +251,7 @@
 
 
 //------------------------------------------------------------------------------
+// Sets the score for the current arrow.
 - (void)setScoreForCurrArrow:(int)score
 {
     EndCell *cell  = [self getCurrEndCell];
@@ -264,6 +270,7 @@
 
 
 //------------------------------------------------------------------------------
+// Changes the color of the current arrow according to the score.
 - (void)setVisualScore:(int)score forLabel:(UILabel *)label
 {
     if( score >= 0 )
@@ -288,6 +295,7 @@
 
 
 //------------------------------------------------------------------------------
+// Nulls out the current arrow.
 - (void)eraseScoreForCurrArrow
 {
     [self decArrowID];
@@ -308,6 +316,7 @@
 
 
 //------------------------------------------------------------------------------
+// Updates the score totals for the current end.
 - (void)updateTotalScores
 {
     EndCell *cell       = [self getCurrEndCell];
@@ -317,9 +326,6 @@
     [[cell endScoreLabel]   setText:[NSString stringWithFormat:@"%d", endScore]];
     [[cell totalScoreLabel] setText:[NSString stringWithFormat:@"%d", totalScore]];
 }
-
-
-
 
 
 

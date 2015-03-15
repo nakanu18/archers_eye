@@ -11,6 +11,7 @@
 @implementation RoundInfo
 
 //------------------------------------------------------------------------------
+// Initialize the round.
 - (id)initWithDate:(NSDate *)date
         andNumEnds:(int)numEnds
    andArrowsPerEnd:(int)numArrowsPerEnd
@@ -41,6 +42,7 @@
 
 
 //------------------------------------------------------------------------------
+// Set the score for a specific arrow.
 - (void)setScore:(int)score forEnd:(int)endID andArrow:(int)arrowID
 {
     if( endID   >= 0  &&  endID   < _numEnds            &&
@@ -55,6 +57,7 @@
 
 
 //------------------------------------------------------------------------------
+// Get the score for a specific arrow.
 - (int)getScoreForEnd:(int)endID andArrow:(int)arrowID
 {
     NSMutableArray *endScore = [_endScores objectAtIndex:endID];
@@ -65,6 +68,7 @@
 
 
 //------------------------------------------------------------------------------
+// Get the total score for a specific end.
 - (int)getScoreForEnd:(int)endID
 {
     int endTotal = 0;
@@ -86,6 +90,7 @@
 
 
 //------------------------------------------------------------------------------
+// Get the running total to this the specified end.
 - (int)getTotalScoreUpToEnd:(int)endID
 {
     int currTotal = 0;
@@ -96,9 +101,9 @@
         {
             NSMutableArray *endScore = [_endScores objectAtIndex:i];
             
-            for( int j = 0; j < [endScore count]; ++j )
+            for( NSNumber *num in endScore )
             {
-                int arrowScore = [endScore[j] intValue];
+                int arrowScore = [num intValue];
                 
                 currTotal += (arrowScore > 0) ? arrowScore : 0;
             }
@@ -110,6 +115,7 @@
 
 
 //------------------------------------------------------------------------------
+// Get the total number of arrows in a round.
 - (int)getTotalArrows
 {
     return _numEnds * _numArrowsPerEnd;
@@ -118,17 +124,16 @@
 
 
 //------------------------------------------------------------------------------
+// Get the total score for the round.
 - (int)getTotalScore
 {
     int totalScore = 0;
     
-    for( int i = 0; i < [_endScores count]; ++i )
+    for( NSMutableArray *currEndScore in _endScores )
     {
-        NSMutableArray *currEndScore = [_endScores objectAtIndex:i];
-        
-        for( int j = 0; j < [currEndScore count]; ++j )
+        for( NSNumber *num in currEndScore )
         {
-            int arrowScore = [currEndScore[j] intValue];
+            int arrowScore = [num intValue];
             
             if( arrowScore >= 0 )
                 totalScore += arrowScore;

@@ -11,15 +11,18 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
+    NSMutableArray *_roundTemplates;
+    
     RoundInfo      *_liveRound;
     NSMutableArray *_roundScores;
 }
 
 @property (nonatomic, strong) UIWindow          *window;
 @property (strong)            RoundInfo         *liveRound;
+@property (strong)            NSMutableArray    *roundTemplates;
 @property (strong)            NSMutableArray    *roundScores;
 
-- (void)startLiveRound;
+- (void)startLiveRoundFromTemplate:(RoundInfo *)roundTemplate;
 - (void)endLiveRoundAndDiscard;
 - (void)endLiveRoundAndSave;
 
