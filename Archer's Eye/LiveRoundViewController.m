@@ -79,19 +79,28 @@
 {
     EndCell     *cell       = [tableView dequeueReusableCellWithIdentifier:@"LiveEndCell"];
     RoundInfo   *liveRound  = _appDelegate.liveRound;
+    NSInteger    row        = indexPath.row;
     
-    cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", (long)indexPath.row + 1];
+    cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", row + 1];
     
     // Initialize the arrow scores
     for( NSInteger i = 0; i < liveRound.numArrowsPerEnd; ++i )
     {
-        [self setVisualScore:[liveRound getScoreForEnd:indexPath.row andArrow:i] forLabel:cell.arrowLabels[i]];
+        [self setVisualScore:[liveRound getScoreForEnd:row andArrow:i] forLabel:cell.arrowLabels[i]];
     }
     
-    cell.endScoreLabel.text     = [NSString stringWithFormat:@"%ld", [liveRound getScoreForEnd:indexPath.row]];
-    cell.totalScoreLabel.text   = [NSString stringWithFormat:@"%ld", [liveRound getTotalScoreUpToEnd:indexPath.row]];
+    if( row > _currEndID )
+    {
+        cell.endScoreLabel.text     = @"0";
+        cell.totalScoreLabel.text   = @"0";
+    }
+    else
+    {
+        cell.endScoreLabel.text     = [NSString stringWithFormat:@"%ld", [liveRound getScoreForEnd:row]];
+        cell.totalScoreLabel.text   = [NSString stringWithFormat:@"%ld", [liveRound getTotalScoreUpToEnd:row]];
+    }
     
-    if( indexPath.row == _currEndID )
+    if( row == _currEndID )
         [cell.arrowLabels[_currArrowID] setBackgroundColor:[UIColor greenColor]];
 
     // Hide any slots we're not using
@@ -265,6 +274,15 @@
     [self updateTotalScores];
     
     [self incArrowID];
+    
+    // Make sure the currently selected arrow is in view
+    if( _currEndID < _appDelegate.liveRound.numEnds )
+    {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
+        [_tableView scrollToRowAtIndexPath:path
+                          atScrollPosition:UITableViewScrollPositionMiddle
+                                  animated:YES];
+    }
 }
 
 
@@ -298,10 +316,18 @@
 // Nulls out the current arrow.
 - (void)eraseScoreForCurrArrow
 {
+    EndCell *prevCell  = [self getCurrEndCell];
+
     [self decArrowID];
 
     EndCell *cell  = [self getCurrEndCell];
     UILabel *label = cell.arrowLabels[_currArrowID];
+    
+    // Handle the case where we jumped back one full end
+    if( _currArrowID == _appDelegate.liveRound.numArrowsPerEnd - 1 )
+    {
+        prevCell.totalScoreLabel.text = @"0";
+    }
     
     // Set the score in the data
     [_appDelegate.liveRound setScore:-1 forEnd:_currEndID andArrow:_currArrowID];
@@ -311,6 +337,12 @@
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
     
     [self updateTotalScores];
+    
+    // Make sure the currently selected arrow is in view
+    NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
+    [_tableView scrollToRowAtIndexPath:path
+                      atScrollPosition:UITableViewScrollPositionMiddle
+                              animated:YES];
 }
 
 

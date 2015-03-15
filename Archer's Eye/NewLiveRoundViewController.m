@@ -113,7 +113,7 @@
         template = _appDelegate.roundTemplates[indexPath.row];
 
         cell.name.text      = @"TEMPLATE";
-        cell.name.textColor = [UIColor blackColor];
+        cell.name.textColor = [UIColor blueColor];
         cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
         cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
     }
