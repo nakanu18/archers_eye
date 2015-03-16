@@ -16,7 +16,7 @@
 		FA9927851AABA1510017D069 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9927831AABA1510017D069 /* LaunchScreen.xib */; };
 		FA9927911AABA1520017D069 /* Archer_s_EyeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927901AABA1520017D069 /* Archer_s_EyeTests.m */; };
 		FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99279B1AABA9070017D069 /* RoundInfo.m */; };
-		FA9927A31AABB1540017D069 /* RoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A21AABB1540017D069 /* RoundCell.m */; };
+		FA9927A31AABB1540017D069 /* PastRoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A21AABB1540017D069 /* PastRoundCell.m */; };
 		FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastRoundsViewController.m */; };
 		FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AB1AAD118E0017D069 /* EndCell.m */; };
 		FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */; };
@@ -50,8 +50,8 @@
 		FA9927901AABA1520017D069 /* Archer_s_EyeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Archer_s_EyeTests.m; sourceTree = "<group>"; };
 		FA99279A1AABA9070017D069 /* RoundInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundInfo.h; sourceTree = "<group>"; };
 		FA99279B1AABA9070017D069 /* RoundInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundInfo.m; sourceTree = "<group>"; };
-		FA9927A11AABB1540017D069 /* RoundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCell.h; sourceTree = "<group>"; };
-		FA9927A21AABB1540017D069 /* RoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCell.m; sourceTree = "<group>"; };
+		FA9927A11AABB1540017D069 /* PastRoundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastRoundCell.h; sourceTree = "<group>"; };
+		FA9927A21AABB1540017D069 /* PastRoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastRoundCell.m; sourceTree = "<group>"; };
 		FA9927A71AABB5340017D069 /* PastRoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastRoundsViewController.h; sourceTree = "<group>"; };
 		FA9927A81AABB5340017D069 /* PastRoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastRoundsViewController.m; sourceTree = "<group>"; };
 		FA9927AA1AAD118E0017D069 /* EndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndCell.h; sourceTree = "<group>"; };
@@ -81,8 +81,8 @@
 		FA633DF01AB5691C0090AD12 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FA9927A11AABB1540017D069 /* RoundCell.h */,
-				FA9927A21AABB1540017D069 /* RoundCell.m */,
+				FA9927A11AABB1540017D069 /* PastRoundCell.h */,
+				FA9927A21AABB1540017D069 /* PastRoundCell.m */,
 				FA633DF11AB569880090AD12 /* RoundDescCell.h */,
 				FA633DF21AB569880090AD12 /* RoundDescCell.m */,
 				FA9927AA1AAD118E0017D069 /* EndCell.h */,
@@ -265,7 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA9927A31AABB1540017D069 /* RoundCell.m in Sources */,
+				FA9927A31AABB1540017D069 /* PastRoundCell.m in Sources */,
 				FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */,

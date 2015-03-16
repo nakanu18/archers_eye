@@ -8,7 +8,7 @@
 
 #import "PastRoundsViewController.h"
 #import "RoundInfo.h"
-#import "RoundCell.h"
+#import "PastRoundCell.h"
 
 @interface PastRoundsViewController ()
 
@@ -48,7 +48,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_appDelegate.roundScores count];
+    return [_appDelegate.pastRounds count];
 }
 
 
@@ -57,18 +57,38 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores      = _appDelegate.roundScores;
-    RoundCell       *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
+    NSMutableArray  *scores      = _appDelegate.pastRounds;
+    PastRoundCell   *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
     RoundInfo       *info        = scores[indexPath.row];
     NSInteger        totalArrows = [info getTotalArrows];
     NSInteger        totalScore  = [info getTotalScore];
-    
-    cell.dateLabel.text     = [[info date] description];
-    cell.arrowsLabel.text   = [NSString stringWithFormat:@"%ld",  totalArrows];
+
+    cell.nameLabel.text     = info.name;
+    cell.dateLabel.text     = [info.date description];
     cell.scoreLabel.text    = [NSString stringWithFormat:@"%ld",  totalScore];
     cell.averageLabel.text  = [NSString stringWithFormat:@"%.1f", (float)totalScore / (float)totalArrows];
     
     return cell;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Override to support editing the table view.
+-   (void)tableView:(UITableView *)tableView
+ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+  forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if( editingStyle == UITableViewCellEditingStyleDelete )
+    {
+        // Delete the row from the data source
+        [_appDelegate.pastRounds removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if( editingStyle == UITableViewCellEditingStyleInsert )
+    {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
 }
 
 

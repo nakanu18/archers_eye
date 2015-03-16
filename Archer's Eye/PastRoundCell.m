@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
-#import "RoundCell.h"
+#import "PastRoundCell.h"
 
-@implementation RoundCell
+@implementation PastRoundCell
 
 //------------------------------------------------------------------------------
 - (void)awakeFromNib

@@ -189,9 +189,9 @@
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID
 {
     // Get the score of the currently selected slot
-    NSInteger      score = [_appDelegate.liveRound getScoreForEnd:_currEndID andArrow:_currArrowID];
-    EndCell *cell  = [self getCurrEndCell];
-    UILabel *label = cell.arrowLabels[_currArrowID];
+    NSInteger    score = [_appDelegate.liveRound getScoreForEnd:_currEndID andArrow:_currArrowID];
+    EndCell     *cell  = [self getCurrEndCell];
+    UILabel     *label = cell.arrowLabels[_currArrowID];
     
     // Visually reset the old slot
     [self setVisualScore:score forLabel:label];

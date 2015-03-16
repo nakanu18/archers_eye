@@ -20,12 +20,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.roundTemplates = [[NSMutableArray alloc] init];
-    self.roundScores    = [[NSMutableArray alloc] init];
+    self.pastRounds    = [[NSMutableArray alloc] init];
 
-    RoundInfo *fita600Round = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:20 andArrowsPerEnd:3];
-    RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithDate:[NSDate date] andNumEnds:12 andArrowsPerEnd:5];
+    RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andDate:nil andNumEnds:20 andArrowsPerEnd:3];
+    RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andDate:nil andNumEnds:12 andArrowsPerEnd:5];
+    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andDate:nil andNumEnds:1  andArrowsPerEnd:5];
     [_roundTemplates addObject:fita600Round];
     [_roundTemplates addObject:nfaa300Round];
+    [_roundTemplates addObject:shortRound];
     
     // Override point for customization after application launch.
     return YES;
@@ -116,7 +118,7 @@
     if( _liveRound == nil )
     {
         NSLog( @"Creating new live round" );
-        self.liveRound = roundTemplate;
+        self.liveRound = [roundTemplate copy];
     }
     else
         NSLog( @"Live round already exists" );
@@ -139,7 +141,7 @@
     if( _liveRound != nil )
     {
         // Add the current live round to the log of past scores
-        [_roundScores addObject:_liveRound];
+        [_pastRounds addObject:_liveRound];
         
         // Release the old live round
         self.liveRound = nil;

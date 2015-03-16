@@ -9,18 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@interface RoundInfo : NSObject
+@interface RoundInfo : NSObject <NSCopying>
 {
+    NSString       *_name;
     NSDate         *_date;
     NSInteger       _numEnds;
     NSInteger       _numArrowsPerEnd;
     NSMutableArray *_endScores;
 }
 
-- (id)initWithDate:(NSDate *)date
+- (id)initWithName:(NSString *)name
+           andDate:(NSDate *)date
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
+- (id)copyWithZone:(NSZone *)zone;
+
+- (void)clearAllScores;
 - (CGPoint)getCurrEndAndArrow;  // y = end, x = arrow
 
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
@@ -30,6 +35,7 @@
 - (NSInteger)getTotalArrows;
 - (NSInteger)getTotalScore;
 
+@property (strong)   NSString       *name;
 @property (strong)   NSDate         *date;
 @property (strong)   NSMutableArray *endScores;
 @property (readonly) NSInteger       numEnds;

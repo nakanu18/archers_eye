@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RoundCell : UITableViewCell
+@interface PastRoundCell : UITableViewCell
 {
     
 }
 
+@property (weak) IBOutlet UILabel *nameLabel;
 @property (weak) IBOutlet UILabel *dateLabel;
-@property (weak) IBOutlet UILabel *arrowsLabel;
 @property (weak) IBOutlet UILabel *scoreLabel;
 @property (weak) IBOutlet UILabel *averageLabel;
 

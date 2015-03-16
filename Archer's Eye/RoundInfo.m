@@ -12,13 +12,15 @@
 
 //------------------------------------------------------------------------------
 // Initialize the round.
-- (id)initWithDate:(NSDate *)date
+- (id)initWithName:(NSString *)name
+           andDate:(NSDate *)date
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd
 {
     if( (self = [super init]) )
     {
-        [self setDate:date];
+        self.name        = name;
+        self.date        = date;
         _numEnds         = numEnds;
         _numArrowsPerEnd = numArrowsPerEnd;
         
@@ -37,6 +39,35 @@
         }
     }
     return self;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Copy
+- (id)copyWithZone:(NSZone *)zone
+{
+    id obj = [[[self class] alloc] initWithName:self.name
+                                        andDate:self.date
+                                     andNumEnds:self.numEnds
+                                andArrowsPerEnd:self.numArrowsPerEnd];
+    
+    return obj;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Clear all the scores stored
+- (void)clearAllScores
+{
+    for( NSArray *endScore in _endScores )
+    {
+        for( __strong NSNumber *arrow in endScore )
+        {
+            arrow = @(-1);
+        }
+    }
 }
 
 

@@ -103,7 +103,7 @@
         template = _appDelegate.liveRound;
         
         [cell setBackgroundColor:[UIColor greenColor]];
-        cell.name.text      = @"LIVE";
+        cell.name.text      = template.name;
         cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
         cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
     }
@@ -113,7 +113,7 @@
         template = _appDelegate.roundTemplates[indexPath.row];
 
         [cell setBackgroundColor:[UIColor whiteColor]];
-        cell.name.text      = @"TEMPLATE";
+        cell.name.text      = template.name;
         cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
         cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
     }
