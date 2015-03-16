@@ -81,8 +81,6 @@
     
     for( NSArray *endScore in _endScores )
     {
-        position.x = 0;
-
         for( NSNumber *arrow in endScore )
         {
             if( [arrow integerValue] == -1 )
@@ -97,7 +95,8 @@
         if( foundEmpty )
             break;
         
-        position.y += 1;
+        position.y += 1;    // row
+        position.x  = 0;    // column
     }
     
     return position;

@@ -25,6 +25,12 @@
     _currEndID   = currEmpty.y;
     _currArrowID = currEmpty.x;
     
+    // Fix the erase/done button enabled states
+    if( _currEndID >= [_appDelegate.liveRound numEnds] )
+    {
+        _doneButton.enabled = YES;
+    }
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
