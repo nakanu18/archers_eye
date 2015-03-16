@@ -374,9 +374,11 @@
                     <connections>
                         <outlet property="doneButton" destination="2Fm-P5-8QP" id="YZp-sc-yvV"/>
                         <outlet property="tableView" destination="3WQ-l2-4lr" id="wfd-M7-vht"/>
+                        <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToNewLiveRound" unwindAction="unwindToNewLiveRound:" id="8uf-ab-Cgm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prq-aM-wEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HWr-3L-HlX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3965" y="10"/>
         </scene>

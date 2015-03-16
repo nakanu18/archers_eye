@@ -537,6 +537,8 @@
     {
         [_appDelegate endLiveRoundAndSave];
         [_tableView reloadData];
+        
+        [self performSegueWithIdentifier:@"unwindToNewLiveRound" sender:self];
     }
 }
 

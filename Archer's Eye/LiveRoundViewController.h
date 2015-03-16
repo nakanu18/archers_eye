@@ -48,4 +48,6 @@
 - (IBAction)eraseButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
 @end
