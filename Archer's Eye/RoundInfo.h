@@ -13,6 +13,7 @@
 {
     NSString       *_name;
     NSDate         *_date;
+    NSInteger       _distance;
     NSInteger       _numEnds;
     NSInteger       _numArrowsPerEnd;
     NSMutableArray *_endScores;

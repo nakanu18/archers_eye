@@ -64,7 +64,8 @@
     NSInteger        totalScore  = [info getTotalScore];
 
     cell.nameLabel.text     = info.name;
-    cell.dateLabel.text     = [info.date description];
+//    cell.dateLabel.text     = [info.date description];
+    cell.dateLabel.text     = @"Friday";
     cell.scoreLabel.text    = [NSString stringWithFormat:@"%ld",  totalScore];
     cell.averageLabel.text  = [NSString stringWithFormat:@"%.1f", (float)totalScore / (float)totalArrows];
     
