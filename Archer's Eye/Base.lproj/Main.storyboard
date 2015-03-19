@@ -443,12 +443,18 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVo-kt-REv">
                                                     <rect key="frame" x="495.5" y="1.5" width="19.5" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="19.5" id="tzQ-oo-R7Y"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBn-Fe-AjF">
                                                     <rect key="frame" x="550" y="1.5" width="29" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="29" id="hYX-8X-996"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -462,6 +468,7 @@
                                                 <constraint firstItem="QON-0q-jRJ" firstAttribute="leading" secondItem="hOu-Yk-pev" secondAttribute="trailing" constant="8" id="CzB-gc-3Bu"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="MBn-Fe-AjF" secondAttribute="trailing" constant="13" id="DCo-5C-lqm"/>
                                                 <constraint firstAttribute="centerY" secondItem="owQ-n9-Ryq" secondAttribute="centerY" id="FXG-4O-IOg"/>
+                                                <constraint firstItem="MBn-Fe-AjF" firstAttribute="leading" secondItem="kVo-kt-REv" secondAttribute="trailing" constant="35" id="M4W-6d-9YO"/>
                                                 <constraint firstAttribute="centerY" secondItem="ojl-0m-GjP" secondAttribute="centerY" id="NuT-h4-WBr"/>
                                                 <constraint firstItem="3vR-Ia-LwY" firstAttribute="leading" secondItem="uVn-hS-jlg" secondAttribute="leadingMargin" constant="10" id="UQC-OU-6oE"/>
                                                 <constraint firstItem="ojl-0m-GjP" firstAttribute="leading" secondItem="KmT-x7-DAI" secondAttribute="trailing" constant="8" id="XXC-ur-twL"/>
@@ -474,6 +481,11 @@
                                                 <constraint firstItem="hOu-Yk-pev" firstAttribute="leading" secondItem="ojl-0m-GjP" secondAttribute="trailing" constant="8" id="pkn-ec-bWT"/>
                                                 <constraint firstItem="MBn-Fe-AjF" firstAttribute="leading" secondItem="kVo-kt-REv" secondAttribute="trailing" constant="35" id="u67-6r-pTv"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="u67-6r-pTv"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="arrow0Label" destination="KmT-x7-DAI" id="VCB-Zo-Kb0"/>
@@ -637,8 +649,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9R-JZ-hg9">
-                                <rect key="frame" x="140" y="114" width="320" height="162"/>
+                                <rect key="frame" x="250" y="114" width="100" height="162"/>
                                 <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="u91-Fc-KXZ"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="cQw-gI-tED" id="IuV-p7-TBF"/>
                                     <outlet property="delegate" destination="cQw-gI-tED" id="LaU-t6-LVH"/>
