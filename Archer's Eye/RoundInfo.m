@@ -25,11 +25,11 @@
         _numArrowsPerEnd = numArrowsPerEnd;
         
         // Create the array that will hold the array of scores for each end
-        [self setEndScores:[[NSMutableArray alloc] init]];
+        [self setEndScores:[NSMutableArray new]];
         
         for( NSInteger i = 0; i < _numEnds; ++i )
         {
-            NSMutableArray *newEndScore = [[NSMutableArray alloc] init];
+            NSMutableArray *newEndScore = [NSMutableArray new];
             
             for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
             {

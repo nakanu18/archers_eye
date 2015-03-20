@@ -9,12 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+typedef enum
+{
+    eNewLiveRoundSectionType_Live,
+    eNewLiveRoundSectionType_Custom,
+    eNewLiveRoundSectionType_Common,
+} eNewLiveRoundSectionType;
+
 @interface NewLiveRoundViewController : UITableViewController
 {
-    __weak AppDelegate *_appDelegate;
 }
 
-@property (weak) AppDelegate *appDelegate;
+@property (weak)    AppDelegate     *appDelegate;
+@property (strong)  NSMutableArray  *sectionTypes;
+
+
 
 - (IBAction)unwindToNewLiveRound:(UIStoryboardSegue *)segue;
 

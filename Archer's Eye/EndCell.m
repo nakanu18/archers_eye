@@ -14,7 +14,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    [self setArrowLabels:[[NSMutableArray alloc] init]];
+    [self setArrowLabels:[NSMutableArray new]];
     
     [_arrowLabels addObject:_arrow0Label];
     [_arrowLabels addObject:_arrow1Label];

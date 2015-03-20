@@ -19,8 +19,8 @@
 //------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.roundTemplates = [[NSMutableArray alloc] init];
-    self.pastRounds    = [[NSMutableArray alloc] init];
+    self.roundTemplates = [NSMutableArray new];
+    self.pastRounds     = [NSMutableArray new];
 
     RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andDate:nil andNumEnds:20 andArrowsPerEnd:3];
     RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andDate:nil andNumEnds:12 andArrowsPerEnd:5];
