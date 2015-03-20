@@ -1,16 +1,17 @@
 //
-//  PastScoresViewController.h
+//  BowInfoViewController.h
 //  Archer's Eye
 //
-//  Created by Alex de Vera on 3/7/15.
+//  Created by Alex de Vera on 3/20/15.
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface PastRoundsViewController : UITableViewController
+@interface BowInfoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 {
+    
 }
 
 @property (weak) AppDelegate *appDelegate;

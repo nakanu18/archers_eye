@@ -202,6 +202,39 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// Override to support editing the table view.
+-   (void)tableView:(UITableView *)tableView
+ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+  forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    eNewLiveRoundSectionType type = [_sectionTypes[indexPath.section] intValue];
+    
+    if( editingStyle == UITableViewCellEditingStyleDelete )
+    {
+        if( type == eNewLiveRoundSectionType_Live )
+        {
+            if( [_appDelegate liveRound] != nil )
+            {
+                // Delete the row from the data source
+                [_appDelegate endLiveRoundAndDiscard];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+        else if( type == eNewLiveRoundSectionType_Custom )
+        {
+            NSLog( @"TODO - implement custom rounds" );
+        }
+        else if( type == eNewLiveRoundSectionType_Common )
+        {
+            [_appDelegate.roundTemplates removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
 -               (CGFloat)tableView:(UITableView *)tableView
   estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

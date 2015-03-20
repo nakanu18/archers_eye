@@ -8,19 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "RoundInfo.h"
+#import "BowInfo.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    NSMutableArray *_roundTemplates;
-    
-    RoundInfo      *_liveRound;
-    NSMutableArray *_pastRounds;
 }
 
-@property (nonatomic, strong) UIWindow          *window;
-@property (strong)            RoundInfo         *liveRound;
-@property (strong)            NSMutableArray    *roundTemplates;
-@property (strong)            NSMutableArray    *pastRounds;
+@property (nonatomic, strong)   UIWindow        *window;
+@property (strong)              RoundInfo       *liveRound;
+@property (strong)              NSMutableArray  *roundTemplates;
+@property (strong)              NSMutableArray  *pastRounds;
+@property (strong)              NSMutableArray  *allBows;
+
+
+
+
+
 
 - (void)startLiveRoundFromTemplate:(RoundInfo *)roundTemplate;
 - (void)endLiveRoundAndDiscard;

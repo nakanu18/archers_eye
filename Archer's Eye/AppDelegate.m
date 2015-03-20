@@ -21,13 +21,22 @@
 {
     self.roundTemplates = [NSMutableArray new];
     self.pastRounds     = [NSMutableArray new];
+    self.allBows        = [NSMutableArray new];
 
+    
+    
     RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andDate:nil andNumEnds:20 andArrowsPerEnd:3];
     RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andDate:nil andNumEnds:12 andArrowsPerEnd:5];
     RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andDate:nil andNumEnds:1  andArrowsPerEnd:5];
     [_roundTemplates addObject:fita600Round];
     [_roundTemplates addObject:nfaa300Round];
     [_roundTemplates addObject:shortRound];
+    
+    
+    BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Barebow];
+    BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound];
+    [_allBows addObject:whiteFlute];
+    [_allBows addObject:blackPSE];
     
     // Override point for customization after application launch.
     return YES;
