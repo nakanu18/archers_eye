@@ -253,13 +253,23 @@
                                         <rect key="frame" x="80" y="0.0" width="440" height="440"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKX-GH-VbB">
-                                                <rect key="frame" x="197" y="8" width="45.5" height="20.5"/>
+                                                <rect key="frame" x="130" y="18.5" width="45.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKk-N7-oVO">
+                                                <rect key="frame" x="145" y="84" width="150" height="162"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="f97-yw-KRp"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="5m9-os-A5K" id="bNe-o2-6wL"/>
+                                                    <outlet property="delegate" destination="5m9-os-A5K" id="W4u-4e-BQ1"/>
+                                                </connections>
+                                            </pickerView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNp-TK-FRg">
-                                                <rect key="frame" x="170" y="36" width="100" height="30"/>
+                                                <rect key="frame" x="210" y="14" width="100" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="jDQ-c4-1Zv"/>
                                                 </constraints>
@@ -270,13 +280,13 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draw Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-s1-ldO">
-                                                <rect key="frame" x="171" y="101" width="97.5" height="20.5"/>
+                                                <rect key="frame" x="84" y="56.5" width="97.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cqa-6D-IfM">
-                                                <rect key="frame" x="189" y="128.5" width="60" height="30"/>
+                                                <rect key="frame" x="210" y="52" width="60" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="lq0-Yf-cih"/>
                                                 </constraints>
@@ -286,46 +296,20 @@
                                                     <outlet property="delegate" destination="5m9-os-A5K" id="DXX-Fy-imd"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bow Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r20-1z-OVh">
-                                                <rect key="frame" x="182" y="204" width="75.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKk-N7-oVO">
-                                                <rect key="frame" x="145" y="224.5" width="150" height="162"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="f97-yw-KRp"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="5m9-os-A5K" id="bNe-o2-6wL"/>
-                                                    <outlet property="delegate" destination="5m9-os-A5K" id="W4u-4e-BQ1"/>
-                                                </connections>
-                                            </pickerView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="iNp-TK-FRg" firstAttribute="top" secondItem="sKX-GH-VbB" secondAttribute="bottom" constant="8" id="7hQ-uQ-xP7"/>
-                                            <constraint firstItem="UWS-s1-ldO" firstAttribute="top" secondItem="iNp-TK-FRg" secondAttribute="bottom" constant="35" id="9EL-DH-84O"/>
-                                            <constraint firstItem="UWS-s1-ldO" firstAttribute="top" secondItem="OKk-N7-oVO" secondAttribute="bottom" constant="-237.5" id="BJU-Tf-iAR"/>
-                                            <constraint firstAttribute="centerX" secondItem="Cqa-6D-IfM" secondAttribute="centerX" constant="1" id="Bv2-42-e7O"/>
-                                            <constraint firstAttribute="centerX" secondItem="r20-1z-OVh" secondAttribute="centerX" constant="0.25" id="C6S-ZU-QIm"/>
-                                            <constraint firstItem="OKk-N7-oVO" firstAttribute="top" secondItem="iNp-TK-FRg" secondAttribute="bottom" constant="83.5" id="OXz-if-0Xl"/>
-                                            <constraint firstItem="OKk-N7-oVO" firstAttribute="top" secondItem="r20-1z-OVh" secondAttribute="bottom" id="Scd-Vm-Hvb"/>
-                                            <constraint firstItem="r20-1z-OVh" firstAttribute="top" secondItem="iNp-TK-FRg" secondAttribute="bottom" constant="138" id="WnU-HJ-Ga3"/>
-                                            <constraint firstAttribute="centerX" secondItem="iNp-TK-FRg" secondAttribute="centerX" id="YG8-TE-jcs"/>
-                                            <constraint firstAttribute="centerX" secondItem="sKX-GH-VbB" secondAttribute="centerX" id="drG-BT-Ego"/>
+                                            <constraint firstItem="iNp-TK-FRg" firstAttribute="top" secondItem="sKX-GH-VbB" secondAttribute="bottom" constant="-24.5" id="7hQ-uQ-xP7"/>
+                                            <constraint firstItem="UWS-s1-ldO" firstAttribute="top" secondItem="iNp-TK-FRg" secondAttribute="bottom" constant="12" id="9EL-DH-84O"/>
+                                            <constraint firstAttribute="centerX" secondItem="Cqa-6D-IfM" secondAttribute="centerX" constant="-20" id="Bv2-42-e7O"/>
+                                            <constraint firstAttribute="centerX" secondItem="iNp-TK-FRg" secondAttribute="centerX" constant="-40" id="YG8-TE-jcs"/>
+                                            <constraint firstAttribute="centerX" secondItem="sKX-GH-VbB" secondAttribute="centerX" constant="67.25" id="drG-BT-Ego"/>
                                             <constraint firstAttribute="height" constant="440" id="iYV-iw-iBz"/>
-                                            <constraint firstItem="sKX-GH-VbB" firstAttribute="top" secondItem="ouB-Xd-6Mc" secondAttribute="top" constant="8" id="ijj-UH-EYb"/>
-                                            <constraint firstItem="Cqa-6D-IfM" firstAttribute="top" secondItem="UWS-s1-ldO" secondAttribute="bottom" constant="7" id="k1e-dk-CVh"/>
+                                            <constraint firstItem="sKX-GH-VbB" firstAttribute="top" secondItem="ouB-Xd-6Mc" secondAttribute="top" constant="18" id="ijj-UH-EYb"/>
+                                            <constraint firstItem="Cqa-6D-IfM" firstAttribute="top" secondItem="UWS-s1-ldO" secondAttribute="bottom" constant="-24.5" id="k1e-dk-CVh"/>
+                                            <constraint firstItem="OKk-N7-oVO" firstAttribute="top" secondItem="Cqa-6D-IfM" secondAttribute="bottom" constant="2" id="kdJ-2W-Mhb"/>
                                             <constraint firstAttribute="centerX" secondItem="OKk-N7-oVO" secondAttribute="centerX" id="r76-Gd-bJZ"/>
-                                            <constraint firstAttribute="centerX" secondItem="UWS-s1-ldO" secondAttribute="centerX" id="viB-25-Vm3"/>
+                                            <constraint firstAttribute="centerX" secondItem="UWS-s1-ldO" secondAttribute="centerX" constant="87.25" id="viB-25-Vm3"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="BJU-Tf-iAR"/>
-                                                <exclude reference="OXz-if-0Xl"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
