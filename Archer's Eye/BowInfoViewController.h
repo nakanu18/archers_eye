@@ -15,12 +15,13 @@
     UITextField *_activeTextField;
 }
 
-@property (weak)    AppDelegate           *appDelegate;
-@property (strong)  BowInfo               *bowInfo;
+@property (weak)    AppDelegate              *appDelegate;
+@property (strong)  BowInfo                  *bowInfo;
 
-@property (weak)    IBOutlet UIScrollView *scrollView;
-@property (weak)    IBOutlet UITextField  *bowName;
-@property (weak)    IBOutlet UITextField  *bowDrawWeight;
+@property (weak)    IBOutlet UIScrollView    *scrollView;
+@property (weak)    IBOutlet UITextField     *bowName;
+@property (weak)    IBOutlet UITextField     *bowDrawWeight;
+@property (weak)    IBOutlet UIBarButtonItem *barButtonSave;
 
 
 

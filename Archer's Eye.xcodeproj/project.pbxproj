@@ -11,6 +11,7 @@
 		FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */; };
 		FA633DFF1AB5768B0090AD12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA633DFD1AB5768B0090AD12 /* Main.storyboard */; };
 		FA8DEEBD1AB94264006CED5A /* RoundDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8DEEBC1AB94264006CED5A /* RoundDetailsViewController.m */; };
+		FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA92B7C41ABDFA470075EF1F /* TextFieldDismisserView.m */; };
 		FA9927771AABA1510017D069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927761AABA1510017D069 /* main.m */; };
 		FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927791AABA1510017D069 /* AppDelegate.m */; };
 		FA9927821AABA1510017D069 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9927811AABA1510017D069 /* Images.xcassets */; };
@@ -46,6 +47,8 @@
 		FA633DFE1AB5768B0090AD12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA8DEEBB1AB94264006CED5A /* RoundDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDetailsViewController.h; sourceTree = "<group>"; };
 		FA8DEEBC1AB94264006CED5A /* RoundDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundDetailsViewController.m; sourceTree = "<group>"; };
+		FA92B7C31ABDFA470075EF1F /* TextFieldDismisserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDismisserView.h; sourceTree = "<group>"; };
+		FA92B7C41ABDFA470075EF1F /* TextFieldDismisserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDismisserView.m; sourceTree = "<group>"; };
 		FA9927711AABA1510017D069 /* Archer's Eye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Archer's Eye.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9927751AABA1510017D069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA9927761AABA1510017D069 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,6 +127,28 @@
 			name = LiveRound;
 			sourceTree = "<group>";
 		};
+		FA92B7C21ABDF7C60075EF1F /* Bows */ = {
+			isa = PBXGroup;
+			children = (
+				FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */,
+				FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */,
+				FAF52F001ABC05AB00B79AB3 /* BowInfoViewController.h */,
+				FAF52F011ABC05AB00B79AB3 /* BowInfoViewController.m */,
+			);
+			name = Bows;
+			sourceTree = "<group>";
+		};
+		FA92B7C61ABE05A60075EF1F /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				FAF52F031ABC846500B79AB3 /* DismissSegue.h */,
+				FAF52F041ABC846500B79AB3 /* DismissSegue.m */,
+				FA92B7C31ABDFA470075EF1F /* TextFieldDismisserView.h */,
+				FA92B7C41ABDFA470075EF1F /* TextFieldDismisserView.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
 		FA9927681AABA1510017D069 = {
 			isa = PBXGroup;
 			children = (
@@ -148,16 +173,12 @@
 				FA99279D1AABB0EE0017D069 /* Models */,
 				FA633DF01AB5691C0090AD12 /* Cells */,
 				FA8DEEBE1AB94279006CED5A /* LiveRound */,
+				FA92B7C21ABDF7C60075EF1F /* Bows */,
+				FA92B7C61ABE05A60075EF1F /* Misc */,
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
 				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
 				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
-				FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */,
-				FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */,
-				FAF52F001ABC05AB00B79AB3 /* BowInfoViewController.h */,
-				FAF52F011ABC05AB00B79AB3 /* BowInfoViewController.m */,
-				FAF52F031ABC846500B79AB3 /* DismissSegue.h */,
-				FAF52F041ABC846500B79AB3 /* DismissSegue.m */,
 				FA9927811AABA1510017D069 /* Images.xcassets */,
 				FA9927831AABA1510017D069 /* LaunchScreen.xib */,
 				FA633DFD1AB5768B0090AD12 /* Main.storyboard */,
@@ -313,6 +334,7 @@
 				FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */,
 				FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */,
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
+				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,
 				FA8DEEBD1AB94264006CED5A /* RoundDetailsViewController.m in Sources */,
 				FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */,

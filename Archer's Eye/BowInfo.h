@@ -10,6 +10,7 @@
 
 typedef enum
 {
+    eBowType_None = -1,
     eBowType_Freestyle,
     eBowType_Barebow,
     eBowType_Compound,
@@ -33,5 +34,6 @@ typedef enum
 
 + (NSString *)typeAsString:(eBowType)type;
 - (id)initWithName:(NSString *)name andType:(eBowType)type;
+- (BOOL)isInfoValid;
 
 @end

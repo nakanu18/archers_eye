@@ -8,7 +8,18 @@
 
 #import "BowInfo.h"
 
+@interface BowInfo ()
+
+- (void)foo;
+
+@end
+
 @implementation BowInfo
+
+- (void)foo
+{
+    
+}
 
 //------------------------------------------------------------------------------
 + (NSString *)typeAsString:(eBowType)type
@@ -16,6 +27,14 @@
     NSString *names[] = { @"Freestyle", @"Barebow", @"Compound", @"Traditional" };
     
     return names[type];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (id)init
+{
+    return [self initWithName:@"" andType:eBowType_Freestyle];
 }
 
 
@@ -29,6 +48,19 @@
         _type     = type;
     }
     return self;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (BOOL)isInfoValid
+{
+    BOOL ans = NO;
+    
+    if( ![_name isEqualToString:@""]  &&  _type != eBowType_None  &&  _drawWeight > 0 )
+        ans = YES;
+    
+    return ans;
 }
 
 @end

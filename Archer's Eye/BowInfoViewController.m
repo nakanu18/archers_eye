@@ -21,6 +21,7 @@
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.bowInfo     = [BowInfo new];
     [self registerForKeyboardNotifications];
+    [_barButtonSave setEnabled:NO];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,6 +32,8 @@
     //
     // Commented out because there is a setting in InterfaceBuilder.
 //    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self addToolbarToNumberPad];
 }
 
 
@@ -100,17 +103,10 @@
     CGPoint fieldOrigin = _activeTextField.frame.origin;
     
     aRect.size.height -= kbSize.height;
-//    fieldOrigin.y     += _activeTextField.frame.size.height;
-    
-    NSLog( @"frame %@", NSStringFromCGRect( aRect ) );
-    NSLog( @"fieldOrigin %@", NSStringFromCGPoint( fieldOrigin ) );
-    NSLog( @"keyboard %@", NSStringFromCGSize( kbSize ) );
     
     if( !CGRectContainsPoint( aRect, fieldOrigin ) )
     {
-//        [self.scrollView scrollRectToVisible:_activeTextField.frame animated:YES];
-        CGPoint scrollPoint = CGPointMake( 0.0, fieldOrigin.y - kbSize.height);
-        [_scrollView setContentOffset:scrollPoint animated:YES];
+        [self.scrollView scrollRectToVisible:_activeTextField.frame animated:YES];
     }
 }
 
@@ -124,6 +120,40 @@
     
     _scrollView.contentInset            = contentInsets;
     _scrollView.scrollIndicatorInsets   = contentInsets;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)addToolbarToNumberPad
+{
+    UIToolbar *numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    
+    numberToolbar.barStyle  = UIBarStyleBlackTranslucent;
+    numberToolbar.items     = [NSArray arrayWithObjects:[[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelNumberPad)],
+                                                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                                                        [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                                                        nil];
+    [numberToolbar sizeToFit];
+    _bowDrawWeight.inputAccessoryView = numberToolbar;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)cancelNumberPad
+{
+    [_bowDrawWeight resignFirstResponder];
+//    _bowDrawWeight.text = @"";
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)doneWithNumberPad
+{
+//    NSString *numberFromTheKeyboard = _bowDrawWeight.text;
+    [_bowDrawWeight resignFirstResponder];
 }
 
 
@@ -152,9 +182,6 @@
 //------------------------------------------------------------------------------
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if( _activeTextField != nil )
-        [self textFieldShouldReturn:_activeTextField];
-    
     _activeTextField = textField;
 }
 
@@ -167,6 +194,8 @@
     if( textField == _bowDrawWeight )   _bowInfo.drawWeight = [textField.text integerValue];
 
     _activeTextField = nil;
+
+    [self toggleSaveButtonIfReady];
 }
 
 
@@ -175,8 +204,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    
     _activeTextField = nil;
+    
     return YES;
 }
 
@@ -239,7 +268,10 @@ numberOfRowsInComponent:(NSInteger)component
 {
     _bowInfo.type = (eBowType)row;
     
-    NSLog( @"BowType: %d", _bowInfo.type );
+    if( _activeTextField != nil )
+        [self textFieldShouldReturn:_activeTextField];
+    
+    [self toggleSaveButtonIfReady];
 }
 
 
@@ -265,10 +297,17 @@ numberOfRowsInComponent:(NSInteger)component
 #pragma mark - Buttons
 
 //------------------------------------------------------------------------------
+- (void)toggleSaveButtonIfReady
+{
+    _barButtonSave.enabled = [_bowInfo isInfoValid];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (IBAction)cancel:(id)sender
 {
-    // Programmatically run the unwind segue because we have to wait for the
-    // AlertView.
+    // Programmatically run the unwind segue.
     [self performSegueWithIdentifier:@"unwindToBowsView" sender:self];
 }
 
@@ -283,8 +322,7 @@ numberOfRowsInComponent:(NSInteger)component
     
     [_appDelegate addNewBow:_bowInfo];
 
-    // Programmatically run the unwind segue because we have to wait for the
-    // AlertView.
+    // Programmatically run the unwind segue.
     [self performSegueWithIdentifier:@"unwindToBowsView" sender:self];
 }
 
