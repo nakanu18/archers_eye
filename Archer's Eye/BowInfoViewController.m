@@ -19,9 +19,22 @@
 - (void)viewDidLoad
 {
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.bowInfo     = [BowInfo new];
+
+    // Create a new Bow if we don't have a currently selected one
+    if( [_appDelegate currBow] == nil )
+        [_appDelegate createNewCurrBow:[BowInfo new]];
+    // Else: we have a currently selected one
+    else
+    {
+        // Populate the fields with it's data
+        _bowName.text       = _appDelegate.currBow.name;
+        _bowDrawWeight.text = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
+        [_bowType selectRow:_appDelegate.currBow.type inComponent:0 animated:YES];
+    }
+    
     [self registerForKeyboardNotifications];
-    [_barButtonSave setEnabled:NO];
+    [self toggleSaveButtonIfReady];
+
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -130,21 +143,11 @@
     UIToolbar *numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     
     numberToolbar.barStyle  = UIBarStyleBlackTranslucent;
-    numberToolbar.items     = [NSArray arrayWithObjects:[[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelNumberPad)],
-                                                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                                        [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+    numberToolbar.items     = [NSArray arrayWithObjects:[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                                                        [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
                                                         nil];
     [numberToolbar sizeToFit];
     _bowDrawWeight.inputAccessoryView = numberToolbar;
-}
-
-
-
-//------------------------------------------------------------------------------
-- (void)cancelNumberPad
-{
-    [_bowDrawWeight resignFirstResponder];
-//    _bowDrawWeight.text = @"";
 }
 
 
@@ -183,6 +186,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     _activeTextField = textField;
+    
+    _barButtonSave.enabled = NO;
 }
 
 
@@ -190,8 +195,8 @@
 //------------------------------------------------------------------------------
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if( textField == _bowName )         _bowInfo.name       = textField.text;
-    if( textField == _bowDrawWeight )   _bowInfo.drawWeight = [textField.text integerValue];
+    if( textField == _bowName )         _appDelegate.currBow.name       =  textField.text;
+    if( textField == _bowDrawWeight )   _appDelegate.currBow.drawWeight = [textField.text integerValue];
 
     _activeTextField = nil;
 
@@ -266,7 +271,7 @@ numberOfRowsInComponent:(NSInteger)component
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-    _bowInfo.type = (eBowType)row;
+    _appDelegate.currBow.type = (eBowType)row;
     
     if( _activeTextField != nil )
         [self textFieldShouldReturn:_activeTextField];
@@ -299,7 +304,7 @@ numberOfRowsInComponent:(NSInteger)component
 //------------------------------------------------------------------------------
 - (void)toggleSaveButtonIfReady
 {
-    _barButtonSave.enabled = [_bowInfo isInfoValid];
+    _barButtonSave.enabled = [_appDelegate.currBow isInfoValid];
 }
 
 
@@ -307,6 +312,8 @@ numberOfRowsInComponent:(NSInteger)component
 //------------------------------------------------------------------------------
 - (IBAction)cancel:(id)sender
 {
+    [_appDelegate discardCurrBow];
+    
     // Programmatically run the unwind segue.
     [self performSegueWithIdentifier:@"unwindToBowsView" sender:self];
 }
@@ -320,7 +327,7 @@ numberOfRowsInComponent:(NSInteger)component
     if( _activeTextField != nil )
         [self textFieldShouldReturn:_activeTextField];
     
-    [_appDelegate addNewBow:_bowInfo];
+    [_appDelegate saveCurrBow];
 
     // Programmatically run the unwind segue.
     [self performSegueWithIdentifier:@"unwindToBowsView" sender:self];

@@ -22,6 +22,7 @@
     self.roundTemplates = [NSMutableArray new];
     self.pastRounds     = [NSMutableArray new];
     self.allBows        = [NSMutableArray new];
+    _currBowID          = -1;
 
     
     
@@ -181,10 +182,53 @@
 
 #pragma mark - Bows
 
+
 //------------------------------------------------------------------------------
-- (void)addNewBow:(BowInfo *)newBow
+- (void)createNewCurrBow:(BowInfo *)newBow
 {
-    [_allBows addObject:newBow];
+    self.currBow = newBow;
+    _currBowID   = -1;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)selectBow:(NSInteger)bowID
+{
+    _currBowID = -1;
+    
+    if( bowID >= 0  &&  bowID < [_allBows count] )
+    {
+        self.currBow = [_allBows[bowID] copy];
+        _currBowID   = bowID;
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)saveCurrBow
+{
+    // Bow is brand new
+    if( _currBowID == -1 )
+    {
+        [_allBows addObject:_currBow];
+    }
+    // Bow is a copy of another one
+    else
+    {
+        [_allBows replaceObjectAtIndex:_currBowID withObject:_currBow];
+    }
+    [self discardCurrBow];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)discardCurrBow
+{
+    self.currBow = nil;
+    _currBowID   = -1;
 }
 
 @end

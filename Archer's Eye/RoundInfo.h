@@ -24,8 +24,6 @@
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
-- (id)copyWithZone:(NSZone *)zone;
-
 - (void)clearAllScores;
 - (CGPoint)getCurrEndAndArrow;  // y = end, x = arrow
 

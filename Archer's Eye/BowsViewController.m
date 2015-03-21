@@ -111,6 +111,15 @@
 
 
 //------------------------------------------------------------------------------
+-       (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_appDelegate selectBow:indexPath.row];
+}
+
+
+
+//------------------------------------------------------------------------------
 -               (CGFloat)tableView:(UITableView *)tableView
   estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

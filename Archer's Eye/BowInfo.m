@@ -40,12 +40,31 @@
 
 
 //------------------------------------------------------------------------------
+// Copy
+- (id)copyWithZone:(NSZone *)zone
+{
+    BowInfo *obj = [[[self class] alloc] init];
+    
+    if( obj )
+    {
+        obj.name        = self.name;
+        obj.type        = self.type;
+        obj.drawWeight  = self.drawWeight;
+    }
+    
+    return obj;
+}
+
+
+
+//------------------------------------------------------------------------------
 - (id)initWithName:(NSString *)name andType:(eBowType)type
 {
     if( self = [super init] )
     {
-        self.name = name;
-        _type     = type;
+        self.name   = name;
+        _type       = type;
+        _drawWeight = 10;
     }
     return self;
 }
