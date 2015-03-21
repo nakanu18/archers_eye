@@ -28,6 +28,10 @@
 //------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Reload the data;  This is in case we created a live round and need to add
+    // that into our list
+    [self.tableView reloadData];
+    
     [super viewDidLoad];
 }
 
@@ -120,6 +124,13 @@
    heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)unwindToBowsView:(UIStoryboardSegue *)segue
+{
 }
 
 @end

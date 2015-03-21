@@ -25,6 +25,7 @@
 		FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFB1ABBF3FB00B79AB3 /* BowInfo.m */; };
 		FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */; };
 		FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52F011ABC05AB00B79AB3 /* BowInfoViewController.m */; };
+		FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52F041ABC846500B79AB3 /* DismissSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowDescCell.m; sourceTree = "<group>"; };
 		FAF52F001ABC05AB00B79AB3 /* BowInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowInfoViewController.h; sourceTree = "<group>"; };
 		FAF52F011ABC05AB00B79AB3 /* BowInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowInfoViewController.m; sourceTree = "<group>"; };
+		FAF52F031ABC846500B79AB3 /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
+		FAF52F041ABC846500B79AB3 /* DismissSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */,
 				FAF52F001ABC05AB00B79AB3 /* BowInfoViewController.h */,
 				FAF52F011ABC05AB00B79AB3 /* BowInfoViewController.m */,
+				FAF52F031ABC846500B79AB3 /* DismissSegue.h */,
+				FAF52F041ABC846500B79AB3 /* DismissSegue.m */,
 				FA9927811AABA1510017D069 /* Images.xcassets */,
 				FA9927831AABA1510017D069 /* LaunchScreen.xib */,
 				FA633DFD1AB5768B0090AD12 /* Main.storyboard */,
@@ -305,6 +310,7 @@
 				FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */,
 				FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
+				FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */,
 				FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */,
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,

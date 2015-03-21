@@ -121,6 +121,8 @@
 
 
 
+#pragma mark - Live Rounds
+
 //------------------------------------------------------------------------------
 - (void)startLiveRoundFromTemplate:(RoundInfo *)roundTemplate
 {
@@ -155,6 +157,34 @@
         // Release the old live round
         self.liveRound = nil;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Bows
+
+//------------------------------------------------------------------------------
+- (void)addNewBow:(BowInfo *)newBow
+{
+    [_allBows addObject:newBow];
 }
 
 @end

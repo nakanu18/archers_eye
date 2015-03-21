@@ -34,8 +34,7 @@
     
     // Now, setup the current sections in a list
     
-    if( [_appDelegate liveRound] != nil )
-        [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Live]];
+    [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Live]];
     
 //    [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Custom]];
     [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Common]];

@@ -8,12 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "BowInfo.h"
 
-@interface BowInfoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface BowInfoViewController : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 {
-    
+    UITextField *_activeTextField;
 }
 
-@property (weak) AppDelegate *appDelegate;
+@property (weak)    AppDelegate           *appDelegate;
+@property (strong)  BowInfo               *bowInfo;
+
+@property (weak)    IBOutlet UIScrollView *scrollView;
+@property (weak)    IBOutlet UITextField  *bowName;
+@property (weak)    IBOutlet UITextField  *bowDrawWeight;
+
+
+
+
+
+- (IBAction)cancel:(id)sender;
+- (IBAction)save:(id)sender;
 
 @end

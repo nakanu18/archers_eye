@@ -538,6 +538,8 @@
         [_appDelegate endLiveRoundAndSave];
         [_tableView reloadData];
         
+        // Programmatically run the unwind segue because we have to wait for the
+        // AlertView.
         [self performSegueWithIdentifier:@"unwindToNewLiveRound" sender:self];
     }
 }

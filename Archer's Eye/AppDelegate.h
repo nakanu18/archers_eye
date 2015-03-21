@@ -29,5 +29,7 @@
 - (void)endLiveRoundAndDiscard;
 - (void)endLiveRoundAndSave;
 
+- (void)addNewBow:(BowInfo *)newBow;
+
 @end
 
