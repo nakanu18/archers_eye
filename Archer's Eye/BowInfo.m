@@ -10,16 +10,11 @@
 
 @interface BowInfo ()
 
-- (void)foo;
-
 @end
 
-@implementation BowInfo
 
-- (void)foo
-{
-    
-}
+
+@implementation BowInfo
 
 //------------------------------------------------------------------------------
 + (NSString *)typeAsString:(eBowType)type

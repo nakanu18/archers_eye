@@ -36,7 +36,7 @@
 - (void)saveCurrBow;
 - (void)discardCurrBow;
 
-- (NSString *)basicDate:(NSDate *)date;
++ (NSString *)basicDate:(NSDate *)date;
 
 @end
 

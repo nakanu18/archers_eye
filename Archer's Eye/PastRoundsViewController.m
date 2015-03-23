@@ -14,6 +14,8 @@
 
 @end
 
+
+
 @implementation PastRoundsViewController
 
 //------------------------------------------------------------------------------
@@ -80,7 +82,7 @@
     RoundInfo       *info        = scores[indexPath.row];
 
     cell.name.text  = info.name;
-    cell.date.text  = [_appDelegate basicDate:info.date];
+    cell.date.text  = [AppDelegate basicDate:info.date];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
     cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", [info getTotalScore], info.numEnds * info.numArrowsPerEnd * 10];
     

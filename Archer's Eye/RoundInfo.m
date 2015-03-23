@@ -8,19 +8,27 @@
 
 #import "RoundInfo.h"
 
+@interface RoundInfo ()
+
+- (NSInteger)getRealScoreFromArrowValue:(NSInteger)arrowValue;
+
+@end
+
+
+
 @implementation RoundInfo
 
 //------------------------------------------------------------------------------
 // Initialize the round.
 - (id)initWithName:(NSString *)name
-           andDate:(NSDate *)date
+           andType:(eRoundType)type
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd
 {
     if( (self = [super init]) )
     {
         self.name        = name;
-        self.date        = date;
+        _type            = type;
         _numEnds         = numEnds;
         _numArrowsPerEnd = numArrowsPerEnd;
         
@@ -48,9 +56,19 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     id obj = [[[self class] alloc] initWithName:self.name
-                                        andDate:self.date
+                                        andType:self.type
                                      andNumEnds:self.numEnds
                                 andArrowsPerEnd:self.numArrowsPerEnd];
+    
+    for( NSInteger i = 0; i < _numEnds; ++i )
+    {
+        for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
+        {
+            NSInteger score = [self getScoreForEnd:i andArrow:j];
+            
+            [obj setScore:score forEnd:i andArrow:j];
+        }
+    }
     
     return obj;
 }
@@ -204,6 +222,52 @@
     }
     
     return totalScore;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Private methods
+
+//------------------------------------------------------------------------------
+// Converts an arrow value which could be [-1, 11] and converts it to an actual
+// archery score.
+- (NSInteger)getRealScoreFromArrowValue:(NSInteger)arrowValue
+{
+    NSInteger realValue = 0;
+
+    if( arrowValue >= 0 )
+    {
+        realValue = arrowValue;
+        
+        // Take care of the bullseyes
+        if( _type == eRoundType_FITA  &&  realValue >= 11 )
+            realValue = 10;
+        else if( _type == eRoundType_NFAA  && realValue >= 6 )
+            realValue = 5;
+    }
+    
+    return realValue;
 }
 
 @end

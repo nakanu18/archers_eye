@@ -9,18 +9,30 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
+typedef enum
+{
+    eRoundType_NFAA,    // [-1, 6]  -> [no score, bullseye]
+    eRoundType_FITA,    // [-1, 11] -> [no score, bullseye]
+} eRoundType;
+
 @interface RoundInfo : NSObject <NSCopying>
 {
-    NSString       *_name;
-    NSDate         *_date;
-    NSInteger       _distance;
-    NSInteger       _numEnds;
-    NSInteger       _numArrowsPerEnd;
-    NSMutableArray *_endScores;
 }
 
+@property (strong)   NSString       *name;
+@property (readonly) eRoundType      type;
+@property (strong)   NSDate         *date;
+@property (strong)   NSMutableArray *endScores;
+@property (readonly) NSInteger       numEnds;
+@property (readonly) NSInteger       numArrowsPerEnd;
+
+
+
+
+
+
 - (id)initWithName:(NSString *)name
-           andDate:(NSDate *)date
+           andType:(eRoundType)type
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
@@ -33,11 +45,5 @@
 - (NSInteger)getTotalScoreUpToEnd:(NSInteger)endID;
 - (NSInteger)getTotalArrows;
 - (NSInteger)getTotalScore;
-
-@property (strong)   NSString       *name;
-@property (strong)   NSDate         *date;
-@property (strong)   NSMutableArray *endScores;
-@property (readonly) NSInteger       numEnds;
-@property (readonly) NSInteger       numArrowsPerEnd;
 
 @end

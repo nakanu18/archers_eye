@@ -16,10 +16,7 @@
     UITouch *touch = [touches anyObject];
     
     if( ![touch.view isMemberOfClass:[UITextField class]] )
-    {
-        [touch.view endEditing:YES];
-        NSLog( @"Dissmiss" );
-    }
+         [touch.view endEditing:YES];
     
 }
 

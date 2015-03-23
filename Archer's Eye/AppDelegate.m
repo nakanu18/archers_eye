@@ -26,9 +26,9 @@
 
     
     
-    RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andDate:nil andNumEnds:20 andArrowsPerEnd:3];
-    RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andDate:nil andNumEnds:12 andArrowsPerEnd:5];
-    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andDate:nil andNumEnds:1  andArrowsPerEnd:5];
+    RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andType:eRoundType_FITA andNumEnds:20 andArrowsPerEnd:3];
+    RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andType:eRoundType_NFAA andNumEnds:12 andArrowsPerEnd:5];
+    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andNumEnds:1  andArrowsPerEnd:5];
     [_roundTemplates addObject:fita600Round];
     [_roundTemplates addObject:nfaa300Round];
     [_roundTemplates addObject:shortRound];
@@ -256,7 +256,7 @@
 
 
 //------------------------------------------------------------------------------
-- (NSString *)basicDate:(NSDate *)date
++ (NSString *)basicDate:(NSDate *)date
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
