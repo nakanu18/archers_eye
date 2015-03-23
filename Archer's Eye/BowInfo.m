@@ -34,7 +34,7 @@
 //------------------------------------------------------------------------------
 - (id)init
 {
-    return [self initWithName:@"" andType:eBowType_Freestyle];
+    return [self initWithName:@"" andType:eBowType_Freestyle andDrawWeight:10];
 }
 
 
@@ -58,13 +58,13 @@
 
 
 //------------------------------------------------------------------------------
-- (id)initWithName:(NSString *)name andType:(eBowType)type
+- (id)initWithName:(NSString *)name andType:(eBowType)type andDrawWeight:(NSInteger)drawWeight
 {
     if( self = [super init] )
     {
         self.name   = name;
         _type       = type;
-        _drawWeight = 10;
+        _drawWeight = drawWeight;
     }
     return self;
 }

@@ -14,7 +14,8 @@
 }
 
 @property (weak) IBOutlet UILabel *name;
-@property (weak) IBOutlet UILabel *numArrows;
-@property (weak) IBOutlet UILabel *numEnds;
+@property (weak) IBOutlet UILabel *date;
+@property (weak) IBOutlet UILabel *desc;
+@property (weak) IBOutlet UILabel *score;
 
 @end

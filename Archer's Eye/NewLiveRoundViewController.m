@@ -141,8 +141,8 @@ titleForHeaderInSection:(NSInteger)section
             
             [cell setBackgroundColor:[UIColor greenColor]];
             cell.name.text      = template.name;
-            cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
-            cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
+            cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
+            cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * 10];
         }
     }
     // Custom rounds section
@@ -156,8 +156,8 @@ titleForHeaderInSection:(NSInteger)section
         
         [cell setBackgroundColor:[UIColor whiteColor]];
         cell.name.text      = template.name;
-        cell.numArrows.text = [NSString stringWithFormat:@"%ld", template.numArrowsPerEnd];
-        cell.numEnds.text   = [NSString stringWithFormat:@"%ld", template.numEnds];
+        cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
+        cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * 10];
     }
     return cell;
 }

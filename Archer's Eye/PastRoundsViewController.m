@@ -8,7 +8,7 @@
 
 #import "PastRoundsViewController.h"
 #import "RoundInfo.h"
-#import "PastRoundCell.h"
+#import "RoundDescCell.h"
 
 @interface PastRoundsViewController ()
 
@@ -76,16 +76,13 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray  *scores      = _appDelegate.pastRounds;
-    PastRoundCell   *cell        = [tableView dequeueReusableCellWithIdentifier:@"PastRoundCell"];
+    RoundDescCell   *cell        = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
     RoundInfo       *info        = scores[indexPath.row];
-    NSInteger        totalArrows = [info getTotalArrows];
-    NSInteger        totalScore  = [info getTotalScore];
 
-    cell.nameLabel.text     = info.name;
-//    cell.dateLabel.text     = [info.date description];
-    cell.dateLabel.text     = @"Friday";
-    cell.scoreLabel.text    = [NSString stringWithFormat:@"%ld",  totalScore];
-    cell.averageLabel.text  = [NSString stringWithFormat:@"%.1f", (float)totalScore / (float)totalArrows];
+    cell.name.text  = info.name;
+    cell.date.text  = [_appDelegate basicDate:info.date];
+    cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
+    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", [info getTotalScore], info.numEnds * info.numArrowsPerEnd * 10];
     
     return cell;
 }

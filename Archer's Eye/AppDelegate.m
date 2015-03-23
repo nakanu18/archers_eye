@@ -34,8 +34,8 @@
     [_roundTemplates addObject:shortRound];
     
     
-    BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Barebow];
-    BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound];
+    BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Barebow andDrawWeight:28];
+    BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound andDrawWeight:60];
     [_allBows addObject:whiteFlute];
     [_allBows addObject:blackPSE];
     
@@ -130,7 +130,8 @@
     if( _liveRound == nil )
     {
         NSLog( @"Creating new live round" );
-        self.liveRound = [roundTemplate copy];
+        self.liveRound      = [roundTemplate copy];
+        self.liveRound.date = [NSDate date];
     }
     else
         NSLog( @"Live round already exists" );
@@ -229,6 +230,41 @@
 {
     self.currBow = nil;
     _currBowID   = -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Misc
+
+
+//------------------------------------------------------------------------------
+- (NSString *)basicDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    dateFormatter.locale    = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    return [dateFormatter stringFromDate:date];
 }
 
 @end

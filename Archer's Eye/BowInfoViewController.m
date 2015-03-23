@@ -255,14 +255,30 @@ numberOfRowsInComponent:(NSInteger)component
 
 
 
-//------------------------------------------------------------------------------
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-    return [BowInfo typeAsString:(eBowType)row];
-}
+////------------------------------------------------------------------------------
+//- (NSString *)pickerView:(UIPickerView *)pickerView
+//             titleForRow:(NSInteger)row
+//            forComponent:(NSInteger)component
+//{
+//    return [BowInfo typeAsString:(eBowType)row];
+//}
 
+
+
+//------------------------------------------------------------------------------
+- (UIView *)pickerView:(UIPickerView *)pickerView
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 30)];
+    
+    label.backgroundColor   = [UIColor lightGrayColor];
+    label.textColor         = [UIColor blackColor];
+    label.font              = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+    label.text              = [BowInfo typeAsString:(eBowType)row];
+    return label;
+}
 
 
 
