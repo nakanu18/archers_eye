@@ -141,16 +141,29 @@
 // Get the score for a specific arrow.
 - (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
-    NSMutableArray *endScore = [_endScores objectAtIndex:endID];
+    NSMutableArray *endScore    = [_endScores objectAtIndex:endID];
+    NSInteger       arrowScore  = [endScore[arrowID] integerValue];
+    
+    return arrowScore;
+}
 
-    return [endScore[arrowID] integerValue];
+
+
+//------------------------------------------------------------------------------
+// Get the score for a specific arrow.
+- (NSInteger)getRealScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
+{
+    NSMutableArray *endScore    = [_endScores objectAtIndex:endID];
+    NSInteger       arrowScore  = [endScore[arrowID] integerValue];
+
+    return [self getRealScoreFromArrowValue:arrowScore];
 }
 
 
 
 //------------------------------------------------------------------------------
 // Get the total score for a specific end.
-- (NSInteger)getScoreForEnd:(NSInteger)endID
+- (NSInteger)getRealScoreForEnd:(NSInteger)endID
 {
     NSInteger endTotal = 0;
 
@@ -162,7 +175,7 @@
         {
             NSInteger arrowScore = [endScore[i] integerValue];
             
-            endTotal += (arrowScore > 0) ? arrowScore : 0;
+            endTotal += [self getRealScoreFromArrowValue:arrowScore];
         }
     }
     return endTotal;
@@ -172,7 +185,7 @@
 
 //------------------------------------------------------------------------------
 // Get the running total to this the specified end.
-- (NSInteger)getTotalScoreUpToEnd:(NSInteger)endID
+- (NSInteger)getRealTotalScoreUpToEnd:(NSInteger)endID
 {
     NSInteger currTotal = 0;
     
@@ -186,7 +199,7 @@
             {
                 NSInteger arrowScore = [num integerValue];
                 
-                currTotal += (arrowScore > 0) ? arrowScore : 0;
+                currTotal += [self getRealScoreFromArrowValue:arrowScore];
             }
         }
     }
@@ -206,7 +219,7 @@
 
 //------------------------------------------------------------------------------
 // Get the total score for the round.
-- (NSInteger)getTotalScore
+- (NSInteger)getRealTotalScore
 {
     NSInteger totalScore = 0;
     
@@ -216,14 +229,27 @@
         {
             NSInteger arrowScore = [num integerValue];
             
-            if( arrowScore >= 0 )
-                totalScore += arrowScore;
+            totalScore += [self getRealScoreFromArrowValue:arrowScore];
         }
     }
     
     return totalScore;
 }
 
+
+
+//------------------------------------------------------------------------------
+- (NSInteger)getMaxArrowScore
+{
+    NSInteger max = 0;
+    
+    switch( _type )
+    {
+        case eRoundType_NFAA: max = 5;  break;
+        case eRoundType_FITA: max = 10; break;
+    }    
+    return max;
+}
 
 
 

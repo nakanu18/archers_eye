@@ -16,9 +16,13 @@
     NSInteger _currArrowID;
 }
 
-@property (weak)          AppDelegate *appDelegate;
-@property (weak) IBOutlet UITableView *tableView;
-@property (weak) IBOutlet UIButton    *doneButton;
+@property (weak)          AppDelegate        *appDelegate;
+@property (weak) IBOutlet UITableView        *tableView;
+@property (weak) IBOutlet UIButton           *doneButton;           // Not currently used
+@property (weak) IBOutlet UIView             *controlsFITA;
+@property (weak) IBOutlet UIView             *controlsNFAA;
+@property (weak) IBOutlet NSLayoutConstraint *constraintFITA;
+@property (weak) IBOutlet NSLayoutConstraint *constraintNFAA;
 
 - (EndCell *)getCurrEndCell;
 - (UILabel *)getCurrArrowLabel;
@@ -46,7 +50,7 @@
 - (IBAction)score0ButtonPressed:(id)sender;
 
 - (IBAction)eraseButtonPressed:(id)sender;
-- (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)saveButtonPressed:(id)sender;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 

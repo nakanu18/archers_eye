@@ -19,9 +19,12 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    // Do any additional setup after loading the view.
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _doneButton.enabled = NO;
-
+    
     CGPoint currEmpty = [_appDelegate.liveRound getCurrEndAndArrow];
     
     _currEndID   = currEmpty.y;
@@ -33,9 +36,37 @@
         _doneButton.enabled = YES;
     }
     
-    [super viewDidLoad];
+    // Enable the appropriate controls
+    if( _appDelegate.liveRound.type == eRoundType_FITA )
+    {
+        _controlsFITA.hidden    = NO;
+        _controlsNFAA.hidden    = YES;
+    }
+    else if( _appDelegate.liveRound.type == eRoundType_NFAA )
+    {
+        _controlsFITA.hidden    = YES;
+        _controlsNFAA.hidden    = NO;
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
     
-    // Do any additional setup after loading the view.
+    // Enable the appropriate controls
+    if( _appDelegate.liveRound.type == eRoundType_FITA )
+    {
+        [self.view removeConstraint:_constraintNFAA];
+        [self.view addConstraint:_constraintFITA];
+    }
+    else if( _appDelegate.liveRound.type == eRoundType_NFAA )
+    {
+        [self.view removeConstraint:_constraintFITA];
+        [self.view addConstraint:_constraintNFAA];
+    }
 }
 
 
@@ -109,8 +140,8 @@
     }
     else
     {
-        cell.endScoreLabel.text     = [NSString stringWithFormat:@"%ld", [liveRound getScoreForEnd:row]];
-        cell.totalScoreLabel.text   = [NSString stringWithFormat:@"%ld", [liveRound getTotalScoreUpToEnd:row]];
+        cell.endScoreLabel.text     = [NSString stringWithFormat:@"%ld", [liveRound getRealScoreForEnd:row]];
+        cell.totalScoreLabel.text   = [NSString stringWithFormat:@"%ld", [liveRound getRealTotalScoreUpToEnd:row]];
     }
     
     if( row == _currEndID )
@@ -197,7 +228,7 @@
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID
 {
     // Get the score of the currently selected slot
-    NSInteger    score = [_appDelegate.liveRound getScoreForEnd:_currEndID andArrow:_currArrowID];
+    NSInteger    score = [_appDelegate.liveRound getRealScoreForEnd:_currEndID andArrow:_currArrowID];
     EndCell     *cell  = [self getCurrEndCell];
     UILabel     *label = cell.arrowLabels[_currArrowID];
     
@@ -304,23 +335,37 @@
 // Changes the color of the current arrow according to the score.
 - (void)setVisualScore:(NSInteger)score forLabel:(UILabel *)label
 {
-    if( score >= 0 )
+    if( score >= 11 )
+        label.text = @"X";
+    else if( score >= 0 )
         label.text = [NSString stringWithFormat:@"%ld", score];
     else
         label.text = @"?";
     
-    if( score >= 9 )
-        [label setBackgroundColor:[UIColor yellowColor]];
-    else if( score >= 7 )
-        [label setBackgroundColor:[UIColor redColor]];
-    else if( score >= 5 )
-        [label setBackgroundColor:[UIColor blueColor]];
-    else if( score >= 3 )
-        [label setBackgroundColor:[UIColor blackColor]];
-    else if( score >= 0 )
-        [label setBackgroundColor:[UIColor whiteColor]];
-    else
-        [label setBackgroundColor:[UIColor grayColor]];
+    if( _appDelegate.liveRound.type == eRoundType_FITA )
+    {
+        if( score >= 9 )
+            [label setBackgroundColor:[UIColor yellowColor]];
+        else if( score >= 7 )
+            [label setBackgroundColor:[UIColor redColor]];
+        else if( score >= 5 )
+            [label setBackgroundColor:[UIColor blueColor]];
+        else if( score >= 3 )
+            [label setBackgroundColor:[UIColor blackColor]];
+        else if( score >= 0 )
+            [label setBackgroundColor:[UIColor whiteColor]];
+        else
+            [label setBackgroundColor:[UIColor grayColor]];
+    }
+    else if( _appDelegate.liveRound.type == eRoundType_NFAA )
+    {
+        if( score >= 5 )
+            [label setBackgroundColor:[UIColor whiteColor]];
+        else if( score >= 0 )
+            [label setBackgroundColor:[UIColor colorWithRed:0 green:64/256.0f blue:128/256.0f alpha:1.0f]];
+        else
+            [label setBackgroundColor:[UIColor grayColor]];
+    }
 }
 
 
@@ -365,8 +410,8 @@
 - (void)updateTotalScores
 {
     EndCell     *cell       = [self getCurrEndCell];
-    NSInteger    endScore   = [_appDelegate.liveRound getScoreForEnd:_currEndID];
-    NSInteger    totalScore = [_appDelegate.liveRound getTotalScoreUpToEnd:_currEndID];
+    NSInteger    endScore   = [_appDelegate.liveRound getRealScoreForEnd:_currEndID];
+    NSInteger    totalScore = [_appDelegate.liveRound getRealTotalScoreUpToEnd:_currEndID];
     
     cell.endScoreLabel.text    = [NSString stringWithFormat:@"%ld", endScore];
     cell.totalScoreLabel.text  = [NSString stringWithFormat:@"%ld", totalScore];
@@ -496,7 +541,7 @@
 
 
 //------------------------------------------------------------------------------
-- (IBAction)doneButtonPressed:(id)sender
+- (IBAction)saveButtonPressed:(id)sender
 {
     UIAlertView *confirmDone = [[UIAlertView alloc] initWithTitle:@""
                                                           message:@"Save now?"

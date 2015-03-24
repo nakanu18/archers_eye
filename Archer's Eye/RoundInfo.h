@@ -41,9 +41,11 @@ typedef enum
 
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
 - (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
-- (NSInteger)getScoreForEnd:(NSInteger)endID;
-- (NSInteger)getTotalScoreUpToEnd:(NSInteger)endID;
+- (NSInteger)getRealScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;
+- (NSInteger)getRealScoreForEnd:(NSInteger)endID;
+- (NSInteger)getRealTotalScoreUpToEnd:(NSInteger)endID;
 - (NSInteger)getTotalArrows;
-- (NSInteger)getTotalScore;
+- (NSInteger)getRealTotalScore;
+- (NSInteger)getMaxArrowScore;
 
 @end
