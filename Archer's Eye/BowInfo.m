@@ -29,7 +29,7 @@
 //------------------------------------------------------------------------------
 - (id)init
 {
-    return [self initWithName:@"Untitled" andType:(eBowType)0 andDrawWeight:10];
+    return [self initWithName:@"" andType:(eBowType)0 andDrawWeight:10];
 }
 
 

@@ -41,6 +41,7 @@
     [_allBows addObject:blackPSE];
     
     [_pastRounds addObject:[shortRound copy]];
+    [_pastRounds[0] setDate:[NSDate date]];
     
     // Override point for customization after application launch.
     return YES;

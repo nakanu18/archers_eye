@@ -34,7 +34,7 @@
     // that into our list
     [self.tableView reloadData];
     
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
 }
 
 

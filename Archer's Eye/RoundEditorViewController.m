@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
-#import "LiveRoundViewController.h"
+#import "RoundEditorViewController.h"
 
-@interface LiveRoundViewController ()
+@interface RoundEditorViewController ()
 
 @end
 
 
 
-@implementation LiveRoundViewController
+@implementation RoundEditorViewController
 
 //------------------------------------------------------------------------------
 - (void)viewDidLoad

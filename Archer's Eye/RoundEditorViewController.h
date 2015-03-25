@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "EndCell.h"
 
-@interface LiveRoundViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface RoundEditorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 {
     NSInteger _currEndID;
     NSInteger _currArrowID;

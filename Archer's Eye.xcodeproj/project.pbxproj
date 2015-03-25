@@ -20,7 +20,7 @@
 		FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99279B1AABA9070017D069 /* RoundInfo.m */; };
 		FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastRoundsViewController.m */; };
 		FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AB1AAD118E0017D069 /* EndCell.m */; };
-		FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */; };
+		FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */; };
 		FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */; };
 		FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFB1ABBF3FB00B79AB3 /* BowInfo.m */; };
 		FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */; };
@@ -64,8 +64,8 @@
 		FA9927A81AABB5340017D069 /* PastRoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastRoundsViewController.m; sourceTree = "<group>"; };
 		FA9927AA1AAD118E0017D069 /* EndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndCell.h; sourceTree = "<group>"; };
 		FA9927AB1AAD118E0017D069 /* EndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndCell.m; sourceTree = "<group>"; };
-		FA9927AD1AAD12780017D069 /* LiveRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveRoundViewController.h; sourceTree = "<group>"; };
-		FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveRoundViewController.m; sourceTree = "<group>"; };
+		FA9927AD1AAD12780017D069 /* RoundEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundEditorViewController.h; sourceTree = "<group>"; };
+		FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundEditorViewController.m; sourceTree = "<group>"; };
 		FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowsViewController.h; sourceTree = "<group>"; };
 		FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowsViewController.m; sourceTree = "<group>"; };
 		FAF52EFA1ABBF3FB00B79AB3 /* BowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowInfo.h; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 				FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */,
 				FA8DEEBB1AB94264006CED5A /* RoundDetailsViewController.h */,
 				FA8DEEBC1AB94264006CED5A /* RoundDetailsViewController.m */,
-				FA9927AD1AAD12780017D069 /* LiveRoundViewController.h */,
-				FA9927AE1AAD12780017D069 /* LiveRoundViewController.m */,
+				FA9927AD1AAD12780017D069 /* RoundEditorViewController.h */,
+				FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */,
 			);
 			name = LiveRound;
 			sourceTree = "<group>";
@@ -323,7 +323,7 @@
 				FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */,
-				FA9927AF1AAD12780017D069 /* LiveRoundViewController.m in Sources */,
+				FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
 				FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */,
 				FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */,

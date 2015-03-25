@@ -351,10 +351,10 @@
             </objects>
             <point key="canvasLocation" x="3592" y="5"/>
         </scene>
-        <!--Live Round Scorecard-->
+        <!--Round Editor-->
         <scene sceneID="exD-dL-Txa">
             <objects>
-                <viewController id="6L9-5s-kM4" customClass="LiveRoundViewController" sceneMemberID="viewController">
+                <viewController id="6L9-5s-kM4" customClass="RoundEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DGN-9w-Vsy"/>
                         <viewControllerLayoutGuide type="bottom" id="3GL-O6-ekb"/>
@@ -397,7 +397,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tRo-ig-N6a" userLabel="ScoresView">
-                                <rect key="frame" x="0.0" y="96" width="600" height="420"/>
+                                <rect key="frame" x="0.0" y="96" width="600" height="371"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LiveEndCell" rowHeight="24" id="kbv-5w-Igw" customClass="EndCell">
@@ -546,7 +546,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kul-oR-N39" userLabel="ControlsView_NFAA">
-                                <rect key="frame" x="0.0" y="558" width="600" height="42"/>
+                                <rect key="frame" x="0.0" y="509" width="600" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cev-Kb-Nq9">
                                         <rect key="frame" x="8" y="4" width="30" height="30"/>
@@ -700,7 +700,7 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whL-Do-d8w" userLabel="ControlsView_FITA">
-                                <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="471" width="600" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZQ-oO-pL8">
                                         <rect key="frame" x="46" y="4" width="30" height="30"/>
@@ -978,7 +978,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Live Round Scorecard" id="Bfu-zT-Jjh">
+                    <navigationItem key="navigationItem" title="Round Editor" id="Bfu-zT-Jjh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="euZ-9D-fFV">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="6L9-5s-kM4" id="7nE-Ya-JLK"/>
@@ -1191,7 +1191,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UDk-Mg-dBq"/>
+        <segue reference="E02-gJ-3Zs"/>
         <segue reference="9dM-LP-hRo"/>
     </inferredMetricsTieBreakers>
 </document>
