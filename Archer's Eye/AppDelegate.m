@@ -19,20 +19,20 @@
 //------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.roundTemplates = [NSMutableArray new];
+    self.commonRounds = [NSMutableArray new];
     self.pastRounds     = [NSMutableArray new];
     self.allBows        = [NSMutableArray new];
     _currBowID          = -1;
-    _currPastRoundID    = -1;
+    _currRoundID    = -1;
 
     
     
     RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andType:eRoundType_FITA andNumEnds:20 andArrowsPerEnd:3];
     RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andType:eRoundType_NFAA andNumEnds:12 andArrowsPerEnd:5];
     RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andNumEnds:1  andArrowsPerEnd:5];
-    [_roundTemplates addObject:fita600Round];
-    [_roundTemplates addObject:nfaa300Round];
-    [_roundTemplates addObject:shortRound];
+    [_commonRounds addObject:fita600Round];
+    [_commonRounds addObject:nfaa300Round];
+    [_commonRounds addObject:shortRound];
     
     
     BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Recurve andDrawWeight:28];
@@ -155,7 +155,7 @@
     if( _liveRound != nil )
     {
         // Add the current live round to the log of past scores
-        [_pastRounds addObject:_liveRound];
+        [_pastRounds insertObject:_liveRound atIndex:0];
         
         // Release the old live round
         self.liveRound = nil;
@@ -182,39 +182,76 @@
 
 
 
-#pragma mark - Current Past Round
+#pragma mark - Generic Round Selection
 
 //------------------------------------------------------------------------------
-- (void)selectPastRound:(NSInteger)pastRoundID
+- (void)createNewCustomRound:(RoundInfo *)newRound
 {
-    _currPastRoundID = -1;
+    self.currRound      = newRound;
+    _currRoundCategory  = eRoundCategory_Custom;
+    _currRoundID        = -1;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)selectRound:(NSInteger)ID andCategory:(eRoundCategory)category
+{
+    NSMutableArray *roundArray;
     
-    if( pastRoundID >= 0  &&  pastRoundID < [_pastRounds count] )
+    _currRoundCategory  = category;
+    _currRoundID        = -1;
+    
+    // Select the array to use
+    switch( _currRoundCategory )
     {
-        self.currPastRound  = [_pastRounds[pastRoundID] copy];
-        _currPastRoundID    = pastRoundID;      // Save the ID so we can replace it later
+        case eRoundCategory_Custom: roundArray = nil;               break;
+        case eRoundCategory_Common: roundArray = _commonRounds;     break;
+        case eRoundCategory_Past:   roundArray = _pastRounds;       break;
+        default:                    roundArray = nil;               break;
+    }
+    
+    if( ID >= 0  &&  ID < [roundArray count] )
+    {
+        self.currRound  = [roundArray[ID] copy];
+        _currRoundID    = ID;      // Save the ID so we can replace it later
     }
 }
 
 
 
 //------------------------------------------------------------------------------
-- (void)endCurrPastRoundAndDiscard
+- (void)endCurrRoundAndDiscard
 {
-    self.currPastRound  = nil;
-    _currPastRoundID    = -1;
+    _currRoundCategory  = eRoundCategory_None;
+    self.currRound      = nil;
+    _currRoundID        = -1;
 }
 
 
 
 //------------------------------------------------------------------------------
-- (void)endCurrPastRoundAndSave
+- (void)endCurrRoundAndSave
 {
-    if( _currPastRoundID >= 0  &&  _currPastRoundID < [_pastRounds count] )
+    if( _currRoundCategory != eRoundCategory_None )
     {
-        [_pastRounds replaceObjectAtIndex:_currPastRoundID withObject:_currPastRound];
+        NSMutableArray *roundArray;
+        
+        // Select the array to use
+        switch( _currRoundCategory )
+        {
+            case eRoundCategory_Custom: roundArray = nil;               break;
+            case eRoundCategory_Common: roundArray = _commonRounds;     break;
+            case eRoundCategory_Past:   roundArray = _pastRounds;       break;
+            default:                    roundArray = nil;               break;
+        }
+
+        if( _currRoundID >= 0  &&  _currRoundID < [roundArray count] )
+            [roundArray replaceObjectAtIndex:_currRoundID withObject:_currRound];
+        else
+            [roundArray insertObject:_currRound atIndex:0];
     }
-    self.currPastRound = nil;
+    [self endCurrRoundAndDiscard];
 }
 
 
@@ -268,7 +305,7 @@
     // Bow is brand new
     if( _currBowID == -1 )
     {
-        [_allBows addObject:_currBow];
+        [_allBows insertObject:_currBow atIndex:0];
     }
     // Bow is a copy of another one
     else

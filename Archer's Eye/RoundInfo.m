@@ -19,6 +19,16 @@
 @implementation RoundInfo
 
 //------------------------------------------------------------------------------
++ (NSString *)typeAsString:(eRoundType)type
+{
+    NSString *names[] = { @"NFAA", @"FITA" };
+    
+    return names[type];
+}
+
+
+
+//------------------------------------------------------------------------------
 // Initialize the round.
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type
@@ -60,16 +70,20 @@
                                      andNumEnds:self.numEnds
                                 andArrowsPerEnd:self.numArrowsPerEnd];
     
-    for( NSInteger i = 0; i < _numEnds; ++i )
+    if( obj )
     {
-        for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
+        [obj setDate:self.date];
+        
+        for( NSInteger i = 0; i < _numEnds; ++i )
         {
-            NSInteger score = [self getScoreForEnd:i andArrow:j];
-            
-            [obj setScore:score forEnd:i andArrow:j];
+            for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
+            {
+                NSInteger score = [self getScoreForEnd:i andArrow:j];
+                
+                [obj setScore:score forEnd:i andArrow:j];
+            }
         }
-    }
-    
+    }    
     return obj;
 }
 
@@ -247,8 +261,22 @@
     {
         case eRoundType_NFAA: max = 5;  break;
         case eRoundType_FITA: max = 10; break;
+        default:              max = 10; break;
     }    
     return max;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (BOOL)isInfoValid
+{
+    BOOL ans = NO;
+    
+    if( ![_name isEqualToString:@""]  &&  _numEnds > 0   &&  _numArrowsPerEnd > 0 )
+        ans = YES;
+    
+    return ans;
 }
 
 

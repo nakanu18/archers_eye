@@ -13,6 +13,7 @@ typedef enum
 {
     eRoundType_NFAA,    // [-1, 6]  -> [no score, bullseye]
     eRoundType_FITA,    // [-1, 11] -> [no score, bullseye]
+    eRoundType_Count,
 } eRoundType;
 
 @interface RoundInfo : NSObject <NSCopying>
@@ -31,6 +32,8 @@ typedef enum
 
 
 
++ (NSString *)typeAsString:(eRoundType)type;
+
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type
         andNumEnds:(NSInteger)numEnds
@@ -47,5 +50,7 @@ typedef enum
 - (NSInteger)getTotalArrows;
 - (NSInteger)getRealTotalScore;
 - (NSInteger)getMaxArrowScore;
+
+- (BOOL)isInfoValid;
 
 @end

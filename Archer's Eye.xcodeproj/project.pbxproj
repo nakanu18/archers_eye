@@ -10,7 +10,7 @@
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */; };
 		FA633DFF1AB5768B0090AD12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA633DFD1AB5768B0090AD12 /* Main.storyboard */; };
-		FA8DEEBD1AB94264006CED5A /* RoundDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8DEEBC1AB94264006CED5A /* RoundDetailsViewController.m */; };
+		FA8DEEBD1AB94264006CED5A /* RoundInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */; };
 		FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA92B7C41ABDFA470075EF1F /* TextFieldDismisserView.m */; };
 		FA9927771AABA1510017D069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927761AABA1510017D069 /* main.m */; };
 		FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927791AABA1510017D069 /* AppDelegate.m */; };
@@ -44,8 +44,8 @@
 		FA633DF71AB56ADD0090AD12 /* NewLiveRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLiveRoundViewController.h; sourceTree = "<group>"; };
 		FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLiveRoundViewController.m; sourceTree = "<group>"; };
 		FA633DFE1AB5768B0090AD12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FA8DEEBB1AB94264006CED5A /* RoundDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDetailsViewController.h; sourceTree = "<group>"; };
-		FA8DEEBC1AB94264006CED5A /* RoundDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundDetailsViewController.m; sourceTree = "<group>"; };
+		FA8DEEBB1AB94264006CED5A /* RoundInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundInfoViewController.h; sourceTree = "<group>"; };
+		FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundInfoViewController.m; sourceTree = "<group>"; };
 		FA92B7C31ABDFA470075EF1F /* TextFieldDismisserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDismisserView.h; sourceTree = "<group>"; };
 		FA92B7C41ABDFA470075EF1F /* TextFieldDismisserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDismisserView.m; sourceTree = "<group>"; };
 		FA9927711AABA1510017D069 /* Archer's Eye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Archer's Eye.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,10 +114,10 @@
 			children = (
 				FA633DF71AB56ADD0090AD12 /* NewLiveRoundViewController.h */,
 				FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */,
-				FA8DEEBB1AB94264006CED5A /* RoundDetailsViewController.h */,
-				FA8DEEBC1AB94264006CED5A /* RoundDetailsViewController.m */,
 				FA9927AD1AAD12780017D069 /* RoundEditorViewController.h */,
 				FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */,
+				FA8DEEBB1AB94264006CED5A /* RoundInfoViewController.h */,
+				FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */,
 			);
 			name = LiveRound;
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
 				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,
-				FA8DEEBD1AB94264006CED5A /* RoundDetailsViewController.m in Sources */,
+				FA8DEEBD1AB94264006CED5A /* RoundInfoViewController.m in Sources */,
 				FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */,
 				FA9927771AABA1510017D069 /* main.m in Sources */,
 				FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */,

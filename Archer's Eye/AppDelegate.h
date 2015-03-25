@@ -10,16 +10,25 @@
 #import "RoundInfo.h"
 #import "BowInfo.h"
 
+typedef enum
+{
+    eRoundCategory_None,
+    eRoundCategory_Custom,
+    eRoundCategory_Common,
+    eRoundCategory_Past,
+} eRoundCategory;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    NSInteger _currBowID;
-    NSInteger _currPastRoundID;
+    NSInteger       _currBowID;
+    eRoundCategory  _currRoundCategory;
+    NSInteger       _currRoundID;
 }
 
 @property (nonatomic, strong)   UIWindow        *window;
 @property (strong)              RoundInfo       *liveRound;
-@property (strong)              NSMutableArray  *roundTemplates;
-@property (strong)              RoundInfo       *currPastRound;
+@property (strong)              NSMutableArray  *commonRounds;
+@property (strong)              RoundInfo       *currRound;
 @property (strong)              NSMutableArray  *pastRounds;
 @property (strong)              BowInfo         *currBow;
 @property (strong)              NSMutableArray  *allBows;
@@ -33,9 +42,11 @@
 - (void)endLiveRoundAndDiscard;
 - (void)endLiveRoundAndSave;
 
-- (void)selectPastRound:(NSInteger)pastRoundID;
-- (void)endCurrPastRoundAndDiscard;
-- (void)endCurrPastRoundAndSave;
+// Generic
+- (void)createNewCustomRound:(RoundInfo *)newRound;
+- (void)selectRound:(NSInteger)ID andCategory:(eRoundCategory)category;
+- (void)endCurrRoundAndDiscard;
+- (void)endCurrRoundAndSave;
 
 - (void)createNewCurrBow:(BowInfo *)newBow;
 - (void)selectBow:(NSInteger)bowID;

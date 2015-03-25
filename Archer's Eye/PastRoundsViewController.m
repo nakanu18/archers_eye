@@ -107,7 +107,7 @@
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_appDelegate selectPastRound:indexPath.row];
+    [_appDelegate selectRound:indexPath.row andCategory:eRoundCategory_Past];
 }
 
 

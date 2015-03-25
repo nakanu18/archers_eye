@@ -21,32 +21,6 @@
 - (void)viewDidLoad
 {
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-
-    // Make sure the segmented control has the proper names
-    for( int i = 0; i < eBowType_Count; ++i )
-    {
-        [_bowType setTitle:[BowInfo typeAsString:i] forSegmentAtIndex:i];
-    }
-    
-    // Create a new Bow if we don't have a currently selected one
-    if( [_appDelegate currBow] == nil )
-        [_appDelegate createNewCurrBow:[BowInfo new]];
-    // Else: we have a currently selected one
-    else
-    {
-        // Populate the fields with it's data
-        _bowName.text                   = _appDelegate.currBow.name;
-        _bowDrawWeight.text             = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
-        _bowSight.on                    = _appDelegate.currBow.sight;
-        _bowClicker.on                  = _appDelegate.currBow.clicker;
-        _bowStabilizers.on              = _appDelegate.currBow.stabilizers;
-        _bowType.selectedSegmentIndex   = _appDelegate.currBow.type;
-    }
-    
-    [self registerForKeyboardNotifications];
-    [self toggleSaveButtonIfReady];
-
-    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -58,6 +32,26 @@
     // Commented out because there is a setting in InterfaceBuilder.
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
+    // Make sure the segmented control has the proper names
+    for( int i = 0; i < eBowType_Count; ++i )
+    {
+        [_bowType setTitle:[BowInfo typeAsString:i] forSegmentAtIndex:i];
+    }
+    
+    // Create a new Bow if we don't have a currently selected one
+    if( [_appDelegate currBow] == nil )
+        [_appDelegate createNewCurrBow:[BowInfo new]];
+
+    // Populate the fields with it's data
+    _bowName.text                   = _appDelegate.currBow.name;
+    _bowDrawWeight.text             = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
+    _bowSight.on                    = _appDelegate.currBow.sight;
+    _bowClicker.on                  = _appDelegate.currBow.clicker;
+    _bowStabilizers.on              = _appDelegate.currBow.stabilizers;
+    _bowType.selectedSegmentIndex   = _appDelegate.currBow.type;
+    
+    [self registerForKeyboardNotifications];
+    [self toggleSaveButtonIfReady];
     [self addToolbarToNumberPad];
 }
 

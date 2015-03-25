@@ -34,9 +34,9 @@ typedef enum
 
 
 
-- (id)init;
-
 + (NSString *)typeAsString:(eBowType)type;
+
+- (id)init;
 - (id)initWithName:(NSString *)name andType:(eBowType)type andDrawWeight:(NSInteger)drawWeight;
 - (BOOL)isInfoValid;
 

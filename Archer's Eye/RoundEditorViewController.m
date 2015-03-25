@@ -23,7 +23,7 @@
     
     // Do any additional setup after loading the view.
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.currRound      = (_appDelegate.currPastRound != nil) ? _appDelegate.currPastRound : _appDelegate.liveRound;
+    self.currRound      = (_appDelegate.currRound != nil) ? _appDelegate.currRound : _appDelegate.liveRound;
     _doneButton.enabled = NO;
     
     CGPoint currEmpty = [_currRound getCurrEndAndArrow];
@@ -31,7 +31,7 @@
     _currArrowID = currEmpty.x;
     
     // Remove the cancel button if it's the live round
-    if( _appDelegate.currPastRound == nil )
+    if( _appDelegate.currRound == nil )
         self.navigationItem.leftBarButtonItem = nil;
     
     // Fix the erase/done button enabled states
@@ -549,9 +549,9 @@
 {
     NSString *unwindSegueName;
     
-    if( _appDelegate.currPastRound != nil )
+    if( _appDelegate.currRound != nil )
     {
-        [_appDelegate endCurrPastRoundAndDiscard];
+        [_appDelegate endCurrRoundAndDiscard];
         unwindSegueName = @"unwindToPastRounds";
     }
     else
@@ -613,9 +613,9 @@
     {
         NSString *unwindSegueName;
         
-        if( _appDelegate.currPastRound != nil )
+        if( _appDelegate.currRound != nil )
         {
-            [_appDelegate endCurrPastRoundAndSave];
+            [_appDelegate endCurrRoundAndSave];
             unwindSegueName = @"unwindToPastRounds";
         }
         else

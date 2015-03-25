@@ -111,14 +111,14 @@ titleForHeaderInSection:(NSInteger)section
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger                 count = [_appDelegate.roundTemplates count];
+    NSInteger                 count = [_appDelegate.commonRounds count];
     eNewLiveRoundSectionType  type  = [_sectionTypes[section] intValue];
 
     switch( type )
     {
         case eNewLiveRoundSectionType_Live:   count = (_appDelegate.liveRound != nil);   break;
         case eNewLiveRoundSectionType_Custom: count = 0; break;
-        case eNewLiveRoundSectionType_Common: count = [_appDelegate.roundTemplates count]; break;
+        case eNewLiveRoundSectionType_Common: count = [_appDelegate.commonRounds count]; break;
     }
     
     return count;
@@ -154,7 +154,7 @@ titleForHeaderInSection:(NSInteger)section
     // Common rounds section
     else if( type == eNewLiveRoundSectionType_Common )
     {
-        template = _appDelegate.roundTemplates[indexPath.row];
+        template = _appDelegate.commonRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
         cell.name.text      = template.name;
@@ -176,7 +176,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     // common.
     if( type != eNewLiveRoundSectionType_Live )
     {
-        RoundInfo *roundTemplate = _appDelegate.roundTemplates[indexPath.row];
+        RoundInfo *roundTemplate = _appDelegate.commonRounds[indexPath.row];
         
         [_appDelegate startLiveRoundFromTemplate:roundTemplate];
     }
@@ -227,7 +227,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         }
         else if( type == eNewLiveRoundSectionType_Common )
         {
-            [_appDelegate.roundTemplates removeObjectAtIndex:indexPath.row];
+            [_appDelegate.commonRounds removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
