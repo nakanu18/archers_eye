@@ -35,7 +35,7 @@
     [_roundTemplates addObject:shortRound];
     
     
-    BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Barebow andDrawWeight:28];
+    BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Recurve andDrawWeight:28];
     BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound andDrawWeight:60];
     [_allBows addObject:whiteFlute];
     [_allBows addObject:blackPSE];

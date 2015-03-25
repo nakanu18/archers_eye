@@ -22,6 +22,12 @@
 {
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
+    // Make sure the segmented control has the proper names
+    for( int i = 0; i < eBowType_Count; ++i )
+    {
+        [_bowType setTitle:[BowInfo typeAsString:i] forSegmentAtIndex:i];
+    }
+    
     // Create a new Bow if we don't have a currently selected one
     if( [_appDelegate currBow] == nil )
         [_appDelegate createNewCurrBow:[BowInfo new]];
@@ -29,14 +35,18 @@
     else
     {
         // Populate the fields with it's data
-        _bowName.text       = _appDelegate.currBow.name;
-        _bowDrawWeight.text = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
-        [_bowType selectRow:_appDelegate.currBow.type inComponent:0 animated:YES];
+        _bowName.text                   = _appDelegate.currBow.name;
+        _bowDrawWeight.text             = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
+        _bowSight.on                    = _appDelegate.currBow.sight;
+        _bowClicker.on                  = _appDelegate.currBow.clicker;
+        _bowStabilizers.on              = _appDelegate.currBow.stabilizers;
+        _bowType.selectedSegmentIndex   = _appDelegate.currBow.type;
     }
     
     [self registerForKeyboardNotifications];
     [self toggleSaveButtonIfReady];
 
+    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -238,64 +248,60 @@
 
 
 
-#pragma mark - BowType (UIPicker)
+#pragma mark - BowType (UISegmentedControl)
 
 //------------------------------------------------------------------------------
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (IBAction)bowTypeChanged:(id)sender
 {
-    return 1;
-}
-
-
-
-//------------------------------------------------------------------------------
-- (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component
-{
-    return eBowType_Count;
-}
-
-
-
-////------------------------------------------------------------------------------
-//- (NSString *)pickerView:(UIPickerView *)pickerView
-//             titleForRow:(NSInteger)row
-//            forComponent:(NSInteger)component
-//{
-//    return [BowInfo typeAsString:(eBowType)row];
-//}
-
-
-
-//------------------------------------------------------------------------------
-- (UIView *)pickerView:(UIPickerView *)pickerView
-            viewForRow:(NSInteger)row
-          forComponent:(NSInteger)component
-           reusingView:(UIView *)view
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 30)];
+    UISegmentedControl *seg = (UISegmentedControl *)sender;
     
-    label.backgroundColor   = [UIColor lightGrayColor];
-    label.textColor         = [UIColor blackColor];
-    label.font              = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-    label.text              = [BowInfo typeAsString:(eBowType)row];
-    return label;
+    _appDelegate.currBow.type = (eBowType)seg.selectedSegmentIndex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Switches
+
+//------------------------------------------------------------------------------
+- (IBAction)bowSightSwitched:(id)sender
+{
+    _appDelegate.currBow.sight = [sender isOn];
 }
 
 
 
 //------------------------------------------------------------------------------
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
+- (IBAction)bowClickerSwitched:(id)sender
 {
-    _appDelegate.currBow.type = (eBowType)row;
-    
-    if( _activeTextField != nil )
-        [self textFieldShouldReturn:_activeTextField];
-    
-    [self toggleSaveButtonIfReady];
+    _appDelegate.currBow.clicker = [sender isOn];
 }
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)bowStabilizersSwitched:(id)sender
+{
+    _appDelegate.currBow.stabilizers = [sender isOn];
+}
+
 
 
 

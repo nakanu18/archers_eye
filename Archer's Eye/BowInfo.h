@@ -11,8 +11,7 @@
 typedef enum
 {
     eBowType_None = -1,
-    eBowType_FreestyleRecurve,
-    eBowType_Barebow,
+    eBowType_Recurve,
     eBowType_Compound,
     eBowType_Traditional,
     eBowType_Count,
@@ -26,6 +25,9 @@ typedef enum
 @property (strong)      NSString   *name;
 @property (readwrite)   eBowType    type;
 @property (readwrite)   NSInteger   drawWeight;
+@property (readwrite)   BOOL        sight;
+@property (readwrite)   BOOL        clicker;
+@property (readwrite)   BOOL        stabilizers;
 
 
 

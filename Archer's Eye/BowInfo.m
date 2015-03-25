@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------
 + (NSString *)typeAsString:(eBowType)type
 {
-    NSString *names[] = { @"Freestyle Recurve", @"Barebow", @"Compound", @"Traditional" };
+    NSString *names[] = { @"Recurve", @"Compound", @"Traditional" };
     
     return names[type];
 }
@@ -45,6 +45,9 @@
         obj.name        = self.name;
         obj.type        = self.type;
         obj.drawWeight  = self.drawWeight;
+        obj.sight       = self.sight;
+        obj.clicker     = self.clicker;
+        obj.stabilizers = self.stabilizers;
     }
     
     return obj;
