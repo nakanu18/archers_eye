@@ -29,6 +29,18 @@
 
 
 //------------------------------------------------------------------------------
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Reload the data;  This is in case we created a live round and need to add
+    // that into our list
+    [self.tableView reloadData];
+    
+    [super viewWillAppear:animated];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -92,6 +104,15 @@
 
 
 //------------------------------------------------------------------------------
+-       (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_appDelegate selectPastRound:indexPath.row];
+}
+
+
+
+//------------------------------------------------------------------------------
 // Override to support editing the table view.
 -   (void)tableView:(UITableView *)tableView
  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -123,6 +144,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)unwindToPastRounds:(UIStoryboardSegue *)segue
+{
 }
 
 @end

@@ -23,26 +23,30 @@
     
     // Do any additional setup after loading the view.
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.currRound      = (_appDelegate.currPastRound != nil) ? _appDelegate.currPastRound : _appDelegate.liveRound;
     _doneButton.enabled = NO;
     
-    CGPoint currEmpty = [_appDelegate.liveRound getCurrEndAndArrow];
-    
+    CGPoint currEmpty = [_currRound getCurrEndAndArrow];
     _currEndID   = currEmpty.y;
     _currArrowID = currEmpty.x;
     
+    // Remove the cancel button if it's the live round
+    if( _appDelegate.currPastRound == nil )
+        self.navigationItem.leftBarButtonItem = nil;
+    
     // Fix the erase/done button enabled states
-    if( _currEndID >= [_appDelegate.liveRound numEnds] )
+    if( _currEndID >= [_currRound numEnds] )
     {
         _doneButton.enabled = YES;
     }
     
     // Enable the appropriate controls
-    if( _appDelegate.liveRound.type == eRoundType_FITA )
+    if( _currRound.type == eRoundType_FITA )
     {
         _controlsFITA.hidden    = NO;
         _controlsNFAA.hidden    = YES;
     }
-    else if( _appDelegate.liveRound.type == eRoundType_NFAA )
+    else if( _currRound.type == eRoundType_NFAA )
     {
         _controlsFITA.hidden    = YES;
         _controlsNFAA.hidden    = NO;
@@ -57,12 +61,12 @@
     [super viewWillLayoutSubviews];
     
     // Enable the appropriate controls
-    if( _appDelegate.liveRound.type == eRoundType_FITA )
+    if( _currRound.type == eRoundType_FITA )
     {
         [self.view removeConstraint:_constraintNFAA];
         [self.view addConstraint:_constraintFITA];
     }
-    else if( _appDelegate.liveRound.type == eRoundType_NFAA )
+    else if( _currRound.type == eRoundType_NFAA )
     {
         [self.view removeConstraint:_constraintFITA];
         [self.view addConstraint:_constraintNFAA];
@@ -112,7 +116,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _appDelegate.liveRound.numEnds;
+    return _currRound.numEnds;
 }
 
 
@@ -122,7 +126,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EndCell     *cell       = [tableView dequeueReusableCellWithIdentifier:@"LiveEndCell"];
-    RoundInfo   *liveRound  = _appDelegate.liveRound;
+    RoundInfo   *liveRound  = _currRound;
     NSInteger    row        = indexPath.row;
     
     cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", row + 1];
@@ -228,7 +232,7 @@
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID
 {
     // Get the score of the currently selected slot
-    NSInteger    score = [_appDelegate.liveRound getRealScoreForEnd:_currEndID andArrow:_currArrowID];
+    NSInteger    score = [_currRound getRealScoreForEnd:_currEndID andArrow:_currArrowID];
     EndCell     *cell  = [self getCurrEndCell];
     UILabel     *label = cell.arrowLabels[_currArrowID];
     
@@ -247,8 +251,8 @@
 // Increments to the next arrow.
 - (void)incArrowID
 {
-    NSInteger numEnds         = _appDelegate.liveRound.numEnds;
-    NSInteger numArrowsPerEnd = _appDelegate.liveRound.numArrowsPerEnd;
+    NSInteger numEnds         = _currRound.numEnds;
+    NSInteger numArrowsPerEnd = _currRound.numArrowsPerEnd;
 
     if( _currEndID < numEnds )
     {
@@ -276,8 +280,8 @@
 // Decrements to the previous arrow.
 - (void)decArrowID
 {
-//    NSInteger numEnds         = _appDelegate.liveRound.numEnds;
-    NSInteger numArrowsPerEnd = _appDelegate.liveRound.numArrowsPerEnd;
+//    NSInteger numEnds         = _currRound.numEnds;
+    NSInteger numArrowsPerEnd = _currRound.numArrowsPerEnd;
     
     [[self getCurrArrowLabel] setBackgroundColor:[UIColor grayColor]];
     
@@ -311,7 +315,7 @@
     UILabel *label = cell.arrowLabels[_currArrowID];
 
     // Set the score in the data
-    [_appDelegate.liveRound setScore:score forEnd:_currEndID andArrow:_currArrowID];
+    [_currRound setScore:score forEnd:_currEndID andArrow:_currArrowID];
     
     // Visually set the score
     [self setVisualScore:score forLabel:label];
@@ -320,7 +324,7 @@
     [self incArrowID];
     
     // Make sure the currently selected arrow is in view
-    if( _currEndID < _appDelegate.liveRound.numEnds )
+    if( _currEndID < _currRound.numEnds )
     {
         NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
         [_tableView scrollToRowAtIndexPath:path
@@ -342,7 +346,7 @@
     else
         label.text = @"?";
     
-    if( _appDelegate.liveRound.type == eRoundType_FITA )
+    if( _currRound.type == eRoundType_FITA )
     {
         if( score >= 9 )
             [label setBackgroundColor:[UIColor yellowColor]];
@@ -357,7 +361,7 @@
         else
             [label setBackgroundColor:[UIColor grayColor]];
     }
-    else if( _appDelegate.liveRound.type == eRoundType_NFAA )
+    else if( _currRound.type == eRoundType_NFAA )
     {
         if( score >= 5 )
             [label setBackgroundColor:[UIColor whiteColor]];
@@ -382,13 +386,13 @@
     UILabel *label = cell.arrowLabels[_currArrowID];
     
     // Handle the case where we jumped back one full end
-    if( _currArrowID == _appDelegate.liveRound.numArrowsPerEnd - 1 )
+    if( _currArrowID == _currRound.numArrowsPerEnd - 1 )
     {
         prevCell.totalScoreLabel.text = @"0";
     }
     
     // Set the score in the data
-    [_appDelegate.liveRound setScore:-1 forEnd:_currEndID andArrow:_currArrowID];
+    [_currRound setScore:-1 forEnd:_currEndID andArrow:_currArrowID];
     
     // Visually set the score
     [self setVisualScore:-1 forLabel:label];
@@ -410,8 +414,8 @@
 - (void)updateTotalScores
 {
     EndCell     *cell       = [self getCurrEndCell];
-    NSInteger    endScore   = [_appDelegate.liveRound getRealScoreForEnd:_currEndID];
-    NSInteger    totalScore = [_appDelegate.liveRound getRealTotalScoreUpToEnd:_currEndID];
+    NSInteger    endScore   = [_currRound getRealScoreForEnd:_currEndID];
+    NSInteger    totalScore = [_currRound getRealTotalScoreUpToEnd:_currEndID];
     
     cell.endScoreLabel.text    = [NSString stringWithFormat:@"%ld", endScore];
     cell.totalScoreLabel.text  = [NSString stringWithFormat:@"%ld", totalScore];
@@ -541,6 +545,31 @@
 
 
 //------------------------------------------------------------------------------
+- (IBAction)cancelButtonPressed:(id)sender
+{
+    NSString *unwindSegueName;
+    
+    if( _appDelegate.currPastRound != nil )
+    {
+        [_appDelegate endCurrPastRoundAndDiscard];
+        unwindSegueName = @"unwindToPastRounds";
+    }
+    else
+    {
+        [_appDelegate endLiveRoundAndDiscard];
+        unwindSegueName = @"unwindToNewLiveRound";
+    }
+    
+    [_tableView reloadData];
+    
+    // Programmatically run the unwind segue because we have to wait for the
+    // AlertView.
+    [self performSegueWithIdentifier:unwindSegueName sender:self];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (IBAction)saveButtonPressed:(id)sender
 {
     UIAlertView *confirmDone = [[UIAlertView alloc] initWithTitle:@""
@@ -582,12 +611,24 @@
 {
     if( buttonIndex == 1 )
     {
-        [_appDelegate endLiveRoundAndSave];
+        NSString *unwindSegueName;
+        
+        if( _appDelegate.currPastRound != nil )
+        {
+            [_appDelegate endCurrPastRoundAndSave];
+            unwindSegueName = @"unwindToPastRounds";
+        }
+        else
+        {
+            [_appDelegate endLiveRoundAndSave];
+            unwindSegueName = @"unwindToNewLiveRound";
+        }
+        
         [_tableView reloadData];
         
         // Programmatically run the unwind segue because we have to wait for the
         // AlertView.
-        [self performSegueWithIdentifier:@"unwindToNewLiveRound" sender:self];
+        [self performSegueWithIdentifier:unwindSegueName sender:self];
     }
 }
 

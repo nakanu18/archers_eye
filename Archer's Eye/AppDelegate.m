@@ -23,6 +23,7 @@
     self.pastRounds     = [NSMutableArray new];
     self.allBows        = [NSMutableArray new];
     _currBowID          = -1;
+    _currPastRoundID    = -1;
 
     
     
@@ -38,6 +39,8 @@
     BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound andDrawWeight:60];
     [_allBows addObject:whiteFlute];
     [_allBows addObject:blackPSE];
+    
+    [_pastRounds addObject:[shortRound copy]];
     
     // Override point for customization after application launch.
     return YES;
@@ -178,8 +181,61 @@
 
 
 
-#pragma mark - Bows
+#pragma mark - Current Past Round
 
+//------------------------------------------------------------------------------
+- (void)selectPastRound:(NSInteger)pastRoundID
+{
+    _currPastRoundID = -1;
+    
+    if( pastRoundID >= 0  &&  pastRoundID < [_pastRounds count] )
+    {
+        self.currPastRound  = [_pastRounds[pastRoundID] copy];
+        _currPastRoundID    = pastRoundID;      // Save the ID so we can replace it later
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)endCurrPastRoundAndDiscard
+{
+    self.currPastRound  = nil;
+    _currPastRoundID    = -1;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)endCurrPastRoundAndSave
+{
+    if( _currPastRoundID >= 0  &&  _currPastRoundID < [_pastRounds count] )
+    {
+        [_pastRounds replaceObjectAtIndex:_currPastRoundID withObject:_currPastRound];
+    }
+    self.currPastRound = nil;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Bows
 
 //------------------------------------------------------------------------------
 - (void)createNewCurrBow:(BowInfo *)newBow
@@ -194,9 +250,10 @@
 - (void)selectBow:(NSInteger)bowID
 {
     _currBowID = -1;
-    
+
     if( bowID >= 0  &&  bowID < [_allBows count] )
     {
+        // Make a copy so that we can discard the values easily if needed
         self.currBow = [_allBows[bowID] copy];
         _currBowID   = bowID;
     }
@@ -250,7 +307,6 @@
 
 
 #pragma mark - Misc
-
 
 //------------------------------------------------------------------------------
 + (NSString *)basicDate:(NSDate *)date

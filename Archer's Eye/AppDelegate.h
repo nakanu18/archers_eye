@@ -12,12 +12,14 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    NSUInteger _currBowID;
+    NSInteger _currBowID;
+    NSInteger _currPastRoundID;
 }
 
 @property (nonatomic, strong)   UIWindow        *window;
 @property (strong)              RoundInfo       *liveRound;
 @property (strong)              NSMutableArray  *roundTemplates;
+@property (strong)              RoundInfo       *currPastRound;
 @property (strong)              NSMutableArray  *pastRounds;
 @property (strong)              BowInfo         *currBow;
 @property (strong)              NSMutableArray  *allBows;
@@ -30,6 +32,10 @@
 - (void)startLiveRoundFromTemplate:(RoundInfo *)roundTemplate;
 - (void)endLiveRoundAndDiscard;
 - (void)endLiveRoundAndSave;
+
+- (void)selectPastRound:(NSInteger)pastRoundID;
+- (void)endCurrPastRoundAndDiscard;
+- (void)endCurrPastRoundAndSave;
 
 - (void)createNewCurrBow:(BowInfo *)newBow;
 - (void)selectBow:(NSInteger)bowID;

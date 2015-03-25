@@ -89,6 +89,7 @@
                                     <outlet property="desc" destination="xct-z9-Ccq" id="ckY-Dq-f64"/>
                                     <outlet property="name" destination="L5H-aU-4eD" id="6N8-Yu-nPC"/>
                                     <outlet property="score" destination="VJH-5I-dTZ" id="2lW-R6-SwT"/>
+                                    <segue destination="aNf-Uz-wPI" kind="presentation" modalTransitionStyle="flipHorizontal" id="UDk-Mg-dBq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -340,6 +341,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zwn-3Q-ILl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="6L9-5s-kM4" kind="relationship" relationship="rootViewController" id="0PU-I1-HrT"/>
@@ -395,7 +397,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tRo-ig-N6a" userLabel="ScoresView">
-                                <rect key="frame" x="0.0" y="96" width="600" height="371"/>
+                                <rect key="frame" x="0.0" y="96" width="600" height="420"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LiveEndCell" rowHeight="24" id="kbv-5w-Igw" customClass="EndCell">
@@ -544,7 +546,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kul-oR-N39" userLabel="ControlsView_NFAA">
-                                <rect key="frame" x="0.0" y="509" width="600" height="42"/>
+                                <rect key="frame" x="0.0" y="558" width="600" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cev-Kb-Nq9">
                                         <rect key="frame" x="8" y="4" width="30" height="30"/>
@@ -698,7 +700,7 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whL-Do-d8w" userLabel="ControlsView_FITA">
-                                <rect key="frame" x="0.0" y="471" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="520" width="600" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZQ-oO-pL8">
                                         <rect key="frame" x="46" y="4" width="30" height="30"/>
@@ -977,6 +979,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Live Round Scorecard" id="Bfu-zT-Jjh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="euZ-9D-fFV">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="6L9-5s-kM4" id="7nE-Ya-JLK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="mzZ-8t-KO6">
                             <connections>
                                 <action selector="saveButtonPressed:" destination="6L9-5s-kM4" id="ITs-XX-kVG"/>
@@ -984,12 +991,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="euZ-9D-fFV" id="8q1-P5-fTH"/>
                         <outlet property="constraintFITA" destination="PHm-N0-494" id="hAh-lv-c6t"/>
                         <outlet property="constraintNFAA" destination="AMX-j2-uSj" id="ouU-hC-1eW"/>
                         <outlet property="controlsFITA" destination="whL-Do-d8w" id="rqS-S5-smo"/>
                         <outlet property="controlsNFAA" destination="Kul-oR-N39" id="cXA-7a-CVK"/>
                         <outlet property="tableView" destination="tRo-ig-N6a" id="tzi-rp-9bW"/>
                         <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToNewLiveRound" unwindAction="unwindToNewLiveRound:" id="8uf-ab-Cgm"/>
+                        <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToPastRounds" unwindAction="unwindToPastRounds:" id="iRi-ON-cNQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prq-aM-wEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1182,6 +1191,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="UDk-Mg-dBq"/>
         <segue reference="9dM-LP-hRo"/>
     </inferredMetricsTieBreakers>
 </document>
