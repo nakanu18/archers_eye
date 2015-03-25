@@ -129,12 +129,9 @@
 {
     if( _liveRound == nil )
     {
-        NSLog( @"Creating new live round" );
         self.liveRound      = [roundTemplate copy];
         self.liveRound.date = [NSDate date];
     }
-    else
-        NSLog( @"Live round already exists" );
 }
 
 

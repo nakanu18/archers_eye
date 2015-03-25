@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------
 + (NSString *)typeAsString:(eBowType)type
 {
-    NSString *names[] = { @"Freestyle", @"Barebow", @"Compound", @"Traditional" };
+    NSString *names[] = { @"Freestyle Recurve", @"Barebow", @"Compound", @"Traditional" };
     
     return names[type];
 }
@@ -29,7 +29,7 @@
 //------------------------------------------------------------------------------
 - (id)init
 {
-    return [self initWithName:@"" andType:eBowType_Freestyle andDrawWeight:10];
+    return [self initWithName:@"Untitled" andType:(eBowType)0 andDrawWeight:10];
 }
 
 

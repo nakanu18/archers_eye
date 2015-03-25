@@ -13,6 +13,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8Ln-7v-mLi">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="H9V-5j-Jte" kind="relationship" relationship="viewControllers" id="6cg-Dc-sab"/>
@@ -28,10 +29,10 @@
         <scene sceneID="NYE-0p-v4o">
             <objects>
                 <tableViewController id="WBN-EH-NFu" customClass="PastRoundsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FL5-55-g3N">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="FL5-55-g3N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RoundDescCell" id="Uc5-RJ-j6N" customClass="RoundDescCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -182,6 +183,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K9w-i2-EWN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="5m9-os-A5K" kind="relationship" relationship="rootViewController" id="eqh-oX-6Za"/>
@@ -320,6 +322,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9B3-6S-Lhc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="5jW-yF-o1r" kind="relationship" relationship="rootViewController" id="Wmh-qa-w2H"/>
@@ -1149,6 +1152,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rmH-CV-7hv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="0oa-iB-ZUe" kind="relationship" relationship="rootViewController" id="tYL-4e-FWa"/>
@@ -1166,6 +1170,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9vo-rf-t3c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="WBN-EH-NFu" kind="relationship" relationship="rootViewController" id="mVz-ha-6Ui"/>

@@ -11,7 +11,7 @@
 typedef enum
 {
     eBowType_None = -1,
-    eBowType_Freestyle,
+    eBowType_FreestyleRecurve,
     eBowType_Barebow,
     eBowType_Compound,
     eBowType_Traditional,
