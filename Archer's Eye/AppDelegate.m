@@ -28,9 +28,9 @@
 
     
     
-    RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andType:eRoundType_FITA andDefaultDist:20 andNumEnds:20 andArrowsPerEnd:3];
-    RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andType:eRoundType_NFAA andDefaultDist:20 andNumEnds:12 andArrowsPerEnd:5];
-    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andDefaultDist:20 andNumEnds:1  andArrowsPerEnd:5];
+    RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andType:eRoundType_FITA andDist:20 andNumEnds:20 andArrowsPerEnd:3];
+    RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andType:eRoundType_NFAA andDist:20 andNumEnds:12 andArrowsPerEnd:5];
+    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andDist:20 andNumEnds:1  andArrowsPerEnd:5];
     [_commonRounds addObject:fita600Round];
     [_commonRounds addObject:nfaa300Round];
     [_commonRounds addObject:shortRound];

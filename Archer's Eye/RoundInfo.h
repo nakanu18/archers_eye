@@ -22,7 +22,7 @@ typedef enum
 
 @property (strong)      NSString       *name;
 @property (readwrite)   eRoundType      type;
-@property (readwrite)   NSInteger       defaultDist;
+@property (readwrite)   NSInteger       distance;
 @property (readwrite)   NSInteger       numEnds;
 @property (readwrite)   NSInteger       numArrowsPerEnd;
 @property (strong)      NSMutableArray *endScores;
@@ -37,7 +37,7 @@ typedef enum
 
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type
-    andDefaultDist:(NSInteger)dist
+           andDist:(NSInteger)dist
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 

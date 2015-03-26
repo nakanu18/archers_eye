@@ -143,9 +143,6 @@ titleForHeaderInSection:(NSInteger)section
             template = _appDelegate.liveRound;
             
             [cell setBackgroundColor:[UIColor greenColor]];
-            cell.name.text      = template.name;
-            cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-            cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
             cell.accessoryType  = UITableViewCellAccessoryNone;
         }
     }
@@ -155,9 +152,6 @@ titleForHeaderInSection:(NSInteger)section
         template = _appDelegate.customRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
-        cell.name.text      = template.name;
-        cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-        cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
         cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
     }
     // Common rounds section
@@ -166,11 +160,14 @@ titleForHeaderInSection:(NSInteger)section
         template = _appDelegate.commonRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
-        cell.name.text      = template.name;
-        cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-        cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
         cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
     }
+
+    cell.name.text      = template.name;
+    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", template.distance];
+    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
+    cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
+    
     return cell;
 }
 

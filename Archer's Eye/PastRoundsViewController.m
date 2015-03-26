@@ -95,6 +95,7 @@
 
     cell.name.text  = info.name;
     cell.date.text  = [AppDelegate basicDate:info.date];
+    cell.dist.text  = [NSString stringWithFormat:@"%ld yds", info.distance];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
     cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", [info getRealTotalScore], info.numEnds * info.numArrowsPerEnd * [info getMaxArrowScore]];
     
