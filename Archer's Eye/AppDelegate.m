@@ -134,6 +134,7 @@
 {
     if( _liveRound == nil )
     {
+        [roundTemplate clearScorecard];
         self.liveRound      = [roundTemplate copy];
         self.liveRound.date = [NSDate date];
     }

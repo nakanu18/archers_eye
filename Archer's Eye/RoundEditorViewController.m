@@ -359,7 +359,7 @@
         else if( score >= 0 )
             [label setBackgroundColor:[UIColor whiteColor]];
         else
-            [label setBackgroundColor:[UIColor grayColor]];
+            [label setBackgroundColor:[UIColor colorWithRed:200/256.0f green:200/256.0f blue:200/256.0f alpha:1.0f]];
     }
     else if( _currRound.type == eRoundType_NFAA )
     {
@@ -368,7 +368,7 @@
         else if( score >= 0 )
             [label setBackgroundColor:[UIColor colorWithRed:0 green:64/256.0f blue:128/256.0f alpha:1.0f]];
         else
-            [label setBackgroundColor:[UIColor grayColor]];
+            [label setBackgroundColor:[UIColor colorWithRed:200/256.0f green:200/256.0f blue:200/256.0f alpha:1.0f]];
     }
 }
 

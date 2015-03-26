@@ -17,6 +17,7 @@
 @property (weak) IBOutlet UILabel *date;
 @property (weak) IBOutlet UILabel *dist;
 @property (weak) IBOutlet UILabel *desc;
+@property (weak) IBOutlet UILabel *avg;
 @property (weak) IBOutlet UILabel *score;
 
 @end

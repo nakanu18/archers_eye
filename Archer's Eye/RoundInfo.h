@@ -41,7 +41,7 @@ typedef enum
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
-- (void)clearAllScores;
+- (void)clearScorecard;
 - (CGPoint)getCurrEndAndArrow;  // y = end, x = arrow
 
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID;

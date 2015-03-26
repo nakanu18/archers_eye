@@ -45,18 +45,7 @@
         _numArrowsPerEnd = numArrowsPerEnd;
         
         // Create the array that will hold the array of scores for each end
-        [self setEndScores:[NSMutableArray new]];
-        
-        for( NSInteger i = 0; i < _numEnds; ++i )
-        {
-            NSMutableArray *newEndScore = [NSMutableArray new];
-            
-            for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
-            {
-                [newEndScore addObject:@(-1)];
-            }
-            [_endScores addObject:newEndScore];
-        }
+        [self clearScorecard];
     }
     return self;
 }
@@ -93,15 +82,20 @@
 
 
 //------------------------------------------------------------------------------
-// Clear all the scores stored
-- (void)clearAllScores
+// Rebuilds the entire scorecard and clears it
+- (void)clearScorecard
 {
-    for( NSArray *endScore in _endScores )
+    [self setEndScores:[NSMutableArray new]];
+    
+    for( NSInteger i = 0; i < _numEnds; ++i )
     {
-        for( __strong NSNumber *arrow in endScore )
+        NSMutableArray *newEndScore = [NSMutableArray new];
+        
+        for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
         {
-            arrow = @(-1);
+            [newEndScore addObject:@(-1)];
         }
+        [_endScores addObject:newEndScore];
     }
 }
 
