@@ -146,7 +146,6 @@ titleForHeaderInSection:(NSInteger)section
             cell.name.text      = template.name;
             cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
             cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
-            
             cell.accessoryType  = UITableViewCellAccessoryNone;
         }
     }
@@ -159,6 +158,7 @@ titleForHeaderInSection:(NSInteger)section
         cell.name.text      = template.name;
         cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
         cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
+        cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
     }
     // Common rounds section
     else if( type == eNewLiveRoundSectionType_Common )
@@ -169,6 +169,7 @@ titleForHeaderInSection:(NSInteger)section
         cell.name.text      = template.name;
         cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
         cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
+        cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
     }
     return cell;
 }

@@ -32,6 +32,7 @@
 // Initialize the round.
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type
+    andDefaultDist:(NSInteger)dist
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd
 {
@@ -67,6 +68,7 @@
 {
     id obj = [[[self class] alloc] initWithName:self.name
                                         andType:self.type
+                                 andDefaultDist:self.defaultDist
                                      andNumEnds:self.numEnds
                                 andArrowsPerEnd:self.numArrowsPerEnd];
     

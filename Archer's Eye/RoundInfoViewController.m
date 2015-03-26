@@ -32,14 +32,14 @@
     
     // Create a new Round if we don't have a currently selected one
     if( [_appDelegate currRound] == nil )
-        [_appDelegate createNewCustomRound:[[RoundInfo alloc] initWithName:@"" andType:eRoundType_NFAA andNumEnds:1 andArrowsPerEnd:6]];
+        [_appDelegate createNewCustomRound:[[RoundInfo alloc] initWithName:@"" andType:eRoundType_NFAA andDefaultDist:20 andNumEnds:1 andArrowsPerEnd:6]];
 
     // Populate the fields with it's data
     _textName.text                              = _appDelegate.currRound.name;
     _segControlRoundType.selectedSegmentIndex   = _appDelegate.currRound.type;
     _textNumEnds.text                           = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numEnds];
     _textNumArrows.text                         = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numArrowsPerEnd];
-    _textDefaultDist.text                       = [NSString stringWithFormat:@"%d", 12345];
+    _textDefaultDist.text                       = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.defaultDist];
 
     [self toggleSaveButtonIfReady];
     [self addToolbarToNumberPad:_textNumEnds];
@@ -97,7 +97,7 @@
     if( textField == _textName )        _appDelegate.currRound.name             =  textField.text;
     if( textField == _textNumEnds )     _appDelegate.currRound.numEnds          = [textField.text integerValue];
     if( textField == _textNumArrows )   _appDelegate.currRound.numArrowsPerEnd  = [textField.text integerValue];
-    if( textField == _textDefaultDist ) _appDelegate.currRound.numEnds          = [textField.text integerValue];
+    if( textField == _textDefaultDist ) _appDelegate.currRound.defaultDist      = [textField.text integerValue];
     
     [self toggleSaveButtonIfReady];
 }
