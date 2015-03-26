@@ -19,11 +19,12 @@
 //------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.commonRounds = [NSMutableArray new];
+    self.customRounds   = [NSMutableArray new];
+    self.commonRounds   = [NSMutableArray new];
     self.pastRounds     = [NSMutableArray new];
     self.allBows        = [NSMutableArray new];
     _currBowID          = -1;
-    _currRoundID    = -1;
+    _currRoundID        = -1;
 
     
     
@@ -205,7 +206,7 @@
     // Select the array to use
     switch( _currRoundCategory )
     {
-        case eRoundCategory_Custom: roundArray = nil;               break;
+        case eRoundCategory_Custom: roundArray = _customRounds;     break;
         case eRoundCategory_Common: roundArray = _commonRounds;     break;
         case eRoundCategory_Past:   roundArray = _pastRounds;       break;
         default:                    roundArray = nil;               break;
@@ -240,7 +241,7 @@
         // Select the array to use
         switch( _currRoundCategory )
         {
-            case eRoundCategory_Custom: roundArray = nil;               break;
+            case eRoundCategory_Custom: roundArray = _customRounds;     break;
             case eRoundCategory_Common: roundArray = _commonRounds;     break;
             case eRoundCategory_Past:   roundArray = _pastRounds;       break;
             default:                    roundArray = nil;               break;

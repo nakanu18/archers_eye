@@ -36,9 +36,10 @@
     
     // Now, setup the current sections in a list
     
-    [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Live]];
-    
-//    [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Custom]];
+    if( _appDelegate.liveRound != nil )
+        [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Live]];
+    if( [_appDelegate.customRounds count] > 0 )
+        [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Custom]];
     [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Common]];
     
     // Reload the data;  This is in case we created a live round and need to add
@@ -117,7 +118,7 @@ titleForHeaderInSection:(NSInteger)section
     switch( type )
     {
         case eNewLiveRoundSectionType_Live:   count = (_appDelegate.liveRound != nil);   break;
-        case eNewLiveRoundSectionType_Custom: count = 0; break;
+        case eNewLiveRoundSectionType_Custom: count = [_appDelegate.customRounds count]; break;
         case eNewLiveRoundSectionType_Common: count = [_appDelegate.commonRounds count]; break;
     }
     
@@ -144,12 +145,20 @@ titleForHeaderInSection:(NSInteger)section
             [cell setBackgroundColor:[UIColor greenColor]];
             cell.name.text      = template.name;
             cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-            cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * 10];
+            cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
+            
+            cell.accessoryType  = UITableViewCellAccessoryNone;
         }
     }
     // Custom rounds section
     else if( type == eNewLiveRoundSectionType_Custom )
     {
+        template = _appDelegate.customRounds[indexPath.row];
+        
+        [cell setBackgroundColor:[UIColor whiteColor]];
+        cell.name.text      = template.name;
+        cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
+        cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
     }
     // Common rounds section
     else if( type == eNewLiveRoundSectionType_Common )
@@ -159,7 +168,7 @@ titleForHeaderInSection:(NSInteger)section
         [cell setBackgroundColor:[UIColor whiteColor]];
         cell.name.text      = template.name;
         cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-        cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * 10];
+        cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
     }
     return cell;
 }
@@ -176,9 +185,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     // common.
     if( type != eNewLiveRoundSectionType_Live )
     {
-        RoundInfo *roundTemplate = _appDelegate.commonRounds[indexPath.row];
+        RoundInfo *roundTemplate = nil;
         
-        [_appDelegate startLiveRoundFromTemplate:roundTemplate];
+        if( type == eNewLiveRoundSectionType_Custom )
+            roundTemplate = _appDelegate.customRounds[indexPath.row];
+        else if( type == eNewLiveRoundSectionType_Common )
+            roundTemplate = _appDelegate.commonRounds[indexPath.row];
+        
+        if( roundTemplate != nil )
+            [_appDelegate startLiveRoundFromTemplate:roundTemplate];
     }
 }
 
@@ -198,6 +213,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             newIndexPath = nil;
     }
     return newIndexPath;
+}
+
+
+
+//------------------------------------------------------------------------------
+-                           (void)tableView:(UITableView *)tableView
+   accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    eNewLiveRoundSectionType type = [_sectionTypes[indexPath.section] intValue];
+    
+    if( type == eNewLiveRoundSectionType_Custom )
+        [_appDelegate selectRound:indexPath.row andCategory:eRoundCategory_Custom];
+    else if( type == eNewLiveRoundSectionType_Common )
+        [_appDelegate selectRound:indexPath.row andCategory:eRoundCategory_Common];
 }
 
 
@@ -223,7 +252,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         }
         else if( type == eNewLiveRoundSectionType_Custom )
         {
-            NSLog( @"TODO - implement custom rounds" );
+            [_appDelegate.customRounds removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
         else if( type == eNewLiveRoundSectionType_Common )
         {

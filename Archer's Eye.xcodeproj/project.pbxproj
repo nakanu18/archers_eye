@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */; };
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */; };
 		FA633DFF1AB5768B0090AD12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA633DFD1AB5768B0090AD12 /* Main.storyboard */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandlerViewController.h; sourceTree = "<group>"; };
+		FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHandlerViewController.m; sourceTree = "<group>"; };
 		FA633DF11AB569880090AD12 /* RoundDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDescCell.h; sourceTree = "<group>"; };
 		FA633DF21AB569880090AD12 /* RoundDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundDescCell.m; sourceTree = "<group>"; };
 		FA633DF71AB56ADD0090AD12 /* NewLiveRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLiveRoundViewController.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 		FA92B7C61ABE05A60075EF1F /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */,
+				FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */,
 				FAF52F031ABC846500B79AB3 /* DismissSegue.h */,
 				FAF52F041ABC846500B79AB3 /* DismissSegue.m */,
 				FA92B7C31ABDFA470075EF1F /* TextFieldDismisserView.h */,
@@ -327,6 +332,7 @@
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
 				FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */,
 				FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */,
+				FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */,
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
 				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,

@@ -8,24 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "KeyboardHandlerViewController.h"
 #import "BowInfo.h"
 
-@interface BowInfoViewController : UIViewController <UITextFieldDelegate>
+@interface BowInfoViewController : KeyboardHandlerViewController <UITextFieldDelegate>
 {
-    UITextField *_activeTextField;
 }
 
-@property (weak)    AppDelegate                 *appDelegate;
+@property (weak)            AppDelegate        *appDelegate;
+@property (weak) IBOutlet   UIBarButtonItem    *barButtonSave;
 
-@property (weak)    IBOutlet UIScrollView       *scrollView;
-@property (weak)    IBOutlet UIBarButtonItem    *barButtonSave;
-
-@property (weak)    IBOutlet UITextField        *bowName;
-@property (weak)    IBOutlet UITextField        *bowDrawWeight;
-@property (weak)    IBOutlet UISegmentedControl *bowType;
-@property (weak)    IBOutlet UISwitch           *bowSight;
-@property (weak)    IBOutlet UISwitch           *bowClicker;
-@property (weak)    IBOutlet UISwitch           *bowStabilizers;
+@property (weak) IBOutlet   UITextField        *bowName;
+@property (weak) IBOutlet   UITextField        *bowDrawWeight;
+@property (weak) IBOutlet   UISegmentedControl *bowType;
+@property (weak) IBOutlet   UISwitch           *bowSight;
+@property (weak) IBOutlet   UISwitch           *bowClicker;
+@property (weak) IBOutlet   UISwitch           *bowStabilizers;
 
 
 

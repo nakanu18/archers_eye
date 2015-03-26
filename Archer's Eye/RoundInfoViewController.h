@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "KeyboardHandlerViewController.h"
 
-@interface RoundInfoViewController : UIViewController
+@interface RoundInfoViewController : KeyboardHandlerViewController <UITextFieldDelegate>
 {
 }
 
@@ -20,7 +21,7 @@
 @property (weak) IBOutlet   UISegmentedControl  *segControlRoundType;
 @property (weak) IBOutlet   UITextField         *textNumEnds;
 @property (weak) IBOutlet   UITextField         *textNumArrows;
-@property (weak) IBOutlet   UITextField         *textDefaultDistance;
+@property (weak) IBOutlet   UITextField         *textDefaultDist;
 
 
 

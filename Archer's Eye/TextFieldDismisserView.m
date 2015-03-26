@@ -17,7 +17,6 @@
     
     if( ![touch.view isMemberOfClass:[UITextField class]] )
          [touch.view endEditing:YES];
-    
 }
 
 @end

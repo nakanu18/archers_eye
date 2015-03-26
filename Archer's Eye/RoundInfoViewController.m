@@ -32,16 +32,19 @@
     
     // Create a new Round if we don't have a currently selected one
     if( [_appDelegate currRound] == nil )
-        [_appDelegate createNewCustomRound:[RoundInfo new]];
+        [_appDelegate createNewCustomRound:[[RoundInfo alloc] initWithName:@"" andType:eRoundType_NFAA andNumEnds:1 andArrowsPerEnd:6]];
 
     // Populate the fields with it's data
     _textName.text                              = _appDelegate.currRound.name;
     _segControlRoundType.selectedSegmentIndex   = _appDelegate.currRound.type;
     _textNumEnds.text                           = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numEnds];
     _textNumArrows.text                         = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numArrowsPerEnd];
-    _textDefaultDistance.text                   = [NSString stringWithFormat:@"%d", 123];
+    _textDefaultDist.text                       = [NSString stringWithFormat:@"%d", 12345];
 
     [self toggleSaveButtonIfReady];
+    [self addToolbarToNumberPad:_textNumEnds];
+    [self addToolbarToNumberPad:_textNumArrows];
+    [self addToolbarToNumberPad:_textDefaultDist];
 }
 
 
@@ -51,6 +54,62 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma - mark BowName (UITextField)
+
+//------------------------------------------------------------------------------
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [super textFieldDidBeginEditing:textField];
+    
+    _barButtonSave.enabled = NO;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [super textFieldDidEndEditing:textField];
+    
+    if( textField == _textName )        _appDelegate.currRound.name             =  textField.text;
+    if( textField == _textNumEnds )     _appDelegate.currRound.numEnds          = [textField.text integerValue];
+    if( textField == _textNumArrows )   _appDelegate.currRound.numArrowsPerEnd  = [textField.text integerValue];
+    if( textField == _textDefaultDist ) _appDelegate.currRound.numEnds          = [textField.text integerValue];
+    
+    [self toggleSaveButtonIfReady];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    BOOL ans = [super textFieldShouldReturn:textField];
+    
+    return ans;
 }
 
 

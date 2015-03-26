@@ -20,12 +20,12 @@ typedef enum
 {
 }
 
-@property (strong)   NSString       *name;
-@property (readonly) eRoundType      type;
-@property (strong)   NSDate         *date;
-@property (strong)   NSMutableArray *endScores;
-@property (readonly) NSInteger       numEnds;
-@property (readonly) NSInteger       numArrowsPerEnd;
+@property (strong)      NSString       *name;
+@property (readwrite)   eRoundType      type;
+@property (strong)      NSDate         *date;
+@property (strong)      NSMutableArray *endScores;
+@property (readwrite)   NSInteger       numEnds;
+@property (readwrite)   NSInteger       numArrowsPerEnd;
 
 
 
