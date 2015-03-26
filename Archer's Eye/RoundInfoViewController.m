@@ -142,6 +142,9 @@
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     
     _appDelegate.currRound.type = (eRoundType)seg.selectedSegmentIndex;
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 

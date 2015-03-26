@@ -147,6 +147,9 @@
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     
     _appDelegate.currBow.type = (eBowType)seg.selectedSegmentIndex;
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
@@ -175,6 +178,9 @@
 - (IBAction)bowSightSwitched:(id)sender
 {
     _appDelegate.currBow.sight = [sender isOn];
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
@@ -183,6 +189,9 @@
 - (IBAction)bowClickerSwitched:(id)sender
 {
     _appDelegate.currBow.clicker = [sender isOn];
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
@@ -191,6 +200,9 @@
 - (IBAction)bowStabilizersSwitched:(id)sender
 {
     _appDelegate.currBow.stabilizers = [sender isOn];
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 

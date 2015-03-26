@@ -117,6 +117,7 @@
 {
 //    NSString *numberFromTheKeyboard = _bowDrawWeight.text;
     [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
