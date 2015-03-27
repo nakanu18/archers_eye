@@ -37,14 +37,14 @@
     // Populate the fields with it's data
     _textName.text                              = _appDelegate.currRound.name;
     _segControlRoundType.selectedSegmentIndex   = _appDelegate.currRound.type;
-    _textNumEnds.text                           = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numEnds];
-    _textNumArrows.text                         = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numArrowsPerEnd];
-    _textDefaultDist.text                       = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.distance];
+    _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numEnds];
+    _sliderNumEnds.value                        = _appDelegate.currRound.numEnds;
+    _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numArrowsPerEnd];
+    _sliderNumArrows.value                      = _appDelegate.currRound.numArrowsPerEnd;
+    _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.distance];
+    _sliderDefaultDist.value                    = _appDelegate.currRound.distance;
 
     [self toggleSaveButtonIfReady];
-    [self addToolbarToNumberPad:_textNumEnds];
-    [self addToolbarToNumberPad:_textNumArrows];
-    [self addToolbarToNumberPad:_textDefaultDist];
 }
 
 
@@ -94,11 +94,9 @@
 {
     [super textFieldDidEndEditing:textField];
     
-    if( textField == _textName )        _appDelegate.currRound.name             =  textField.text;
-    if( textField == _textNumEnds )     _appDelegate.currRound.numEnds          = [textField.text integerValue];
-    if( textField == _textNumArrows )   _appDelegate.currRound.numArrowsPerEnd  = [textField.text integerValue];
-    if( textField == _textDefaultDist ) _appDelegate.currRound.distance      = [textField.text integerValue];
-    
+    if( textField == _textName )
+        _appDelegate.currRound.name = textField.text;
+
     [self toggleSaveButtonIfReady];
 }
 
@@ -176,6 +174,42 @@
 - (void)toggleSaveButtonIfReady
 {
     _barButtonSave.enabled = [_appDelegate.currRound isInfoValid];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)numEndsChanged:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    NSInteger value  = (NSInteger)slider.value;
+    
+    _labelNumEnds.text              = [NSString stringWithFormat:@"%ld", value];
+    _appDelegate.currRound.numEnds  = value;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)numArrowsChanged:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    NSInteger value  = (NSInteger)slider.value;
+    
+    _labelNumArrows.text                    = [NSString stringWithFormat:@"%ld", value];
+    _appDelegate.currRound.numArrowsPerEnd  = value;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)defaultDistChanged:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    NSInteger value  = (NSInteger)slider.value;
+    
+    _labelDefaultDist.text          = [NSString stringWithFormat:@"%ld", value];
+    _appDelegate.currRound.distance = value;
 }
 
 

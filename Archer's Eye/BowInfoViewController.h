@@ -18,18 +18,20 @@
 @property (weak)            AppDelegate        *appDelegate;
 @property (weak) IBOutlet   UIBarButtonItem    *barButtonSave;
 
-@property (weak) IBOutlet   UITextField        *bowName;
-@property (weak) IBOutlet   UITextField        *bowDrawWeight;
-@property (weak) IBOutlet   UISegmentedControl *bowType;
-@property (weak) IBOutlet   UISwitch           *bowSight;
-@property (weak) IBOutlet   UISwitch           *bowClicker;
-@property (weak) IBOutlet   UISwitch           *bowStabilizers;
+@property (weak) IBOutlet   UITextField        *textBowName;
+@property (weak) IBOutlet   UILabel            *labelBowDrawWeight;
+@property (weak) IBOutlet   UISlider           *sliderBowDrawWeight;
+@property (weak) IBOutlet   UISegmentedControl *segControlBowType;
+@property (weak) IBOutlet   UISwitch           *switchBowSight;
+@property (weak) IBOutlet   UISwitch           *switchBowClicker;
+@property (weak) IBOutlet   UISwitch           *switchBowStabilizers;
 
 
 
 
 
 
+- (IBAction)bowDrawWeightChanged:(id)sender;
 - (IBAction)bowTypeChanged:(id)sender;
 - (IBAction)bowSightSwitched:(id)sender;
 - (IBAction)bowClickerSwitched:(id)sender;

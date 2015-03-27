@@ -35,7 +35,7 @@
     // Make sure the segmented control has the proper names
     for( int i = 0; i < eBowType_Count; ++i )
     {
-        [_bowType setTitle:[BowInfo typeAsString:i] forSegmentAtIndex:i];
+        [_segControlBowType setTitle:[BowInfo typeAsString:i] forSegmentAtIndex:i];
     }
     
     // Create a new Bow if we don't have a currently selected one
@@ -43,15 +43,15 @@
         [_appDelegate createNewCurrBow:[BowInfo new]];
 
     // Populate the fields with it's data
-    _bowName.text                   = _appDelegate.currBow.name;
-    _bowDrawWeight.text             = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
-    _bowSight.on                    = _appDelegate.currBow.sight;
-    _bowClicker.on                  = _appDelegate.currBow.clicker;
-    _bowStabilizers.on              = _appDelegate.currBow.stabilizers;
-    _bowType.selectedSegmentIndex   = _appDelegate.currBow.type;
+    _textBowName.text                   = _appDelegate.currBow.name;
+    _labelBowDrawWeight.text             = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
+    _sliderBowDrawWeight.value      = _appDelegate.currBow.drawWeight;
+    _switchBowSight.on                    = _appDelegate.currBow.sight;
+    _switchBowClicker.on                  = _appDelegate.currBow.clicker;
+    _switchBowStabilizers.on              = _appDelegate.currBow.stabilizers;
+    _segControlBowType.selectedSegmentIndex   = _appDelegate.currBow.type;
     
     [self toggleSaveButtonIfReady];
-    [self addToolbarToNumberPad:_bowDrawWeight];
 }
 
 
@@ -101,8 +101,8 @@
 {
     [super textFieldDidEndEditing:textField];
     
-    if( textField == _bowName )         _appDelegate.currBow.name       =  textField.text;
-    if( textField == _bowDrawWeight )   _appDelegate.currBow.drawWeight = [textField.text integerValue];
+    if( textField == _textBowName )
+        _appDelegate.currBow.name = textField.text;
 
     [self toggleSaveButtonIfReady];
 }
@@ -139,7 +139,39 @@
 
 
 
-#pragma mark - BowType (UISegmentedControl)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Bow Values Changed
+
+//------------------------------------------------------------------------------
+- (IBAction)bowDrawWeightChanged:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    NSInteger value  = (NSInteger)slider.value;
+    
+    _labelBowDrawWeight.text             = [NSString stringWithFormat:@"%ld", value];
+    _appDelegate.currBow.drawWeight = value;
+}
+
+
 
 //------------------------------------------------------------------------------
 - (IBAction)bowTypeChanged:(id)sender
@@ -147,32 +179,12 @@
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     
     _appDelegate.currBow.type = (eBowType)seg.selectedSegmentIndex;
-
+    
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark - Switches
 
 //------------------------------------------------------------------------------
 - (IBAction)bowSightSwitched:(id)sender
