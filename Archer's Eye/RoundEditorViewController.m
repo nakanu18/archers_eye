@@ -59,7 +59,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
+ 
     // Enable the appropriate controls
     if( _currRound.type == eRoundType_FITA )
     {
@@ -283,7 +283,8 @@
 //    NSInteger numEnds         = _currRound.numEnds;
     NSInteger numArrowsPerEnd = _currRound.numArrowsPerEnd;
     
-    [[self getCurrArrowLabel] setBackgroundColor:[UIColor grayColor]];
+    [[self getCurrArrowLabel] setBackgroundColor:_buttonErase.currentTitleColor];
+    [[self getCurrArrowLabel] setBackgroundColor:_buttonErase.backgroundColor];
     
     if( _currArrowID - 1 < 0 )
     {
@@ -339,6 +340,8 @@
 // Changes the color of the current arrow according to the score.
 - (void)setVisualScore:(NSInteger)score forLabel:(UILabel *)label
 {
+    UIButton *buttonTemplate;
+
     if( score >= 11 )
         label.text = @"X";
     else if( score >= 0 )
@@ -349,27 +352,29 @@
     if( _currRound.type == eRoundType_FITA )
     {
         if( score >= 9 )
-            [label setBackgroundColor:[UIColor yellowColor]];
+            buttonTemplate = _buttonFITAYellow;
         else if( score >= 7 )
-            [label setBackgroundColor:[UIColor redColor]];
+            buttonTemplate = _buttonFITARed;
         else if( score >= 5 )
-            [label setBackgroundColor:[UIColor blueColor]];
+            buttonTemplate = _buttonFITABlue;
         else if( score >= 3 )
-            [label setBackgroundColor:[UIColor blackColor]];
+            buttonTemplate = _buttonFITABlack;
         else if( score >= 0 )
-            [label setBackgroundColor:[UIColor whiteColor]];
+            buttonTemplate = _buttonFITAWhite;
         else
-            [label setBackgroundColor:[UIColor colorWithRed:200/256.0f green:200/256.0f blue:200/256.0f alpha:1.0f]];
+            buttonTemplate = _buttonErase;
     }
     else if( _currRound.type == eRoundType_NFAA )
     {
         if( score >= 5 )
-            [label setBackgroundColor:[UIColor whiteColor]];
+            buttonTemplate = _buttonNFAAWhite;
         else if( score >= 0 )
-            [label setBackgroundColor:[UIColor colorWithRed:0 green:64/256.0f blue:128/256.0f alpha:1.0f]];
+            buttonTemplate = _buttonNFAABlue;
         else
-            [label setBackgroundColor:[UIColor colorWithRed:200/256.0f green:200/256.0f blue:200/256.0f alpha:1.0f]];
+            buttonTemplate = _buttonErase;
     }
+    [label setTextColor:buttonTemplate.currentTitleColor];
+    [label setBackgroundColor:buttonTemplate.backgroundColor];
 }
 
 

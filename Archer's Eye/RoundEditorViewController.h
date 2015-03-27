@@ -26,6 +26,18 @@
 @property (weak) IBOutlet NSLayoutConstraint *constraintFITA;
 @property (weak) IBOutlet NSLayoutConstraint *constraintNFAA;
 
+@property (weak) IBOutlet UIButton           *buttonErase;
+
+// Used to pull the color properties from the storyboard
+@property (weak) IBOutlet UIButton           *buttonFITAYellow;
+@property (weak) IBOutlet UIButton           *buttonFITARed;
+@property (weak) IBOutlet UIButton           *buttonFITABlue;
+@property (weak) IBOutlet UIButton           *buttonFITABlack;
+@property (weak) IBOutlet UIButton           *buttonFITAWhite;
+
+// Used to pull the color properties from the storyboard
+@property (weak) IBOutlet UIButton           *buttonNFAAWhite;
+@property (weak) IBOutlet UIButton           *buttonNFAABlue;
 
 
 
