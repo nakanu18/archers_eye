@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA285DAC1AC5FE710055BBE3 /* ChooseBowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */; };
+		FA285DAF1AC605C30055BBE3 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */; };
 		FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */; };
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */; };
@@ -40,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA285DAA1AC5FE710055BBE3 /* ChooseBowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBowViewController.h; sourceTree = "<group>"; };
+		FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBowViewController.m; sourceTree = "<group>"; };
+		FA285DAD1AC605C30055BBE3 /* ReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceSegue.h; sourceTree = "<group>"; };
+		FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceSegue.m; sourceTree = "<group>"; };
 		FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandlerViewController.h; sourceTree = "<group>"; };
 		FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHandlerViewController.m; sourceTree = "<group>"; };
 		FA633DF11AB569880090AD12 /* RoundDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDescCell.h; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 		FA92B7C21ABDF7C60075EF1F /* Bows */ = {
 			isa = PBXGroup;
 			children = (
+				FA285DAA1AC5FE710055BBE3 /* ChooseBowViewController.h */,
+				FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */,
 				FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */,
 				FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */,
 				FAF52F001ABC05AB00B79AB3 /* BowInfoViewController.h */,
@@ -141,6 +149,8 @@
 			children = (
 				FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */,
 				FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */,
+				FA285DAD1AC605C30055BBE3 /* ReplaceSegue.h */,
+				FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */,
 				FAF52F031ABC846500B79AB3 /* DismissSegue.h */,
 				FAF52F041ABC846500B79AB3 /* DismissSegue.m */,
 				FA92B7C31ABDFA470075EF1F /* TextFieldDismisserView.h */,
@@ -325,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */,
+				FA285DAC1AC5FE710055BBE3 /* ChooseBowViewController.m in Sources */,
 				FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */,
@@ -339,6 +350,7 @@
 				FA8DEEBD1AB94264006CED5A /* RoundInfoViewController.m in Sources */,
 				FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */,
 				FA9927771AABA1510017D069 /* main.m in Sources */,
+				FA285DAF1AC605C30055BBE3 /* ReplaceSegue.m in Sources */,
 				FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,9 +30,11 @@
     _currEndID   = currEmpty.y;
     _currArrowID = currEmpty.x;
     
-    // Remove the cancel button if it's the live round
-    if( _appDelegate.currRound == nil )
-        self.navigationItem.leftBarButtonItem = nil;
+    // We are always going to use our own back button.  Rename it accordingly.
+    if( _appDelegate.liveRound != nil )
+        _exitButton.title = @"Back";
+    else
+        _exitButton.title = @"Cancel";
     
     // Fix the erase/done button enabled states
     if( _currEndID >= [_currRound numEnds] )
@@ -59,7 +61,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
- 
+    
     // Enable the appropriate controls
     if( _currRound.type == eRoundType_FITA )
     {
@@ -550,7 +552,7 @@
 
 
 //------------------------------------------------------------------------------
-- (IBAction)cancelButtonPressed:(id)sender
+- (IBAction)exitButtonPressed:(id)sender
 {
     NSString *unwindSegueName;
     
@@ -561,7 +563,7 @@
     }
     else
     {
-        [_appDelegate endLiveRoundAndDiscard];
+//        [_appDelegate endLiveRoundAndDiscard];
         unwindSegueName = @"unwindToNewLiveRound";
     }
     

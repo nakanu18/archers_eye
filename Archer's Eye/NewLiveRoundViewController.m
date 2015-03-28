@@ -132,7 +132,7 @@ titleForHeaderInSection:(NSInteger)section
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     eNewLiveRoundSectionType  type     = [_sectionTypes[indexPath.section] intValue];
-    RoundDescCell            *cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
+    RoundDescCell            *cell     = nil;
     RoundInfo                *template = nil;
 
     // Live round section
@@ -140,27 +140,27 @@ titleForHeaderInSection:(NSInteger)section
     {
         if( _appDelegate.liveRound != nil )
         {
+            cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCellLive"];
             template = _appDelegate.liveRound;
             
             [cell setBackgroundColor:[UIColor greenColor]];
-            cell.accessoryType  = UITableViewCellAccessoryNone;
         }
     }
     // Custom rounds section
     else if( type == eNewLiveRoundSectionType_Custom )
     {
+        cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
         template = _appDelegate.customRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
-        cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
     }
     // Common rounds section
     else if( type == eNewLiveRoundSectionType_Common )
     {
+        cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
         template = _appDelegate.commonRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
-        cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
     }
 
     cell.name.text      = template.name;
