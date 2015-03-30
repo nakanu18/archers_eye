@@ -31,10 +31,10 @@
     _currArrowID = currEmpty.x;
     
     // We are always going to use our own back button.  Rename it accordingly.
-    if( _appDelegate.liveRound != nil )
-        _exitButton.title = @"Back";
-    else
+    if( _appDelegate.currRound != nil )
         _exitButton.title = @"Cancel";
+    else
+        _exitButton.title = @"Back";
     
     // Fix the erase/done button enabled states
     if( _currEndID >= [_currRound numEnds] )

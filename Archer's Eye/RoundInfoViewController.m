@@ -208,6 +208,9 @@
         _stepperNumEnds.value = _sliderNumEnds.value;
     else if( [sender isKindOfClass:[UIStepper class]] )
         _sliderNumEnds.value = _stepperNumEnds.value;
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
@@ -230,6 +233,9 @@
         _stepperNumArrows.value = _sliderNumArrows.value;
     else if( [sender isKindOfClass:[UIStepper class]] )
         _sliderNumArrows.value = _stepperNumArrows.value;
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
@@ -252,6 +258,9 @@
         _stepperDefaultDist.value = _sliderDefaultDist.value;
     else if( [sender isKindOfClass:[UIStepper class]] )
         _sliderDefaultDist.value = _stepperDefaultDist.value;
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 

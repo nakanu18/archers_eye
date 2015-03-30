@@ -374,7 +374,7 @@
                                     <constraint firstItem="ouB-Xd-6Mc" firstAttribute="top" secondItem="zWc-jt-aeg" secondAttribute="top" id="79v-db-1bc"/>
                                     <constraint firstItem="ouB-Xd-6Mc" firstAttribute="leading" secondItem="zWc-jt-aeg" secondAttribute="leading" id="Q1a-yN-50U"/>
                                     <constraint firstAttribute="trailing" secondItem="ouB-Xd-6Mc" secondAttribute="trailing" id="c3p-rl-0N3"/>
-                                    <constraint firstAttribute="bottom" secondItem="ouB-Xd-6Mc" secondAttribute="bottom" constant="220" id="tbV-Gx-JXe"/>
+                                    <constraint firstAttribute="bottom" secondItem="ouB-Xd-6Mc" secondAttribute="bottom" id="tbV-Gx-JXe"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1157,7 +1157,7 @@
             </objects>
             <point key="canvasLocation" x="5948" y="5"/>
         </scene>
-        <!--Choose Bow-->
+        <!--Choose Bow to Use-->
         <scene sceneID="lUt-pJ-58Y">
             <objects>
                 <tableViewController id="gKk-3j-ABe" customClass="ChooseBowViewController" sceneMemberID="viewController">
@@ -1222,7 +1222,7 @@
                             <outlet property="delegate" destination="gKk-3j-ABe" id="RK4-bB-xny"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Choose Bow" prompt="Pick a bow to use" id="2ar-CH-5If"/>
+                    <navigationItem key="navigationItem" title="Choose Bow to Use" id="2ar-CH-5If"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sY-ga-Kdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1599,7 +1599,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="75L-Bz-iEi" secondAttribute="bottom" constant="220" id="1Qd-Nr-v6F"/>
+                                    <constraint firstAttribute="bottom" secondItem="75L-Bz-iEi" secondAttribute="bottom" id="1Qd-Nr-v6F"/>
                                     <constraint firstItem="75L-Bz-iEi" firstAttribute="leading" secondItem="KRv-vo-xIl" secondAttribute="leading" id="TgG-DH-0sc"/>
                                     <constraint firstAttribute="trailing" secondItem="75L-Bz-iEi" secondAttribute="trailing" id="eOF-oh-PYl"/>
                                     <constraint firstItem="75L-Bz-iEi" firstAttribute="top" secondItem="KRv-vo-xIl" secondAttribute="top" id="qxe-ua-gXH"/>

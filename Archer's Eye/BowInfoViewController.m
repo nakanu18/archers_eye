@@ -184,6 +184,9 @@
         _stepperBowDrawWeight.value = _sliderBowDrawWeight.value;
     else if( [sender isKindOfClass:[UIStepper class]] )
         _sliderBowDrawWeight.value = _stepperBowDrawWeight.value;
+
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
 }
 
 
