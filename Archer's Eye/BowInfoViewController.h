@@ -21,6 +21,7 @@
 @property (weak) IBOutlet   UITextField        *textBowName;
 @property (weak) IBOutlet   UILabel            *labelBowDrawWeight;
 @property (weak) IBOutlet   UISlider           *sliderBowDrawWeight;
+@property (weak) IBOutlet   UIStepper          *stepperBowDrawWeight;
 @property (weak) IBOutlet   UISegmentedControl *segControlBowType;
 @property (weak) IBOutlet   UISwitch           *switchBowSight;
 @property (weak) IBOutlet   UISwitch           *switchBowClicker;

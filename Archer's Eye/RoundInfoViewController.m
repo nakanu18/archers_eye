@@ -37,12 +37,24 @@
     // Populate the fields with it's data
     _textName.text                              = _appDelegate.currRound.name;
     _segControlRoundType.selectedSegmentIndex   = _appDelegate.currRound.type;
+
     _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numEnds];
     _sliderNumEnds.value                        = _appDelegate.currRound.numEnds;
+    _stepperNumEnds.value                       = _sliderNumEnds.value;
+    _stepperNumEnds.minimumValue                = _sliderNumEnds.minimumValue;
+    _stepperNumEnds.maximumValue                = _sliderNumEnds.maximumValue;
+
     _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numArrowsPerEnd];
     _sliderNumArrows.value                      = _appDelegate.currRound.numArrowsPerEnd;
+    _stepperNumArrows.value                     = _sliderNumArrows.value;
+    _stepperNumArrows.minimumValue              = _sliderNumArrows.minimumValue;
+    _stepperNumArrows.maximumValue              = _sliderNumArrows.maximumValue;
+
     _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.distance];
     _sliderDefaultDist.value                    = _appDelegate.currRound.distance;
+    _stepperDefaultDist.value                   = _sliderDefaultDist.value;
+    _stepperDefaultDist.minimumValue            = _sliderDefaultDist.minimumValue;
+    _stepperDefaultDist.maximumValue            = _sliderDefaultDist.maximumValue;
 
     [self toggleSaveButtonIfReady];
 }
@@ -181,11 +193,21 @@
 //------------------------------------------------------------------------------
 - (IBAction)numEndsChanged:(id)sender
 {
-    UISlider *slider = (UISlider *)sender;
-    NSInteger value  = (NSInteger)slider.value;
+    NSInteger value = 0;
+    
+    if( [sender isKindOfClass:[UISlider class]] )
+        value = [(UISlider *)sender value];
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        value = [(UIStepper *)sender value];
     
     _labelNumEnds.text              = [NSString stringWithFormat:@"%ld", value];
     _appDelegate.currRound.numEnds  = value;
+
+    // Resync the values of the slider and stepper
+    if( [sender isKindOfClass:[UISlider class]] )
+        _stepperNumEnds.value = _sliderNumEnds.value;
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        _sliderNumEnds.value = _stepperNumEnds.value;
 }
 
 
@@ -193,11 +215,21 @@
 //------------------------------------------------------------------------------
 - (IBAction)numArrowsChanged:(id)sender
 {
-    UISlider *slider = (UISlider *)sender;
-    NSInteger value  = (NSInteger)slider.value;
+    NSInteger value = 0;
+    
+    if( [sender isKindOfClass:[UISlider class]] )
+        value = [(UISlider *)sender value];
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        value = [(UIStepper *)sender value];
     
     _labelNumArrows.text                    = [NSString stringWithFormat:@"%ld", value];
     _appDelegate.currRound.numArrowsPerEnd  = value;
+
+    // Resync the values of the slider and stepper
+    if( [sender isKindOfClass:[UISlider class]] )
+        _stepperNumArrows.value = _sliderNumArrows.value;
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        _sliderNumArrows.value = _stepperNumArrows.value;
 }
 
 
@@ -205,11 +237,21 @@
 //------------------------------------------------------------------------------
 - (IBAction)defaultDistChanged:(id)sender
 {
-    UISlider *slider = (UISlider *)sender;
-    NSInteger value  = (NSInteger)slider.value;
+    NSInteger value = 0;
+    
+    if( [sender isKindOfClass:[UISlider class]] )
+        value = [(UISlider *)sender value];
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        value = [(UIStepper *)sender value];
     
     _labelDefaultDist.text          = [NSString stringWithFormat:@"%ld", value];
     _appDelegate.currRound.distance = value;
+
+    // Resync the values of the slider and stepper
+    if( [sender isKindOfClass:[UISlider class]] )
+        _stepperDefaultDist.value = _sliderDefaultDist.value;
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        _sliderDefaultDist.value = _stepperDefaultDist.value;
 }
 
 

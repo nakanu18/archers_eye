@@ -25,6 +25,9 @@
 @property (weak) IBOutlet   UISlider            *sliderNumEnds;
 @property (weak) IBOutlet   UISlider            *sliderNumArrows;
 @property (weak) IBOutlet   UISlider            *sliderDefaultDist;
+@property (weak) IBOutlet   UIStepper           *stepperNumEnds;
+@property (weak) IBOutlet   UIStepper           *stepperNumArrows;
+@property (weak) IBOutlet   UIStepper           *stepperDefaultDist;
 
 
 

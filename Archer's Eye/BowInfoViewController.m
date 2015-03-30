@@ -43,13 +43,18 @@
         [_appDelegate createNewCurrBow:[BowInfo new]];
 
     // Populate the fields with it's data
-    _textBowName.text                   = _appDelegate.currBow.name;
-    _labelBowDrawWeight.text             = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
-    _sliderBowDrawWeight.value      = _appDelegate.currBow.drawWeight;
-    _switchBowSight.on                    = _appDelegate.currBow.sight;
-    _switchBowClicker.on                  = _appDelegate.currBow.clicker;
-    _switchBowStabilizers.on              = _appDelegate.currBow.stabilizers;
-    _segControlBowType.selectedSegmentIndex   = _appDelegate.currBow.type;
+    _textBowName.text                       = _appDelegate.currBow.name;
+    _switchBowSight.on                      = _appDelegate.currBow.sight;
+    _switchBowClicker.on                    = _appDelegate.currBow.clicker;
+    _switchBowStabilizers.on                = _appDelegate.currBow.stabilizers;
+    _segControlBowType.selectedSegmentIndex = _appDelegate.currBow.type;
+    
+    _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
+    _sliderBowDrawWeight.value              = _appDelegate.currBow.drawWeight;
+    _stepperBowDrawWeight.value             = _sliderBowDrawWeight.value;
+    _stepperBowDrawWeight.minimumValue      = _sliderBowDrawWeight.minimumValue;
+    _stepperBowDrawWeight.maximumValue      = _sliderBowDrawWeight.maximumValue;
+    
     
     [self toggleSaveButtonIfReady];
 }
@@ -164,11 +169,21 @@
 //------------------------------------------------------------------------------
 - (IBAction)bowDrawWeightChanged:(id)sender
 {
-    UISlider *slider = (UISlider *)sender;
-    NSInteger value  = (NSInteger)slider.value;
+    NSInteger value = 0;
     
-    _labelBowDrawWeight.text             = [NSString stringWithFormat:@"%ld", value];
+    if( [sender isKindOfClass:[UISlider class]] )
+        value = [(UISlider *)sender value];
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        value = [(UIStepper *)sender value];
+    
+    _labelBowDrawWeight.text        = [NSString stringWithFormat:@"%ld", value];
     _appDelegate.currBow.drawWeight = value;
+    
+    // Resync the values of the slider and stepper
+    if( [sender isKindOfClass:[UISlider class]] )
+        _stepperBowDrawWeight.value = _sliderBowDrawWeight.value;
+    else if( [sender isKindOfClass:[UIStepper class]] )
+        _sliderBowDrawWeight.value = _stepperBowDrawWeight.value;
 }
 
 
