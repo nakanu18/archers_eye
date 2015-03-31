@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "BowInfo.h"
 
 typedef enum
 {
@@ -27,6 +28,8 @@ typedef enum
 @property (readwrite)   NSInteger       numArrowsPerEnd;
 @property (strong)      NSMutableArray *endScores;
 @property (strong)      NSDate         *date;
+
+@property (copy)        BowInfo         *bow;
 
 
 

@@ -135,7 +135,7 @@
     if( _liveRound == nil )
     {
         [roundTemplate clearScorecard];
-        self.liveRound      = [roundTemplate copy];
+        self.liveRound      = roundTemplate;
         self.liveRound.date = [NSDate date];
     }
 }
@@ -215,7 +215,7 @@
     
     if( ID >= 0  &&  ID < [roundArray count] )
     {
-        self.currRound  = [roundArray[ID] copy];
+        self.currRound  = roundArray[ID];
         _currRoundID    = ID;      // Save the ID so we can replace it later
     }
 }
@@ -294,7 +294,7 @@
     if( bowID >= 0  &&  bowID < [_allBows count] )
     {
         // Make a copy so that we can discard the values easily if needed
-        self.currBow = [_allBows[bowID] copy];
+        self.currBow = _allBows[bowID];
         _currBowID   = bowID;
     }
 }

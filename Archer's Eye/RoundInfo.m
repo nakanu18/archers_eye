@@ -137,12 +137,10 @@
 // Set the score for a specific arrow.
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
-    if( endID   >= 0  &&  endID   < _numEnds            &&
-        arrowID >= 0  &&  arrowID < _numArrowsPerEnd )
+    if( endID   >= 0  &&  endID   < [_endScores    count]  &&
+        arrowID >= 0  &&  arrowID < [_endScores[0] count] )
     {
-        NSMutableArray *endScore = [_endScores objectAtIndex:endID];
-        
-        [endScore replaceObjectAtIndex:arrowID withObject:@(score)];
+        [_endScores[endID] replaceObjectAtIndex:arrowID withObject:@(score)];
     }
 }
 
@@ -152,8 +150,13 @@
 // Get the score for a specific arrow.
 - (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
-    NSMutableArray *endScore    = [_endScores objectAtIndex:endID];
-    NSInteger       arrowScore  = [endScore[arrowID] integerValue];
+    NSInteger arrowScore = -1;
+    
+    if( endID   >= 0  &&  endID   < [_endScores    count]  &&
+        arrowID >= 0  &&  arrowID < [_endScores[0] count] )
+    {
+        arrowScore = [_endScores[endID][arrowID] integerValue];
+    }
     
     return arrowScore;
 }
@@ -164,10 +167,16 @@
 // Get the score for a specific arrow.
 - (NSInteger)getRealScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
-    NSMutableArray *endScore    = [_endScores objectAtIndex:endID];
-    NSInteger       arrowScore  = [endScore[arrowID] integerValue];
-
-    return [self getRealScoreFromArrowValue:arrowScore];
+    NSInteger realArrowScore = 0;
+    
+    if( endID   >= 0  &&  endID   < [_endScores    count]  &&
+        arrowID >= 0  &&  arrowID < [_endScores[0] count] )
+    {
+        NSInteger arrowScore = [_endScores[endID][arrowID] integerValue];
+        
+        realArrowScore = [self getRealScoreFromArrowValue:arrowScore];
+    }
+    return realArrowScore;
 }
 
 

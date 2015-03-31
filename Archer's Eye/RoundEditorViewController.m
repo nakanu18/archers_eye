@@ -42,6 +42,9 @@
         _doneButton.enabled = YES;
     }
     
+    // Show the bow being used
+    [_buttonChangeBow setTitle:[NSString stringWithFormat:@"Edit %@", _currRound.bow.name] forState:UIControlStateNormal];
+    
     // Enable the appropriate controls
     if( _currRound.type == eRoundType_FITA )
     {

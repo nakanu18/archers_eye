@@ -26,12 +26,12 @@ typedef enum
 }
 
 @property (nonatomic, strong)   UIWindow        *window;
-@property (strong)              RoundInfo       *liveRound;
+@property (copy)                RoundInfo       *liveRound;
 @property (strong)              NSMutableArray  *customRounds;
 @property (strong)              NSMutableArray  *commonRounds;
-@property (strong)              RoundInfo       *currRound;
+@property (copy)                RoundInfo       *currRound;
 @property (strong)              NSMutableArray  *pastRounds;
-@property (strong)              BowInfo         *currBow;
+@property (copy)                BowInfo         *currBow;
 @property (strong)              NSMutableArray  *allBows;
 
 

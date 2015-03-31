@@ -101,6 +101,7 @@
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    _appDelegate.liveRound.bow = _appDelegate.allBows[indexPath.row];
 }
 
 
@@ -119,6 +120,38 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
    heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Buttons
+
+//------------------------------------------------------------------------------
+- (IBAction)cancel:(id)sender
+{
+    [_appDelegate endLiveRoundAndDiscard];
+    
+    // Programmatically run the unwind segue.
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -269,8 +269,8 @@
 - (IBAction)cancel:(id)sender
 {
     [_appDelegate endCurrRoundAndDiscard];
-    
-    [self performSegueWithIdentifier:@"unwindToNewLiveRound" sender:self];
+ 
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -280,7 +280,7 @@
 {
     [_appDelegate endCurrRoundAndSave];
 
-    [self performSegueWithIdentifier:@"unwindToNewLiveRound" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

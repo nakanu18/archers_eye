@@ -16,4 +16,11 @@
 
 @property (weak) AppDelegate *appDelegate;
 
+
+
+
+
+
+- (IBAction)cancel:(id)sender;
+
 @end

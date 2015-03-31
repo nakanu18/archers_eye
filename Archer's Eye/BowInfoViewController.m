@@ -271,8 +271,7 @@
 {
     [_appDelegate discardCurrBow];
     
-    // Programmatically run the unwind segue.
-    [self performSegueWithIdentifier:@"unwindToBowsView" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -286,8 +285,7 @@
     
     [_appDelegate saveCurrBow];
 
-    // Programmatically run the unwind segue.
-    [self performSegueWithIdentifier:@"unwindToBowsView" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

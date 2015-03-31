@@ -21,6 +21,7 @@
 @property (weak) IBOutlet UITableView        *tableView;
 @property (weak) IBOutlet UIBarButtonItem    *exitButton;
 @property (weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
+@property (weak) IBOutlet UIButton           *buttonChangeBow;
 @property (weak) IBOutlet UIView             *controlsFITA;
 @property (weak) IBOutlet UIView             *controlsNFAA;
 @property (weak) IBOutlet NSLayoutConstraint *constraintFITA;
