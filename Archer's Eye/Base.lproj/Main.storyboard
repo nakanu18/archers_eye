@@ -490,11 +490,11 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="T8K-JH-ypr"/>
                                         </constraints>
-                                        <state key="normal" title="Edit BowName">
+                                        <state key="normal" title="Configure BowName">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Rdk-fn-SMZ" kind="presentation" modalTransitionStyle="flipHorizontal" id="fUX-JD-8jT"/>
+                                            <action selector="configureBowPressed:" destination="6L9-5s-kM4" eventType="touchUpInside" id="PNc-jS-BwA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1146,7 +1146,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buttonChangeBow" destination="3L2-VA-ta8" id="Psz-I5-hLd"/>
+                        <outlet property="buttonConfigureBow" destination="3L2-VA-ta8" id="Sj4-8g-6Zn"/>
                         <outlet property="buttonErase" destination="LCa-NK-UY9" id="WXq-j6-6ju"/>
                         <outlet property="buttonFITABlack" destination="bPu-tm-Olp" id="IcY-B6-Af4"/>
                         <outlet property="buttonFITABlue" destination="cz6-dq-a8w" id="PgG-kF-edh"/>
@@ -1163,6 +1163,7 @@
                         <outlet property="tableView" destination="tRo-ig-N6a" id="tzi-rp-9bW"/>
                         <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToNewLiveRound" unwindAction="unwindToNewLiveRound:" id="8uf-ab-Cgm"/>
                         <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToPastRounds" unwindAction="unwindToPastRounds:" id="iRi-ON-cNQ"/>
+                        <segue destination="Rdk-fn-SMZ" kind="presentation" identifier="segueToBowInfo" modalTransitionStyle="flipHorizontal" id="cMB-6R-L7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prq-aM-wEA" userLabel="First Responder" sceneMemberID="firstResponder"/>

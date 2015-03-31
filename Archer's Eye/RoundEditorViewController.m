@@ -43,7 +43,7 @@
     }
     
     // Show the bow being used
-    [_buttonChangeBow setTitle:[NSString stringWithFormat:@"Edit %@", _currRound.bow.name] forState:UIControlStateNormal];
+    [_buttonConfigureBow setTitle:[NSString stringWithFormat:@"Edit %@", _currRound.bow.name] forState:UIControlStateNormal];
     
     // Enable the appropriate controls
     if( _currRound.type == eRoundType_FITA )
@@ -591,6 +591,18 @@
     [confirmDone show];
 }
 
+
+
+//------------------------------------------------------------------------------
+- (IBAction)configureBowPressed:(id)sender
+{
+    if( _appDelegate.currRound != nil )
+        [_appDelegate selectBowFromPastRound];
+    else if( _appDelegate.liveRound != nil )
+        [_appDelegate selectBowFromLiveRound];
+    
+    [self performSegueWithIdentifier:@"segueToBowInfo" sender:self];
+}
 
 
 

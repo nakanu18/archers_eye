@@ -75,6 +75,7 @@
                 [obj setScore:score forEnd:i andArrow:j];
             }
         }
+        [obj setBow:self.bow];
     }    
     return obj;
 }

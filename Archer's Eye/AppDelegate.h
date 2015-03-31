@@ -18,9 +18,19 @@ typedef enum
     eRoundCategory_Past,
 } eRoundCategory;
 
+typedef enum
+{
+    eBowCategory_None,
+    eBowCategory_Live,
+    eBowCategory_Past,
+    eBowCategory_Inventory,
+} eBowCategory;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
+    eBowCategory    _currBowCategory;
     NSInteger       _currBowID;
+    
     eRoundCategory  _currRoundCategory;
     NSInteger       _currRoundID;
 }
@@ -51,6 +61,8 @@ typedef enum
 
 - (void)createNewCurrBow:(BowInfo *)newBow;
 - (void)selectBow:(NSInteger)bowID;
+- (void)selectBowFromLiveRound;
+- (void)selectBowFromPastRound;
 - (void)saveCurrBow;
 - (void)discardCurrBow;
 

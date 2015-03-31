@@ -280,8 +280,9 @@
 //------------------------------------------------------------------------------
 - (void)createNewCurrBow:(BowInfo *)newBow
 {
-    self.currBow = newBow;
-    _currBowID   = -1;
+    self.currBow     = newBow;
+    _currBowID       = -1;
+    _currBowCategory = eBowCategory_Inventory;
 }
 
 
@@ -289,7 +290,8 @@
 //------------------------------------------------------------------------------
 - (void)selectBow:(NSInteger)bowID
 {
-    _currBowID = -1;
+    _currBowID       = -1;
+    _currBowCategory = eBowCategory_Inventory;
 
     if( bowID >= 0  &&  bowID < [_allBows count] )
     {
@@ -302,17 +304,50 @@
 
 
 //------------------------------------------------------------------------------
+- (void)selectBowFromLiveRound
+{
+    self.currBow     = _liveRound.bow;
+    _currBowID       = -1;
+    _currBowCategory = eBowCategory_Live;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)selectBowFromPastRound
+{
+    self.currBow     = _currRound.bow;
+    _currBowID       = -1;
+    _currBowCategory = eBowCategory_Past;
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)saveCurrBow
 {
-    // Bow is brand new
-    if( _currBowID == -1 )
+    // Bow is from the live round
+    if( _currBowCategory == eBowCategory_Live )
     {
-        [_allBows insertObject:_currBow atIndex:0];
+        _liveRound.bow = _currBow;
     }
-    // Bow is a copy of another one
-    else
+    // Bow is from a past round
+    else if( _currBowCategory == eBowCategory_Past )
     {
-        [_allBows replaceObjectAtIndex:_currBowID withObject:_currBow];
+        _currRound.bow = _currBow;
+    }
+    else if( _currBowCategory == eBowCategory_Inventory )
+    {
+        // Bow is brand new
+        if( _currBowID == -1 )
+        {
+            [_allBows insertObject:_currBow atIndex:0];
+        }
+        // Bow is a copy of another one
+        else
+        {
+            [_allBows replaceObjectAtIndex:_currBowID withObject:_currBow];
+        }
     }
     [self discardCurrBow];
 }
@@ -322,8 +357,9 @@
 //------------------------------------------------------------------------------
 - (void)discardCurrBow
 {
-    self.currBow = nil;
-    _currBowID   = -1;
+    self.currBow     = nil;
+    _currBowID       = -1;
+    _currBowCategory = eBowCategory_None;
 }
 
 

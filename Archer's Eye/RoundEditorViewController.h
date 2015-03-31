@@ -21,7 +21,7 @@
 @property (weak) IBOutlet UITableView        *tableView;
 @property (weak) IBOutlet UIBarButtonItem    *exitButton;
 @property (weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
-@property (weak) IBOutlet UIButton           *buttonChangeBow;
+@property (weak) IBOutlet UIButton           *buttonConfigureBow;
 @property (weak) IBOutlet UIView             *controlsFITA;
 @property (weak) IBOutlet UIView             *controlsNFAA;
 @property (weak) IBOutlet NSLayoutConstraint *constraintFITA;
@@ -72,6 +72,7 @@
 - (IBAction)eraseButtonPressed:(id)sender;
 - (IBAction)exitButtonPressed:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
+- (IBAction)configureBowPressed:(id)sender;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
