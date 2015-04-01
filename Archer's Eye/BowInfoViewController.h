@@ -16,6 +16,7 @@
 }
 
 @property (nonatomic, weak)            AppDelegate        *appDelegate;
+@property (nonatomic, weak)            ArchersEyeInfo     *archersEyeInfo;
 @property (nonatomic, weak) IBOutlet   UIBarButtonItem    *barButtonSave;
 
 @property (nonatomic, weak) IBOutlet   UITextField        *textBowName;

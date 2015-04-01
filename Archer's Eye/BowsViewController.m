@@ -20,7 +20,8 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
 
     [super viewDidLoad];
 }
@@ -71,7 +72,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [_appDelegate.allBows count];
+    return [self.archersEyeInfo.allBows count];
 }
 
 
@@ -81,7 +82,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BowDescCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BowDescCell"];
-    BowInfo     *bow  = _appDelegate.allBows[indexPath.row];
+    BowInfo     *bow  = self.archersEyeInfo.allBows[indexPath.row];
 
     cell.bowName.text        = bow.name;
     cell.bowType.text        = [BowInfo typeAsString:bow.type];
@@ -101,7 +102,7 @@
     if( editingStyle == UITableViewCellEditingStyleDelete )
     {
         // Delete the row from the data source
-        [_appDelegate.allBows removeObjectAtIndex:indexPath.row];
+        [self.archersEyeInfo.allBows removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if( editingStyle == UITableViewCellEditingStyleInsert )
@@ -116,7 +117,7 @@
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_appDelegate selectBow:indexPath.row];
+    [self.archersEyeInfo selectBow:indexPath.row];
 }
 
 

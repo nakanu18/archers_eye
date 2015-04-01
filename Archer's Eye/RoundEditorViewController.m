@@ -23,7 +23,8 @@
     
     // Do any additional setup after loading the view.
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.currRound      = (_appDelegate.currRound != nil) ? _appDelegate.currRound : _appDelegate.liveRound;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
+    self.currRound      = (self.archersEyeInfo.currRound != nil) ? self.archersEyeInfo.currRound : self.archersEyeInfo.liveRound;
     _doneButton.enabled = NO;
     
     CGPoint currEmpty = [_currRound getCurrEndAndArrow];
@@ -31,7 +32,7 @@
     _currArrowID = currEmpty.x;
     
     // We are always going to use our own back button.  Rename it accordingly.
-    if( _appDelegate.currRound != nil )
+    if( self.archersEyeInfo.currRound != nil )
         _exitButton.title = @"Cancel";
     else
         _exitButton.title = @"Back";
@@ -556,14 +557,14 @@
 {
     NSString *unwindSegueName;
     
-    if( _appDelegate.currRound != nil )
+    if( self.archersEyeInfo.currRound != nil )
     {
-        [_appDelegate endCurrRoundAndDiscard];
+        [self.archersEyeInfo endCurrRoundAndDiscard];
         unwindSegueName = @"unwindToPastRounds";
     }
     else
     {
-//        [_appDelegate endLiveRoundAndDiscard];
+//        [self.archersEyeInfo endLiveRoundAndDiscard];
         unwindSegueName = @"unwindToNewLiveRound";
     }
     
@@ -593,10 +594,10 @@
 //------------------------------------------------------------------------------
 - (IBAction)configureBowPressed:(id)sender
 {
-    if( _appDelegate.currRound != nil )
-        [_appDelegate selectBowFromPastRound];
-    else if( _appDelegate.liveRound != nil )
-        [_appDelegate selectBowFromLiveRound];
+    if( self.archersEyeInfo.currRound != nil )
+        [self.archersEyeInfo selectBowFromPastRound];
+    else if( self.archersEyeInfo.liveRound != nil )
+        [self.archersEyeInfo selectBowFromLiveRound];
     
     [self performSegueWithIdentifier:@"segueToBowInfo" sender:self];
 }
@@ -632,14 +633,14 @@
     {
         NSString *unwindSegueName;
         
-        if( _appDelegate.currRound != nil )
+        if( self.archersEyeInfo.currRound != nil )
         {
-            [_appDelegate endCurrRoundAndSave];
+            [self.archersEyeInfo endCurrRoundAndSave];
             unwindSegueName = @"unwindToPastRounds";
         }
         else
         {
-            [_appDelegate endLiveRoundAndSave];
+            [self.archersEyeInfo endLiveRoundAndSave];
             unwindSegueName = @"unwindToNewLiveRound";
         }
         

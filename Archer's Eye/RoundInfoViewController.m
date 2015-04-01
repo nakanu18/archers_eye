@@ -19,7 +19,8 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
 
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,27 +32,27 @@
     }
     
     // Create a new Round if we don't have a currently selected one
-    if( [_appDelegate currRound] == nil )
-        [_appDelegate createNewCustomRound:[[RoundInfo alloc] initWithName:@"" andType:eRoundType_NFAA andDist:20 andNumEnds:1 andArrowsPerEnd:6]];
+    if( [self.archersEyeInfo currRound] == nil )
+        [self.archersEyeInfo createNewCustomRound:[[RoundInfo alloc] initWithName:@"" andType:eRoundType_NFAA andDist:20 andNumEnds:1 andArrowsPerEnd:6]];
 
     // Populate the fields with it's data
-    _textName.text                              = _appDelegate.currRound.name;
-    _segControlRoundType.selectedSegmentIndex   = _appDelegate.currRound.type;
+    _textName.text                              = self.archersEyeInfo.currRound.name;
+    _segControlRoundType.selectedSegmentIndex   = self.archersEyeInfo.currRound.type;
 
-    _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numEnds];
-    _sliderNumEnds.value                        = _appDelegate.currRound.numEnds;
+    _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currRound.numEnds];
+    _sliderNumEnds.value                        = self.archersEyeInfo.currRound.numEnds;
     _stepperNumEnds.value                       = _sliderNumEnds.value;
     _stepperNumEnds.minimumValue                = _sliderNumEnds.minimumValue;
     _stepperNumEnds.maximumValue                = _sliderNumEnds.maximumValue;
 
-    _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.numArrowsPerEnd];
-    _sliderNumArrows.value                      = _appDelegate.currRound.numArrowsPerEnd;
+    _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currRound.numArrowsPerEnd];
+    _sliderNumArrows.value                      = self.archersEyeInfo.currRound.numArrowsPerEnd;
     _stepperNumArrows.value                     = _sliderNumArrows.value;
     _stepperNumArrows.minimumValue              = _sliderNumArrows.minimumValue;
     _stepperNumArrows.maximumValue              = _sliderNumArrows.maximumValue;
 
-    _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", _appDelegate.currRound.distance];
-    _sliderDefaultDist.value                    = _appDelegate.currRound.distance;
+    _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currRound.distance];
+    _sliderDefaultDist.value                    = self.archersEyeInfo.currRound.distance;
     _stepperDefaultDist.value                   = _sliderDefaultDist.value;
     _stepperDefaultDist.minimumValue            = _sliderDefaultDist.minimumValue;
     _stepperDefaultDist.maximumValue            = _sliderDefaultDist.maximumValue;
@@ -107,7 +108,7 @@
     [super textFieldDidEndEditing:textField];
     
     if( textField == _textName )
-        _appDelegate.currRound.name = textField.text;
+        self.archersEyeInfo.currRound.name = textField.text;
 
     [self toggleSaveButtonIfReady];
 }
@@ -151,7 +152,7 @@
 {
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     
-    _appDelegate.currRound.type = (eRoundType)seg.selectedSegmentIndex;
+    self.archersEyeInfo.currRound.type = (eRoundType)seg.selectedSegmentIndex;
 
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
@@ -185,7 +186,7 @@
 //------------------------------------------------------------------------------
 - (void)toggleSaveButtonIfReady
 {
-    _barButtonSave.enabled = [_appDelegate.currRound isInfoValid];
+    _barButtonSave.enabled = [self.archersEyeInfo.currRound isInfoValid];
 }
 
 
@@ -200,8 +201,8 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelNumEnds.text              = [NSString stringWithFormat:@"%ld", value];
-    _appDelegate.currRound.numEnds  = value;
+    _labelNumEnds.text                     = [NSString stringWithFormat:@"%ld", value];
+    self.archersEyeInfo.currRound.numEnds  = value;
 
     // Resync the values of the slider and stepper
     if( [sender isKindOfClass:[UISlider class]] )
@@ -225,8 +226,8 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelNumArrows.text                    = [NSString stringWithFormat:@"%ld", value];
-    _appDelegate.currRound.numArrowsPerEnd  = value;
+    _labelNumArrows.text                           = [NSString stringWithFormat:@"%ld", value];
+    self.archersEyeInfo.currRound.numArrowsPerEnd  = value;
 
     // Resync the values of the slider and stepper
     if( [sender isKindOfClass:[UISlider class]] )
@@ -250,8 +251,8 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelDefaultDist.text          = [NSString stringWithFormat:@"%ld", value];
-    _appDelegate.currRound.distance = value;
+    _labelDefaultDist.text                 = [NSString stringWithFormat:@"%ld", value];
+    self.archersEyeInfo.currRound.distance = value;
 
     // Resync the values of the slider and stepper
     if( [sender isKindOfClass:[UISlider class]] )
@@ -268,7 +269,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)cancel:(id)sender
 {
-    [_appDelegate endCurrRoundAndDiscard];
+    [self.archersEyeInfo endCurrRoundAndDiscard];
  
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -278,7 +279,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)save:(id)sender
 {
-    [_appDelegate endCurrRoundAndSave];
+    [self.archersEyeInfo endCurrRoundAndSave];
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }

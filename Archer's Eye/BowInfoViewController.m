@@ -20,7 +20,8 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -39,18 +40,18 @@
     }
     
     // Create a new Bow if we don't have a currently selected one
-    if( [_appDelegate currBow] == nil )
-        [_appDelegate createNewCurrBow:[BowInfo new]];
+    if( [self.archersEyeInfo currBow] == nil )
+        [self.archersEyeInfo createNewCurrBow:[BowInfo new]];
 
     // Populate the fields with it's data
-    _textBowName.text                       = _appDelegate.currBow.name;
-    _switchBowSight.on                      = _appDelegate.currBow.sight;
-    _switchBowClicker.on                    = _appDelegate.currBow.clicker;
-    _switchBowStabilizers.on                = _appDelegate.currBow.stabilizers;
-    _segControlBowType.selectedSegmentIndex = _appDelegate.currBow.type;
+    _textBowName.text                       = self.archersEyeInfo.currBow.name;
+    _switchBowSight.on                      = self.archersEyeInfo.currBow.sight;
+    _switchBowClicker.on                    = self.archersEyeInfo.currBow.clicker;
+    _switchBowStabilizers.on                = self.archersEyeInfo.currBow.stabilizers;
+    _segControlBowType.selectedSegmentIndex = self.archersEyeInfo.currBow.type;
     
-    _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", _appDelegate.currBow.drawWeight];
-    _sliderBowDrawWeight.value              = _appDelegate.currBow.drawWeight;
+    _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currBow.drawWeight];
+    _sliderBowDrawWeight.value              = self.archersEyeInfo.currBow.drawWeight;
     _stepperBowDrawWeight.value             = _sliderBowDrawWeight.value;
     _stepperBowDrawWeight.minimumValue      = _sliderBowDrawWeight.minimumValue;
     _stepperBowDrawWeight.maximumValue      = _sliderBowDrawWeight.maximumValue;
@@ -107,7 +108,7 @@
     [super textFieldDidEndEditing:textField];
     
     if( textField == _textBowName )
-        _appDelegate.currBow.name = textField.text;
+        self.archersEyeInfo.currBow.name = textField.text;
 
     [self toggleSaveButtonIfReady];
 }
@@ -177,7 +178,7 @@
         value = [(UIStepper *)sender value];
     
     _labelBowDrawWeight.text        = [NSString stringWithFormat:@"%ld", value];
-    _appDelegate.currBow.drawWeight = value;
+    self.archersEyeInfo.currBow.drawWeight = value;
     
     // Resync the values of the slider and stepper
     if( [sender isKindOfClass:[UISlider class]] )
@@ -196,7 +197,7 @@
 {
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     
-    _appDelegate.currBow.type = (eBowType)seg.selectedSegmentIndex;
+    self.archersEyeInfo.currBow.type = (eBowType)seg.selectedSegmentIndex;
     
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
@@ -207,7 +208,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)bowSightSwitched:(id)sender
 {
-    _appDelegate.currBow.sight = [sender isOn];
+    self.archersEyeInfo.currBow.sight = [sender isOn];
 
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
@@ -218,7 +219,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)bowClickerSwitched:(id)sender
 {
-    _appDelegate.currBow.clicker = [sender isOn];
+    self.archersEyeInfo.currBow.clicker = [sender isOn];
 
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
@@ -229,7 +230,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)bowStabilizersSwitched:(id)sender
 {
-    _appDelegate.currBow.stabilizers = [sender isOn];
+    self.archersEyeInfo.currBow.stabilizers = [sender isOn];
 
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
@@ -261,7 +262,7 @@
 //------------------------------------------------------------------------------
 - (void)toggleSaveButtonIfReady
 {
-    _barButtonSave.enabled = [_appDelegate.currBow isInfoValid];
+    _barButtonSave.enabled = [self.archersEyeInfo.currBow isInfoValid];
 }
 
 
@@ -269,7 +270,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)cancel:(id)sender
 {
-    [_appDelegate discardCurrBow];
+    [self.archersEyeInfo discardCurrBow];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -283,7 +284,7 @@
     if( _activeTextField != nil )
         [self textFieldShouldReturn:_activeTextField];
     
-    [_appDelegate saveCurrBow];
+    [self.archersEyeInfo saveCurrBow];
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }

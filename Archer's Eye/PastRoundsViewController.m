@@ -21,7 +21,8 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
     
     [super viewDidLoad];
 }
@@ -80,7 +81,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_appDelegate.pastRounds count];
+    return [self.archersEyeInfo.pastRounds count];
 }
 
 
@@ -89,7 +90,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores      = _appDelegate.pastRounds;
+    NSMutableArray  *scores      = self.archersEyeInfo.pastRounds;
     RoundDescCell   *cell        = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
     RoundInfo       *info        = scores[indexPath.row];
     NSInteger        totalScore  = [info getRealTotalScore];
@@ -111,7 +112,7 @@
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_appDelegate selectRound:indexPath.row andCategory:eRoundCategory_Past];
+    [self.archersEyeInfo selectRound:indexPath.row andCategory:eRoundCategory_Past];
 }
 
 
@@ -125,7 +126,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if( editingStyle == UITableViewCellEditingStyleDelete )
     {
         // Delete the row from the data source
-        [_appDelegate.pastRounds removeObjectAtIndex:indexPath.row];
+        [self.archersEyeInfo.pastRounds removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if( editingStyle == UITableViewCellEditingStyleInsert )

@@ -14,7 +14,8 @@
     
 }
 
-@property (nonatomic, weak) AppDelegate *appDelegate;
+@property (nonatomic, weak) AppDelegate     *appDelegate;
+@property (nonatomic, weak) ArchersEyeInfo  *archersEyeInfo;
 
 
 

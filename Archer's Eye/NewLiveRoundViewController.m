@@ -20,8 +20,9 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    self.appDelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.sectionTypes = [NSMutableArray new];
+    self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
+    self.sectionTypes   = [NSMutableArray new];
 
     [super viewDidLoad];
 }
@@ -36,9 +37,9 @@
     
     // Now, setup the current sections in a list
     
-    if( _appDelegate.liveRound != nil )
+    if( self.archersEyeInfo.liveRound != nil )
         [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Live]];
-    if( [_appDelegate.customRounds count] > 0 )
+    if( [self.archersEyeInfo.customRounds count] > 0 )
         [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Custom]];
     [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Common]];
     
@@ -112,14 +113,14 @@ titleForHeaderInSection:(NSInteger)section
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger                 count = [_appDelegate.commonRounds count];
+    NSInteger                 count = [self.archersEyeInfo.commonRounds count];
     eNewLiveRoundSectionType  type  = [_sectionTypes[section] intValue];
 
     switch( type )
     {
-        case eNewLiveRoundSectionType_Live:   count = (_appDelegate.liveRound != nil);   break;
-        case eNewLiveRoundSectionType_Custom: count = [_appDelegate.customRounds count]; break;
-        case eNewLiveRoundSectionType_Common: count = [_appDelegate.commonRounds count]; break;
+        case eNewLiveRoundSectionType_Live:   count = (self.archersEyeInfo.liveRound != nil);   break;
+        case eNewLiveRoundSectionType_Custom: count = [self.archersEyeInfo.customRounds count]; break;
+        case eNewLiveRoundSectionType_Common: count = [self.archersEyeInfo.commonRounds count]; break;
     }
     
     return count;
@@ -138,10 +139,10 @@ titleForHeaderInSection:(NSInteger)section
     // Live round section
     if( type == eNewLiveRoundSectionType_Live )
     {
-        if( _appDelegate.liveRound != nil )
+        if( self.archersEyeInfo.liveRound != nil )
         {
             cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCellLive"];
-            template = _appDelegate.liveRound;
+            template = self.archersEyeInfo.liveRound;
             
             [cell setBackgroundColor:[UIColor greenColor]];
         }
@@ -150,7 +151,7 @@ titleForHeaderInSection:(NSInteger)section
     else if( type == eNewLiveRoundSectionType_Custom )
     {
         cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-        template = _appDelegate.customRounds[indexPath.row];
+        template = self.archersEyeInfo.customRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
     }
@@ -158,7 +159,7 @@ titleForHeaderInSection:(NSInteger)section
     else if( type == eNewLiveRoundSectionType_Common )
     {
         cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-        template = _appDelegate.commonRounds[indexPath.row];
+        template = self.archersEyeInfo.commonRounds[indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
     }
@@ -186,12 +187,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         RoundInfo *roundTemplate = nil;
         
         if( type == eNewLiveRoundSectionType_Custom )
-            roundTemplate = _appDelegate.customRounds[indexPath.row];
+            roundTemplate = self.archersEyeInfo.customRounds[indexPath.row];
         else if( type == eNewLiveRoundSectionType_Common )
-            roundTemplate = _appDelegate.commonRounds[indexPath.row];
+            roundTemplate = self.archersEyeInfo.commonRounds[indexPath.row];
         
         if( roundTemplate != nil )
-            [_appDelegate startLiveRoundFromTemplate:roundTemplate];
+            [self.archersEyeInfo startLiveRoundFromTemplate:roundTemplate];
     }
 }
 
@@ -204,7 +205,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSIndexPath             *newIndexPath   = indexPath;
     eNewLiveRoundSectionType type           = [_sectionTypes[indexPath.section] intValue];
     
-    if( [_appDelegate liveRound] != nil )
+    if( [self.archersEyeInfo liveRound] != nil )
     {
         // Prevent selection of other rows if a live round exists
         if( type > eNewLiveRoundSectionType_Live )
@@ -222,9 +223,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     eNewLiveRoundSectionType type = [_sectionTypes[indexPath.section] intValue];
     
     if( type == eNewLiveRoundSectionType_Custom )
-        [_appDelegate selectRound:indexPath.row andCategory:eRoundCategory_Custom];
+        [self.archersEyeInfo selectRound:indexPath.row andCategory:eRoundCategory_Custom];
     else if( type == eNewLiveRoundSectionType_Common )
-        [_appDelegate selectRound:indexPath.row andCategory:eRoundCategory_Common];
+        [self.archersEyeInfo selectRound:indexPath.row andCategory:eRoundCategory_Common];
 }
 
 
@@ -241,21 +242,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     {
         if( type == eNewLiveRoundSectionType_Live )
         {
-            if( [_appDelegate liveRound] != nil )
+            if( [self.archersEyeInfo liveRound] != nil )
             {
                 // Delete the row from the data source
-                [_appDelegate endLiveRoundAndDiscard];
+                [self.archersEyeInfo endLiveRoundAndDiscard];
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }
         }
         else if( type == eNewLiveRoundSectionType_Custom )
         {
-            [_appDelegate.customRounds removeObjectAtIndex:indexPath.row];
+            [self.archersEyeInfo.customRounds removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
         else if( type == eNewLiveRoundSectionType_Common )
         {
-            [_appDelegate.commonRounds removeObjectAtIndex:indexPath.row];
+            [self.archersEyeInfo.commonRounds removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }

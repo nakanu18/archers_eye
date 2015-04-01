@@ -35,6 +35,20 @@
 
 
 //------------------------------------------------------------------------------
+- (id)initWithName:(NSString *)name andType:(eBowType)type andDrawWeight:(NSInteger)drawWeight
+{
+    if( self = [super init] )
+    {
+        self.name   = name;
+        _type       = type;
+        _drawWeight = drawWeight;
+    }
+    return self;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Copy
 - (id)copyWithZone:(NSZone *)zone
 {
@@ -56,15 +70,31 @@
 
 
 //------------------------------------------------------------------------------
-- (id)initWithName:(NSString *)name andType:(eBowType)type andDrawWeight:(NSInteger)drawWeight
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     if( self = [super init] )
     {
-        self.name   = name;
-        _type       = type;
-        _drawWeight = drawWeight;
+        self.name           =            [aDecoder decodeObjectForKey:@"name"];
+        self.type           = (eBowType)[[aDecoder decodeObjectForKey:@"type"]        integerValue];
+        self.drawWeight     =           [[aDecoder decodeObjectForKey:@"drawWeight"]  integerValue];
+        self.sight          =           [[aDecoder decodeObjectForKey:@"sight"]       boolValue];
+        self.clicker        =           [[aDecoder decodeObjectForKey:@"clicker"]     boolValue];
+        self.stabilizers    =           [[aDecoder decodeObjectForKey:@"stabilizers"] boolValue];
     }
     return self;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_name                                      forKey:@"name"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:_type]         forKey:@"type"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:_drawWeight]   forKey:@"drawWeight"];
+    [aCoder encodeObject:[NSNumber numberWithBool:_sight]           forKey:@"sight"];
+    [aCoder encodeObject:[NSNumber numberWithBool:_clicker]         forKey:@"clicker"];
+    [aCoder encodeObject:[NSNumber numberWithBool:_stabilizers]     forKey:@"stabilizers"];
 }
 
 

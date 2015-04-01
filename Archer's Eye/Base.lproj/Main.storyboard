@@ -45,7 +45,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="vWb-g4-uuS"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -89,6 +89,7 @@
                                                 <constraint firstAttribute="width" constant="80" id="Jza-52-oEL"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -150,7 +151,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="IYN-aG-0Od"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -337,7 +338,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="z7y-Ni-Qh8" firstAttribute="top" secondItem="uKa-Y9-06s" secondAttribute="bottom" constant="8" id="796-o5-0wC"/>
                                             <constraint firstAttribute="centerX" secondItem="2cR-09-vZu" secondAttribute="trailing" constant="5" id="8er-Yf-O7a"/>
@@ -1191,7 +1191,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="eHi-JF-DtB"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1285,7 +1285,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="ztB-ur-h3Y"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1345,7 +1345,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="rzU-z3-5xE"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1914,8 +1914,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KxS-dp-uYj"/>
         <segue reference="QD9-wa-RGj"/>
         <segue reference="9dM-LP-hRo"/>
+        <segue reference="KxS-dp-uYj"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0017091ACB867A006D8399 /* ArchersEyeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0017081ACB867A006D8399 /* ArchersEyeInfo.m */; };
 		FA285DAC1AC5FE710055BBE3 /* ChooseBowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */; };
 		FA285DAF1AC605C30055BBE3 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */; };
 		FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA0017071ACB867A006D8399 /* ArchersEyeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchersEyeInfo.h; sourceTree = "<group>"; };
+		FA0017081ACB867A006D8399 /* ArchersEyeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchersEyeInfo.m; sourceTree = "<group>"; };
 		FA285DAA1AC5FE710055BBE3 /* ChooseBowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBowViewController.h; sourceTree = "<group>"; };
 		FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBowViewController.m; sourceTree = "<group>"; };
 		FA285DAD1AC605C30055BBE3 /* ReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceSegue.h; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 		FA99279D1AABB0EE0017D069 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA0017071ACB867A006D8399 /* ArchersEyeInfo.h */,
+				FA0017081ACB867A006D8399 /* ArchersEyeInfo.m */,
 				FA99279A1AABA9070017D069 /* RoundInfo.h */,
 				FA99279B1AABA9070017D069 /* RoundInfo.m */,
 				FAF52EFA1ABBF3FB00B79AB3 /* BowInfo.h */,
@@ -347,6 +352,7 @@
 				FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */,
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
 				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
+				FA0017091ACB867A006D8399 /* ArchersEyeInfo.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,
 				FA8DEEBD1AB94264006CED5A /* RoundInfoViewController.m in Sources */,
 				FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */,

@@ -83,6 +83,40 @@
 
 
 //------------------------------------------------------------------------------
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if( self = [super init] )
+    {
+        self.name               =              [aDecoder decodeObjectForKey:@"name"];
+        self.type               = (eRoundType)[[aDecoder decodeObjectForKey:@"type"]            integerValue];
+        self.distance           =             [[aDecoder decodeObjectForKey:@"distance"]        integerValue];
+        self.numEnds            =             [[aDecoder decodeObjectForKey:@"numEnds"]         integerValue];
+        self.numArrowsPerEnd    =             [[aDecoder decodeObjectForKey:@"numArrowsPerEnd"] integerValue];
+        self.endScores          =              [aDecoder decodeObjectForKey:@"endScores"];
+        self.date               =              [aDecoder decodeObjectForKey:@"date"];
+        self.bow                =              [aDecoder decodeObjectForKey:@"bow"];
+    }
+    return self;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_name                                          forKey:@"name"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:_type]             forKey:@"type"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:_distance]         forKey:@"distance"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:_numEnds]          forKey:@"numEnds"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:_numArrowsPerEnd]  forKey:@"numArrowsPerEnd"];
+    [aCoder encodeObject:_endScores                                     forKey:@"endScores"];
+    [aCoder encodeObject:_date                                          forKey:@"date"];
+    [aCoder encodeObject:_bow                                           forKey:@"bow"];
+}
+
+
+
+//------------------------------------------------------------------------------
 // Rebuilds the entire scorecard and clears it
 - (void)clearScorecard
 {

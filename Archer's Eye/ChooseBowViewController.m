@@ -20,7 +20,8 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
 
     [super viewDidLoad];
     
@@ -76,7 +77,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [_appDelegate.allBows count];
+    return [self.archersEyeInfo.allBows count];
 }
 
 
@@ -86,7 +87,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BowDescCell *cell   = [tableView dequeueReusableCellWithIdentifier:@"BowDescCell"];
-    BowInfo     *bow    = _appDelegate.allBows[indexPath.row];
+    BowInfo     *bow    = self.archersEyeInfo.allBows[indexPath.row];
     
     cell.bowName.text        = bow.name;
     cell.bowType.text        = [BowInfo typeAsString:bow.type];
@@ -101,7 +102,7 @@
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _appDelegate.liveRound.bow = _appDelegate.allBows[indexPath.row];
+    self.archersEyeInfo.liveRound.bow = self.archersEyeInfo.allBows[indexPath.row];
 }
 
 
@@ -148,7 +149,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------
 - (IBAction)cancel:(id)sender
 {
-    [_appDelegate endLiveRoundAndDiscard];
+    [self.archersEyeInfo endLiveRoundAndDiscard];
     
     // Programmatically run the unwind segue.
     [self dismissViewControllerAnimated:YES completion:nil];

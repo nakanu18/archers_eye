@@ -17,6 +17,7 @@
 }
 
 @property (nonatomic, weak)          AppDelegate        *appDelegate;
+@property (nonatomic, weak)          ArchersEyeInfo     *archersEyeInfo;
 @property (nonatomic, weak)          RoundInfo          *currRound;
 @property (nonatomic, weak) IBOutlet UITableView        *tableView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *exitButton;
