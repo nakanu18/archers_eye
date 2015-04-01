@@ -41,10 +41,6 @@
 //------------------------------------------------------------------------------
 - (void)loadData
 {
-//    [self loadDefaults];
-
-    
-    
     NSData *saveData = [[NSUserDefaults standardUserDefaults] dataForKey:@"archersEyeInfo"];
 
     // No save data file; load the defaults
@@ -98,7 +94,7 @@
 //------------------------------------------------------------------------------
 - (void)clearData
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"liveRound"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"archersEyeInfo"];
 }
 
 

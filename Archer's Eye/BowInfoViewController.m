@@ -45,10 +45,10 @@
 
     // Populate the fields with it's data
     _textBowName.text                       = self.archersEyeInfo.currBow.name;
-    _switchBowSight.on                      = self.archersEyeInfo.currBow.sight;
     _switchBowClicker.on                    = self.archersEyeInfo.currBow.clicker;
     _switchBowStabilizers.on                = self.archersEyeInfo.currBow.stabilizers;
     _segControlBowType.selectedSegmentIndex = self.archersEyeInfo.currBow.type;
+    [_pickerBowAim selectRow:self.archersEyeInfo.currBow.aim inComponent:0 animated:YES];
     
     _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currBow.drawWeight];
     _sliderBowDrawWeight.value              = self.archersEyeInfo.currBow.drawWeight;
@@ -208,7 +208,7 @@
 //------------------------------------------------------------------------------
 - (IBAction)bowSightSwitched:(id)sender
 {
-    self.archersEyeInfo.currBow.sight = [sender isOn];
+//    self.archersEyeInfo.currBow.sight = [sender isOn];
 
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
@@ -237,6 +237,65 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Picker
+
+//------------------------------------------------------------------------------
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    return eBowAim_Count;
+}
+
+
+
+//------------------------------------------------------------------------------
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component
+{
+    return [BowInfo aimAsString:(eBowAim)row];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component
+{
+    _archersEyeInfo.currBow.aim = (eBowAim)row;
+    
+    [_activeTextField resignFirstResponder];
+    _activeTextField = nil;
+}
 
 
 

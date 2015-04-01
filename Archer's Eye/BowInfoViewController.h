@@ -11,7 +11,7 @@
 #import "KeyboardHandlerViewController.h"
 #import "BowInfo.h"
 
-@interface BowInfoViewController : KeyboardHandlerViewController <UITextFieldDelegate>
+@interface BowInfoViewController : KeyboardHandlerViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 {
 }
 
@@ -24,7 +24,7 @@
 @property (nonatomic, weak) IBOutlet   UISlider           *sliderBowDrawWeight;
 @property (nonatomic, weak) IBOutlet   UIStepper          *stepperBowDrawWeight;
 @property (nonatomic, weak) IBOutlet   UISegmentedControl *segControlBowType;
-@property (nonatomic, weak) IBOutlet   UISwitch           *switchBowSight;
+@property (nonatomic, weak) IBOutlet   UIPickerView       *pickerBowAim;
 @property (nonatomic, weak) IBOutlet   UISwitch           *switchBowClicker;
 @property (nonatomic, weak) IBOutlet   UISwitch           *switchBowStabilizers;
 
@@ -35,7 +35,6 @@
 
 - (IBAction)bowDrawWeightChanged:(id)sender;
 - (IBAction)bowTypeChanged:(id)sender;
-- (IBAction)bowSightSwitched:(id)sender;
 - (IBAction)bowClickerSwitched:(id)sender;
 - (IBAction)bowStabilizersSwitched:(id)sender;
 

@@ -17,6 +17,15 @@ typedef enum
     eBowType_Count,
 } eBowType;
 
+typedef enum
+{
+    eBowAim_Sight,
+    eBowAim_Instinctive,
+    eBowAim_GapShooting,
+    eBowAim_StringWalking,
+    eBowAim_Count,
+} eBowAim;
+
 @interface BowInfo : NSObject
 {
     
@@ -25,7 +34,7 @@ typedef enum
 @property (nonatomic, strong)      NSString   *name;
 @property (nonatomic, readwrite)   eBowType    type;
 @property (nonatomic, readwrite)   NSInteger   drawWeight;
-@property (nonatomic, readwrite)   BOOL        sight;
+@property (nonatomic, readwrite)   eBowAim     aim;
 @property (nonatomic, readwrite)   BOOL        clicker;
 @property (nonatomic, readwrite)   BOOL        stabilizers;
 
@@ -35,6 +44,7 @@ typedef enum
 
 
 + (NSString *)typeAsString:(eBowType)type;
++ (NSString *)aimAsString:(eBowAim)type;
 
 - (id)init;
 - (id)initWithName:(NSString *)name andType:(eBowType)type andDrawWeight:(NSInteger)drawWeight;

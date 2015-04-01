@@ -27,6 +27,16 @@
 
 
 //------------------------------------------------------------------------------
++ (NSString *)aimAsString:(eBowAim)type
+{
+    NSString *names[] = { @"Sight", @"Instinctive", @"Gap Shooting", @"String Walking" };
+    
+    return names[type];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (id)init
 {
     return [self initWithName:@"" andType:(eBowType)0 andDrawWeight:10];
@@ -42,6 +52,7 @@
         self.name   = name;
         _type       = type;
         _drawWeight = drawWeight;
+        _aim        = eBowAim_Instinctive;
     }
     return self;
 }
@@ -59,7 +70,7 @@
         obj.name        = self.name;
         obj.type        = self.type;
         obj.drawWeight  = self.drawWeight;
-        obj.sight       = self.sight;
+        obj.aim         = self.aim;
         obj.clicker     = self.clicker;
         obj.stabilizers = self.stabilizers;
     }
@@ -77,7 +88,7 @@
         self.name           =            [aDecoder decodeObjectForKey:@"name"];
         self.type           = (eBowType)[[aDecoder decodeObjectForKey:@"type"]        integerValue];
         self.drawWeight     =           [[aDecoder decodeObjectForKey:@"drawWeight"]  integerValue];
-        self.sight          =           [[aDecoder decodeObjectForKey:@"sight"]       boolValue];
+        self.aim            =  (eBowAim)[[aDecoder decodeObjectForKey:@"aim"]         integerValue];
         self.clicker        =           [[aDecoder decodeObjectForKey:@"clicker"]     boolValue];
         self.stabilizers    =           [[aDecoder decodeObjectForKey:@"stabilizers"] boolValue];
     }
@@ -92,7 +103,7 @@
     [aCoder encodeObject:_name                                      forKey:@"name"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_type]         forKey:@"type"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_drawWeight]   forKey:@"drawWeight"];
-    [aCoder encodeObject:[NSNumber numberWithBool:_sight]           forKey:@"sight"];
+    [aCoder encodeObject:[NSNumber numberWithInt:_aim]              forKey:@"aim"];
     [aCoder encodeObject:[NSNumber numberWithBool:_clicker]         forKey:@"clicker"];
     [aCoder encodeObject:[NSNumber numberWithBool:_stabilizers]     forKey:@"stabilizers"];
 }
