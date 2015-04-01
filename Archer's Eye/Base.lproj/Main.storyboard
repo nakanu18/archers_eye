@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fha-6T-aHe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rpi-9K-v3J">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="y2S-D1-mVc">
+            <objects>
+                <viewController id="rpi-9K-v3J" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SgG-7v-AaV"/>
+                        <viewControllerLayoutGuide type="bottom" id="r3V-y8-umB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SO3-9f-m6V">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-vY-XU2">
+                                <rect key="frame" x="285" y="100" width="30" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Fha-6T-aHe" kind="presentation" modalTransitionStyle="crossDissolve" id="dAS-57-89d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v99-OK-F4s">
+                                <rect key="frame" x="254" y="210" width="92" height="30"/>
+                                <state key="normal" title="Manage Data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfd-9i-UHL">
+                                <rect key="frame" x="271" y="320" width="57" height="30"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v99-OK-F4s" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="80" id="O3c-7b-wfi"/>
+                            <constraint firstAttribute="centerX" secondItem="2Ui-vY-XU2" secondAttribute="centerX" id="PDd-ol-XHw"/>
+                            <constraint firstItem="2Ui-vY-XU2" firstAttribute="top" secondItem="SgG-7v-AaV" secondAttribute="bottom" constant="80" id="TMU-hg-cdd"/>
+                            <constraint firstItem="Mfd-9i-UHL" firstAttribute="top" secondItem="v99-OK-F4s" secondAttribute="bottom" constant="80" id="Zdb-sm-nQG"/>
+                            <constraint firstAttribute="centerX" secondItem="v99-OK-F4s" secondAttribute="centerX" id="lqq-vb-EpT"/>
+                            <constraint firstAttribute="centerX" secondItem="Mfd-9i-UHL" secondAttribute="centerX" id="vDh-V7-hPI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="M00-O7-Yby"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="svP-GS-1Ui" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68" y="699"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="L0d-qX-lwP">
             <objects>
@@ -125,7 +175,13 @@
                             <outlet property="delegate" destination="WBN-EH-NFu" id="ecK-eq-Dpg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Past Rounds" prompt="Select a round to edit" id="JFD-WI-VLH"/>
+                    <navigationItem key="navigationItem" title="Past Rounds" prompt="Select a round to edit" id="JFD-WI-VLH">
+                        <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="LDl-06-Ptb">
+                            <connections>
+                                <segue destination="WBN-EH-NFu" kind="custom" customClass="DismissSegue" id="rZR-3L-dFV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jO-fs-Oyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,6 +253,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bows" prompt="Select a bow to edit or Add a new one" id="Qrl-mR-FWp">
+                        <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="0bY-FE-bO9">
+                            <connections>
+                                <segue destination="5jW-yF-o1r" kind="custom" customClass="DismissSegue" id="YH2-Rs-rsr"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="AKL-ku-xQY">
                             <connections>
                                 <segue destination="9C6-Gy-3j5" kind="presentation" modalTransitionStyle="flipHorizontal" id="IjB-BZ-ts9"/>
@@ -1405,6 +1466,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Live Round" prompt="Select a round to start or Add a new one" id="9Fl-YP-rWe">
+                        <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="hRl-IZ-zQT">
+                            <connections>
+                                <segue destination="0oa-iB-ZUe" kind="custom" customClass="DismissSegue" id="zVM-Jz-qVg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QYM-zp-doa">
                             <connections>
                                 <segue destination="CZf-Sf-t6M" kind="presentation" modalTransitionStyle="flipHorizontal" id="KxS-dp-uYj"/>
@@ -1921,7 +1987,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9dM-LP-hRo"/>
-        <segue reference="JDt-XP-Eus"/>
+        <segue reference="Wmh-qa-w2H"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="UDk-Mg-dBq"/>
+        <segue reference="tYL-4e-FWa"/>
         <segue reference="KxS-dp-uYj"/>
     </inferredMetricsTieBreakers>
 </document>
