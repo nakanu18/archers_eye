@@ -20,8 +20,8 @@ typedef enum
 {
 }
 
-@property (weak)    AppDelegate     *appDelegate;
-@property (strong)  NSMutableArray  *sectionTypes;
+@property (nonatomic, weak)    AppDelegate     *appDelegate;
+@property (nonatomic, strong)  NSMutableArray  *sectionTypes;
 
 
 

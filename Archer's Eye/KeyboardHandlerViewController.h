@@ -13,7 +13,7 @@
     UITextField *_activeTextField;
 }
 
-@property (weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
 
 

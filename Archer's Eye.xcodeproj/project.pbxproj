@@ -118,7 +118,7 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		FA8DEEBE1AB94279006CED5A /* LiveRound */ = {
+		FA8DEEBE1AB94279006CED5A /* Rounds */ = {
 			isa = PBXGroup;
 			children = (
 				FA633DF71AB56ADD0090AD12 /* NewLiveRoundViewController.h */,
@@ -127,8 +127,10 @@
 				FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */,
 				FA8DEEBB1AB94264006CED5A /* RoundInfoViewController.h */,
 				FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */,
+				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
+				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
 			);
-			name = LiveRound;
+			name = Rounds;
 			sourceTree = "<group>";
 		};
 		FA92B7C21ABDF7C60075EF1F /* Bows */ = {
@@ -182,13 +184,11 @@
 			children = (
 				FA99279D1AABB0EE0017D069 /* Models */,
 				FA633DF01AB5691C0090AD12 /* Cells */,
-				FA8DEEBE1AB94279006CED5A /* LiveRound */,
+				FA8DEEBE1AB94279006CED5A /* Rounds */,
 				FA92B7C21ABDF7C60075EF1F /* Bows */,
 				FA92B7C61ABE05A60075EF1F /* Misc */,
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
-				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
-				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
 				FA9927811AABA1510017D069 /* Images.xcassets */,
 				FA9927831AABA1510017D069 /* LaunchScreen.xib */,
 				FA633DFD1AB5768B0090AD12 /* Main.storyboard */,

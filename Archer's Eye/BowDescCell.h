@@ -13,8 +13,8 @@
     
 }
 
-@property (weak) IBOutlet UILabel *bowName;
-@property (weak) IBOutlet UILabel *bowType;
-@property (weak) IBOutlet UILabel *bowDrawWeight;
+@property (nonatomic, weak) IBOutlet UILabel *bowName;
+@property (nonatomic, weak) IBOutlet UILabel *bowType;
+@property (nonatomic, weak) IBOutlet UILabel *bowDrawWeight;
 
 @end

@@ -13,11 +13,11 @@
     
 }
 
-@property (weak) IBOutlet UILabel *name;
-@property (weak) IBOutlet UILabel *date;
-@property (weak) IBOutlet UILabel *dist;
-@property (weak) IBOutlet UILabel *desc;
-@property (weak) IBOutlet UILabel *avg;
-@property (weak) IBOutlet UILabel *score;
+@property (nonatomic, weak) IBOutlet UILabel *name;
+@property (nonatomic, weak) IBOutlet UILabel *date;
+@property (nonatomic, weak) IBOutlet UILabel *dist;
+@property (nonatomic, weak) IBOutlet UILabel *desc;
+@property (nonatomic, weak) IBOutlet UILabel *avg;
+@property (nonatomic, weak) IBOutlet UILabel *score;
 
 @end

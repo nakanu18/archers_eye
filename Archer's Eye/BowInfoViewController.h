@@ -15,17 +15,17 @@
 {
 }
 
-@property (weak)            AppDelegate        *appDelegate;
-@property (weak) IBOutlet   UIBarButtonItem    *barButtonSave;
+@property (nonatomic, weak)            AppDelegate        *appDelegate;
+@property (nonatomic, weak) IBOutlet   UIBarButtonItem    *barButtonSave;
 
-@property (weak) IBOutlet   UITextField        *textBowName;
-@property (weak) IBOutlet   UILabel            *labelBowDrawWeight;
-@property (weak) IBOutlet   UISlider           *sliderBowDrawWeight;
-@property (weak) IBOutlet   UIStepper          *stepperBowDrawWeight;
-@property (weak) IBOutlet   UISegmentedControl *segControlBowType;
-@property (weak) IBOutlet   UISwitch           *switchBowSight;
-@property (weak) IBOutlet   UISwitch           *switchBowClicker;
-@property (weak) IBOutlet   UISwitch           *switchBowStabilizers;
+@property (nonatomic, weak) IBOutlet   UITextField        *textBowName;
+@property (nonatomic, weak) IBOutlet   UILabel            *labelBowDrawWeight;
+@property (nonatomic, weak) IBOutlet   UISlider           *sliderBowDrawWeight;
+@property (nonatomic, weak) IBOutlet   UIStepper          *stepperBowDrawWeight;
+@property (nonatomic, weak) IBOutlet   UISegmentedControl *segControlBowType;
+@property (nonatomic, weak) IBOutlet   UISwitch           *switchBowSight;
+@property (nonatomic, weak) IBOutlet   UISwitch           *switchBowClicker;
+@property (nonatomic, weak) IBOutlet   UISwitch           *switchBowStabilizers;
 
 
 

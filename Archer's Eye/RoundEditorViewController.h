@@ -16,29 +16,29 @@
     NSInteger _currArrowID;
 }
 
-@property (weak)          AppDelegate        *appDelegate;
-@property (weak)          RoundInfo          *currRound;
-@property (weak) IBOutlet UITableView        *tableView;
-@property (weak) IBOutlet UIBarButtonItem    *exitButton;
-@property (weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
-@property (weak) IBOutlet UIButton           *buttonConfigureBow;
-@property (weak) IBOutlet UIView             *controlsFITA;
-@property (weak) IBOutlet UIView             *controlsNFAA;
-@property (weak) IBOutlet NSLayoutConstraint *constraintFITA;
-@property (weak) IBOutlet NSLayoutConstraint *constraintNFAA;
+@property (nonatomic, weak)          AppDelegate        *appDelegate;
+@property (nonatomic, weak)          RoundInfo          *currRound;
+@property (nonatomic, weak) IBOutlet UITableView        *tableView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem    *exitButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
+@property (nonatomic, weak) IBOutlet UIButton           *buttonConfigureBow;
+@property (nonatomic, weak) IBOutlet UIView             *controlsFITA;
+@property (nonatomic, weak) IBOutlet UIView             *controlsNFAA;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintFITA;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintNFAA;
 
-@property (weak) IBOutlet UIButton           *buttonErase;
-
-// Used to pull the color properties from the storyboard
-@property (weak) IBOutlet UIButton           *buttonFITAYellow;
-@property (weak) IBOutlet UIButton           *buttonFITARed;
-@property (weak) IBOutlet UIButton           *buttonFITABlue;
-@property (weak) IBOutlet UIButton           *buttonFITABlack;
-@property (weak) IBOutlet UIButton           *buttonFITAWhite;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonErase;
 
 // Used to pull the color properties from the storyboard
-@property (weak) IBOutlet UIButton           *buttonNFAAWhite;
-@property (weak) IBOutlet UIButton           *buttonNFAABlue;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonFITAYellow;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonFITARed;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonFITABlue;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonFITABlack;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonFITAWhite;
+
+// Used to pull the color properties from the storyboard
+@property (nonatomic, weak) IBOutlet UIButton           *buttonNFAAWhite;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonNFAABlue;
 
 
 

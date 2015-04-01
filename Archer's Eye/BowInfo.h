@@ -22,12 +22,12 @@ typedef enum
     
 }
 
-@property (strong)      NSString   *name;
-@property (readwrite)   eBowType    type;
-@property (readwrite)   NSInteger   drawWeight;
-@property (readwrite)   BOOL        sight;
-@property (readwrite)   BOOL        clicker;
-@property (readwrite)   BOOL        stabilizers;
+@property (nonatomic, strong)      NSString   *name;
+@property (nonatomic, readwrite)   eBowType    type;
+@property (nonatomic, readwrite)   NSInteger   drawWeight;
+@property (nonatomic, readwrite)   BOOL        sight;
+@property (nonatomic, readwrite)   BOOL        clicker;
+@property (nonatomic, readwrite)   BOOL        stabilizers;
 
 
 

@@ -21,15 +21,15 @@ typedef enum
 {
 }
 
-@property (strong)      NSString       *name;
-@property (readwrite)   eRoundType      type;
-@property (readwrite)   NSInteger       distance;
-@property (readwrite)   NSInteger       numEnds;
-@property (readwrite)   NSInteger       numArrowsPerEnd;
-@property (strong)      NSMutableArray *endScores;
-@property (strong)      NSDate         *date;
+@property (nonatomic, strong)      NSString       *name;
+@property (nonatomic, readwrite)   eRoundType      type;
+@property (nonatomic, readwrite)   NSInteger       distance;
+@property (nonatomic, readwrite)   NSInteger       numEnds;
+@property (nonatomic, readwrite)   NSInteger       numArrowsPerEnd;
+@property (nonatomic, strong)      NSMutableArray *endScores;
+@property (nonatomic, strong)      NSDate         *date;
 
-@property (copy)        BowInfo         *bow;
+@property (nonatomic, copy)        BowInfo         *bow;
 
 
 

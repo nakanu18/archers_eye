@@ -14,20 +14,20 @@
 {
 }
 
-@property (weak)            AppDelegate         *appDelegate;
-@property (weak) IBOutlet   UIBarButtonItem     *barButtonSave;
+@property (nonatomic, weak)            AppDelegate         *appDelegate;
+@property (nonatomic, weak) IBOutlet   UIBarButtonItem     *barButtonSave;
 
-@property (weak) IBOutlet   UITextField         *textName;
-@property (weak) IBOutlet   UISegmentedControl  *segControlRoundType;
-@property (weak) IBOutlet   UILabel             *labelNumEnds;
-@property (weak) IBOutlet   UILabel             *labelNumArrows;
-@property (weak) IBOutlet   UILabel             *labelDefaultDist;
-@property (weak) IBOutlet   UISlider            *sliderNumEnds;
-@property (weak) IBOutlet   UISlider            *sliderNumArrows;
-@property (weak) IBOutlet   UISlider            *sliderDefaultDist;
-@property (weak) IBOutlet   UIStepper           *stepperNumEnds;
-@property (weak) IBOutlet   UIStepper           *stepperNumArrows;
-@property (weak) IBOutlet   UIStepper           *stepperDefaultDist;
+@property (nonatomic, weak) IBOutlet   UITextField         *textName;
+@property (nonatomic, weak) IBOutlet   UISegmentedControl  *segControlRoundType;
+@property (nonatomic, weak) IBOutlet   UILabel             *labelNumEnds;
+@property (nonatomic, weak) IBOutlet   UILabel             *labelNumArrows;
+@property (nonatomic, weak) IBOutlet   UILabel             *labelDefaultDist;
+@property (nonatomic, weak) IBOutlet   UISlider            *sliderNumEnds;
+@property (nonatomic, weak) IBOutlet   UISlider            *sliderNumArrows;
+@property (nonatomic, weak) IBOutlet   UISlider            *sliderDefaultDist;
+@property (nonatomic, weak) IBOutlet   UIStepper           *stepperNumEnds;
+@property (nonatomic, weak) IBOutlet   UIStepper           *stepperNumArrows;
+@property (nonatomic, weak) IBOutlet   UIStepper           *stepperDefaultDist;
 
 
 
