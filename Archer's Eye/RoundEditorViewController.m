@@ -362,8 +362,10 @@
             buttonTemplate = _buttonFITABlue;
         else if( score >= 3 )
             buttonTemplate = _buttonFITABlack;
-        else if( score >= 0 )
+        else if( score >= 1 )
             buttonTemplate = _buttonFITAWhite;
+        else if( score == 0 )
+            buttonTemplate = _buttonFITAMiss;
         else
             buttonTemplate = _buttonErase;
     }
@@ -371,8 +373,10 @@
     {
         if( score >= 5 )
             buttonTemplate = _buttonNFAAWhite;
-        else if( score >= 0 )
+        else if( score >= 1 )
             buttonTemplate = _buttonNFAABlue;
+        else if( score == 0 )
+            buttonTemplate = _buttonNFAAMiss;
         else
             buttonTemplate = _buttonErase;
     }

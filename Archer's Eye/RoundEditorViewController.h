@@ -36,10 +36,12 @@
 @property (nonatomic, weak) IBOutlet UIButton           *buttonFITABlue;
 @property (nonatomic, weak) IBOutlet UIButton           *buttonFITABlack;
 @property (nonatomic, weak) IBOutlet UIButton           *buttonFITAWhite;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonFITAMiss;
 
 // Used to pull the color properties from the storyboard
 @property (nonatomic, weak) IBOutlet UIButton           *buttonNFAAWhite;
 @property (nonatomic, weak) IBOutlet UIButton           *buttonNFAABlue;
+@property (nonatomic, weak) IBOutlet UIButton           *buttonNFAAMiss;
 
 
 

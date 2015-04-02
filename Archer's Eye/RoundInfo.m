@@ -117,6 +117,19 @@
 
 
 //------------------------------------------------------------------------------
+- (BOOL)isInfoValid
+{
+    BOOL ans = NO;
+    
+    if( ![_name isEqualToString:@""]  &&  _numEnds > 0   &&  _numArrowsPerEnd > 0 )
+        ans = YES;
+    
+    return ans;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Rebuilds the entire scorecard and clears it
 - (void)clearScorecard
 {
@@ -309,17 +322,53 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Number of arrows with score
+
 //------------------------------------------------------------------------------
-- (BOOL)isInfoValid
+- (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore
 {
-    BOOL ans = NO;
-    
-    if( ![_name isEqualToString:@""]  &&  _numEnds > 0   &&  _numArrowsPerEnd > 0 )
-        ans = YES;
-    
-    return ans;
+    return [self getNumberOfArrowsWithMinScore:arrowScore andMaxScore:arrowScore];
 }
 
+
+
+//------------------------------------------------------------------------------
+- (NSInteger)getNumberOfArrowsWithMinScore:(NSInteger)minArrowScore
+                               andMaxScore:(NSInteger)maxArrowScore
+{
+    NSInteger numArrows = 0;
+    
+    for( NSMutableArray *currEndScore in _endScores )
+    {
+        for( NSNumber *num in currEndScore )
+        {
+            if( [num integerValue] >= minArrowScore  &&
+                [num integerValue] <= maxArrowScore )
+                ++numArrows;
+        }
+    }
+    return numArrows;
+}
 
 
 

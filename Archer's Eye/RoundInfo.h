@@ -44,6 +44,7 @@ typedef enum
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
+- (BOOL)isInfoValid;
 - (void)clearScorecard;
 - (CGPoint)getCurrEndAndArrow;  // y = end, x = arrow
 
@@ -56,6 +57,7 @@ typedef enum
 - (NSInteger)getRealTotalScore;
 - (NSInteger)getMaxArrowScore;
 
-- (BOOL)isInfoValid;
+- (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore;
+- (NSInteger)getNumberOfArrowsWithMinScore:(NSInteger)minArrowScore andMaxScore:(NSInteger)maxArrowScore;
 
 @end

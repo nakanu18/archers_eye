@@ -46,15 +46,19 @@
     // No save data file; load the defaults
     if( saveData == nil )
     {
+#ifdef NSLOGS_ON
         NSLog( @"No save file found: loading defaults" );
+#endif
         
         [self loadDefaults];
     }
     // Found save data file; load it
     else
     {
+#ifdef NSLOGS_ON
         NSLog( @"Found save file: loading" );
-
+#endif
+        
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:saveData];
         
         self.liveRound      = [unarchiver decodeObjectForKey:@"liveRound"];
@@ -73,8 +77,10 @@
 //------------------------------------------------------------------------------
 - (void)saveData
 {
+#ifdef NSLOGS_ON
     NSLog( @"Saving data" );
-
+#endif
+    
     NSMutableData   *saveData      = [[NSMutableData    alloc] init];
     NSKeyedArchiver *keyedArchiver = [[NSKeyedArchiver  alloc] initForWritingWithMutableData:saveData];
     
