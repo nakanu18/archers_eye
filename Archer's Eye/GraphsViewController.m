@@ -147,26 +147,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
-// Override to support editing the table view.
--   (void)tableView:(UITableView *)tableView
- commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-  forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if( editingStyle == UITableViewCellEditingStyleDelete )
-    {
-        // Delete the row from the data source
-        [self.archersEyeInfo.pastRounds removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if( editingStyle == UITableViewCellEditingStyleInsert )
-    {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-}
-
-
-
-//------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
@@ -220,6 +200,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [self configureHost];
         [self configureGraph];
         [self configureChart];
+        [self configureLegend];
     }
 }
 
@@ -253,7 +234,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     self.hostView.hostedGraph   = graph;
     graph.paddingLeft           = 0.0f;
     graph.paddingTop            = 0.0f;
-    graph.paddingRight          = 0.0f;
+    graph.paddingRight          = 60.0f;
     graph.paddingBottom         = 0.0f;
     graph.axisSet               = nil;
     
@@ -284,10 +265,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     CPTGraph *graph = self.hostView.hostedGraph;
     
     // 2 - Create chart
-    CPTPieChart *pieChart = [[CPTPieChart alloc] init];
+    CPTPieChart *pieChart   = [[CPTPieChart alloc] init];
     pieChart.dataSource     = self;
     pieChart.delegate       = self;
-    pieChart.pieRadius      = (self.hostView.bounds.size.height * 0.7) / 2;
+    pieChart.pieRadius      = (self.hostView.bounds.size.height * 0.45) / 2;
     pieChart.identifier     = graph.title;
     pieChart.startAngle     = 0;
     pieChart.sliceDirection = CPTPieDirectionClockwise;
@@ -302,6 +283,28 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     // 4 - Add chart to graph
     [graph addPlot:pieChart];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)configureLegend
+{
+    // 1 - Get graph instance
+    CPTGraph *graph = self.hostView.hostedGraph;
+    
+    // 2 - Create legend
+    CPTLegend *theLegend = [CPTLegend legendWithGraph:graph];
+    
+    // 3 - Configure legend
+    theLegend.numberOfColumns   = 1;
+    theLegend.fill              = [CPTFill fillWithColor:[CPTColor lightGrayColor]];
+    theLegend.borderLineStyle   = [CPTLineStyle lineStyle];
+    theLegend.cornerRadius      = 5.0;
+    
+    // 4 - Add legend to graph
+    graph.legend             = theLegend;
+    graph.legendAnchor       = CPTRectAnchorRight;
 }
 
 
@@ -344,8 +347,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     if( CPTPieChartFieldSliceWidth == fieldEnum )
     {
-        NSInteger range[][2] = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,11}, };
-        NSInteger numArrows  = [_currPastRound getNumberOfArrowsWithMinScore:range[index][0] andMaxScore:range[index][1]];
+        NSRange   range      = [RoundInfo rangeForSection:index forType:_currPastRound.type];
+        NSInteger numArrows  = [_currPastRound getNumberOfArrowsWithMinScore:range.location andMaxScore:range.location + range.length];
         
         num = [NSNumber numberWithInteger:numArrows];
     }
@@ -361,25 +364,37 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     // 1 - Define label text style
     static CPTMutableTextStyle *labelText = nil;
     
-    if (!labelText)
+    if( !labelText )
     {
-        labelText= [[CPTMutableTextStyle alloc] init];
+        labelText       = [[CPTMutableTextStyle alloc] init];
         labelText.color = [CPTColor grayColor];
     }
     
     // 2 - Calculate the number of arrows
-    NSInteger  range[][2] = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,11}, };
-    NSInteger  numArrows  = [_currPastRound getNumberOfArrowsWithMinScore:range[index][0] andMaxScore:range[index][1]];
-    NSNumber  *num        = [NSNumber numberWithInteger:numArrows];
+    NSRange   range     = [RoundInfo rangeForSection:index forType:_currPastRound.type];
+    NSInteger numArrows = [_currPastRound getNumberOfArrowsWithMinScore:range.location andMaxScore:range.location + range.length];
+    NSNumber  *num      = [NSNumber numberWithInteger:numArrows];
+    
+    // Don't print anything if the value is zero
+    if( numArrows == 0 )
+        return nil;
     
     // 3 - Calculate percentage value
     NSNumber *percent = [NSNumber numberWithFloat:((float)numArrows)/[_currPastRound getTotalArrows]];
     
     // 4 - Set up display label
-    NSString *labelValue = [NSString stringWithFormat:@"%ld (%0.1f %%)", [num integerValue], [percent floatValue] * 100.0f];
+    NSString *labelValue = [NSString stringWithFormat:@"%ld (%0.0f%%)", [num integerValue], [percent floatValue] * 100.0f];
     
     // 5 - Create and return layer with label text
     return [[CPTTextLayer alloc] initWithText:labelValue style:labelText];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (NSString *)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
+{
+    return [RoundInfo stringForSection:index forType:_currPastRound.type];
 }
 
 
@@ -408,22 +423,22 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------
 - (CPTFill *)sliceFillForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
 {
-    CPTFill *areaGradientFill;
+    CPTColor *color;
+    CPTColor *endColor = [CPTColor whiteColor];
     
-    if( index == 0 )
-        areaGradientFill = [CPTFill fillWithColor:[CPTColor orangeColor]];
-    else if( index == 1 )
-        areaGradientFill = [CPTFill fillWithColor:[CPTColor whiteColor]];
-    else if( index == 2 )
-        areaGradientFill = [CPTFill fillWithColor:[CPTColor blackColor]];
-    else if( index == 3 )
-        areaGradientFill = [CPTFill fillWithColor:[CPTColor blueColor]];
-    else if( index == 4 )
-        areaGradientFill = [CPTFill fillWithColor:[CPTColor redColor]];
-    else if( index == 5 )
-        areaGradientFill = [CPTFill fillWithColor:[CPTColor yellowColor]];
+    switch( index )
+    {
+        case 0:     color = [CPTColor orangeColor]; break;
+        case 1:     color = [CPTColor whiteColor];  break;
+        case 2:     color = [CPTColor blackColor];  break;
+        case 3:     color = [CPTColor blueColor];   break;
+        case 4:     color = [CPTColor redColor];    break;
+        case 5:     color = [CPTColor yellowColor]; break;
+        default:    color = [CPTColor grayColor];   break;
+    }
+    endColor = color;
     
-    return areaGradientFill;
+    return [CPTFill fillWithGradient:[CPTGradient gradientWithBeginningColor:color endingColor:endColor]];
 }
 
 @end

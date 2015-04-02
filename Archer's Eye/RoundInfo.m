@@ -29,6 +29,50 @@
 
 
 //------------------------------------------------------------------------------
++ (NSRange)rangeForSection:(NSInteger)section forType:(eRoundType)roundType
+{
+    NSInteger   fita[][2]   = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,11}, };
+    NSInteger   nfaa[][2]   = { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,6},  };
+    NSInteger (*index)[2]   = (roundType == eRoundType_NFAA) ? nfaa : fita;
+    NSInteger   min         = index[section][0];
+    NSInteger   length      = index[section][1] - index[section][0];
+    NSRange     range       = NSMakeRange( min, length );
+    
+    return range;
+}
+
+
+
+//------------------------------------------------------------------------------
++ (NSString *)stringForSection:(NSInteger)section forType:(eRoundType)roundType
+{
+    NSString *string;
+    NSRange   range = [RoundInfo rangeForSection:section forType:roundType];
+
+    // Special case: for max range (bulleyes)
+    if( section == 5 )
+        string = [NSString stringWithFormat:@"%ld-X", range.location];
+    else
+    {
+        // Special case: for single values
+        if( range.length == 0 )
+        {
+            if( range.location == 0 )
+                string = @"M";
+            else
+                string = [NSString stringWithFormat:@"%ld", range.location];
+        }
+        // Case: for double values
+        else
+            string = [NSString stringWithFormat:@"%ld-%ld", range.location, range.location + range.length];
+    }
+    
+    return string;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Initialize the round.
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type

@@ -37,6 +37,10 @@ typedef enum
 
 
 + (NSString *)typeAsString:(eRoundType)type;
++ (NSRange)rangeForSection:(NSInteger)section forType:(eRoundType)roundType;
++ (NSString *)stringForSection:(NSInteger)section forType:(eRoundType)roundType;
+
+
 
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type

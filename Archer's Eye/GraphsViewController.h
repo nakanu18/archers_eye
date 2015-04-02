@@ -32,5 +32,6 @@
 - (void)configureHost;
 - (void)configureGraph;
 - (void)configureChart;
+- (void)configureLegend;
 
 @end
