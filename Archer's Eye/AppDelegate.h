@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ArchersEyeInfo.h"
 #import "CorePlot-CocoaTouch.h"
-#import "CPDConstants.h"
 
 //#define NSLOGS_ON
 

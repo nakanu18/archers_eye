@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-vY-XU2">
-                                <rect key="frame" x="285" y="100" width="30" height="30"/>
+                                <rect key="frame" x="285" y="185" width="30" height="30"/>
                                 <state key="normal" title="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v99-OK-F4s">
-                                <rect key="frame" x="274" y="210" width="51" height="30"/>
+                                <rect key="frame" x="274" y="285" width="51" height="30"/>
                                 <state key="normal" title="Graphs">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfd-9i-UHL">
-                                <rect key="frame" x="271" y="320" width="57" height="30"/>
+                                <rect key="frame" x="271" y="385" width="57" height="30"/>
                                 <state key="normal" title="Settings">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,11 +45,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="v99-OK-F4s" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="80" id="O3c-7b-wfi"/>
                             <constraint firstAttribute="centerX" secondItem="2Ui-vY-XU2" secondAttribute="centerX" id="PDd-ol-XHw"/>
-                            <constraint firstItem="2Ui-vY-XU2" firstAttribute="top" secondItem="SgG-7v-AaV" secondAttribute="bottom" constant="80" id="TMU-hg-cdd"/>
-                            <constraint firstItem="Mfd-9i-UHL" firstAttribute="top" secondItem="v99-OK-F4s" secondAttribute="bottom" constant="80" id="Zdb-sm-nQG"/>
+                            <constraint firstAttribute="centerY" secondItem="v99-OK-F4s" secondAttribute="centerY" id="cQS-eE-Lrn"/>
+                            <constraint firstItem="v99-OK-F4s" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="70" id="gpm-RA-bHp"/>
                             <constraint firstAttribute="centerX" secondItem="v99-OK-F4s" secondAttribute="centerX" id="lqq-vb-EpT"/>
+                            <constraint firstItem="Mfd-9i-UHL" firstAttribute="top" secondItem="v99-OK-F4s" secondAttribute="bottom" constant="70" id="sd4-jh-Xvz"/>
                             <constraint firstAttribute="centerX" secondItem="Mfd-9i-UHL" secondAttribute="centerX" id="vDh-V7-hPI"/>
                         </constraints>
                     </view>
@@ -509,6 +509,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Bq-Ho-dXL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="gvb-MG-dZm" kind="relationship" relationship="rootViewController" id="7Mq-gy-2U7"/>
@@ -518,10 +519,10 @@
             </objects>
             <point key="canvasLocation" x="976" y="2587"/>
         </scene>
-        <!--Past Round Points Breakdown-->
+        <!--Points Breakdown-->
         <scene sceneID="7pg-YF-RCY">
             <objects>
-                <viewController id="gvb-MG-dZm" customClass="GraphsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gvb-MG-dZm" customClass="GraphsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mH4-e4-dF0"/>
                         <viewControllerLayoutGuide type="bottom" id="35W-wh-uOc"/>
@@ -531,10 +532,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-Y8-8mM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="94" width="600" height="200"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="JBc-ft-g62"/>
+                                    <constraint firstAttribute="width" priority="999" constant="300" id="2Go-Cj-ZhK"/>
+                                    <constraint firstAttribute="height" constant="200" id="JBc-ft-g62"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RoundDescCell" id="HN0-kK-x4K" customClass="RoundDescCell">
@@ -622,28 +624,68 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2Go-Cj-ZhK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="2Go-Cj-ZhK"/>
+                                        <exclude reference="JBc-ft-g62"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="gvb-MG-dZm" id="YvZ-5F-FbD"/>
                                     <outlet property="delegate" destination="gvb-MG-dZm" id="ARO-8m-nIC"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-8Y-OWG">
-                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
-                                <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-8Y-OWG" userLabel="GraphView">
+                                <rect key="frame" x="0.0" y="294" width="600" height="306"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="xGM-8Y-OWG" secondAttribute="bottom" id="0GT-LK-FG7"/>
-                            <constraint firstItem="6pd-Y8-8mM" firstAttribute="top" secondItem="mH4-e4-dF0" secondAttribute="bottom" constant="-64" id="KWG-Be-WL4"/>
+                            <constraint firstItem="6pd-Y8-8mM" firstAttribute="leading" secondItem="B8Q-XA-Ayv" secondAttribute="leadingMargin" constant="-16" id="1Xg-gm-BEY"/>
+                            <constraint firstItem="xGM-8Y-OWG" firstAttribute="leading" secondItem="B8Q-XA-Ayv" secondAttribute="leadingMargin" constant="-16" id="4kH-Of-M2P"/>
+                            <constraint firstItem="xGM-8Y-OWG" firstAttribute="leading" secondItem="6pd-Y8-8mM" secondAttribute="trailing" constant="-600" id="F48-rk-Hba">
+                                <variation key="heightClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="6pd-Y8-8mM" firstAttribute="top" secondItem="mH4-e4-dF0" secondAttribute="bottom" id="KWG-Be-WL4"/>
                             <constraint firstAttribute="centerX" secondItem="xGM-8Y-OWG" secondAttribute="centerX" id="SNa-ir-yET"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xGM-8Y-OWG" secondAttribute="trailing" constant="-16" id="ZCB-Vr-Yg3"/>
+                            <constraint firstItem="35W-wh-uOc" firstAttribute="top" secondItem="xGM-8Y-OWG" secondAttribute="bottom" id="b7g-0d-nc0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6pd-Y8-8mM" secondAttribute="trailing" constant="-16" id="fNT-u9-fxM"/>
                             <constraint firstAttribute="centerX" secondItem="6pd-Y8-8mM" secondAttribute="centerX" id="ihR-wz-0rI"/>
-                            <constraint firstAttribute="width" secondItem="xGM-8Y-OWG" secondAttribute="width" id="lhy-6b-2Ot"/>
                             <constraint firstItem="xGM-8Y-OWG" firstAttribute="top" secondItem="6pd-Y8-8mM" secondAttribute="bottom" id="o6M-lG-0JI"/>
-                            <constraint firstAttribute="width" secondItem="6pd-Y8-8mM" secondAttribute="width" id="yim-72-UNm"/>
+                            <constraint firstItem="35W-wh-uOc" firstAttribute="top" secondItem="6pd-Y8-8mM" secondAttribute="bottom" constant="100" id="pcG-ty-eQc">
+                                <variation key="heightClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="xGM-8Y-OWG" firstAttribute="top" secondItem="mH4-e4-dF0" secondAttribute="bottom" constant="236" id="sVu-5y-kX4">
+                                <variation key="heightClass=compact" constant="0.0"/>
+                            </constraint>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="F48-rk-Hba"/>
+                                <exclude reference="sVu-5y-kX4"/>
+                                <exclude reference="pcG-ty-eQc"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="fNT-u9-fxM"/>
+                                <exclude reference="ihR-wz-0rI"/>
+                                <exclude reference="4kH-Of-M2P"/>
+                                <include reference="F48-rk-Hba"/>
+                                <exclude reference="SNa-ir-yET"/>
+                                <exclude reference="o6M-lG-0JI"/>
+                                <include reference="sVu-5y-kX4"/>
+                                <include reference="pcG-ty-eQc"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Past Round Points Breakdown" id="1ms-ld-DJu">
+                    <navigationItem key="navigationItem" title="Points Breakdown" prompt="Select a round to graph" id="1ms-ld-DJu">
                         <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="j5o-5W-gJM">
                             <connections>
                                 <segue destination="gvb-MG-dZm" kind="custom" customClass="DismissSegue" id="pxf-az-7ke"/>

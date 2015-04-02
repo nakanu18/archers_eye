@@ -97,6 +97,15 @@
 
 
 //------------------------------------------------------------------------------
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    return @"Past Rounds";
+}
+
+
+
+//------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.archersEyeInfo.pastRounds count];
@@ -199,16 +208,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------
 - (void)initPlot
 {
-    // Make sure to remove a previous graph if it exists
-    if( self.hostView != nil )
+    if( self.currPastRound != nil )
     {
-        [self.hostView removeFromSuperview];
-        self.hostView = nil;
+        // Make sure to remove a previous graph if it exists
+        if( self.hostView != nil )
+        {
+            [self.hostView removeFromSuperview];
+            self.hostView = nil;
+        }
+        
+        [self configureHost];
+        [self configureGraph];
+        [self configureChart];
     }
-    
-    [self configureHost];
-    [self configureGraph];
-    [self configureChart];
 }
 
 
@@ -217,12 +229,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)configureHost
 {
     // 1 - Set up view frame
-    CGRect parentRect = self.graphView.frame;
+    CGRect parentRect = self.graphView.bounds;
+    float  percentage = 0.95f;
+    
+    parentRect.size.width  *= percentage;
+    parentRect.size.height *= percentage;
+    parentRect.origin.x     = self.graphView.bounds.size.width  * (1-percentage)/2;
+    parentRect.origin.y     = self.graphView.bounds.size.height * (1-percentage)/2;
     
     // 2 - Create host view
     self.hostView                   = [(CPTGraphHostingView *)[CPTGraphHostingView alloc] initWithFrame:parentRect];
     self.hostView.allowPinchScaling = NO;
-    [self.view addSubview:self.hostView];
+    [self.graphView addSubview:self.hostView];
 }
 
 
@@ -246,7 +264,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     textStyle.fontSize  = 16.0f;
     
     // 3 - Configure title
-    NSString *title = @"Points Breakdown";
+    NSString *title = @"";
     graph.title                     = title;
     graph.titleTextStyle            = textStyle;
     graph.titlePlotAreaFrameAnchor  = CPTRectAnchorTop;
@@ -326,7 +344,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if( CPTPieChartFieldSliceWidth == fieldEnum )
     {
         NSInteger range[][2] = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,11}, };
-        NSInteger  numArrows = [_currPastRound getNumberOfArrowsWithMinScore:range[index][0] andMaxScore:range[index][1]];
+        NSInteger numArrows  = [_currPastRound getNumberOfArrowsWithMinScore:range[index][0] andMaxScore:range[index][1]];
         
         num = [NSNumber numberWithInteger:numArrows];
     }
@@ -345,7 +363,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if (!labelText)
     {
         labelText= [[CPTMutableTextStyle alloc] init];
-        labelText.color = [CPTColor grayColor];
+        labelText.color = [CPTColor blackColor];
     }
     
     // 2 - Calculate the number of arrows
