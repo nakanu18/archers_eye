@@ -291,6 +291,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     pieChart.identifier     = graph.title;
     pieChart.startAngle     = 0;
     pieChart.sliceDirection = CPTPieDirectionClockwise;
+    pieChart.labelOffset    = 0.0f;
     
     // 3 - Create gradient
     CPTGradient *overlayGradient = [[CPTGradient alloc] init];
@@ -363,7 +364,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if (!labelText)
     {
         labelText= [[CPTMutableTextStyle alloc] init];
-        labelText.color = [CPTColor blackColor];
+        labelText.color = [CPTColor grayColor];
     }
     
     // 2 - Calculate the number of arrows
