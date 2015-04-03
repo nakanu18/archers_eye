@@ -33,10 +33,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    // Need to leave this here and not in viewDidLoad because auto-layout hasn't
-    // worked out yet and the graph will be the wrong width.
-    [self initPlot];
 }
 
 
@@ -273,7 +269,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     pieChart.startAngle     = 0;
     pieChart.sliceDirection = CPTPieDirectionClockwise;
     pieChart.labelOffset    = 0.0f;
-//    pieChart.pieInnerRadius = 25.0f;
+    pieChart.pieInnerRadius = 25.0f;
     
     // 3 - Create gradient
     CPTGradient *overlayGradient = [[CPTGradient alloc] init];
@@ -299,7 +295,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     // 3 - Configure legend
     theLegend.numberOfColumns   = 1;
-    theLegend.fill              = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0.75f green:0.75f blue:0.75f alpha:1.0f]];
+    theLegend.fill              = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0.8f green:0.8f blue:0.8f alpha:1.0f]];
     theLegend.borderLineStyle   = [CPTLineStyle lineStyle];
     theLegend.cornerRadius      = 5.0;
     
@@ -334,7 +330,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------
 - (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
-    return 6;
+    return 7;
 }
 
 
@@ -351,6 +347,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         NSRange   range      = [RoundInfo rangeForSection:index forType:_currPastRound.type];
         NSInteger numArrows  = [_currPastRound getNumberOfArrowsWithMinScore:range.location andMaxScore:range.location + range.length];
         
+//        NSLog( @"NumArrows: %ld forSection: %ld", numArrows, index );
         num = [NSNumber numberWithInteger:numArrows];
     }
     return num;
@@ -429,13 +426,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     switch( index )
     {
-        case 0:     color = [CPTColor orangeColor]; break;
-        case 1:     color = [CPTColor whiteColor];  break;
-        case 2:     color = [CPTColor blackColor];  break;
+        case 0:     color = [CPTColor magentaColor]; break;
+        case 1:     color = [CPTColor whiteColor];   break;
+        case 2:     color = [CPTColor blackColor];   break;
         case 3:     color = [CPTColor colorWithComponentRed:0.3f green:0.3f blue:1.0f alpha:1.0f]; break;
-        case 4:     color = [CPTColor redColor];    break;
-        case 5:     color = [CPTColor yellowColor]; break;
-        default:    color = [CPTColor grayColor];   break;
+        case 4:     color = [CPTColor redColor];     break;
+        case 5:     color = [CPTColor yellowColor];  break;
+        case 6:     color = [CPTColor colorWithComponentRed:0.7f green:0.7f blue:0.0f alpha:1.0f]; break;
+        default:    color = [CPTColor grayColor];    break;
     }
     endColor = color;
     

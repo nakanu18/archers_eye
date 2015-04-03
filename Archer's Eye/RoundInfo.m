@@ -31,8 +31,8 @@
 //------------------------------------------------------------------------------
 + (NSRange)rangeForSection:(NSInteger)section forType:(eRoundType)roundType
 {
-    NSInteger   fita[][2]   = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,11}, };
-    NSInteger   nfaa[][2]   = { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,6},  };
+    NSInteger   fita[][2]   = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,10}, {11,11}, };
+    NSInteger   nfaa[][2]   = { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,5},  {11,11}, };
     NSInteger (*index)[2]   = (roundType == eRoundType_NFAA) ? nfaa : fita;
     NSInteger   min         = index[section][0];
     NSInteger   length      = index[section][1] - index[section][0];
@@ -50,8 +50,8 @@
     NSRange   range = [RoundInfo rangeForSection:section forType:roundType];
 
     // Special case: for max range (bulleyes)
-    if( section == 5 )
-        string = [NSString stringWithFormat:@"%ld-X", range.location];
+    if( section == 6 )
+        string = @"X";
     else
     {
         // Special case: for single values
