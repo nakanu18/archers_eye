@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "EndCell.h"
+#import "TotalsCell.h"
 
 @interface RoundEditorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 {
@@ -20,6 +21,7 @@
 @property (nonatomic, weak)          ArchersEyeInfo     *archersEyeInfo;
 @property (nonatomic, weak)          RoundInfo          *currRound;
 @property (nonatomic, weak) IBOutlet UITableView        *tableView;
+@property (nonatomic, weak)          TotalsCell         *totalsCell;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *exitButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
 @property (nonatomic, weak) IBOutlet UIButton           *buttonConfigureBow;

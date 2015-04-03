@@ -23,7 +23,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *arrow4Label;
 @property (nonatomic, weak) IBOutlet UILabel *arrow5Label;
 
+@property (nonatomic, weak) IBOutlet UILabel *endXLabel;
 @property (nonatomic, weak) IBOutlet UILabel *endScoreLabel;
-@property (nonatomic, weak) IBOutlet UILabel *totalScoreLabel;
 
 @end

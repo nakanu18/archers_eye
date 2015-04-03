@@ -431,7 +431,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         case 2:     color = [CPTColor blackColor];   break;
         case 3:     color = [CPTColor colorWithComponentRed:0.3f green:0.3f blue:1.0f alpha:1.0f]; break;
         case 4:     color = [CPTColor redColor];     break;
-        case 5:     color = [CPTColor yellowColor];  break;
+        case 5:     color = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:1.0f]; break;
         case 6:     color = [CPTColor colorWithComponentRed:0.7f green:0.7f blue:0.0f alpha:1.0f]; break;
         default:    color = [CPTColor grayColor];    break;
     }

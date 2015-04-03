@@ -119,7 +119,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _currRound.numEnds;
+    return _currRound.numEnds + 1;
 }
 
 
@@ -128,48 +128,64 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EndCell     *cell       = [tableView dequeueReusableCellWithIdentifier:@"LiveEndCell"];
-    RoundInfo   *liveRound  = _currRound;
-    NSInteger    row        = indexPath.row;
-    
-    cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", row + 1];
-    
-    // Initialize the arrow scores
-    for( NSInteger i = 0; i < liveRound.numArrowsPerEnd; ++i )
+    UITableViewCell *tableViewCell = nil;
+    NSInteger        row           = indexPath.row;
+
+    // End cells
+    if( row < _currRound.numEnds )
     {
-        [self setVisualScore:[liveRound getScoreForEnd:row andArrow:i] forLabel:cell.arrowLabels[i]];
+        EndCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EndCell"];
+        
+        cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", row + 1];
+        tableViewCell         = cell;
+        
+        // Initialize the arrow scores
+        for( NSInteger i = 0; i < _currRound.numArrowsPerEnd; ++i )
+        {
+            [self setVisualScore:[_currRound getScoreForEnd:row andArrow:i] forLabel:cell.arrowLabels[i]];
+        }
+        
+        if( row > _currEndID )
+        {
+            cell.endXLabel.text     = @"0";
+            cell.endScoreLabel.text = @"0";
+        }
+        else
+        {
+            cell.endXLabel.text     = [NSString stringWithFormat:@"%ld", [_currRound getNumberOfArrowsWithScore:11 forEnd:row]];
+            cell.endScoreLabel.text = [NSString stringWithFormat:@"%ld", [_currRound getRealScoreForEnd:row]];
+        }
+        
+        if( row == _currEndID )
+            [cell.arrowLabels[_currArrowID] setBackgroundColor:[UIColor greenColor]];
+
+        // Hide any slots we're not using
+        if( _currRound.numArrowsPerEnd < 1 )    cell.arrow0Label.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 2 )    cell.arrow1Label.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 3 )    cell.arrow2Label.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 4 )    cell.arrow3Label.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 5 )    cell.arrow4Label.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 6 )    cell.arrow5Label.hidden = YES;
     }
-    
-    if( row > _currEndID )
-    {
-        cell.endScoreLabel.text     = @"0";
-        cell.totalScoreLabel.text   = @"0";
-    }
+    // Total cells
     else
     {
-        cell.endScoreLabel.text     = [NSString stringWithFormat:@"%ld", [liveRound getRealScoreForEnd:row]];
-        cell.totalScoreLabel.text   = [NSString stringWithFormat:@"%ld", [liveRound getRealTotalScoreUpToEnd:row]];
+        TotalsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TotalsCell"];
+        
+        cell.totalXsLabel.text    = [NSString stringWithFormat:@"%ld", [_currRound getNumberOfArrowsWithScore:11]];
+        cell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", [_currRound getRealTotalScore]];
+        tableViewCell             = cell;
+        self.totalsCell           = cell;
     }
     
-    if( row == _currEndID )
-        [cell.arrowLabels[_currArrowID] setBackgroundColor:[UIColor greenColor]];
-
-    // Hide any slots we're not using
-    if( liveRound.numArrowsPerEnd < 1 )       cell.arrow0Label.hidden = YES;
-    if( liveRound.numArrowsPerEnd < 2 )       cell.arrow1Label.hidden = YES;
-    if( liveRound.numArrowsPerEnd < 3 )       cell.arrow2Label.hidden = YES;
-    if( liveRound.numArrowsPerEnd < 4 )       cell.arrow3Label.hidden = YES;
-    if( liveRound.numArrowsPerEnd < 5 )       cell.arrow4Label.hidden = YES;
-    if( liveRound.numArrowsPerEnd < 6 )       cell.arrow5Label.hidden = YES;
-    
-    return cell;
+    return tableViewCell;
 }
 
 
 
 //------------------------------------------------------------------------------
 -               (CGFloat)tableView:(UITableView *)tableView
-  estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+  estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPathXF
 {
     return 24;
 }
@@ -211,7 +227,12 @@
 // Returns the current end.
 - (EndCell *)getCurrEndCell
 {
-    return (EndCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currEndID inSection:0]];
+    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currEndID inSection:0]];
+    
+    if( ![cell isKindOfClass:[EndCell class]] )
+        cell = nil;
+    
+    return (EndCell *)cell;
 }
 
 
@@ -315,25 +336,28 @@
 // Sets the score for the current arrow.
 - (void)setScoreForCurrArrow:(NSInteger)score
 {
-    EndCell *cell  = [self getCurrEndCell];
-    UILabel *label = cell.arrowLabels[_currArrowID];
-
-    // Set the score in the data
-    [_currRound setScore:score forEnd:_currEndID andArrow:_currArrowID];
-    
-    // Visually set the score
-    [self setVisualScore:score forLabel:label];
-    [self updateTotalScores];
-    
-    [self incArrowID];
-    
-    // Make sure the currently selected arrow is in view
     if( _currEndID < _currRound.numEnds )
     {
-        NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
-        [_tableView scrollToRowAtIndexPath:path
-                          atScrollPosition:UITableViewScrollPositionMiddle
-                                  animated:YES];
+        EndCell *cell  = [self getCurrEndCell];
+        UILabel *label = cell.arrowLabels[_currArrowID];
+
+        // Set the score in the data
+        [_currRound setScore:score forEnd:_currEndID andArrow:_currArrowID];
+        
+        // Visually set the score
+        [self setVisualScore:score forLabel:label];
+        [self updateTotalScores];
+        
+        [self incArrowID];
+        
+        // Make sure the currently selected arrow is in view
+        if( _currEndID < _currRound.numEnds )
+        {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
+            [_tableView scrollToRowAtIndexPath:path
+                              atScrollPosition:UITableViewScrollPositionMiddle
+                                      animated:YES];
+        }
     }
 }
 
@@ -390,18 +414,12 @@
 // Nulls out the current arrow.
 - (void)eraseScoreForCurrArrow
 {
-    EndCell *prevCell  = [self getCurrEndCell];
+//    EndCell *prevCell  = [self getCurrEndCell];
 
     [self decArrowID];
 
     EndCell *cell  = [self getCurrEndCell];
     UILabel *label = cell.arrowLabels[_currArrowID];
-    
-    // Handle the case where we jumped back one full end
-    if( _currArrowID == _currRound.numArrowsPerEnd - 1 )
-    {
-        prevCell.totalScoreLabel.text = @"0";
-    }
     
     // Set the score in the data
     [_currRound setScore:-1 forEnd:_currEndID andArrow:_currArrowID];
@@ -425,12 +443,17 @@
 // Updates the score totals for the current end.
 - (void)updateTotalScores
 {
-    EndCell     *cell       = [self getCurrEndCell];
-    NSInteger    endScore   = [_currRound getRealScoreForEnd:_currEndID];
-    NSInteger    totalScore = [_currRound getRealTotalScoreUpToEnd:_currEndID];
+    EndCell     *cell                = [self getCurrEndCell];
+    NSInteger    xScore              = [_currRound getNumberOfArrowsWithScore:11 forEnd:_currEndID];
+    NSInteger    endScore            = [_currRound getRealScoreForEnd:_currEndID];
+    NSInteger    totalXScore         = [_currRound getNumberOfArrowsWithScore:11];
+    NSInteger    totalScore          = [_currRound getRealTotalScoreUpToEnd:_currEndID];
     
-    cell.endScoreLabel.text    = [NSString stringWithFormat:@"%ld", endScore];
-    cell.totalScoreLabel.text  = [NSString stringWithFormat:@"%ld", totalScore];
+    cell.endXLabel.text              = [NSString stringWithFormat:@"%ld", xScore];
+    cell.endScoreLabel.text          = [NSString stringWithFormat:@"%ld", endScore];
+    
+    _totalsCell.totalXsLabel.text    = [NSString stringWithFormat:@"%ld", totalXScore];
+    _totalsCell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", totalScore];
 }
 
 

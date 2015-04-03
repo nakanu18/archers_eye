@@ -63,5 +63,6 @@ typedef enum
 
 - (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore;
 - (NSInteger)getNumberOfArrowsWithMinScore:(NSInteger)minArrowScore andMaxScore:(NSInteger)maxArrowScore;
+- (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore forEnd:(NSInteger)endID;
 
 @end

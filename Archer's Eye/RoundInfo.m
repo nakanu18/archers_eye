@@ -416,6 +416,20 @@
 
 
 
+//------------------------------------------------------------------------------
+- (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore forEnd:(NSInteger)endID
+{
+    NSInteger numArrows = 0;
+
+    for( NSNumber *num in _endScores[endID] )
+    {
+        if( [num integerValue] == arrowScore )
+            ++numArrows;
+    }
+    return numArrows;
+}
+
+
 
 
 

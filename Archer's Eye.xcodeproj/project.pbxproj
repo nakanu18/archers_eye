@@ -13,6 +13,7 @@
 		FA00185B1ACDA723006D8399 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA00185A1ACDA723006D8399 /* libCorePlot-CocoaTouch.a */; };
 		FA285DAC1AC5FE710055BBE3 /* ChooseBowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */; };
 		FA285DAF1AC605C30055BBE3 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */; };
+		FA47A2681ACE2D7100593AD4 /* TotalsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47A2671ACE2D7100593AD4 /* TotalsCell.m */; };
 		FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */; };
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* NewLiveRoundViewController.m */; };
@@ -134,6 +135,8 @@
 		FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBowViewController.m; sourceTree = "<group>"; };
 		FA285DAD1AC605C30055BBE3 /* ReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceSegue.h; sourceTree = "<group>"; };
 		FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceSegue.m; sourceTree = "<group>"; };
+		FA47A2661ACE2D7100593AD4 /* TotalsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalsCell.h; sourceTree = "<group>"; };
+		FA47A2671ACE2D7100593AD4 /* TotalsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalsCell.m; sourceTree = "<group>"; };
 		FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandlerViewController.h; sourceTree = "<group>"; };
 		FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHandlerViewController.m; sourceTree = "<group>"; };
 		FA633DF11AB569880090AD12 /* RoundDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDescCell.h; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 				FA633DF21AB569880090AD12 /* RoundDescCell.m */,
 				FA9927AA1AAD118E0017D069 /* EndCell.h */,
 				FA9927AB1AAD118E0017D069 /* EndCell.m */,
+				FA47A2661ACE2D7100593AD4 /* TotalsCell.h */,
+				FA47A2671ACE2D7100593AD4 /* TotalsCell.m */,
 				FAF52EFD1ABBFCF800B79AB3 /* BowDescCell.h */,
 				FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */,
 			);
@@ -537,6 +542,7 @@
 				FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */,
 				FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */,
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,
+				FA47A2681ACE2D7100593AD4 /* TotalsCell.m in Sources */,
 				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
 				FA0017091ACB867A006D8399 /* ArchersEyeInfo.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,
