@@ -268,11 +268,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     CPTPieChart *pieChart   = [[CPTPieChart alloc] init];
     pieChart.dataSource     = self;
     pieChart.delegate       = self;
-    pieChart.pieRadius      = (self.hostView.bounds.size.height * 0.45) / 2;
+    pieChart.pieRadius      = (self.hostView.bounds.size.height * 0.475) / 2;
     pieChart.identifier     = graph.title;
     pieChart.startAngle     = 0;
     pieChart.sliceDirection = CPTPieDirectionClockwise;
     pieChart.labelOffset    = 0.0f;
+//    pieChart.pieInnerRadius = 25.0f;
     
     // 3 - Create gradient
     CPTGradient *overlayGradient = [[CPTGradient alloc] init];
@@ -298,7 +299,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     // 3 - Configure legend
     theLegend.numberOfColumns   = 1;
-    theLegend.fill              = [CPTFill fillWithColor:[CPTColor lightGrayColor]];
+    theLegend.fill              = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0.75f green:0.75f blue:0.75f alpha:1.0f]];
     theLegend.borderLineStyle   = [CPTLineStyle lineStyle];
     theLegend.cornerRadius      = 5.0;
     
@@ -431,7 +432,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         case 0:     color = [CPTColor orangeColor]; break;
         case 1:     color = [CPTColor whiteColor];  break;
         case 2:     color = [CPTColor blackColor];  break;
-        case 3:     color = [CPTColor blueColor];   break;
+        case 3:     color = [CPTColor colorWithComponentRed:0.3f green:0.3f blue:1.0f alpha:1.0f]; break;
         case 4:     color = [CPTColor redColor];    break;
         case 5:     color = [CPTColor yellowColor]; break;
         default:    color = [CPTColor grayColor];   break;
