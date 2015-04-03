@@ -93,6 +93,8 @@
 #pragma - mark BowName (UITextField)
 
 //------------------------------------------------------------------------------
+// Text editting started.
+//------------------------------------------------------------------------------
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [super textFieldDidBeginEditing:textField];
@@ -102,6 +104,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Text editting ended.
 //------------------------------------------------------------------------------
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -115,6 +119,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Text editting should return.
 //------------------------------------------------------------------------------
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

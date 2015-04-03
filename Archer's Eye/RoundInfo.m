@@ -19,6 +19,8 @@
 @implementation RoundInfo
 
 //------------------------------------------------------------------------------
+// Convert eRoundType to a NSString.
+//------------------------------------------------------------------------------
 + (NSString *)typeAsString:(eRoundType)type
 {
     NSString *names[] = { @"NFAA", @"FITA" };
@@ -29,10 +31,12 @@
 
 
 //------------------------------------------------------------------------------
+// Get the range of a current section.
+//------------------------------------------------------------------------------
 + (NSRange)rangeForSection:(NSInteger)section forType:(eRoundType)roundType
 {
-    NSInteger   fita[][2]   = { {0,0}, {1,2}, {3,4}, {5,6}, {7,8}, {9,10}, {11,11}, };
-    NSInteger   nfaa[][2]   = { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,5},  {11,11}, };
+    NSInteger   fita[][2]   = { {0,0}, {1,2}, {3,4},    {5,6}, {7,8}, {9,10}, {11,11}, };
+    NSInteger   nfaa[][2]   = { {0,0}, {1,1}, {2,2},    {3,3}, {4,4}, {5,5},  {11,11}, };
     NSInteger (*index)[2]   = (roundType == eRoundType_NFAA) ? nfaa : fita;
     NSInteger   min         = index[section][0];
     NSInteger   length      = index[section][1] - index[section][0];
@@ -43,6 +47,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Convert a target section to a NSString.
 //------------------------------------------------------------------------------
 + (NSString *)stringForSection:(NSInteger)section forType:(eRoundType)roundType
 {
@@ -74,6 +80,7 @@
 
 //------------------------------------------------------------------------------
 // Initialize the round.
+//------------------------------------------------------------------------------
 - (id)initWithName:(NSString *)name
            andType:(eRoundType)type
            andDist:(NSInteger)dist
@@ -98,8 +105,10 @@
 
 //------------------------------------------------------------------------------
 // Copy
+//------------------------------------------------------------------------------
 - (id)copyWithZone:(NSZone *)zone
 {
+    // Initialize the variables.
     id obj = [[[self class] alloc] initWithName:self.name
                                         andType:self.type
                                         andDist:self.distance
@@ -110,6 +119,7 @@
     {
         [obj setDate:self.date];
         
+        // Copy the arrow values
         for( NSInteger i = 0; i < _numEnds; ++i )
         {
             for( NSInteger j = 0; j < _numArrowsPerEnd; ++j )
@@ -126,6 +136,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Decode.
 //------------------------------------------------------------------------------
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -146,6 +158,8 @@
 
 
 //------------------------------------------------------------------------------
+// Encode.
+//------------------------------------------------------------------------------
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_name                                          forKey:@"name"];
@@ -161,6 +175,8 @@
 
 
 //------------------------------------------------------------------------------
+// Validate round properties.
+//------------------------------------------------------------------------------
 - (BOOL)isInfoValid
 {
     BOOL ans = NO;
@@ -175,6 +191,7 @@
 
 //------------------------------------------------------------------------------
 // Rebuilds the entire scorecard and clears it
+//------------------------------------------------------------------------------
 - (void)clearScorecard
 {
     [self setEndScores:[NSMutableArray new]];
@@ -195,6 +212,7 @@
 
 //------------------------------------------------------------------------------
 // Find the first empty slot and return it
+//------------------------------------------------------------------------------
 - (CGPoint)getCurrEndAndArrow
 {
     CGPoint position    = CGPointMake( 0, 0 );
@@ -227,6 +245,7 @@
 
 //------------------------------------------------------------------------------
 // Set the score for a specific arrow.
+//------------------------------------------------------------------------------
 - (void)setScore:(NSInteger)score forEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
     if( endID   >= 0  &&  endID   < [_endScores    count]  &&
@@ -240,6 +259,7 @@
 
 //------------------------------------------------------------------------------
 // Get the score for a specific arrow.
+//------------------------------------------------------------------------------
 - (NSInteger)getScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
     NSInteger arrowScore = -1;
@@ -257,6 +277,7 @@
 
 //------------------------------------------------------------------------------
 // Get the score for a specific arrow.
+//------------------------------------------------------------------------------
 - (NSInteger)getRealScoreForEnd:(NSInteger)endID andArrow:(NSInteger)arrowID
 {
     NSInteger realArrowScore = 0;
@@ -275,6 +296,7 @@
 
 //------------------------------------------------------------------------------
 // Get the total score for a specific end.
+//------------------------------------------------------------------------------
 - (NSInteger)getRealScoreForEnd:(NSInteger)endID
 {
     NSInteger endTotal = 0;
@@ -297,6 +319,7 @@
 
 //------------------------------------------------------------------------------
 // Get the running total to this the specified end.
+//------------------------------------------------------------------------------
 - (NSInteger)getRealTotalScoreUpToEnd:(NSInteger)endID
 {
     NSInteger currTotal = 0;
@@ -322,6 +345,7 @@
 
 //------------------------------------------------------------------------------
 // Get the total number of arrows in a round.
+//------------------------------------------------------------------------------
 - (NSInteger)getTotalArrows
 {
     return _numEnds * _numArrowsPerEnd;
@@ -331,6 +355,7 @@
 
 //------------------------------------------------------------------------------
 // Get the total score for the round.
+//------------------------------------------------------------------------------
 - (NSInteger)getRealTotalScore
 {
     NSInteger totalScore = 0;
@@ -351,7 +376,9 @@
 
 
 //------------------------------------------------------------------------------
-- (NSInteger)getMaxArrowScore
+// Get the real max value of an arrow.
+//------------------------------------------------------------------------------
+- (NSInteger)getMaxArrowRealScore
 {
     NSInteger max = 0;
     
@@ -389,6 +416,8 @@
 #pragma mark - Number of arrows with score
 
 //------------------------------------------------------------------------------
+// Get number of arrows with a given score.
+//------------------------------------------------------------------------------
 - (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore
 {
     return [self getNumberOfArrowsWithMinScore:arrowScore andMaxScore:arrowScore];
@@ -396,6 +425,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Get number of arrows within a given score range.
 //------------------------------------------------------------------------------
 - (NSInteger)getNumberOfArrowsWithMinScore:(NSInteger)minArrowScore
                                andMaxScore:(NSInteger)maxArrowScore
@@ -416,6 +447,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Get number of arrows with a given score in a given end.
 //------------------------------------------------------------------------------
 - (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore forEnd:(NSInteger)endID
 {
@@ -454,6 +487,7 @@
 //------------------------------------------------------------------------------
 // Converts an arrow value which could be [-1, 11] and converts it to an actual
 // archery score.
+//------------------------------------------------------------------------------
 - (NSInteger)getRealScoreFromArrowValue:(NSInteger)arrowValue
 {
     NSInteger realValue = 0;

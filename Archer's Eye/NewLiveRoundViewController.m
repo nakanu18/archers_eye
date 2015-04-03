@@ -83,6 +83,8 @@
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------
+// Number of sections.
+//------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [_sectionTypes count];
@@ -90,6 +92,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Section titles.
 //------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
@@ -110,6 +114,8 @@ titleForHeaderInSection:(NSInteger)section
 
 
 //------------------------------------------------------------------------------
+// Number of rows in a section.
+//------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
@@ -128,6 +134,8 @@ titleForHeaderInSection:(NSInteger)section
 
 
 
+//------------------------------------------------------------------------------
+// Build the rows.
 //------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,13 +175,15 @@ titleForHeaderInSection:(NSInteger)section
     cell.name.text      = template.name;
     cell.dist.text      = [NSString stringWithFormat:@"%ld yds", template.distance];
     cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-    cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowScore]];
+    cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowRealScore]];
     
     return cell;
 }
 
 
 
+//------------------------------------------------------------------------------
+// Did select a row.
 //------------------------------------------------------------------------------
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -199,6 +209,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// Will select a row.
+//------------------------------------------------------------------------------
 - (NSIndexPath *)tableView:(UITableView *)tableView
   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -217,6 +229,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// Row accessory button tapped.
+//------------------------------------------------------------------------------
 -                           (void)tableView:(UITableView *)tableView
    accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
@@ -232,6 +246,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 //------------------------------------------------------------------------------
 // Override to support editing the table view.
+//------------------------------------------------------------------------------
 -   (void)tableView:(UITableView *)tableView
  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
   forRowAtIndexPath:(NSIndexPath *)indexPath

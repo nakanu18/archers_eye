@@ -109,6 +109,8 @@
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------
+// Number of sections.
+//------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsNSIntegerableView:(UITableView *)tableView
 {
     return 1;
@@ -117,6 +119,8 @@
 
 
 //------------------------------------------------------------------------------
+// Number of rows in a section.
+//------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _currRound.numEnds + 1;
@@ -124,6 +128,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Build the rows.
 //------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -225,6 +231,7 @@
 
 //------------------------------------------------------------------------------
 // Returns the current end.
+//------------------------------------------------------------------------------
 - (EndCell *)getCurrEndCell
 {
     UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currEndID inSection:0]];
@@ -239,6 +246,7 @@
 
 //------------------------------------------------------------------------------
 // Returns the current arrow label for the current end.
+//------------------------------------------------------------------------------
 - (UILabel *)getCurrArrowLabel
 {
     UILabel *label = nil;
@@ -253,6 +261,7 @@
 
 //------------------------------------------------------------------------------
 // Sets the current arrow and end
+//------------------------------------------------------------------------------
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID
 {
     // Get the score of the currently selected slot
@@ -273,6 +282,7 @@
 
 //------------------------------------------------------------------------------
 // Increments to the next arrow.
+//------------------------------------------------------------------------------
 - (void)incArrowID
 {
     NSInteger numEnds         = _currRound.numEnds;
@@ -302,6 +312,7 @@
 
 //------------------------------------------------------------------------------
 // Decrements to the previous arrow.
+//------------------------------------------------------------------------------
 - (void)decArrowID
 {
 //    NSInteger numEnds         = _currRound.numEnds;
@@ -334,6 +345,7 @@
 
 //------------------------------------------------------------------------------
 // Sets the score for the current arrow.
+//------------------------------------------------------------------------------
 - (void)setScoreForCurrArrow:(NSInteger)score
 {
     if( _currEndID < _currRound.numEnds )
@@ -365,6 +377,7 @@
 
 //------------------------------------------------------------------------------
 // Changes the color of the current arrow according to the score.
+//------------------------------------------------------------------------------
 - (void)setVisualScore:(NSInteger)score forLabel:(UILabel *)label
 {
     UIButton *buttonTemplate;
@@ -412,6 +425,7 @@
 
 //------------------------------------------------------------------------------
 // Nulls out the current arrow.
+//------------------------------------------------------------------------------
 - (void)eraseScoreForCurrArrow
 {
 //    EndCell *prevCell  = [self getCurrEndCell];
@@ -441,6 +455,7 @@
 
 //------------------------------------------------------------------------------
 // Updates the score totals for the current end.
+//------------------------------------------------------------------------------
 - (void)updateTotalScores
 {
     EndCell     *cell                = [self getCurrEndCell];

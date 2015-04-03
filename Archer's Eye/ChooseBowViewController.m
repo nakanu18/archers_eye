@@ -66,6 +66,8 @@
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------
+// Number of sections.
+//------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -73,6 +75,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Number of rows in a section.
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
@@ -82,6 +86,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Build the rows.
 //------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,6 +104,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Did select a row.
 //------------------------------------------------------------------------------
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath

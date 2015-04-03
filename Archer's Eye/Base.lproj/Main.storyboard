@@ -19,8 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-vY-XU2">
-                                <rect key="frame" x="285" y="185" width="30" height="30"/>
-                                <state key="normal" title="Play">
+                                <rect key="frame" x="239" y="185" width="121" height="30"/>
+                                <state key="normal" title="Bows and Arrows">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -28,8 +28,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v99-OK-F4s">
-                                <rect key="frame" x="274" y="285" width="51" height="30"/>
-                                <state key="normal" title="Graphs">
+                                <rect key="frame" x="271" y="285" width="57" height="30"/>
+                                <state key="normal" title="Analysis">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

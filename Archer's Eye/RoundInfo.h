@@ -10,10 +10,21 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "BowInfo.h"
 
+// NOTE: values stored in _endScores correspond to the values above in
+// eRoundType.
+// NFAA is [0, 5].
+// FITA is [0, 10].
+// -1 means no arrow scored.
+// 11 means bullseye.
+//
+// Use any method with Real in it to get the actual real life score.  For
+// example, bullseyes aren't worth more points than the max.  A bullseye should
+// return a 5 or 10 for a Real score.
+
 typedef enum
 {
-    eRoundType_NFAA,    // [-1, 6]  -> [no score, bullseye]
-    eRoundType_FITA,    // [-1, 11] -> [no score, bullseye]
+    eRoundType_NFAA,    // [-1, 5]  -> [no score, max] - 11 is bullseye
+    eRoundType_FITA,    // [-1, 10] -> [no score, max] - 11 is bullseye
     eRoundType_Count,
 } eRoundType;
 
@@ -59,7 +70,7 @@ typedef enum
 - (NSInteger)getRealTotalScoreUpToEnd:(NSInteger)endID;
 - (NSInteger)getTotalArrows;
 - (NSInteger)getRealTotalScore;
-- (NSInteger)getMaxArrowScore;
+- (NSInteger)getMaxArrowRealScore;
 
 - (NSInteger)getNumberOfArrowsWithScore:(NSInteger)arrowScore;
 - (NSInteger)getNumberOfArrowsWithMinScore:(NSInteger)minArrowScore andMaxScore:(NSInteger)maxArrowScore;

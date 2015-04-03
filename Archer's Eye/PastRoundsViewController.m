@@ -71,6 +71,8 @@
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------
+// Number of sections.
+//------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -79,6 +81,8 @@
 
 
 //------------------------------------------------------------------------------
+// Number of rows for a section.
+//------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.archersEyeInfo.pastRounds count];
@@ -86,6 +90,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Build the rows.
 //------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,13 +107,15 @@
     cell.dist.text  = [NSString stringWithFormat:@"%ld yds", info.distance];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
     cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
-    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", totalScore, totalArrows * [info getMaxArrowScore]];
+    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", totalScore, totalArrows * [info getMaxArrowRealScore]];
     
     return cell;
 }
 
 
 
+//------------------------------------------------------------------------------
+// Did select a row.
 //------------------------------------------------------------------------------
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,6 +127,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 //------------------------------------------------------------------------------
 // Override to support editing the table view.
+//------------------------------------------------------------------------------
 -   (void)tableView:(UITableView *)tableView
  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
   forRowAtIndexPath:(NSIndexPath *)indexPath

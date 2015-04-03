@@ -93,6 +93,8 @@
 #pragma - mark BowName (UITextField)
 
 //------------------------------------------------------------------------------
+// Text editting did begin.
+//------------------------------------------------------------------------------
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [super textFieldDidBeginEditing:textField];
@@ -102,6 +104,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Text editting did end.
 //------------------------------------------------------------------------------
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -115,6 +119,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Text editting should return.
 //------------------------------------------------------------------------------
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -260,6 +266,8 @@
 #pragma mark - Picker
 
 //------------------------------------------------------------------------------
+// Number of sections.
+//------------------------------------------------------------------------------
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -267,6 +275,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Number of rows in a section.
 //------------------------------------------------------------------------------
 - (NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
@@ -277,6 +287,8 @@ numberOfRowsInComponent:(NSInteger)component
 
 
 //------------------------------------------------------------------------------
+// Title for a row in a section.
+//------------------------------------------------------------------------------
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
@@ -286,6 +298,8 @@ numberOfRowsInComponent:(NSInteger)component
 
 
 
+//------------------------------------------------------------------------------
+// Did select a row.
 //------------------------------------------------------------------------------
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row

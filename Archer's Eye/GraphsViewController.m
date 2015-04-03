@@ -30,22 +30,6 @@
 
 
 //------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-
-//------------------------------------------------------------------------------
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    // The plot is initialized here, since the view bounds have not transformed for landscape till now
-}
-
-
-
-//------------------------------------------------------------------------------
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -85,6 +69,8 @@
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------
+// Number of sections.
+//------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -92,6 +78,8 @@
 
 
 
+//------------------------------------------------------------------------------
+// Title for a section.
 //------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
@@ -102,6 +90,8 @@ titleForHeaderInSection:(NSInteger)section
 
 
 //------------------------------------------------------------------------------
+// Number of rows in a section.
+//------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.archersEyeInfo.pastRounds count];
@@ -109,6 +99,8 @@ titleForHeaderInSection:(NSInteger)section
 
 
 
+//------------------------------------------------------------------------------
+// Build the rows.
 //------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,13 +116,15 @@ titleForHeaderInSection:(NSInteger)section
     cell.dist.text  = [NSString stringWithFormat:@"%ld yds", info.distance];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
     cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
-    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", totalScore, totalArrows * [info getMaxArrowScore]];
+    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", totalScore, totalArrows * [info getMaxArrowRealScore]];
     
     return cell;
 }
 
 
 
+//------------------------------------------------------------------------------
+// Did select a row.
 //------------------------------------------------------------------------------
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -182,6 +176,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - Chart behavior
 
 //------------------------------------------------------------------------------
+// Create a new plot.
+//------------------------------------------------------------------------------
 - (void)initPlot
 {
     if( self.currPastRound != nil )
@@ -203,6 +199,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// Configure the holding area.
+//------------------------------------------------------------------------------
 - (void)configureHost
 {
     // 1 - Set up view frame
@@ -222,6 +220,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 
+//------------------------------------------------------------------------------
+// Configure some general values.
 //------------------------------------------------------------------------------
 - (void)configureGraph
 {
@@ -255,6 +255,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// Configure the piechart.
+//------------------------------------------------------------------------------
 - (void)configureChart
 {
     // 1 - Get reference to graph
@@ -264,7 +266,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     CPTPieChart *pieChart   = [[CPTPieChart alloc] init];
     pieChart.dataSource     = self;
     pieChart.delegate       = self;
-    pieChart.pieRadius      = (self.hostView.bounds.size.height * 0.475) / 2;
+    pieChart.pieRadius      = (self.hostView.bounds.size.width * 0.475) / 2;
     pieChart.identifier     = graph.title;
     pieChart.startAngle     = 0;
     pieChart.sliceDirection = CPTPieDirectionClockwise;
@@ -284,6 +286,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 
+//------------------------------------------------------------------------------
+// Configure the legend.
 //------------------------------------------------------------------------------
 - (void)configureLegend
 {
@@ -328,6 +332,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - CPTPlotDataSource methods
 
 //------------------------------------------------------------------------------
+// PieChart - number of sections.
+//------------------------------------------------------------------------------
 - (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
     return 7;
@@ -335,6 +341,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 
+//------------------------------------------------------------------------------
+// PieChart - values for each section.
 //------------------------------------------------------------------------------
 - (NSNumber *)numberForPlot:(CPTPlot *)plot
                       field:(NSUInteger)fieldEnum
@@ -355,6 +363,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 
+//------------------------------------------------------------------------------
+// PieChart - data label for each section.
 //------------------------------------------------------------------------------
 - (CPTLayer *)dataLabelForPlot:(CPTPlot *)plot
                    recordIndex:(NSUInteger)index
@@ -390,6 +400,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// Legend - build each row.
+//------------------------------------------------------------------------------
 - (NSString *)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
 {
     return [RoundInfo stringForSection:index forType:_currPastRound.type];
@@ -419,22 +431,41 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 //------------------------------------------------------------------------------
+// PieChart - colors
+//------------------------------------------------------------------------------
 - (CPTFill *)sliceFillForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
 {
     CPTColor *color;
     CPTColor *endColor = [CPTColor whiteColor];
     
-    switch( index )
+//    if( _currPastRound.type == eRoundType_FITA )
     {
-        case 0:     color = [CPTColor magentaColor]; break;
-        case 1:     color = [CPTColor whiteColor];   break;
-        case 2:     color = [CPTColor blackColor];   break;
-        case 3:     color = [CPTColor colorWithComponentRed:0.3f green:0.3f blue:1.0f alpha:1.0f]; break;
-        case 4:     color = [CPTColor redColor];     break;
-        case 5:     color = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:1.0f]; break;
-        case 6:     color = [CPTColor colorWithComponentRed:0.7f green:0.7f blue:0.0f alpha:1.0f]; break;
-        default:    color = [CPTColor grayColor];    break;
+        switch( index )
+        {
+            case 0:     color = [CPTColor magentaColor]; break;
+            case 1:     color = [CPTColor whiteColor];   break;
+            case 2:     color = [CPTColor blackColor];   break;
+            case 3:     color = [CPTColor colorWithComponentRed:0.3f green:0.3f blue:1.0f alpha:1.0f]; break;
+            case 4:     color = [CPTColor redColor];     break;
+            case 5:     color = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:1.0f]; break;
+            case 6:     color = [CPTColor colorWithComponentRed:0.7f green:0.7f blue:0.0f alpha:1.0f]; break;
+            default:    color = [CPTColor grayColor];    break;
+        }
     }
+//    else if( _currPastRound.type == eRoundType_NFAA )
+//    {
+//        switch( index )
+//        {
+//            case 0:     color = [CPTColor magentaColor]; break;
+//            case 1:     color = [CPTColor colorWithComponentRed:0.0f green:0.0f blue:1.0f alpha:1.0f]; break;
+//            case 2:     color = [CPTColor colorWithComponentRed:0.2f green:0.2f blue:1.0f alpha:1.0f]; break;
+//            case 3:     color = [CPTColor colorWithComponentRed:0.4f green:0.4f blue:1.0f alpha:1.0f]; break;
+//            case 4:     color = [CPTColor colorWithComponentRed:0.6f green:0.6f blue:1.0f alpha:1.0f]; break;
+//            case 5:     color = [CPTColor colorWithComponentRed:0.8f green:0.8f blue:1.0f alpha:1.0f]; break;
+//            case 6:     color = [CPTColor colorWithComponentRed:1.0f green:2.0f blue:1.0f alpha:1.0f]; break;
+//            default:    color = [CPTColor grayColor];    break;
+//        }
+//    }
     endColor = color;
     
     return [CPTFill fillWithGradient:[CPTGradient gradientWithBeginningColor:color endingColor:endColor]];
