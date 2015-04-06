@@ -20,24 +20,22 @@
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
     self.favRounds      = [self.archersEyeInfo arrayOfFavoritePastRounds];
     self.favRoundID     = -1;
-    
-    [super viewDidLoad];
 }
 
 
 
 //------------------------------------------------------------------------------
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillLayoutSubviews
 {
-    // Reload the data;  This is in case we created a live round and need to add
-    // that into our list
-    [self.tableView reloadData];
+    [super viewWillLayoutSubviews];
     
-    [super viewWillAppear:animated];
+    [self initPlot];
 }
 
 
@@ -251,7 +249,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     graph.titleDisplacement         = CGPointMake(0.0f, -12.0f);
     
     // 4 - Set theme
-    self.selectedTheme = [CPTTheme themeNamed:kCPTSlateTheme];
+    self.selectedTheme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
     [graph applyTheme:self.selectedTheme];
 }
 
@@ -281,7 +279,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     float     xStart         = -0.75f;
     float     xLength        = [self.favRounds[_favRoundID] count] - xStart;
     float     yStart         = -50.0f;
-    float     yLength        = totalArrows * maxArrowScore - yStart;
+    float     yLength        = totalArrows * maxArrowScore - (2*yStart);
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( xStart ) length:CPTDecimalFromFloat( xLength )];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( yStart ) length:CPTDecimalFromFloat( yLength )];
 
@@ -315,7 +313,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     axisTitleStyle.fontSize             = 14.0f;
     CPTMutableLineStyle *axisLineStyle  = [CPTMutableLineStyle lineStyle];
     axisLineStyle.lineWidth             = 2.0f;
-    axisLineStyle.lineColor             = [CPTColor blackColor];
+    axisLineStyle.lineColor             = [CPTColor grayColor];
     CPTMutableTextStyle *axisTextStyle  = [[CPTMutableTextStyle alloc] init];
     axisTextStyle.color                 = [CPTColor whiteColor];
     axisTextStyle.fontName              = @"Helvetica-Bold";
@@ -373,8 +371,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     y.majorTickLength    = 4.0f;
     y.minorTickLength    = 2.0f;
     y.tickDirection      = CPTSignPositive;
-    NSInteger     majorIncrement  = 100;
-    NSInteger     minorIncrement  = 50;
+    NSInteger     majorIncrement  = 50;
+    NSInteger     minorIncrement  = 25;
     CGFloat       yMax            = [self.favRounds[self.favRoundID][0] getTotalArrows] * [self.favRounds[self.favRoundID][0] getMaxArrowRealScore];
     NSMutableSet *yLabels         = [NSMutableSet set];
     NSMutableSet *yMajorLocations = [NSMutableSet set];
