@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface GraphsViewController : UIViewController <CPTPlotDataSource, CPTPieChartDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface PointsBreakdownViewController : UIViewController <CPTPlotDataSource, CPTPieChartDataSource, UITableViewDelegate, UITableViewDataSource>
 {
     
 }
@@ -20,8 +20,8 @@
 @property (nonatomic, weak)   IBOutlet  UITableView         *tableView;
 @property (nonatomic, weak)   IBOutlet  UIView              *graphView;
 
-@property (nonatomic, strong) CPTGraphHostingView *hostView;
-@property (nonatomic, strong) CPTTheme            *selectedTheme;
+@property (nonatomic, strong)           CPTGraphHostingView *hostView;
+@property (nonatomic, strong)           CPTTheme            *selectedTheme;
 
 
 

@@ -136,4 +136,21 @@
     return ans;
 }
 
+
+
+//------------------------------------------------------------------------------
+// Determines if two rounds are of the same type.
+//------------------------------------------------------------------------------
+- (BOOL)isTypeOfBow:(BowInfo *)rhs
+{
+    BOOL ans = NO;
+    
+    if( [_name isEqualToString:rhs.name]    &&
+        _type       == rhs.type             &&
+        _drawWeight == rhs.drawWeight )
+        ans = YES;
+    
+    return ans;
+}
+
 @end

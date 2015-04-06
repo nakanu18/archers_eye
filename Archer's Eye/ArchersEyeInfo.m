@@ -390,4 +390,127 @@
     _currBowCategory = eBowCategory_None;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Arrays for graphs
+
+//------------------------------------------------------------------------------
+// Creates a 2D array of commonly used rounds.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)arrayOfFavoritePastRounds
+{
+    NSMutableArray *favRounds       = [NSMutableArray new];
+    NSMutableArray *templateRounds  = [NSMutableArray new];
+    NSMutableArray *usedBows        = [self arrayOfUsedBows];
+    
+    // Build a mega array of common and custom rounds.  For each round, make one
+    // for each bow used.
+    for( RoundInfo *round in _customRounds )
+    {
+        for( BowInfo *bow in usedBows )
+        {
+            RoundInfo *newRound = [round copy];
+            
+            newRound.bow = bow;
+            [templateRounds addObject:newRound];
+        }
+    }
+    
+    for( RoundInfo *round in _commonRounds )
+    {
+        for( BowInfo *bow in usedBows )
+        {
+            RoundInfo *newRound = [round copy];
+            
+            newRound.bow = bow;
+            [templateRounds addObject:newRound];
+        }
+    }
+    
+    
+    
+    // Sort the past rounds into favRounds based on the type and bow type
+    for( RoundInfo *templateRound in templateRounds )
+    {
+        NSMutableArray *newFav = [NSMutableArray new];
+        
+        for( RoundInfo *pastRound in _pastRounds )
+        {
+            if( [templateRound     isTypeOfRound:pastRound]  &&
+                [templateRound.bow isTypeOfBow:pastRound.bow] )
+                [newFav addObject:pastRound];
+        }
+        [favRounds addObject:newFav];
+    }
+    
+    
+    
+    // Remove any rounds that are played less than x amount
+    for( NSInteger i = 0; i < [favRounds count]; ++i )
+    {
+        NSMutableArray *favRound = favRounds[i];
+        
+//        if( [favRound count] > 0 )
+//            NSLog( @"%@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
+        
+        if( [favRound count] < 2 )
+        {
+            [favRounds removeObject:favRound];
+            --i;
+        }
+    }
+    
+    return favRounds;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Creates an array of bows used in a given set of rounds.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)arrayOfUsedBows
+{
+    NSMutableArray *usedBows = [NSMutableArray new];
+    
+    // Parse through all past rounds and record each unique bow used.
+    for( RoundInfo *pastRound in _pastRounds )
+    {
+        BOOL uniqueBow = YES;
+        
+        for( BowInfo *usedBow in usedBows )
+        {
+            if( [usedBow isTypeOfBow:pastRound.bow] )
+            {
+                uniqueBow = NO;
+                break;
+            }
+        }
+        
+        if( uniqueBow )
+            [usedBows addObject:pastRound.bow];
+    }
+    
+    if( [usedBows count] == 0 )
+        usedBows = nil;
+    
+    return usedBows;
+}
+
 @end

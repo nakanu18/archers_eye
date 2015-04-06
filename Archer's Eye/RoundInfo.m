@@ -190,6 +190,25 @@
 
 
 //------------------------------------------------------------------------------
+// Determines if two rounds are of the same type.
+//------------------------------------------------------------------------------
+- (BOOL)isTypeOfRound:(RoundInfo *)rhs
+{
+    BOOL ans = NO;
+    
+    if( [_name isEqualToString:rhs.name]    &&
+        _type            == rhs.type        &&
+        _distance        == rhs.distance    &&
+        _numEnds         == rhs.numEnds     &&
+        _numArrowsPerEnd == rhs.numArrowsPerEnd )
+        ans = YES;
+    
+    return ans;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Rebuilds the entire scorecard and clears it
 //------------------------------------------------------------------------------
 - (void)clearScorecard

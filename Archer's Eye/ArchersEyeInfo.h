@@ -69,5 +69,8 @@ typedef enum
 - (void)saveCurrBow;
 - (void)discardCurrBow;
 
+- (NSMutableArray *)arrayOfFavoritePastRounds;
+- (NSMutableArray *)arrayOfUsedBows;
+
 @end
 

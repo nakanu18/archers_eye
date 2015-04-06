@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		FA0017091ACB867A006D8399 /* ArchersEyeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0017081ACB867A006D8399 /* ArchersEyeInfo.m */; };
 		FA00175D1ACC7DD9006D8399 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA00175C1ACC7DD9006D8399 /* QuartzCore.framework */; };
-		FA0017B91ACC868F006D8399 /* GraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0017B81ACC868F006D8399 /* GraphsViewController.m */; };
+		FA0017B91ACC868F006D8399 /* PointsBreakdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0017B81ACC868F006D8399 /* PointsBreakdownViewController.m */; };
 		FA00185B1ACDA723006D8399 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA00185A1ACDA723006D8399 /* libCorePlot-CocoaTouch.a */; };
+		FA05D8AA1AD07C7800F5F36C /* ProgressRoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA05D8A91AD07C7800F5F36C /* ProgressRoundsViewController.m */; };
 		FA285DAC1AC5FE710055BBE3 /* ChooseBowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */; };
 		FA285DAF1AC605C30055BBE3 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA285DAE1AC605C30055BBE3 /* ReplaceSegue.m */; };
 		FA47A2681ACE2D7100593AD4 /* TotalsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47A2671ACE2D7100593AD4 /* TotalsCell.m */; };
@@ -50,8 +51,8 @@
 		FA0017071ACB867A006D8399 /* ArchersEyeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchersEyeInfo.h; sourceTree = "<group>"; };
 		FA0017081ACB867A006D8399 /* ArchersEyeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchersEyeInfo.m; sourceTree = "<group>"; };
 		FA00175C1ACC7DD9006D8399 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FA0017B71ACC868F006D8399 /* GraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsViewController.h; sourceTree = "<group>"; };
-		FA0017B81ACC868F006D8399 /* GraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphsViewController.m; sourceTree = "<group>"; };
+		FA0017B71ACC868F006D8399 /* PointsBreakdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsBreakdownViewController.h; sourceTree = "<group>"; };
+		FA0017B81ACC868F006D8399 /* PointsBreakdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsBreakdownViewController.m; sourceTree = "<group>"; };
 		FA00180C1ACDA723006D8399 /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
 		FA00180D1ACDA723006D8399 /* CPTAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnimation.h; sourceTree = "<group>"; };
 		FA00180E1ACDA723006D8399 /* CPTAnimationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnimationOperation.h; sourceTree = "<group>"; };
@@ -131,6 +132,8 @@
 		FA0018581ACDA723006D8399 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		FA0018591ACDA723006D8399 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		FA00185A1ACDA723006D8399 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		FA05D8A81AD07C7800F5F36C /* ProgressRoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressRoundsViewController.h; sourceTree = "<group>"; };
+		FA05D8A91AD07C7800F5F36C /* ProgressRoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressRoundsViewController.m; sourceTree = "<group>"; };
 		FA285DAA1AC5FE710055BBE3 /* ChooseBowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBowViewController.h; sourceTree = "<group>"; };
 		FA285DAB1AC5FE710055BBE3 /* ChooseBowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBowViewController.m; sourceTree = "<group>"; };
 		FA285DAD1AC605C30055BBE3 /* ReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceSegue.h; sourceTree = "<group>"; };
@@ -292,6 +295,17 @@
 			path = CorePlotHeaders;
 			sourceTree = "<group>";
 		};
+		FA05D8A71AD07BF600F5F36C /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				FA0017B71ACC868F006D8399 /* PointsBreakdownViewController.h */,
+				FA0017B81ACC868F006D8399 /* PointsBreakdownViewController.m */,
+				FA05D8A81AD07C7800F5F36C /* ProgressRoundsViewController.h */,
+				FA05D8A91AD07C7800F5F36C /* ProgressRoundsViewController.m */,
+			);
+			name = Graphs;
+			sourceTree = "<group>";
+		};
 		FA633DF01AB5691C0090AD12 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,11 +391,10 @@
 				FA633DF01AB5691C0090AD12 /* Cells */,
 				FA8DEEBE1AB94279006CED5A /* Rounds */,
 				FA92B7C21ABDF7C60075EF1F /* Bows */,
+				FA05D8A71AD07BF600F5F36C /* Graphs */,
 				FA92B7C61ABE05A60075EF1F /* Misc */,
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
-				FA0017B71ACC868F006D8399 /* GraphsViewController.h */,
-				FA0017B81ACC868F006D8399 /* GraphsViewController.m */,
 				FA9927811AABA1510017D069 /* Images.xcassets */,
 				FA9927831AABA1510017D069 /* LaunchScreen.xib */,
 				FA633DFD1AB5768B0090AD12 /* Main.storyboard */,
@@ -532,7 +545,8 @@
 			files = (
 				FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */,
 				FA285DAC1AC5FE710055BBE3 /* ChooseBowViewController.m in Sources */,
-				FA0017B91ACC868F006D8399 /* GraphsViewController.m in Sources */,
+				FA05D8AA1AD07C7800F5F36C /* ProgressRoundsViewController.m in Sources */,
+				FA0017B91ACC868F006D8399 /* PointsBreakdownViewController.m in Sources */,
 				FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */,

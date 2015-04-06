@@ -60,6 +60,7 @@ typedef enum
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
 - (BOOL)isInfoValid;
+- (BOOL)isTypeOfRound:(RoundInfo *)rhs;
 - (void)clearScorecard;
 - (CGPoint)getCurrEndAndArrow;  // y = end, x = arrow
 

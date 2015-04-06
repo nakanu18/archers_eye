@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
-#import "GraphsViewController.h"
+#import "PointsBreakdownViewController.h"
 #import "RoundDescCell.h"
 
-@interface GraphsViewController ()
+@interface PointsBreakdownViewController ()
 
 @end
 
 
 
-@implementation GraphsViewController
+@implementation PointsBreakdownViewController
 
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -186,7 +186,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         if( self.hostView != nil )
         {
             [self.hostView removeFromSuperview];
-            self.hostView = nil;
+             self.hostView = nil;
         }
         
         [self configureHost];
@@ -248,7 +248,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     graph.titleDisplacement         = CGPointMake(0.0f, -12.0f);
     
     // 4 - Set theme
-    self.selectedTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    self.selectedTheme = [CPTTheme themeNamed:kCPTSlateTheme];
     [graph applyTheme:self.selectedTheme];
 }
 
@@ -375,7 +375,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if( !labelText )
     {
         labelText       = [[CPTMutableTextStyle alloc] init];
-        labelText.color = [CPTColor grayColor];
+        labelText.color = [CPTColor blackColor];
     }
     
     // 2 - Calculate the number of arrows
