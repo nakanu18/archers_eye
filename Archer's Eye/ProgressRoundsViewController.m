@@ -26,6 +26,8 @@
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
     self.favRounds      = [self.archersEyeInfo arrayOfFavoritePastRounds];
     self.favRoundID     = -1;
+    
+    [self.archersEyeInfo jsonData];
 }
 
 

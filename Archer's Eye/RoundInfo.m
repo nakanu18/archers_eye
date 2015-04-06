@@ -175,6 +175,30 @@
 
 
 //------------------------------------------------------------------------------
+// Fill all properties into a dictionary.
+//------------------------------------------------------------------------------
+- (NSDictionary *)dictionary
+{
+    NSDateFormatter *format = [NSDateFormatter new];
+    [format setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
+    
+    NSDictionary *dict = @{
+                           @"name"              : self.name,
+                           @"type"              : [NSNumber numberWithInteger:self.type],
+                           @"distance"          : [NSNumber numberWithInteger:self.distance],
+                           @"numEnds"           : [NSNumber numberWithInteger:self.numEnds],
+                           @"numArrowsPerEnd"   : [NSNumber numberWithInteger:self.numArrowsPerEnd],
+                           @"endScores"         : self.endScores,
+                           @"date"              : [format stringFromDate:self.date],
+                           @"bow"               : [self.bow dictionary],
+                           };
+    
+    return dict;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Validate round properties.
 //------------------------------------------------------------------------------
 - (BOOL)isInfoValid

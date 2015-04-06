@@ -124,6 +124,25 @@
 
 
 //------------------------------------------------------------------------------
+// Fill all properties into a dictionary.
+//------------------------------------------------------------------------------
+- (NSDictionary *)dictionary
+{
+    NSDictionary *dict = @{
+                           @"name"              : self.name,
+                           @"type"              : [NSNumber numberWithInteger:self.type],
+                           @"drawWeight"        : [NSNumber numberWithInteger:self.drawWeight],
+                           @"aim"               : [NSNumber numberWithInteger:self.aim],
+                           @"clicker"           : [NSNumber numberWithBool:self.clicker],
+                           @"stabilizers"       : [NSNumber numberWithBool:self.stabilizers],
+                           };
+    
+    return dict;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Validate bow values.
 //------------------------------------------------------------------------------
 - (BOOL)isInfoValid

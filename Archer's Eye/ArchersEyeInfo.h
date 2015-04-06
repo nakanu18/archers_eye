@@ -51,6 +51,7 @@ typedef enum
 - (void)loadData;
 - (void)saveData;
 - (void)clearData;
+- (NSData *)jsonData;
 
 - (void)startLiveRoundFromTemplate:(RoundInfo *)roundTemplate;
 - (void)endLiveRoundAndDiscard;

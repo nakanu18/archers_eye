@@ -59,6 +59,8 @@ typedef enum
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
+- (NSDictionary *)dictionary;
+
 - (BOOL)isInfoValid;
 - (BOOL)isTypeOfRound:(RoundInfo *)rhs;
 - (void)clearScorecard;

@@ -113,6 +113,31 @@
 
 
 
+//------------------------------------------------------------------------------
+// Returns data in json format.
+//------------------------------------------------------------------------------
+- (NSData *)jsonData
+{
+    NSData          *json;
+    NSMutableArray  *array = [NSMutableArray new];
+    
+    for( RoundInfo *pastRound in self.pastRounds )
+    {
+        [array addObject:[pastRound dictionary]];
+    }
+    
+    json = [NSJSONSerialization dataWithJSONObject:array
+                                           options:NSJSONWritingPrettyPrinted
+                                             error:nil];
+
+    
+//    NSLog( @"%@", [[NSString alloc] initWithData:json encoding:NSASCIIStringEncoding] );
+    
+    return json;
+}
+
+
+
 
 
 
