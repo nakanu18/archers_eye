@@ -22,5 +22,6 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *bowName;
 @property (nonatomic, weak) IBOutlet UILabel *bowType;
+@property (nonatomic, weak) IBOutlet UILabel *bowWeight;
 
 @end

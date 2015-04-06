@@ -119,6 +119,7 @@ titleForHeaderInSection:(NSInteger)section
     cell.score.text     = [NSString stringWithFormat:@"%ld pts", info.numEnds * info.numArrowsPerEnd * [info getMaxArrowRealScore]];
     cell.bowName.text   = info.bow.name;
     cell.bowType.text   = [BowInfo typeAsString:info.bow.type];
+    cell.bowWeight.text = [NSString stringWithFormat:@"%ld lbs", info.bow.drawWeight];
     
     return cell;
 }
