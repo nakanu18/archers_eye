@@ -249,7 +249,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     graph.titleDisplacement         = CGPointMake(0.0f, -12.0f);
     
     // 4 - Set theme
-    self.selectedTheme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
+    self.selectedTheme = [CPTTheme themeNamed:kCPTPlainBlackTheme];
     [graph applyTheme:self.selectedTheme];
 }
 
@@ -268,18 +268,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     CPTScatterPlot *scatterPlot      = [[CPTScatterPlot alloc] init];
     CPTColor       *scatterPlotColor = [CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:1.0f];
     
-    scatterPlot.dataSource = self;
-    scatterPlot.delegate   = self;
-    scatterPlot.identifier = @"DATA";
+    scatterPlot.dataSource      = self;
+    scatterPlot.delegate        = self;
+    scatterPlot.identifier      = @"DATA";
+    scatterPlot.areaFill        = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:0.3f]];
+    scatterPlot.areaBaseValue   = CPTDecimalFromInteger( 0 );
     [graph addPlot:scatterPlot toPlotSpace:plotSpace];
     
     // 3 - Set up plot space
     NSInteger totalArrows    = [self.favRounds[self.favRoundID][0] getTotalArrows];
     NSInteger maxArrowScore  = [self.favRounds[self.favRoundID][0] getMaxArrowRealScore];
     float     xStart         = -0.75f;
-    float     xLength        = [self.favRounds[_favRoundID] count] - xStart;
+    float     xLength        = [self.favRounds[_favRoundID] count] - (0.25f*xStart);
     float     yStart         = -50.0f;
-    float     yLength        = totalArrows * maxArrowScore - (2*yStart);
+    float     yLength        = totalArrows * maxArrowScore - (1.4*yStart);
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( xStart ) length:CPTDecimalFromFloat( xLength )];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( yStart ) length:CPTDecimalFromFloat( yLength )];
 
@@ -322,8 +324,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     tickLineStyle.lineColor             = [CPTColor lightGrayColor];
     tickLineStyle.lineWidth             = 2.0f;
     CPTMutableLineStyle *gridLineStyle  = [CPTMutableLineStyle lineStyle];
-    tickLineStyle.lineColor             = [CPTColor lightGrayColor];
-    tickLineStyle.lineWidth             = 1.0f;
+    gridLineStyle.lineColor             = [CPTColor darkGrayColor];
+    gridLineStyle.lineWidth             = 1.0f;
     
     // 2 - Get axis set
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.hostView.hostedGraph.axisSet;
@@ -451,6 +453,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         num = @([self.favRounds[_favRoundID][idx] getRealTotalScore]);
     
     return num;
+}
+
+
+
+//------------------------------------------------------------------------------
+// ScatterPlot - data label for each section.
+//------------------------------------------------------------------------------
+- (CPTLayer *)dataLabelForPlot:(CPTPlot *)plot
+                   recordIndex:(NSUInteger)index
+{
+    static CPTMutableTextStyle *labelText = nil;
+    
+    if( !labelText )
+    {
+        labelText       = [[CPTMutableTextStyle alloc] init];
+        labelText.color = [CPTColor greenColor];
+    }
+    
+    NSString *labelValue = [NSString stringWithFormat:@"%ld", [self.favRounds[self.favRoundID][index] getRealTotalScore]];
+    
+    return [[CPTTextLayer alloc] initWithText:labelValue style:labelText];
 }
 
 @end

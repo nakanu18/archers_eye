@@ -69,6 +69,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qVb-GI-mzl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Oeq-hC-I2e" kind="relationship" relationship="rootViewController" id="upc-ag-KoX"/>
@@ -2326,6 +2327,9 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="504" y="23" width="80" height="16.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
