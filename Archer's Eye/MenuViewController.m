@@ -55,6 +55,8 @@
 
 
 
+#pragma mark - Mail
+
 //------------------------------------------------------------------------------
 - (IBAction)exportSaveData:(id)sender
 {
@@ -63,13 +65,29 @@
     if( data != nil )
     {
         MFMailComposeViewController *picker = [MFMailComposeViewController new];
+        NSString                     *body;
+        
+        body = @"The attached .aed file is save data for Archer's Eye.\n\nMail this to yourself for safe keeping.\n\nTo load, open this mail on your iOS device.  Press and hold on the .aed file.  From the list of apps that appears, pick Archer's Eye.";
         
         [picker setSubject:@"Archer's Eye Data"];
-        [picker addAttachmentData:data mimeType:@"application/archerseye" fileName:@"ArchersEye.json"];
+        [picker addAttachmentData:data mimeType:@"application/archerseye" fileName:@"ArchersEye.aed"];
         [picker setToRecipients:[NSArray array]];
-        [picker setMessageBody:@"Body" isHTML:NO];
+        [picker setMessageBody:body isHTML:NO];
         [picker setMailComposeDelegate:self];
+        
+        [self presentViewController:picker animated:YES completion:nil];
     }
+}
+
+
+
+
+//------------------------------------------------------------------------------
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
