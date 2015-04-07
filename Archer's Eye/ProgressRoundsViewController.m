@@ -27,7 +27,7 @@
     self.favRounds      = [self.archersEyeInfo arrayOfFavoritePastRounds];
     self.favRoundID     = -1;
     
-    [self.archersEyeInfo jsonData];
+//    [self.archersEyeInfo jsonData];
 }
 
 
@@ -116,12 +116,12 @@ titleForHeaderInSection:(NSInteger)section
     RoundInfo       *info       = favRound[0];
     
     cell.name.text      = info.name;
-    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", info.distance];
-    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
-    cell.score.text     = [NSString stringWithFormat:@"%ld pts", info.numEnds * info.numArrowsPerEnd * [info getMaxArrowRealScore]];
+    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
+    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
+    cell.score.text     = [NSString stringWithFormat:@"%ld pts", (long)info.numEnds * (long)info.numArrowsPerEnd * [info getMaxArrowRealScore]];
     cell.bowName.text   = info.bow.name;
     cell.bowType.text   = [BowInfo typeAsString:info.bow.type];
-    cell.bowWeight.text = [NSString stringWithFormat:@"%ld lbs", info.bow.drawWeight];
+    cell.bowWeight.text = [NSString stringWithFormat:@"%ld lbs", (long)info.bow.drawWeight];
     
     return cell;
 }

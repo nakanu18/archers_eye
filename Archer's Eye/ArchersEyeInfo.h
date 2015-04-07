@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Defines.h"
 #import "RoundInfo.h"
 #import "BowInfo.h"
 
@@ -48,10 +49,12 @@ typedef enum
 
 
 - (void)loadDefaults;
-- (void)loadData;
-- (void)saveData;
-- (void)clearData;
+- (void)loadDataFromDevice;
+- (void)loadDataFromJSONData:(NSData *)jsonData;
 - (NSData *)jsonData;
+- (NSMutableArray *)infosToDictionary:(NSMutableArray *)infos;
+- (void)saveDataToDevice;
+- (void)clearData;
 
 - (void)startLiveRoundFromTemplate:(RoundInfo *)roundTemplate;
 - (void)endLiveRoundAndDiscard;

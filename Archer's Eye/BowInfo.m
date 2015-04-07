@@ -96,6 +96,10 @@
 {
     if( self = [super init] )
     {
+#ifdef NSLOGS_ON
+        NSLog( @"BowInfo: decoding %@", [aDecoder decodeObjectForKey:@"name"] );
+#endif
+
         self.name           =            [aDecoder decodeObjectForKey:@"name"];
         self.type           = (eBowType)[[aDecoder decodeObjectForKey:@"type"]        integerValue];
         self.drawWeight     =           [[aDecoder decodeObjectForKey:@"drawWeight"]  integerValue];
@@ -113,6 +117,10 @@
 //------------------------------------------------------------------------------
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+#ifdef NSLOGS_ON
+    NSLog( @"BowInfo: encoding %@", self.name );
+#endif
+
     [aCoder encodeObject:_name                                      forKey:@"name"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_type]         forKey:@"type"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_drawWeight]   forKey:@"drawWeight"];
@@ -124,10 +132,37 @@
 
 
 //------------------------------------------------------------------------------
+// Reads in a dictionary.
+//------------------------------------------------------------------------------
+- (id)initFromDictionary:(NSDictionary *)dictionary
+{
+    if( self = [super init] )
+    {
+#ifdef NSLOGS_ON
+        NSLog( @"BowInfo: decoding from json %@", dictionary[@"name"] );
+#endif
+
+        self.name           =            dictionary[@"name"];
+        self.type           = (eBowType)[dictionary[@"type"]        integerValue];
+        self.drawWeight     =           [dictionary[@"drawWeight"]  integerValue];
+        self.aim            =  (eBowAim)[dictionary[@"aim"]         integerValue];
+        self.clicker        =           [dictionary[@"clicker"]     boolValue];
+        self.stabilizers    =           [dictionary[@"stabilizers"] boolValue];
+    }
+    return self;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Fill all properties into a dictionary.
 //------------------------------------------------------------------------------
 - (NSDictionary *)dictionary
 {
+#ifdef NSLOGS_ON
+    NSLog( @"BowInfo: encoding to json %@", self.name );
+#endif
+
     NSDictionary *dict = @{
                            @"name"              : self.name,
                            @"type"              : [NSNumber numberWithInteger:self.type],

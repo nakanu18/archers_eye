@@ -39,19 +39,19 @@
     _textName.text                              = self.archersEyeInfo.currRound.name;
     _segControlRoundType.selectedSegmentIndex   = self.archersEyeInfo.currRound.type;
 
-    _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currRound.numEnds];
+    _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.numEnds];
     _sliderNumEnds.value                        = self.archersEyeInfo.currRound.numEnds;
     _stepperNumEnds.value                       = _sliderNumEnds.value;
     _stepperNumEnds.minimumValue                = _sliderNumEnds.minimumValue;
     _stepperNumEnds.maximumValue                = _sliderNumEnds.maximumValue;
 
-    _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currRound.numArrowsPerEnd];
+    _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.numArrowsPerEnd];
     _sliderNumArrows.value                      = self.archersEyeInfo.currRound.numArrowsPerEnd;
     _stepperNumArrows.value                     = _sliderNumArrows.value;
     _stepperNumArrows.minimumValue              = _sliderNumArrows.minimumValue;
     _stepperNumArrows.maximumValue              = _sliderNumArrows.maximumValue;
 
-    _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currRound.distance];
+    _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.distance];
     _sliderDefaultDist.value                    = self.archersEyeInfo.currRound.distance;
     _stepperDefaultDist.value                   = _sliderDefaultDist.value;
     _stepperDefaultDist.minimumValue            = _sliderDefaultDist.minimumValue;
@@ -207,7 +207,7 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelNumEnds.text                     = [NSString stringWithFormat:@"%ld", value];
+    _labelNumEnds.text                     = [NSString stringWithFormat:@"%ld", (long)value];
     self.archersEyeInfo.currRound.numEnds  = value;
 
     // Resync the values of the slider and stepper
@@ -232,7 +232,7 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelNumArrows.text                           = [NSString stringWithFormat:@"%ld", value];
+    _labelNumArrows.text                           = [NSString stringWithFormat:@"%ld", (long)value];
     self.archersEyeInfo.currRound.numArrowsPerEnd  = value;
 
     // Resync the values of the slider and stepper
@@ -257,7 +257,7 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelDefaultDist.text                 = [NSString stringWithFormat:@"%ld", value];
+    _labelDefaultDist.text                 = [NSString stringWithFormat:@"%ld", (long)value];
     self.archersEyeInfo.currRound.distance = value;
 
     // Resync the values of the slider and stepper

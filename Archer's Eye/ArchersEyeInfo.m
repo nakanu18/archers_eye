@@ -43,7 +43,7 @@
 //------------------------------------------------------------------------------
 // Load the save data if it can be found.
 //------------------------------------------------------------------------------
-- (void)loadData
+- (void)loadDataFromDevice
 {
     NSData *saveData = [[NSUserDefaults standardUserDefaults] dataForKey:@"archersEyeInfo"];
 
@@ -51,7 +51,7 @@
     if( saveData == nil )
     {
 #ifdef NSLOGS_ON
-        NSLog( @"No save file found: loading defaults" );
+        NSLog( @"ArchersEyeInfo: userDefaults save data NOT found - loading defaults" );
 #endif
         
         [self loadDefaults];
@@ -60,7 +60,7 @@
     else
     {
 #ifdef NSLOGS_ON
-        NSLog( @"Found save file: loading" );
+        NSLog( @"ArchersEyeInfo: userDefaults save data found - loading" );
 #endif
         
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:saveData];
@@ -79,12 +79,106 @@
 
 
 //------------------------------------------------------------------------------
-// Save the current user data.
+// Load the save data if it can be found.
 //------------------------------------------------------------------------------
-- (void)saveData
+- (void)loadDataFromJSONData:(NSData *)jsonData
 {
 #ifdef NSLOGS_ON
-    NSLog( @"Saving data" );
+    NSLog( @"ArchersEyeInfo: loading from json" );
+#endif
+
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
+    
+    self.customRounds = [NSMutableArray new];
+    for( NSInteger i = 0; i < [dict[@"customRounds"] count]; ++i )
+    {
+        RoundInfo *newRound = [[RoundInfo alloc] initFromDictionary:dict[@"customRounds"][i]];
+
+        [self.customRounds addObject:newRound];
+    }
+    
+    self.commonRounds = [NSMutableArray new];
+    for( NSInteger i = 0; i < [dict[@"commonRounds"] count]; ++i )
+    {
+        RoundInfo *newRound = [[RoundInfo alloc] initFromDictionary:dict[@"commonRounds"][i]];
+        
+        [self.commonRounds addObject:newRound];
+    }
+
+    self.pastRounds = [NSMutableArray new];
+    for( NSInteger i = 0; i < [dict[@"pastRounds"] count]; ++i )
+    {
+        RoundInfo *newRound = [[RoundInfo alloc] initFromDictionary:dict[@"pastRounds"][i]];
+        
+        [self.pastRounds addObject:newRound];
+    }
+    
+
+    
+    self.allBows = [NSMutableArray new];
+    for( NSInteger i = 0; i < [dict[@"allBows"] count]; ++i )
+    {
+        BowInfo *newBow = [[BowInfo alloc] initFromDictionary:dict[@"allBows"][i]];
+        
+        [self.allBows addObject:newBow];
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+// Returns data in json format.
+//------------------------------------------------------------------------------
+- (NSData *)jsonData
+{
+#ifdef NSLOGS_ON
+    NSLog( @"ArchersEyeInfo: converting to json" );
+#endif
+
+    NSData              *json;
+    NSMutableDictionary *dict  = [NSMutableDictionary new];
+    
+    [dict setObject:[self infosToDictionary:self.customRounds] forKey:@"customRounds"];
+    [dict setObject:[self infosToDictionary:self.commonRounds] forKey:@"commonRounds"];
+    [dict setObject:[self infosToDictionary:self.pastRounds]   forKey:@"pastRounds"];
+    [dict setObject:[self infosToDictionary:self.allBows]      forKey:@"allBows"];
+    
+    json = [NSJSONSerialization dataWithJSONObject:dict
+                                           options:NSJSONWritingPrettyPrinted
+                                             error:nil];
+    
+//    NSLog( @"ArchersEyeInfo: %@", [[NSString alloc] initWithData:json encoding:NSASCIIStringEncoding] );
+    
+    return json;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Converts a given xxxInfo array into json format.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)infosToDictionary:(NSMutableArray *)infos
+{
+    NSMutableArray *array = [NSMutableArray new];
+    
+    for( id info in infos )
+    {
+        [array addObject:[info dictionary]];
+    }
+    return array;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Save the current user data.
+//------------------------------------------------------------------------------
+- (void)saveDataToDevice
+{
+#ifdef NSLOGS_ON
+    NSLog( @"ArchersEyeInfo: Saving data" );
 #endif
     
     NSMutableData   *saveData      = [[NSMutableData    alloc] init];
@@ -109,31 +203,6 @@
 - (void)clearData
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"archersEyeInfo"];
-}
-
-
-
-//------------------------------------------------------------------------------
-// Returns data in json format.
-//------------------------------------------------------------------------------
-- (NSData *)jsonData
-{
-    NSData          *json;
-    NSMutableArray  *array = [NSMutableArray new];
-    
-    for( RoundInfo *pastRound in self.pastRounds )
-    {
-        [array addObject:[pastRound dictionary]];
-    }
-    
-    json = [NSJSONSerialization dataWithJSONObject:array
-                                           options:NSJSONWritingPrettyPrinted
-                                             error:nil];
-
-    
-//    NSLog( @"%@", [[NSString alloc] initWithData:json encoding:NSASCIIStringEncoding] );
-    
-    return json;
 }
 
 
@@ -493,7 +562,7 @@
         NSMutableArray *favRound = favRounds[i];
         
 //        if( [favRound count] > 0 )
-//            NSLog( @"%@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
+//            NSLog( @"ArchersEyeInfo: %@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
         
         if( [favRound count] < 2 )
         {

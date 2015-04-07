@@ -104,10 +104,10 @@
 
     cell.name.text  = info.name;
     cell.date.text  = [AppDelegate basicDate:info.date];
-    cell.dist.text  = [NSString stringWithFormat:@"%ld yds", info.distance];
-    cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
+    cell.dist.text  = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
+    cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
     cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
-    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", totalScore, totalArrows * [info getMaxArrowRealScore]];
+    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
     
     return cell;
 }

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Defines.h"
 
 typedef enum
 {
@@ -48,6 +49,7 @@ typedef enum
 
 - (id)init;
 - (id)initWithName:(NSString *)name andType:(eBowType)type andDrawWeight:(NSInteger)drawWeight;
+- (id)initFromDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionary;
 - (BOOL)isInfoValid;
 - (BOOL)isTypeOfBow:(BowInfo *)rhs;

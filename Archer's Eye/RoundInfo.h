@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "Defines.h"
 #import "BowInfo.h"
 
 // NOTE: values stored in _endScores correspond to the values above in
@@ -59,6 +60,7 @@ typedef enum
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
 
+- (id)initFromDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionary;
 
 - (BOOL)isInfoValid;

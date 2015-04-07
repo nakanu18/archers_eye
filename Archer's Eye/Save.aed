@@ -1,0 +1,32 @@
+[
+  {
+    "numArrowsPerEnd" : 5,
+    "distance" : 15,
+    "bow" :
+    {
+      "stabilizers" : false,
+      "aim" : 2,
+      "drawWeight" : 28,
+      "name" : "White Flute",
+      "type" : 0,
+      "clicker" : false
+    },
+    "date" : "2015-04-06 at 12:23",
+    "numEnds" : 10,
+    "endScores" :
+    [
+      [ 4, 4, 2, 4, 1 ],
+      [ 0, 0, 4, 0, 4 ],
+      [ 0, 4, 2, 4, 4 ],
+      [ 0, 5, 1,11, 2 ],
+      [11, 4, 0, 3, 1 ],
+      [ 2, 5, 0, 1, 4 ],
+      [ 4, 0, 0, 4, 1 ],
+      [ 2,11, 0, 0, 0 ],
+      [ 1, 4, 1, 3, 3 ],
+      [ 3, 0, 4, 1, 4 ]
+    ],
+    "type" : 0,
+    "name" : "LEAGUE 250xxx"
+  }
+]

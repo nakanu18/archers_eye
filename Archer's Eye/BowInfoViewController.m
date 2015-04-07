@@ -50,7 +50,7 @@
     _segControlBowType.selectedSegmentIndex = self.archersEyeInfo.currBow.type;
     [_pickerBowAim selectRow:self.archersEyeInfo.currBow.aim inComponent:0 animated:YES];
     
-    _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", self.archersEyeInfo.currBow.drawWeight];
+    _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currBow.drawWeight];
     _sliderBowDrawWeight.value              = self.archersEyeInfo.currBow.drawWeight;
     _stepperBowDrawWeight.value             = _sliderBowDrawWeight.value;
     _stepperBowDrawWeight.minimumValue      = _sliderBowDrawWeight.minimumValue;
@@ -183,7 +183,7 @@
     else if( [sender isKindOfClass:[UIStepper class]] )
         value = [(UIStepper *)sender value];
     
-    _labelBowDrawWeight.text        = [NSString stringWithFormat:@"%ld", value];
+    _labelBowDrawWeight.text        = [NSString stringWithFormat:@"%ld", (long)value];
     self.archersEyeInfo.currBow.drawWeight = value;
     
     // Resync the values of the slider and stepper

@@ -113,10 +113,10 @@ titleForHeaderInSection:(NSInteger)section
     
     cell.name.text  = info.name;
     cell.date.text  = [AppDelegate basicDate:info.date];
-    cell.dist.text  = [NSString stringWithFormat:@"%ld yds", info.distance];
-    cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", info.numEnds,  info.numArrowsPerEnd];
+    cell.dist.text  = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
+    cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
     cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
-    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", totalScore, totalArrows * [info getMaxArrowRealScore]];
+    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
     
     return cell;
 }
@@ -391,7 +391,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSNumber *percent = [NSNumber numberWithFloat:((float)numArrows)/[_currPastRound getTotalArrows]];
     
     // 4 - Set up display label
-    NSString *labelValue = [NSString stringWithFormat:@"%ld (%0.0f%%)", [num integerValue], [percent floatValue] * 100.0f];
+    NSString *labelValue = [NSString stringWithFormat:@"%ld (%0.0f%%)", (long)[num integerValue], [percent floatValue] * 100.0f];
     
     // 5 - Create and return layer with label text
     return [[CPTTextLayer alloc] initWithText:labelValue style:labelText];

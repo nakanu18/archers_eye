@@ -97,7 +97,7 @@
     
     cell.bowName.text        = bow.name;
     cell.bowType.text        = [BowInfo typeAsString:bow.type];
-    cell.bowDrawWeight.text  = [NSString stringWithFormat:@"%ld lbs", bow.drawWeight];
+    cell.bowDrawWeight.text  = [NSString stringWithFormat:@"%ld lbs", (long)bow.drawWeight];
     
     return cell;
 }

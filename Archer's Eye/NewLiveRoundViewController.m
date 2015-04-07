@@ -173,9 +173,9 @@ titleForHeaderInSection:(NSInteger)section
     }
 
     cell.name.text      = template.name;
-    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", template.distance];
-    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", template.numEnds,  template.numArrowsPerEnd];
-    cell.score.text     = [NSString stringWithFormat:@"%ld pts", template.numEnds * template.numArrowsPerEnd * [template getMaxArrowRealScore]];
+    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", (long)template.distance];
+    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", (long)template.numEnds,  (long)template.numArrowsPerEnd];
+    cell.score.text     = [NSString stringWithFormat:@"%ld pts", (long)template.numEnds * (long)template.numArrowsPerEnd * [template getMaxArrowRealScore]];
     
     return cell;
 }

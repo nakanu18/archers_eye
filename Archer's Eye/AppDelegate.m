@@ -19,13 +19,26 @@
 //------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.archersEyeInfo = [ArchersEyeInfo new];
-    [self.archersEyeInfo loadData];
-    
     // Override point for customization after application launch.
+    self.archersEyeInfo = [ArchersEyeInfo new];
+
+    [self loadDataFromURL:[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey]];
+    
     return YES;
 }
 
+
+
+//------------------------------------------------------------------------------
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    [self loadDataFromURL:url];
+    
+    return YES;
+}
 
 
 
@@ -52,7 +65,7 @@
     // If your application supports background execution, this method is called
     // instead of applicationWillTerminate: when the user quits.
 
-    [self.archersEyeInfo saveData];
+    [self.archersEyeInfo saveDataToDevice];
 }
 
 
@@ -119,6 +132,25 @@
     dateFormatter.locale    = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     
     return [dateFormatter stringFromDate:date];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Tries to load data from the url.  If not, tries to load from the device.
+//------------------------------------------------------------------------------
+- (void)loadDataFromURL:(NSURL *)url
+{
+    if( url != nil  &&  [url isFileURL] )
+    {
+        NSData *zippedData = [NSData dataWithContentsOfURL:url];
+        
+        [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+        [self.archersEyeInfo loadDataFromJSONData:zippedData];
+    }
+    else
+        [self.archersEyeInfo loadDataFromDevice];
+    
 }
 
 @end

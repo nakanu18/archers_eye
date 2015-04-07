@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Defines.h"
 #import "ArchersEyeInfo.h"
 #import "CorePlot-CocoaTouch.h"
-
-//#define NSLOGS_ON
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -26,6 +25,7 @@
 
 
 + (NSString *)basicDate:(NSDate *)date;
+- (void)loadDataFromURL:(NSURL *)url;
 
 @end
 

@@ -66,11 +66,11 @@
             if( range.location == 0 )
                 string = @"M";
             else
-                string = [NSString stringWithFormat:@"%ld", range.location];
+                string = [NSString stringWithFormat:@"%ld", (unsigned long)range.location];
         }
         // Case: for double values
         else
-            string = [NSString stringWithFormat:@"%ld-%ld", range.location, range.location + range.length];
+            string = [NSString stringWithFormat:@"%ld-%ld", (unsigned long)range.location, (unsigned long)(range.location + range.length)];
     }
     
     return string;
@@ -143,6 +143,10 @@
 {
     if( self = [super init] )
     {
+#ifdef NSLOGS_ON
+        NSLog( @"RoundInfo: decoding %@", [aDecoder decodeObjectForKey:@"name"] );
+#endif
+
         self.name               =              [aDecoder decodeObjectForKey:@"name"];
         self.type               = (eRoundType)[[aDecoder decodeObjectForKey:@"type"]            integerValue];
         self.distance           =             [[aDecoder decodeObjectForKey:@"distance"]        integerValue];
@@ -162,6 +166,10 @@
 //------------------------------------------------------------------------------
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+#ifdef NSLOGS_ON
+    NSLog( @"RoundInfo: encoding %@", self.name );
+#endif
+
     [aCoder encodeObject:_name                                          forKey:@"name"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_type]             forKey:@"type"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_distance]         forKey:@"distance"];
@@ -175,25 +183,77 @@
 
 
 //------------------------------------------------------------------------------
+// Reads in a dictionary.
+//------------------------------------------------------------------------------
+- (id)initFromDictionary:(NSDictionary *)dictionary
+{
+    if( self = [super init] )
+    {
+#ifdef NSLOGS_ON
+        NSLog( @"RoundInfo: decoding from json %@", dictionary[@"name"] );
+#endif
+
+        NSDateFormatter *format = [NSDateFormatter new];
+        [format setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
+        
+        self.name               =              dictionary[@"name"];
+        self.type               = (eRoundType)[dictionary[@"type"]            integerValue];
+        self.distance           =             [dictionary[@"distance"]        integerValue];
+        self.numEnds            =             [dictionary[@"numEnds"]         integerValue];
+        self.numArrowsPerEnd    =             [dictionary[@"numArrowsPerEnd"] integerValue];
+        self.date               = [format dateFromString:dictionary[@"date"]];
+        
+        if( dictionary[@"bow"] != nil )
+            self.bow            = [[BowInfo alloc] initFromDictionary:dictionary[@"bow"]];
+
+        // Copy the scores
+        self.endScores = [NSMutableArray new];
+        for( NSInteger e = 0; e < self.numEnds; ++e )
+        {
+            NSMutableArray *newEnd = [NSMutableArray new];
+            
+            for( int a = 0; a < self.numArrowsPerEnd; ++a )
+            {
+                NSInteger value = [dictionary[@"endScores"][e][a] integerValue];
+                
+                [newEnd addObject:[NSNumber numberWithInteger:value]];
+            }
+            [self.endScores addObject:newEnd];
+        }
+    }
+    return self;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Fill all properties into a dictionary.
 //------------------------------------------------------------------------------
 - (NSDictionary *)dictionary
 {
+#ifdef NSLOGS_ON
+    NSLog( @"RoundInfo: encoding to json %@", self.name );
+#endif
+
     NSDateFormatter *format = [NSDateFormatter new];
     [format setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
     
-    NSDictionary *dict = @{
-                           @"name"              : self.name,
-                           @"type"              : [NSNumber numberWithInteger:self.type],
-                           @"distance"          : [NSNumber numberWithInteger:self.distance],
-                           @"numEnds"           : [NSNumber numberWithInteger:self.numEnds],
-                           @"numArrowsPerEnd"   : [NSNumber numberWithInteger:self.numArrowsPerEnd],
-                           @"endScores"         : self.endScores,
-                           @"date"              : [format stringFromDate:self.date],
-                           @"bow"               : [self.bow dictionary],
-                           };
+    NSMutableDictionary *dm = [NSMutableDictionary new];
     
-    return dict;
+    [dm setObject:self.name                                         forKey:@"name"];
+    [dm setObject:[NSNumber numberWithInteger:self.type]            forKey:@"type"];
+    [dm setObject:[NSNumber numberWithInteger:self.distance]        forKey:@"distance"];
+    [dm setObject:[NSNumber numberWithInteger:self.numEnds]         forKey:@"numEnds"];
+    [dm setObject:[NSNumber numberWithInteger:self.numArrowsPerEnd] forKey:@"numArrowsPerEnd"];
+    [dm setObject:self.endScores                                    forKey:@"endScores"];
+
+    if( self.date != nil )
+        [dm setObject:[format stringFromDate:self.date]             forKey:@"date"];
+    
+    if( self.bow != nil )
+        [dm setObject:[self.bow dictionary]                         forKey:@"bow"];
+    
+    return [NSDictionary dictionaryWithDictionary:dm];
 }
 
 

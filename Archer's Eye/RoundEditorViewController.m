@@ -142,7 +142,7 @@
     {
         EndCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EndCell"];
         
-        cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", row + 1];
+        cell.endNumLabel.text = [NSString stringWithFormat:@"%ld:", (long)row + 1];
         tableViewCell         = cell;
         
         // Initialize the arrow scores
@@ -158,8 +158,8 @@
         }
         else
         {
-            cell.endXLabel.text     = [NSString stringWithFormat:@"%ld", [_currRound getNumberOfArrowsWithScore:11 forEnd:row]];
-            cell.endScoreLabel.text = [NSString stringWithFormat:@"%ld", [_currRound getRealScoreForEnd:row]];
+            cell.endXLabel.text     = [NSString stringWithFormat:@"%ld", (long)[_currRound getNumberOfArrowsWithScore:11 forEnd:row]];
+            cell.endScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)[_currRound getRealScoreForEnd:row]];
         }
         
         if( row == _currEndID )
@@ -178,8 +178,8 @@
     {
         TotalsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TotalsCell"];
         
-        cell.totalXsLabel.text    = [NSString stringWithFormat:@"%ld", [_currRound getNumberOfArrowsWithScore:11]];
-        cell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", [_currRound getRealTotalScore]];
+        cell.totalXsLabel.text    = [NSString stringWithFormat:@"%ld", (long)[_currRound getNumberOfArrowsWithScore:11]];
+        cell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)[_currRound getRealTotalScore]];
         tableViewCell             = cell;
         self.totalsCell           = cell;
     }
@@ -385,7 +385,7 @@
     if( score >= 11 )
         label.text = @"X";
     else if( score >= 0 )
-        label.text = [NSString stringWithFormat:@"%ld", score];
+        label.text = [NSString stringWithFormat:@"%ld", (long)score];
     else
         label.text = @"?";
     
@@ -464,11 +464,11 @@
     NSInteger    totalXScore         = [_currRound getNumberOfArrowsWithScore:11];
     NSInteger    totalScore          = [_currRound getRealTotalScoreUpToEnd:_currEndID];
     
-    cell.endXLabel.text              = [NSString stringWithFormat:@"%ld", xScore];
-    cell.endScoreLabel.text          = [NSString stringWithFormat:@"%ld", endScore];
+    cell.endXLabel.text              = [NSString stringWithFormat:@"%ld", (long)xScore];
+    cell.endScoreLabel.text          = [NSString stringWithFormat:@"%ld", (long)endScore];
     
-    _totalsCell.totalXsLabel.text    = [NSString stringWithFormat:@"%ld", totalXScore];
-    _totalsCell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", totalScore];
+    _totalsCell.totalXsLabel.text    = [NSString stringWithFormat:@"%ld", (long)totalXScore];
+    _totalsCell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)totalScore];
 }
 
 
