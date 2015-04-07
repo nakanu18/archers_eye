@@ -21,8 +21,8 @@
 {
     // Override point for customization after application launch.
     self.archersEyeInfo = [ArchersEyeInfo new];
-
-    [self loadDataFromURL:[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey]];
+    self.url            = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    [self loadData];
     
     return YES;
 }
@@ -35,7 +35,8 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    [self loadDataFromURL:url];
+    self.url = url;
+    [self loadData];
     
     return YES;
 }
@@ -137,20 +138,67 @@
 
 
 //------------------------------------------------------------------------------
-// Tries to load data from the url.  If not, tries to load from the device.
-//------------------------------------------------------------------------------
-- (void)loadDataFromURL:(NSURL *)url
++ (NSString *)shortDate:(NSDate *)date
 {
-    if( url != nil  &&  [url isFileURL] )
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    dateFormatter.locale    = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
+
+
+//------------------------------------------------------------------------------
++ (NSString *)shortDateAndTime:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    dateFormatter.locale    = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Loads the save data
+//------------------------------------------------------------------------------
+- (void)loadData
+{
+    if( self.url != nil  &&  [self.url isFileURL] )
     {
-        NSData *zippedData = [NSData dataWithContentsOfURL:url];
+        UIAlertView *confirmLoad = [[UIAlertView alloc] initWithTitle:@""
+                                                              message:@"Purge and Load From File?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Load", nil];
         
-        [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
-        [self.archersEyeInfo loadDataFromJSONData:zippedData];
+        [confirmLoad show];
     }
     else
         [self.archersEyeInfo loadDataFromDevice];
     
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if( buttonIndex == 1 )
+    {
+        NSData *zippedData = [NSData dataWithContentsOfURL:self.url];
+        
+        [[NSFileManager defaultManager] removeItemAtURL:self.url error:nil];
+        [self.archersEyeInfo loadDataFromJSONData:zippedData];
+    }
+    else
+        [self.archersEyeInfo loadDataFromDevice];
 }
 
 @end

@@ -11,6 +11,8 @@
 #import "RoundInfo.h"
 #import "BowInfo.h"
 
+#define SAVE_DATA_VERSION 0.8
+
 typedef enum
 {
     eRoundCategory_None,
@@ -36,13 +38,14 @@ typedef enum
     NSInteger       _currRoundID;
 }
 
-@property (nonatomic, copy)     RoundInfo       *liveRound;
-@property (nonatomic, strong)   NSMutableArray  *customRounds;
-@property (nonatomic, strong)   NSMutableArray  *commonRounds;
-@property (nonatomic, copy)     RoundInfo       *currRound;
-@property (nonatomic, strong)   NSMutableArray  *pastRounds;
-@property (nonatomic, copy)     BowInfo         *currBow;
-@property (nonatomic, strong)   NSMutableArray  *allBows;
+@property (nonatomic, readwrite) float            version;
+@property (nonatomic, copy)      RoundInfo       *liveRound;
+@property (nonatomic, strong)    NSMutableArray  *customRounds;
+@property (nonatomic, strong)    NSMutableArray  *commonRounds;
+@property (nonatomic, copy)      RoundInfo       *currRound;
+@property (nonatomic, strong)    NSMutableArray  *pastRounds;
+@property (nonatomic, copy)      BowInfo         *currBow;
+@property (nonatomic, strong)    NSMutableArray  *allBows;
 
 
 

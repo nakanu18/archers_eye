@@ -7,6 +7,7 @@
 //
 
 #import "ArchersEyeInfo.h"
+#import "AppDelegate.h"
 
 @implementation ArchersEyeInfo
 
@@ -17,6 +18,7 @@
 //------------------------------------------------------------------------------
 - (void)loadDefaults
 {
+    self.version        = SAVE_DATA_VERSION;
     self.customRounds   = [NSMutableArray new];
     self.commonRounds   = [NSMutableArray new];
     self.pastRounds     = [NSMutableArray new];
@@ -59,12 +61,13 @@
     // Found save data file; load it
     else
     {
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:saveData];
+
 #ifdef NSLOGS_ON
-        NSLog( @"ArchersEyeInfo: userDefaults save data found - loading" );
+        NSLog( @"ArchersEyeInfo: userDefaults save data found - loading (v%.2f) - %@", [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue], [unarchiver decodeObjectForKey:@"saveDate"] );
 #endif
         
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:saveData];
-        
+        self.version        = [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue];
         self.liveRound      = [unarchiver decodeObjectForKey:@"liveRound"];
         self.customRounds   = [unarchiver decodeObjectForKey:@"customRounds"];
         self.commonRounds   = [unarchiver decodeObjectForKey:@"commonRounds"];
@@ -83,13 +86,15 @@
 //------------------------------------------------------------------------------
 - (void)loadDataFromJSONData:(NSData *)jsonData
 {
-#ifdef NSLOGS_ON
-    NSLog( @"ArchersEyeInfo: loading from json" );
-#endif
-
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
                                                          options:NSJSONReadingMutableContainers
                                                            error:nil];
+    
+#ifdef NSLOGS_ON
+    NSLog( @"ArchersEyeInfo: loading from json (v%.2f) - %@", [dict[@"saveVersion"] floatValue], dict[@"saveDate"] );
+#endif
+    
+    self.version = [dict[@"saveVersion"] floatValue];
     
     self.customRounds = [NSMutableArray new];
     for( NSInteger i = 0; i < [dict[@"customRounds"] count]; ++i )
@@ -134,16 +139,18 @@
 - (NSData *)jsonData
 {
 #ifdef NSLOGS_ON
-    NSLog( @"ArchersEyeInfo: converting to json" );
+    NSLog( @"ArchersEyeInfo: converting to json (v%.2f)", SAVE_DATA_VERSION );
 #endif
 
     NSData              *json;
-    NSMutableDictionary *dict  = [NSMutableDictionary new];
+    NSMutableDictionary *dict = [NSMutableDictionary new];
     
-    [dict setObject:[self infosToDictionary:self.customRounds] forKey:@"customRounds"];
-    [dict setObject:[self infosToDictionary:self.commonRounds] forKey:@"commonRounds"];
-    [dict setObject:[self infosToDictionary:self.pastRounds]   forKey:@"pastRounds"];
-    [dict setObject:[self infosToDictionary:self.allBows]      forKey:@"allBows"];
+    [dict setObject:[NSNumber numberWithFloat:SAVE_DATA_VERSION] forKey:@"saveVersion"];
+    [dict setObject:[AppDelegate shortDateAndTime:[NSDate date]] forKey:@"saveDate"];
+    [dict setObject:[self infosToDictionary:self.customRounds]   forKey:@"customRounds"];
+    [dict setObject:[self infosToDictionary:self.commonRounds]   forKey:@"commonRounds"];
+    [dict setObject:[self infosToDictionary:self.pastRounds]     forKey:@"pastRounds"];
+    [dict setObject:[self infosToDictionary:self.allBows]        forKey:@"allBows"];
     
     json = [NSJSONSerialization dataWithJSONObject:dict
                                            options:NSJSONWritingPrettyPrinted
@@ -178,12 +185,16 @@
 - (void)saveDataToDevice
 {
 #ifdef NSLOGS_ON
-    NSLog( @"ArchersEyeInfo: Saving data" );
+    NSLog( @"ArchersEyeInfo: Saving data (v%.2f)", SAVE_DATA_VERSION );
 #endif
     
     NSMutableData   *saveData      = [[NSMutableData    alloc] init];
     NSKeyedArchiver *keyedArchiver = [[NSKeyedArchiver  alloc] initForWritingWithMutableData:saveData];
+    NSNumber        *saveVersion   = [NSNumber numberWithFloat:SAVE_DATA_VERSION];
+    NSString        *date          = [AppDelegate shortDateAndTime:[NSDate date]];
     
+    [keyedArchiver encodeObject:saveVersion     forKey:@"saveVersion"];
+    [keyedArchiver encodeObject:date            forKey:@"saveDate"];
     [keyedArchiver encodeObject:_liveRound      forKey:@"liveRound"];
     [keyedArchiver encodeObject:_customRounds   forKey:@"customRounds"];
     [keyedArchiver encodeObject:_commonRounds   forKey:@"commonRounds"];

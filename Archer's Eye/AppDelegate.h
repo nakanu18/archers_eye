@@ -11,21 +11,24 @@
 #import "ArchersEyeInfo.h"
 #import "CorePlot-CocoaTouch.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 {
     
 }
 
 @property (nonatomic, strong) UIWindow       *window;
 @property (nonatomic, strong) ArchersEyeInfo *archersEyeInfo;
-
+@property (nonatomic, strong) NSURL          *url;
 
 
 
 
 
 + (NSString *)basicDate:(NSDate *)date;
-- (void)loadDataFromURL:(NSURL *)url;
++ (NSString *)shortDate:(NSDate *)date;
++ (NSString *)shortDateAndTime:(NSDate *)date;
+- (void)loadData;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
 

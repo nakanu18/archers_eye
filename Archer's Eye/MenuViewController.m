@@ -66,11 +66,13 @@
     {
         MFMailComposeViewController *picker = [MFMailComposeViewController new];
         NSString                     *body;
+        NSString                     *saveFile;
         
-        body = @"The attached .aed file is save data for Archer's Eye.\n\nMail this to yourself for safe keeping.\n\nTo load, open this mail on your iOS device.  Press and hold on the .aed file.  From the list of apps that appears, pick Archer's Eye.";
+        body     = @"The attached .aed file is save data for Archer's Eye.\n\nMail this to yourself for safe keeping.\n\nTo load, open this mail on your iOS device.  Press and hold on the .aed file.  From the list of apps that appears, pick Archer's Eye.";
+        saveFile = [NSString stringWithFormat:@"ArchersEye - %@.aed", [AppDelegate shortDate:[NSDate date]]];
         
         [picker setSubject:@"Archer's Eye Data"];
-        [picker addAttachmentData:data mimeType:@"application/archerseye" fileName:@"ArchersEye.aed"];
+        [picker addAttachmentData:data mimeType:@"application/archerseye" fileName:saveFile];
         [picker setToRecipients:[NSArray array]];
         [picker setMessageBody:body isHTML:NO];
         [picker setMailComposeDelegate:self];
