@@ -10,6 +10,32 @@
 #import "RoundInfo.h"
 #import "RoundDescCell.h"
 
+@interface PastRoundInfo :NSObject
+{
+    
+}
+
+@property (nonatomic, strong)    RoundInfo *roundInfo;
+@property (nonatomic, readwrite) NSInteger  month;
+@property (nonatomic, readwrite) NSInteger  year;
+
+@end
+
+@implementation PastRoundInfo
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
 @interface PastRoundsViewController ()
 
 @end
@@ -27,6 +53,34 @@
     // Sort the past rounds so that the newest one is first
     [self.archersEyeInfo sortRoundInfosByDate:self.archersEyeInfo.pastRounds ascending:NO];
     
+    
+    
+    self.groupedPastRounds = [NSMutableArray new];
+    
+    NSInteger prevMonth = -1;
+    NSInteger prevYear  = -1;
+    
+    // Parse through pastRounds - create a new array for each new month
+    for( RoundInfo *roundInfo in self.archersEyeInfo.pastRounds )
+    {
+        PastRoundInfo  *temp  = [PastRoundInfo new];
+        NSInteger       month = [[NSCalendar currentCalendar] component:NSCalendarUnitMonth fromDate:roundInfo.date];
+        NSInteger       year  = [[NSCalendar currentCalendar] component:NSCalendarUnitYear  fromDate:roundInfo.date];
+        
+        temp.roundInfo   = roundInfo;
+        temp.month       = month;
+        temp.year        = year;
+        
+        // New month was found: create a new array
+        if( prevMonth != month  ||  prevYear != year )
+            [self.groupedPastRounds addObject:[NSMutableArray new]];
+        
+        // Add the temp round into it's correct group
+        [[self.groupedPastRounds lastObject] addObject:temp];
+        
+        prevMonth = month;
+        prevYear  = year;
+    }
     [super viewDidLoad];
 }
 
@@ -104,7 +158,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.groupedPastRounds count];
 }
 
 
@@ -114,7 +168,26 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.archersEyeInfo.pastRounds count];
+    return [self.groupedPastRounds[section] count];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Section name.
+//------------------------------------------------------------------------------
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = @"";
+    
+    if( [self.groupedPastRounds[section] count] > 0 )
+    {
+        PastRoundInfo   *pastRoundInfo  = self.groupedPastRounds[section][0];
+        NSDateFormatter *formatter      = [NSDateFormatter new];
+        
+        title = [NSString stringWithFormat:@"%@ %ld", [[formatter monthSymbols] objectAtIndex:(pastRoundInfo.month - 1)], pastRoundInfo.year];
+    }
+    return title;
 }
 
 
@@ -125,11 +198,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores      = self.archersEyeInfo.pastRounds;
-    RoundDescCell   *cell        = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-    RoundInfo       *info        = scores[indexPath.row];
-    NSInteger        totalScore  = [info getRealTotalScore];
-    NSInteger        totalArrows = info.numEnds * info.numArrowsPerEnd;
+    RoundDescCell   *cell           = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
+    PastRoundInfo   *pastRoundInfo  = self.groupedPastRounds[indexPath.section][indexPath.row];
+    RoundInfo       *info           = pastRoundInfo.roundInfo;
+    NSInteger        totalScore     = [info getRealTotalScore];
+    NSInteger        totalArrows    = info.numEnds * info.numArrowsPerEnd;
 
     cell.name.text  = info.name;
     cell.date.text  = [AppDelegate basicDate:info.date];
@@ -163,8 +236,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( editingStyle == UITableViewCellEditingStyleDelete )
     {
+        PastRoundInfo *pastRoundInfo = self.groupedPastRounds[indexPath.section][indexPath.row];
+        
         // Delete the row from the data source
-        [self.archersEyeInfo.pastRounds removeObjectAtIndex:indexPath.row];
+        [self.archersEyeInfo.pastRounds removeObject:pastRoundInfo.roundInfo];
+        [self.groupedPastRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if( editingStyle == UITableViewCellEditingStyleInsert )
