@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "RoundDateViewController.h"
 #import "EndCell.h"
 #import "TotalsCell.h"
 
-@interface RoundEditorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface RoundEditorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, RoundDateViewControllerDelegate>
 {
     NSInteger _currEndID;
     NSInteger _currArrowID;

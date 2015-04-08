@@ -87,6 +87,30 @@
 
 
 
+//------------------------------------------------------------------------------
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if( [segue.identifier isEqualToString:@"gotoRoundDate"] )
+    {
+        UINavigationController  *nav       = (UINavigationController  *)segue.destinationViewController;
+        RoundDateViewController *roundDate = (RoundDateViewController *)nav.topViewController;
+        
+        roundDate.delegate = self;
+        roundDate.currDate = self.currRound.date;
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+// Protocol: RoundDateViewControllerDelegate
+//------------------------------------------------------------------------------
+- (void)setDateForCurrentRound:(NSDate *)date
+{
+    self.currRound.date = date;
+}
+
+
 
 
 

@@ -33,6 +33,7 @@
 		FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927A81AABB5340017D069 /* PastRoundsViewController.m */; };
 		FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AB1AAD118E0017D069 /* EndCell.m */; };
 		FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */; };
+		FA9C05431AD4D4AB00047DC9 /* RoundDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C05421AD4D4AB00047DC9 /* RoundDateViewController.m */; };
 		FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */; };
 		FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFB1ABBF3FB00B79AB3 /* BowInfo.m */; };
 		FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */; };
@@ -177,6 +178,8 @@
 		FA9927AB1AAD118E0017D069 /* EndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndCell.m; sourceTree = "<group>"; };
 		FA9927AD1AAD12780017D069 /* RoundEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundEditorViewController.h; sourceTree = "<group>"; };
 		FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundEditorViewController.m; sourceTree = "<group>"; };
+		FA9C05411AD4D4AB00047DC9 /* RoundDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDateViewController.h; sourceTree = "<group>"; };
+		FA9C05421AD4D4AB00047DC9 /* RoundDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundDateViewController.m; sourceTree = "<group>"; };
 		FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowsViewController.h; sourceTree = "<group>"; };
 		FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowsViewController.m; sourceTree = "<group>"; };
 		FAF52EFA1ABBF3FB00B79AB3 /* BowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowInfo.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */,
 				FA9927A71AABB5340017D069 /* PastRoundsViewController.h */,
 				FA9927A81AABB5340017D069 /* PastRoundsViewController.m */,
+				FA9C05411AD4D4AB00047DC9 /* RoundDateViewController.h */,
+				FA9C05421AD4D4AB00047DC9 /* RoundDateViewController.m */,
 			);
 			name = Rounds;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
 				FA0017091ACB867A006D8399 /* ArchersEyeInfo.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,
+				FA9C05431AD4D4AB00047DC9 /* RoundDateViewController.m in Sources */,
 				FA8DEEBD1AB94264006CED5A /* RoundInfoViewController.m in Sources */,
 				FA633DF91AB56ADD0090AD12 /* NewLiveRoundViewController.m in Sources */,
 				FA9927771AABA1510017D069 /* main.m in Sources */,
