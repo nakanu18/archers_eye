@@ -10,6 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "Defines.h"
 #import "BowInfo.h"
+#import "NSDate+Info.h"
 
 // NOTE: values stored in _endScores correspond to the values above in
 // eRoundType.

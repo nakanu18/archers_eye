@@ -10,32 +10,6 @@
 #import "RoundInfo.h"
 #import "RoundDescCell.h"
 
-@interface PastRoundInfo :NSObject
-{
-    
-}
-
-@property (nonatomic, strong)    RoundInfo *roundInfo;
-@property (nonatomic, readwrite) NSInteger  month;
-@property (nonatomic, readwrite) NSInteger  year;
-
-@end
-
-@implementation PastRoundInfo
-
-@end
-
-
-
-
-
-
-
-
-
-
-
-
 @interface PastRoundsViewController ()
 
 @end
@@ -63,20 +37,15 @@
     // Parse through pastRounds - create a new array for each new month
     for( RoundInfo *roundInfo in self.archersEyeInfo.pastRounds )
     {
-        PastRoundInfo  *temp  = [PastRoundInfo new];
-        NSInteger       month = [[NSCalendar currentCalendar] component:NSCalendarUnitMonth fromDate:roundInfo.date];
-        NSInteger       year  = [[NSCalendar currentCalendar] component:NSCalendarUnitYear  fromDate:roundInfo.date];
-        
-        temp.roundInfo   = roundInfo;
-        temp.month       = month;
-        temp.year        = year;
+        NSInteger month = [roundInfo.date month];
+        NSInteger year  = [roundInfo.date year];
         
         // New month was found: create a new array
         if( prevMonth != month  ||  prevYear != year )
             [self.groupedPastRounds addObject:[NSMutableArray new]];
         
         // Add the temp round into it's correct group
-        [[self.groupedPastRounds lastObject] addObject:temp];
+        [[self.groupedPastRounds lastObject] addObject:roundInfo];
         
         prevMonth = month;
         prevYear  = year;
@@ -182,10 +151,11 @@
     
     if( [self.groupedPastRounds[section] count] > 0 )
     {
-        PastRoundInfo   *pastRoundInfo  = self.groupedPastRounds[section][0];
+        RoundInfo       *pastRoundInfo  = self.groupedPastRounds[section][0];
         NSDateFormatter *formatter      = [NSDateFormatter new];
         
-        title = [NSString stringWithFormat:@"%@ %ld", [[formatter monthSymbols] objectAtIndex:(pastRoundInfo.month - 1)], pastRoundInfo.year];
+        [formatter setDateFormat:@"MMMM yyyy"];
+        title = [formatter stringFromDate:pastRoundInfo.date];
     }
     return title;
 }
@@ -199,8 +169,8 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RoundDescCell   *cell           = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-    PastRoundInfo   *pastRoundInfo  = self.groupedPastRounds[indexPath.section][indexPath.row];
-    RoundInfo       *info           = pastRoundInfo.roundInfo;
+    RoundInfo       *pastRoundInfo  = self.groupedPastRounds[indexPath.section][indexPath.row];
+    RoundInfo       *info           = pastRoundInfo;
     NSInteger        totalScore     = [info getRealTotalScore];
     NSInteger        totalArrows    = info.numEnds * info.numArrowsPerEnd;
 
@@ -236,10 +206,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( editingStyle == UITableViewCellEditingStyleDelete )
     {
-        PastRoundInfo *pastRoundInfo = self.groupedPastRounds[indexPath.section][indexPath.row];
+        RoundInfo *pastRoundInfo = self.groupedPastRounds[indexPath.section][indexPath.row];
         
         // Delete the row from the data source
-        [self.archersEyeInfo.pastRounds removeObject:pastRoundInfo.roundInfo];
+        [self.archersEyeInfo.pastRounds removeObject:pastRoundInfo];
         [self.groupedPastRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }

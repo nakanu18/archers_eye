@@ -2527,14 +2527,14 @@
         <image name="target_cap_dgray" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7Mq-gy-2U7"/>
-        <segue reference="upc-ag-KoX"/>
-        <segue reference="mVz-ha-6Ui"/>
         <segue reference="tYL-4e-FWa"/>
-        <segue reference="JDt-XP-Eus"/>
         <segue reference="KxS-dp-uYj"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="UDk-Mg-dBq"/>
         <segue reference="BUw-Gj-nuY"/>
         <segue reference="Wmh-qa-w2H"/>
         <segue reference="9dM-LP-hRo"/>
+        <segue reference="7Mq-gy-2U7"/>
+        <segue reference="upc-ag-KoX"/>
     </inferredMetricsTieBreakers>
 </document>
