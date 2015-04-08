@@ -12,11 +12,24 @@
 #import "EndCell.h"
 #import "TotalsCell.h"
 
+@protocol RoundEditorViewControllerDelegate <NSObject>
+
+- (void)currItemChanged;
+
+@end
+
+
+
+
+
+
 @interface RoundEditorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, RoundDateViewControllerDelegate>
 {
     NSInteger _currEndID;
     NSInteger _currArrowID;
 }
+
+@property (nonatomic, weak) id <RoundEditorViewControllerDelegate> delegate;
 
 @property (nonatomic, weak)          AppDelegate        *appDelegate;
 @property (nonatomic, weak)          ArchersEyeInfo     *archersEyeInfo;

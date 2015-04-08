@@ -189,7 +189,7 @@
                                     <outlet property="dist" destination="M9l-Nb-v4a" id="2dn-H3-hlU"/>
                                     <outlet property="name" destination="L5H-aU-4eD" id="6N8-Yu-nPC"/>
                                     <outlet property="score" destination="VJH-5I-dTZ" id="2lW-R6-SwT"/>
-                                    <segue destination="aNf-Uz-wPI" kind="presentation" modalTransitionStyle="flipHorizontal" id="UDk-Mg-dBq"/>
+                                    <segue destination="aNf-Uz-wPI" kind="presentation" identifier="gotoRoundEditorFromPastRounds" modalTransitionStyle="flipHorizontal" id="UDk-Mg-dBq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -710,7 +710,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1S-FJ-tAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2634" y="2587"/>
+            <point key="canvasLocation" x="2591" y="2587"/>
         </scene>
         <!--Live Round-->
         <scene sceneID="1q7-Yg-ZMM">
@@ -1648,8 +1648,8 @@
                                             <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyA-dm-bCe">
-                                            <rect key="frame" x="18" y="23" width="50" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyA-dm-bCe">
+                                            <rect key="frame" x="18" y="24.5" width="50" height="14.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="PA2-XS-SOC"/>
                                             </constraints>
@@ -1709,8 +1709,8 @@
                                             <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6S-35-H1M">
-                                            <rect key="frame" x="18" y="23" width="50" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6S-35-H1M">
+                                            <rect key="frame" x="18" y="24.5" width="50" height="14.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="I3g-Le-NAy"/>
                                             </constraints>
@@ -2373,7 +2373,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 yds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoQ-Eb-Scv">
-                                                    <rect key="frame" x="16" y="23" width="50" height="17"/>
+                                                    <rect key="frame" x="16" y="24.5" width="50" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="ZkR-ve-Igx"/>
                                                     </constraints>
@@ -2382,7 +2382,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOw-q1-W7E">
-                                                    <rect key="frame" x="74" y="23" width="90" height="17"/>
+                                                    <rect key="frame" x="74" y="24.5" width="90" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="cp6-xC-99l"/>
                                                     </constraints>
@@ -2399,7 +2399,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BowType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="qYg-FP-WNt">
-                                                    <rect key="frame" x="464" y="23" width="80" height="16.5"/>
+                                                    <rect key="frame" x="464" y="24.5" width="80" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="EAq-HM-zgj"/>
                                                     </constraints>
@@ -2411,7 +2411,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-Vb-TFg">
-                                                    <rect key="frame" x="552" y="23" width="60" height="17"/>
+                                                    <rect key="frame" x="552" y="24.5" width="60" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="EKL-I0-Ie5"/>
                                                     </constraints>
@@ -2520,21 +2520,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6q-HO-Pe0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2634" y="3593"/>
+            <point key="canvasLocation" x="2591" y="3593"/>
         </scene>
     </scenes>
     <resources>
         <image name="target_cap_dgray" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KxS-dp-uYj"/>
-        <segue reference="tYL-4e-FWa"/>
-        <segue reference="upc-ag-KoX"/>
         <segue reference="7Mq-gy-2U7"/>
+        <segue reference="upc-ag-KoX"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="tYL-4e-FWa"/>
+        <segue reference="JDt-XP-Eus"/>
+        <segue reference="KxS-dp-uYj"/>
+        <segue reference="BUw-Gj-nuY"/>
         <segue reference="Wmh-qa-w2H"/>
         <segue reference="9dM-LP-hRo"/>
-        <segue reference="mVz-ha-6Ui"/>
-        <segue reference="UDk-Mg-dBq"/>
-        <segue reference="BUw-Gj-nuY"/>
     </inferredMetricsTieBreakers>
 </document>

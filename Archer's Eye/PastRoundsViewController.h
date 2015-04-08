@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "RoundEditorViewController.h"
 
-@interface PastRoundsViewController : UITableViewController
+@interface PastRoundsViewController : UITableViewController <RoundEditorViewControllerDelegate>
 {
 }
 
-@property (nonatomic, weak) AppDelegate     *appDelegate;
-@property (nonatomic, weak) ArchersEyeInfo  *archersEyeInfo;
+@property (nonatomic, weak)     AppDelegate     *appDelegate;
+@property (nonatomic, weak)     ArchersEyeInfo  *archersEyeInfo;
 
 
 

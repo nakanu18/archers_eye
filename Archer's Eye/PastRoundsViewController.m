@@ -24,6 +24,9 @@
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo = self.appDelegate.archersEyeInfo;
     
+    // Sort the past rounds so that the newest one is first
+    [self.archersEyeInfo sortRoundInfosByDate:self.archersEyeInfo.pastRounds ascending:NO];
+    
     [super viewDidLoad];
 }
 
@@ -48,6 +51,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+//------------------------------------------------------------------------------
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if( [segue.identifier isEqualToString:@"gotoRoundEditorFromPastRounds"] )
+    {
+        UINavigationController    *nav         = (UINavigationController    *)segue.destinationViewController;
+        RoundEditorViewController *roundEditor = (RoundEditorViewController *)nav.topViewController;
+        
+        roundEditor.delegate = self;
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+// Protocol: RoundEditorViewControllerDelegate
+//------------------------------------------------------------------------------
+- (void)currItemChanged
+{
+    // Sort the past rounds so that the newest one is first
+    [self.archersEyeInfo sortRoundInfosByDate:self.archersEyeInfo.pastRounds ascending:NO];
+
+    [self.tableView reloadData];
+}
 
 
 

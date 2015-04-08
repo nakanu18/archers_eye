@@ -24,10 +24,10 @@
     
 }
 
+@property (nonatomic, weak) id <RoundDateViewControllerDelegate> delegate;
+
 @property (nonatomic, weak)     IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, strong)            NSDate       *currDate;
-
-@property (nonatomic, weak) UIViewController <RoundDateViewControllerDelegate> *delegate;
 
 
 

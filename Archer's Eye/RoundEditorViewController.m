@@ -634,7 +634,7 @@
         unwindSegueName = @"unwindToNewLiveRound";
     }
     
-    [_tableView reloadData];
+//    [_tableView reloadData];
     
     // Programmatically run the unwind segue because we have to wait for the
     // AlertView.
@@ -710,7 +710,14 @@
             unwindSegueName = @"unwindToNewLiveRound";
         }
         
-        [_tableView reloadData];
+//        [_tableView reloadData];
+        
+        // Send data to our delegate
+        if( self.delegate != nil )
+        {
+            if( [self.delegate respondsToSelector:@selector(currItemChanged)] )
+                [self.delegate currItemChanged];
+        }
         
         // Programmatically run the unwind segue because we have to wait for the
         // AlertView.

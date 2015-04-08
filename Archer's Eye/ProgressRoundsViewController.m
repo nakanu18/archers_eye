@@ -346,11 +346,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     x.tickDirection      = CPTSignNegative;
     NSMutableSet *xLabels    = [NSMutableSet setWithCapacity:[self.favRounds[self.favRoundID] count]];
     NSMutableSet *xLocations = [NSMutableSet setWithCapacity:[self.favRounds[self.favRoundID] count]];
-    NSInteger i = 0;
-    for ( RoundInfo *favRound in self.favRounds[self.favRoundID] )
+    NSInteger j = 0;
+    for( NSInteger i = 0; i < [self.favRounds[self.favRoundID] count]; ++i )
     {
-        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:@"ARR"  textStyle:x.labelTextStyle];
-        CGFloat location = i++;
+        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%ld", i] textStyle:x.labelTextStyle];
+        CGFloat location = j++;
         label.tickLocation = CPTDecimalFromCGFloat(location);
         label.offset = x.majorTickLength;
         if (label)
@@ -388,7 +388,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         NSUInteger mod = j % majorIncrement;
         if (mod == 0)
         {
-            CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%ld", j] textStyle:y.labelTextStyle];
+            CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%ld", (long)j] textStyle:y.labelTextStyle];
             NSDecimal location  = CPTDecimalFromInteger(j);
             label.tickLocation  = location;
             label.offset        = -y.majorTickLength - y.labelOffset;
@@ -475,7 +475,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         labelText.color = [CPTColor greenColor];
     }
     
-    NSString *labelValue = [NSString stringWithFormat:@"%ld", [self.favRounds[self.favRoundID][index] getRealTotalScore]];
+    NSString *labelValue = [NSString stringWithFormat:@"%ld", (long)[self.favRounds[self.favRoundID][index] getRealTotalScore]];
     
     return [[CPTTextLayer alloc] initWithText:labelValue style:labelText];
 }

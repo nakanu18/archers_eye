@@ -78,6 +78,7 @@ typedef enum
 
 - (NSMutableArray *)arrayOfFavoritePastRounds;
 - (NSMutableArray *)arrayOfUsedBows;
+- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending;
 
 @end
 

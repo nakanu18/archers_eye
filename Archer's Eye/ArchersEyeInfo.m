@@ -576,6 +576,14 @@
         }
     }
     
+    
+    
+    // Finally, let's sort the subarrays so that the dates are ascending
+    for( NSMutableArray *array in favRounds )
+    {
+        [self sortRoundInfosByDate:array ascending:YES];
+    }
+    
     return favRounds;
 }
 
@@ -610,6 +618,20 @@
         usedBows = nil;
     
     return usedBows;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Sorts the given array of RoundInfos by date.
+//------------------------------------------------------------------------------
+- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending
+{
+    // Finally, let's sort the subarrays so that the dates are ascending
+    NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:ascending];
+    NSArray          *descs = [NSArray arrayWithObject:desc];
+    
+    [roundInfos sortUsingDescriptors:descs];
 }
 
 @end
