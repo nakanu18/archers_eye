@@ -281,10 +281,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     // 3 - Set up plot space
     NSInteger totalArrows    = [self.favRounds[self.favRoundID][0] getTotalArrows];
     NSInteger maxArrowScore  = [self.favRounds[self.favRoundID][0] getMaxArrowRealScore];
-    float     xStart         = -0.75f;
-    float     xLength        = [self.favRounds[_favRoundID] count] - (0.25f*xStart);
-    float     yStart         = -50.0f;
-    float     yLength        = totalArrows * maxArrowScore - (1.4*yStart);
+    float     xStart         = -((float)[self.favRounds[_favRoundID] count]) * 0.2f;
+    float     xLength        =  ((float)[self.favRounds[_favRoundID] count]) * 1.1f;
+    float     yStart         = -(totalArrows * maxArrowScore) * 0.2f;
+    float     yLength        =  (totalArrows * maxArrowScore) * 1.3f;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( xStart ) length:CPTDecimalFromFloat( xLength )];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( yStart ) length:CPTDecimalFromFloat( yLength )];
 
@@ -376,8 +376,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     y.majorTickLength    = 4.0f;
     y.minorTickLength    = 2.0f;
     y.tickDirection      = CPTSignPositive;
-    NSInteger     majorIncrement  = 50;
-    NSInteger     minorIncrement  = 25;
+    eRoundType    roundType       = [(RoundInfo *)self.favRounds[_favRoundID][0] type];
+    NSInteger     majorIncrement  = (roundType == eRoundType_FITA) ? 100 : 50;
+    NSInteger     minorIncrement  = (roundType == eRoundType_FITA) ? 50  : 25;
     CGFloat       yMax            = [self.favRounds[self.favRoundID][0] getTotalArrows] * [self.favRounds[self.favRoundID][0] getMaxArrowRealScore];
     NSMutableSet *yLabels         = [NSMutableSet set];
     NSMutableSet *yMajorLocations = [NSMutableSet set];
