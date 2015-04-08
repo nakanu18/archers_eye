@@ -21,7 +21,10 @@
 {
     // Override point for customization after application launch.
     self.archersEyeInfo = [ArchersEyeInfo new];
-    self.url            = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+//    self.url            = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    self.storyboard     = self.window.rootViewController.storyboard;
+    
+    NSLog( @"0 - url: %@", [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey] );
     [self loadData];
     
     return YES;
@@ -36,6 +39,8 @@
          annotation:(id)annotation
 {
     self.url = url;
+    
+    NSLog( @"1 - url: %@", url );
     [self loadData];
     
     return YES;
@@ -67,6 +72,12 @@
     // instead of applicationWillTerminate: when the user quits.
 
     [self.archersEyeInfo saveDataToDevice];
+    
+    if( self.url != nil  &&  [self.url isFileURL] )
+    {
+        [[NSFileManager defaultManager] removeItemAtURL:self.url error:nil];
+        self.url = nil;
+    }
 }
 
 
@@ -100,10 +111,6 @@
     // Called when the application is about to terminate. Save data if
     // appropriate. See also applicationDidEnterBackground:.
 }
-
-
-
-
 
 
 
@@ -170,19 +177,24 @@
 //------------------------------------------------------------------------------
 - (void)loadData
 {
+    // Dismiss the previous alert view if it exists
+    if(  self.alertView != nil )
+        [self.alertView dismissWithClickedButtonIndex:-1 animated:NO];
+    
     if( self.url != nil  &&  [self.url isFileURL] )
     {
-        UIAlertView *confirmLoad = [[UIAlertView alloc] initWithTitle:@""
-                                                              message:@"Purge and Load From File?"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                                    otherButtonTitles:@"Load", nil];
+        self.alertView = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:@"Purge and Load From File?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Load", nil];
         
-        [confirmLoad show];
+        [self.alertView show];
+        
+        [self resetWindowToInitialView];
     }
     else
         [self.archersEyeInfo loadDataFromDevice];
-    
 }
 
 
@@ -195,10 +207,30 @@
         NSData *zippedData = [NSData dataWithContentsOfURL:self.url];
         
         [[NSFileManager defaultManager] removeItemAtURL:self.url error:nil];
+        self.url = nil;
+        
         [self.archersEyeInfo loadDataFromJSONData:zippedData];
     }
-    else
+    else if( buttonIndex == 0 )
         [self.archersEyeInfo loadDataFromDevice];
+    
+    self.alertView = nil;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Reset the window to the beginning of the storyboard.
+//------------------------------------------------------------------------------
+- (void)resetWindowToInitialView
+{
+    for( UIView *view in self.window.subviews )
+    {
+        [view removeFromSuperview];
+    }
+    
+    UIViewController* initialScene = [_storyboard instantiateInitialViewController];
+    self.window.rootViewController = initialScene;
 }
 
 @end

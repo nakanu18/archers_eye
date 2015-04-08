@@ -19,6 +19,10 @@
 @property (nonatomic, strong) UIWindow       *window;
 @property (nonatomic, strong) ArchersEyeInfo *archersEyeInfo;
 @property (nonatomic, strong) NSURL          *url;
+@property (nonatomic, strong) UIStoryboard   *storyboard;
+@property (nonatomic, strong) UIAlertView    *alertView;
+
+
 
 
 
@@ -29,6 +33,7 @@
 + (NSString *)shortDateAndTime:(NSDate *)date;
 - (void)loadData;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)resetWindowToInitialView;
 
 @end
 
