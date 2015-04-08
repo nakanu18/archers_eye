@@ -8,4 +8,10 @@
 
 #pragma once
 
-#define NSLOGS_ON x
+#if defined(DEBUG) || TARGET_IPHONE_SIMULATOR
+//    #define DLog(s, ...) NSLog((@"%s " s), __PRETTY_FUNCTION__, ## __VA_ARGS__);
+    #define DLog(s, ...) NSLog((@"" s), ## __VA_ARGS__);
+#else
+    #define DLog(s, ...) /* */
+#endif
+

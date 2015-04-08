@@ -96,9 +96,7 @@
 {
     if( self = [super init] )
     {
-#ifdef NSLOGS_ON
-        NSLog( @"BowInfo: decoding %@", [aDecoder decodeObjectForKey:@"name"] );
-#endif
+        DLog( @"BowInfo: decoding %@", [aDecoder decodeObjectForKey:@"name"] );
 
         self.name           =            [aDecoder decodeObjectForKey:@"name"];
         self.type           = (eBowType)[[aDecoder decodeObjectForKey:@"type"]        integerValue];
@@ -117,9 +115,7 @@
 //------------------------------------------------------------------------------
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-#ifdef NSLOGS_ON
-    NSLog( @"BowInfo: encoding %@", self.name );
-#endif
+    DLog( @"BowInfo: encoding %@", self.name );
 
     [aCoder encodeObject:_name                                      forKey:@"name"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_type]         forKey:@"type"];
@@ -138,9 +134,7 @@
 {
     if( self = [super init] )
     {
-#ifdef NSLOGS_ON
-        NSLog( @"BowInfo: decoding from json %@", dictionary[@"name"] );
-#endif
+        DLog( @"BowInfo: decoding from json %@", dictionary[@"name"] );
 
         self.name           =            dictionary[@"name"];
         self.type           = (eBowType)[dictionary[@"type"]        integerValue];
@@ -159,9 +153,7 @@
 //------------------------------------------------------------------------------
 - (NSDictionary *)dictionary
 {
-#ifdef NSLOGS_ON
-    NSLog( @"BowInfo: encoding to json %@", self.name );
-#endif
+    DLog( @"BowInfo: encoding to json %@", self.name );
 
     NSDictionary *dict = @{
                            @"name"              : self.name,

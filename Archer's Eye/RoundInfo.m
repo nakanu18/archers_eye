@@ -143,9 +143,7 @@
 {
     if( self = [super init] )
     {
-#ifdef NSLOGS_ON
-        NSLog( @"RoundInfo: decoding %@", [aDecoder decodeObjectForKey:@"name"] );
-#endif
+        DLog( @"RoundInfo: decoding %@", [aDecoder decodeObjectForKey:@"name"] );
 
         self.name               =              [aDecoder decodeObjectForKey:@"name"];
         self.type               = (eRoundType)[[aDecoder decodeObjectForKey:@"type"]            integerValue];
@@ -166,9 +164,7 @@
 //------------------------------------------------------------------------------
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-#ifdef NSLOGS_ON
-    NSLog( @"RoundInfo: encoding %@", self.name );
-#endif
+    DLog( @"RoundInfo: encoding %@", self.name );
 
     [aCoder encodeObject:_name                                          forKey:@"name"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_type]             forKey:@"type"];
@@ -189,9 +185,7 @@
 {
     if( self = [super init] )
     {
-#ifdef NSLOGS_ON
-        NSLog( @"RoundInfo: decoding from json %@", dictionary[@"name"] );
-#endif
+        DLog( @"RoundInfo: decoding from json %@", dictionary[@"name"] );
 
         NSDateFormatter *format = [NSDateFormatter new];
         [format setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
@@ -231,9 +225,7 @@
 //------------------------------------------------------------------------------
 - (NSDictionary *)dictionary
 {
-#ifdef NSLOGS_ON
-    NSLog( @"RoundInfo: encoding to json %@", self.name );
-#endif
+    DLog( @"RoundInfo: encoding to json %@", self.name );
 
     NSDateFormatter *format = [NSDateFormatter new];
     [format setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];

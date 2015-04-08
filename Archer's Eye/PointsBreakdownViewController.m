@@ -355,7 +355,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         NSRange   range      = [RoundInfo rangeForSection:index forType:_currPastRound.type];
         NSInteger numArrows  = [_currPastRound getNumberOfArrowsWithMinScore:range.location andMaxScore:range.location + range.length];
         
-//        NSLog( @"NumArrows: %ld forSection: %ld", numArrows, index );
+//        DLog( @"NumArrows: %ld forSection: %ld", numArrows, index );
         num = [NSNumber numberWithInteger:numArrows];
     }
     return num;

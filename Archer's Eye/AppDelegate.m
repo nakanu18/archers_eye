@@ -24,7 +24,7 @@
 //    self.url            = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
     self.storyboard     = self.window.rootViewController.storyboard;
     
-    NSLog( @"0 - url: %@", [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey] );
+    DLog( @"0 - url: %@", [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey] );
     [self loadData];
     
     return YES;
@@ -40,7 +40,7 @@
 {
     self.url = url;
     
-    NSLog( @"1 - url: %@", url );
+    DLog( @"1 - url: %@", url );
     [self loadData];
     
     return YES;

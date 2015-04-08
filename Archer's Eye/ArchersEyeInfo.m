@@ -52,9 +52,7 @@
     // No save data file; load the defaults
     if( saveData == nil )
     {
-#ifdef NSLOGS_ON
-        NSLog( @"ArchersEyeInfo: userDefaults save data NOT found - loading defaults" );
-#endif
+        DLog( @"ArchersEyeInfo: userDefaults save data NOT found - loading defaults" );
         
         [self loadDefaults];
     }
@@ -63,9 +61,7 @@
     {
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:saveData];
 
-#ifdef NSLOGS_ON
-        NSLog( @"ArchersEyeInfo: userDefaults save data found - loading (v%.2f) - %@", [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue], [unarchiver decodeObjectForKey:@"saveDate"] );
-#endif
+        DLog( @"ArchersEyeInfo: userDefaults save data found - loading (v%.2f) - %@", [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue], [unarchiver decodeObjectForKey:@"saveDate"] );
         
         self.version        = [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue];
         self.liveRound      = [unarchiver decodeObjectForKey:@"liveRound"];
@@ -76,6 +72,7 @@
         self.currBow        = [unarchiver decodeObjectForKey:@"currBow"];
         self.allBows        = [unarchiver decodeObjectForKey:@"allBows"];
         [unarchiver finishDecoding];
+        DLog( @"\n" );
     }
 }
 
@@ -90,9 +87,7 @@
                                                          options:NSJSONReadingMutableContainers
                                                            error:nil];
     
-#ifdef NSLOGS_ON
-    NSLog( @"ArchersEyeInfo: loading from json (v%.2f) - %@", [dict[@"saveVersion"] floatValue], dict[@"saveDate"] );
-#endif
+    DLog( @"ArchersEyeInfo: loading from json (v%.2f) - %@", [dict[@"saveVersion"] floatValue], dict[@"saveDate"] );
     
     self.version = [dict[@"saveVersion"] floatValue];
     
@@ -129,6 +124,7 @@
         
         [self.allBows addObject:newBow];
     }
+    DLog( @"\n" );
 }
 
 
@@ -138,9 +134,7 @@
 //------------------------------------------------------------------------------
 - (NSData *)jsonData
 {
-#ifdef NSLOGS_ON
-    NSLog( @"ArchersEyeInfo: converting to json (v%.2f)", SAVE_DATA_VERSION );
-#endif
+    DLog( @"ArchersEyeInfo: converting to json (v%.2f)", SAVE_DATA_VERSION );
 
     NSData              *json;
     NSMutableDictionary *dict = [NSMutableDictionary new];
@@ -156,7 +150,8 @@
                                            options:NSJSONWritingPrettyPrinted
                                              error:nil];
     
-//    NSLog( @"ArchersEyeInfo: %@", [[NSString alloc] initWithData:json encoding:NSASCIIStringEncoding] );
+//    DLog( @"ArchersEyeInfo: %@", [[NSString alloc] initWithData:json encoding:NSASCIIStringEncoding] );
+    DLog( @"\n" );
     
     return json;
 }
@@ -184,9 +179,7 @@
 //------------------------------------------------------------------------------
 - (void)saveDataToDevice
 {
-#ifdef NSLOGS_ON
-    NSLog( @"ArchersEyeInfo: Saving data (v%.2f)", SAVE_DATA_VERSION );
-#endif
+    DLog( @"ArchersEyeInfo: Saving data (v%.2f)", SAVE_DATA_VERSION );
     
     NSMutableData   *saveData      = [[NSMutableData    alloc] init];
     NSKeyedArchiver *keyedArchiver = [[NSKeyedArchiver  alloc] initForWritingWithMutableData:saveData];
@@ -204,6 +197,7 @@
     [keyedArchiver encodeObject:_allBows        forKey:@"allBows"];
     [keyedArchiver finishEncoding];
     [[NSUserDefaults standardUserDefaults] setObject:saveData forKey:@"archersEyeInfo"];
+    DLog( @"\n" );
 }
 
 
@@ -573,7 +567,7 @@
         NSMutableArray *favRound = favRounds[i];
         
 //        if( [favRound count] > 0 )
-//            NSLog( @"ArchersEyeInfo: %@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
+//            DLog( @"ArchersEyeInfo: %@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
         
         if( [favRound count] < 2 )
         {
