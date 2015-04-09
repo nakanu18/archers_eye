@@ -2545,10 +2545,10 @@
         <segue reference="7Mq-gy-2U7"/>
         <segue reference="upc-ag-KoX"/>
         <segue reference="tYL-4e-FWa"/>
+        <segue reference="JDt-XP-Eus"/>
         <segue reference="KxS-dp-uYj"/>
-        <segue reference="mVz-ha-6Ui"/>
-        <segue reference="UDk-Mg-dBq"/>
         <segue reference="BUw-Gj-nuY"/>
+        <segue reference="mVz-ha-6Ui"/>
         <segue reference="9dM-LP-hRo"/>
     </inferredMetricsTieBreakers>
 </document>

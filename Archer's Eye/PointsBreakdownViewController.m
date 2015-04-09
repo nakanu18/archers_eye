@@ -263,7 +263,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     graph.titleDisplacement         = CGPointMake(0.0f, -12.0f);
     
     // 4 - Set theme
-    self.selectedTheme = [CPTTheme themeNamed:kCPTSlateTheme];
+    self.selectedTheme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
     [graph applyTheme:self.selectedTheme];
 }
 
@@ -390,7 +390,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if( !labelText )
     {
         labelText       = [[CPTMutableTextStyle alloc] init];
-        labelText.color = [CPTColor blackColor];
+        labelText.color = [CPTColor whiteColor];
     }
     
     // 2 - Calculate the number of arrows

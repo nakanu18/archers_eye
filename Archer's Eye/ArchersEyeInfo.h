@@ -17,7 +17,6 @@ typedef enum
 {
     eRoundCategory_None,
     eRoundCategory_Custom,
-    eRoundCategory_Common,
     eRoundCategory_Past,
 } eRoundCategory;
 
@@ -41,7 +40,6 @@ typedef enum
 @property (nonatomic, readwrite) float            version;
 @property (nonatomic, copy)      RoundInfo       *liveRound;
 @property (nonatomic, strong)    NSMutableArray  *customRounds;
-@property (nonatomic, strong)    NSMutableArray  *commonRounds;
 @property (nonatomic, copy)      RoundInfo       *currRound;
 @property (nonatomic, strong)    NSMutableArray  *pastRounds;
 @property (nonatomic, copy)      BowInfo         *currBow;
@@ -77,9 +75,11 @@ typedef enum
 - (void)saveCurrBow;
 - (void)discardCurrBow;
 
-- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending;
+- (void)sortRoundInfos:(NSMutableArray *)roundInfos byKey:(NSString *)key ascending:(BOOL)ascending;
 - (NSMutableArray *)arrayOfFavoritePastRounds;
+- (NSMutableArray *)arrayOfUsedRounds;
 - (NSMutableArray *)arrayOfUsedBows;
+- (NSMutableArray *)arrayOfCustomRoundsByFirstName;
 - (NSMutableArray *)arrayOfPastRoundsByMonth;
 
 @end

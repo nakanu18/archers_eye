@@ -9,20 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-typedef enum
-{
-    eNewLiveRoundSectionType_Live,
-    eNewLiveRoundSectionType_Custom,
-    eNewLiveRoundSectionType_Common,
-} eNewLiveRoundSectionType;
-
 @interface NewLiveRoundViewController : UITableViewController
 {
 }
 
 @property (nonatomic, weak)    AppDelegate     *appDelegate;
 @property (nonatomic, weak)    ArchersEyeInfo  *archersEyeInfo;
-@property (nonatomic, strong)  NSMutableArray  *sectionTypes;
+@property (nonatomic, strong)  NSMutableArray  *groupedRounds;
 
 
 

@@ -21,8 +21,12 @@
 - (void)viewDidLoad
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
-    self.sectionTypes   = [NSMutableArray new];
+    self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
+    self.groupedRounds  = [self.archersEyeInfo arrayOfCustomRoundsByFirstName];
+    
+    // Insert a dummy array for the live round
+    if( self.archersEyeInfo.liveRound != nil )
+        [self.groupedRounds insertObject:[NSMutableArray new] atIndex:0];
 
     [super viewDidLoad];
 }
@@ -31,19 +35,14 @@
 //------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Remove all the previous sections
-    [_sectionTypes removeAllObjects];
-    
-    // Now, setup the current sections in a list
-    
-    if( self.archersEyeInfo.liveRound != nil )
-        [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Live]];
-    if( [self.archersEyeInfo.customRounds count] > 0 )
-        [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Custom]];
-    [_sectionTypes addObject:[NSNumber numberWithInt:eNewLiveRoundSectionType_Common]];
-    
     // Reload the data;  This is in case we created a live round and need to add
     // that into our list
+    self.groupedRounds  = [self.archersEyeInfo arrayOfCustomRoundsByFirstName];
+
+    // Insert a dummy array for the live round
+    if( self.archersEyeInfo.liveRound != nil )
+        [self.groupedRounds insertObject:[NSMutableArray new] atIndex:0];
+    
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -86,7 +85,21 @@
 //------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_sectionTypes count];
+    return [self.groupedRounds count];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Number of rows for a section.
+//------------------------------------------------------------------------------
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    if( section == 0  &&  self.archersEyeInfo.liveRound != nil )
+        return 1;
+    else
+        return [self.groupedRounds[section] count];
 }
 
 
@@ -97,38 +110,20 @@
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
 {
-    NSString                 *header;
-    eNewLiveRoundSectionType  type = [_sectionTypes[section] intValue];
+    NSString *title = @"";
     
-    switch( type )
+    if( [self.groupedRounds[section] count] > 0 )
     {
-        case eNewLiveRoundSectionType_Live:     header = @"Live Rounds";   break;
-        case eNewLiveRoundSectionType_Custom:   header = @"Custom Rounds"; break;
-        case eNewLiveRoundSectionType_Common:   header = @"Common Rounds"; break;
+        RoundInfo *pastRoundInfo  = self.groupedRounds[section][0];
+        
+        title = [pastRoundInfo name];
     }
-    
-    return header;
-}
-
-
-
-//------------------------------------------------------------------------------
-// Number of rows in a section.
-//------------------------------------------------------------------------------
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger                 count = [self.archersEyeInfo.commonRounds count];
-    eNewLiveRoundSectionType  type  = [_sectionTypes[section] intValue];
-
-    switch( type )
+    else
     {
-        case eNewLiveRoundSectionType_Live:   count = (self.archersEyeInfo.liveRound != nil);   break;
-        case eNewLiveRoundSectionType_Custom: count = [self.archersEyeInfo.customRounds count]; break;
-        case eNewLiveRoundSectionType_Common: count = [self.archersEyeInfo.commonRounds count]; break;
+        if( section == 0  &&  self.archersEyeInfo.liveRound != nil )
+            title = @"Live Round";
     }
-    
-    return count;
+    return title;
 }
 
 
@@ -139,34 +134,23 @@ titleForHeaderInSection:(NSInteger)section
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    eNewLiveRoundSectionType  type     = [_sectionTypes[indexPath.section] intValue];
-    RoundDescCell            *cell     = nil;
-    RoundInfo                *template = nil;
+    RoundDescCell *cell     = nil;
+    RoundInfo     *template = nil;
 
-    // Live round section
-    if( type == eNewLiveRoundSectionType_Live )
+    // Build the live round
+    if( indexPath.section == 0  &&  self.archersEyeInfo.liveRound != nil )
     {
-        if( self.archersEyeInfo.liveRound != nil )
-        {
-            cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCellLive"];
-            template = self.archersEyeInfo.liveRound;
-            
-            [cell setBackgroundColor:[UIColor greenColor]];
-        }
+        cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCellLive"];
+        template = self.archersEyeInfo.liveRound;
+
+        [cell setBackgroundColor:[UIColor greenColor]];
     }
-    // Custom rounds section
-    else if( type == eNewLiveRoundSectionType_Custom )
+    
+    // Check if we haven't build the live round, then build the regular round
+    if( cell == nil )
     {
         cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-        template = self.archersEyeInfo.customRounds[indexPath.row];
-        
-        [cell setBackgroundColor:[UIColor whiteColor]];
-    }
-    // Common rounds section
-    else if( type == eNewLiveRoundSectionType_Common )
-    {
-        cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-        template = self.archersEyeInfo.commonRounds[indexPath.row];
+        template = self.groupedRounds[indexPath.section][indexPath.row];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
     }
@@ -187,18 +171,9 @@ titleForHeaderInSection:(NSInteger)section
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    eNewLiveRoundSectionType type = [_sectionTypes[indexPath.section] intValue];
-
-    // Only build a new live round if something is selected from custom or
-    // common.
-    if( type != eNewLiveRoundSectionType_Live )
+    if( self.archersEyeInfo.liveRound == nil )
     {
-        RoundInfo *roundTemplate = nil;
-        
-        if( type == eNewLiveRoundSectionType_Custom )
-            roundTemplate = self.archersEyeInfo.customRounds[indexPath.row];
-        else if( type == eNewLiveRoundSectionType_Common )
-            roundTemplate = self.archersEyeInfo.commonRounds[indexPath.row];
+        RoundInfo *roundTemplate = self.groupedRounds[indexPath.section][indexPath.row];
         
         if( roundTemplate != nil )
             [self.archersEyeInfo startLiveRoundFromTemplate:roundTemplate];
@@ -213,13 +188,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (NSIndexPath *)tableView:(UITableView *)tableView
   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath             *newIndexPath   = indexPath;
-    eNewLiveRoundSectionType type           = [_sectionTypes[indexPath.section] intValue];
+    NSIndexPath *newIndexPath = indexPath;
     
     if( [self.archersEyeInfo liveRound] != nil )
     {
         // Prevent selection of other rows if a live round exists
-        if( type > eNewLiveRoundSectionType_Live )
+        if( indexPath.section > 0 )
             newIndexPath = nil;
     }
     return newIndexPath;
@@ -233,12 +207,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 -                           (void)tableView:(UITableView *)tableView
    accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    eNewLiveRoundSectionType type = [_sectionTypes[indexPath.section] intValue];
+    RoundInfo *roundTemplate = self.groupedRounds[indexPath.section][indexPath.row];
     
-    if( type == eNewLiveRoundSectionType_Custom )
-        [self.archersEyeInfo selectRound:indexPath.row andCategory:eRoundCategory_Custom];
-    else if( type == eNewLiveRoundSectionType_Common )
-        [self.archersEyeInfo selectRound:indexPath.row andCategory:eRoundCategory_Common];
+    [self.archersEyeInfo selectRoundInfo:roundTemplate andCategory:eRoundCategory_Custom];
 }
 
 
@@ -250,29 +221,26 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
   forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    eNewLiveRoundSectionType type = [_sectionTypes[indexPath.section] intValue];
+    BOOL deleteCustom = YES;
     
-    if( editingStyle == UITableViewCellEditingStyleDelete )
+    if( [self.archersEyeInfo liveRound] != nil )
     {
-        if( type == eNewLiveRoundSectionType_Live )
+        if( indexPath.section == 0 )
         {
-            if( [self.archersEyeInfo liveRound] != nil )
-            {
-                // Delete the row from the data source
-                [self.archersEyeInfo endLiveRoundAndDiscard];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
-        }
-        else if( type == eNewLiveRoundSectionType_Custom )
-        {
-            [self.archersEyeInfo.customRounds removeObjectAtIndex:indexPath.row];
+            // Delete the row from the data source
+            [self.archersEyeInfo endLiveRoundAndDiscard];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            deleteCustom = NO;
         }
-        else if( type == eNewLiveRoundSectionType_Common )
-        {
-            [self.archersEyeInfo.commonRounds removeObjectAtIndex:indexPath.row];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }
+    }
+    
+    if( deleteCustom )
+    {
+        RoundInfo *roundTemplate = self.groupedRounds[indexPath.section][indexPath.row];
+        
+        [self.archersEyeInfo.customRounds removeObject:roundTemplate];
+        [self.groupedRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 

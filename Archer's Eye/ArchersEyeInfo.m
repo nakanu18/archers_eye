@@ -20,7 +20,6 @@
 {
     self.version        = SAVE_DATA_VERSION;
     self.customRounds   = [NSMutableArray new];
-    self.commonRounds   = [NSMutableArray new];
     self.pastRounds     = [NSMutableArray new];
     self.allBows        = [NSMutableArray new];
     _currBowID          = -1;
@@ -29,9 +28,9 @@
     RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andType:eRoundType_FITA andDist:20 andNumEnds:20 andArrowsPerEnd:3];
     RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andType:eRoundType_NFAA andDist:20 andNumEnds:12 andArrowsPerEnd:5];
     RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andDist:20 andNumEnds:1  andArrowsPerEnd:5];
-    [_commonRounds addObject:fita600Round];
-    [_commonRounds addObject:nfaa300Round];
-    [_commonRounds addObject:shortRound];
+    [_customRounds addObject:fita600Round];
+    [_customRounds addObject:nfaa300Round];
+    [_customRounds addObject:shortRound];
     
     
     BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Recurve  andDrawWeight:28];
@@ -66,7 +65,6 @@
         self.version        = [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue];
         self.liveRound      = [unarchiver decodeObjectForKey:@"liveRound"];
         self.customRounds   = [unarchiver decodeObjectForKey:@"customRounds"];
-        self.commonRounds   = [unarchiver decodeObjectForKey:@"commonRounds"];
         self.currRound      = [unarchiver decodeObjectForKey:@"currRound"];
         self.pastRounds     = [unarchiver decodeObjectForKey:@"pastRounds"];
         self.currBow        = [unarchiver decodeObjectForKey:@"currBow"];
@@ -99,14 +97,8 @@
         [self.customRounds addObject:newRound];
     }
     
-    self.commonRounds = [NSMutableArray new];
-    for( NSInteger i = 0; i < [dict[@"commonRounds"] count]; ++i )
-    {
-        RoundInfo *newRound = [[RoundInfo alloc] initFromDictionary:dict[@"commonRounds"][i]];
-        
-        [self.commonRounds addObject:newRound];
-    }
-
+    
+    
     self.pastRounds = [NSMutableArray new];
     for( NSInteger i = 0; i < [dict[@"pastRounds"] count]; ++i )
     {
@@ -142,7 +134,6 @@
     [dict setObject:[NSNumber numberWithFloat:SAVE_DATA_VERSION] forKey:@"saveVersion"];
     [dict setObject:[AppDelegate shortDateAndTime:[NSDate date]] forKey:@"saveDate"];
     [dict setObject:[self infosToDictionary:self.customRounds]   forKey:@"customRounds"];
-    [dict setObject:[self infosToDictionary:self.commonRounds]   forKey:@"commonRounds"];
     [dict setObject:[self infosToDictionary:self.pastRounds]     forKey:@"pastRounds"];
     [dict setObject:[self infosToDictionary:self.allBows]        forKey:@"allBows"];
     
@@ -190,7 +181,6 @@
     [keyedArchiver encodeObject:date            forKey:@"saveDate"];
     [keyedArchiver encodeObject:_liveRound      forKey:@"liveRound"];
     [keyedArchiver encodeObject:_customRounds   forKey:@"customRounds"];
-    [keyedArchiver encodeObject:_commonRounds   forKey:@"commonRounds"];
     [keyedArchiver encodeObject:_currRound      forKey:@"currRound"];
     [keyedArchiver encodeObject:_pastRounds     forKey:@"pastRounds"];
     [keyedArchiver encodeObject:_currBow        forKey:@"currBow"];
@@ -319,7 +309,6 @@
     switch( _currRoundCategory )
     {
         case eRoundCategory_Custom: roundArray = _customRounds;     break;
-        case eRoundCategory_Common: roundArray = _commonRounds;     break;
         case eRoundCategory_Past:   roundArray = _pastRounds;       break;
         default:                    roundArray = nil;               break;
     }
@@ -346,7 +335,6 @@
     switch( _currRoundCategory )
     {
         case eRoundCategory_Custom: roundArray = _customRounds;     break;
-        case eRoundCategory_Common: roundArray = _commonRounds;     break;
         case eRoundCategory_Past:   roundArray = _pastRounds;       break;
         default:                    roundArray = nil;               break;
     }
@@ -387,7 +375,6 @@
         switch( _currRoundCategory )
         {
             case eRoundCategory_Custom: roundArray = _customRounds;     break;
-            case eRoundCategory_Common: roundArray = _commonRounds;     break;
             case eRoundCategory_Past:   roundArray = _pastRounds;       break;
             default:                    roundArray = nil;               break;
         }
@@ -542,10 +529,10 @@
 //------------------------------------------------------------------------------
 // Sorts the given array of RoundInfos by date.
 //------------------------------------------------------------------------------
-- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending
+- (void)sortRoundInfos:(NSMutableArray *)roundInfos byKey:(NSString *)key ascending:(BOOL)ascending
 {
     // Finally, let's sort the subarrays so that the dates are ascending
-    NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:ascending];
+    NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:key ascending:ascending];
     NSArray          *descs = [NSArray arrayWithObject:desc];
     
     [roundInfos sortUsingDescriptors:descs];
@@ -558,45 +545,18 @@
 //------------------------------------------------------------------------------
 - (NSMutableArray *)arrayOfFavoritePastRounds
 {
-    NSMutableArray *favRounds       = [NSMutableArray new];
-    NSMutableArray *templateRounds  = [NSMutableArray new];
-    NSMutableArray *usedBows        = [self arrayOfUsedBows];
-    
-    // Build a mega array of common and custom rounds.  For each round, make one
-    // for each bow used.
-    for( RoundInfo *round in _customRounds )
-    {
-        for( BowInfo *bow in usedBows )
-        {
-            RoundInfo *newRound = [round copy];
-            
-            newRound.bow = bow;
-            [templateRounds addObject:newRound];
-        }
-    }
-    
-    for( RoundInfo *round in _commonRounds )
-    {
-        for( BowInfo *bow in usedBows )
-        {
-            RoundInfo *newRound = [round copy];
-            
-            newRound.bow = bow;
-            [templateRounds addObject:newRound];
-        }
-    }
-    
-    
+    NSMutableArray *favRounds   = [NSMutableArray new];
+    NSMutableArray *usedRounds  = [self arrayOfUsedRounds];
     
     // Sort the past rounds into favRounds based on the type and bow type
-    for( RoundInfo *templateRound in templateRounds )
+    for( RoundInfo *usedRound in usedRounds )
     {
         NSMutableArray *newFav = [NSMutableArray new];
         
         for( RoundInfo *pastRound in _pastRounds )
         {
-            if( [templateRound     isTypeOfRound:pastRound]  &&
-                [templateRound.bow isTypeOfBow:pastRound.bow] )
+            if( [usedRound     isTypeOfRound:pastRound]  &&
+                [usedRound.bow isTypeOfBow:pastRound.bow] )
                 [newFav addObject:pastRound];
         }
         [favRounds addObject:newFav];
@@ -624,10 +584,44 @@
     // Finally, let's sort the subarrays so that the dates are ascending
     for( NSMutableArray *array in favRounds )
     {
-        [self sortRoundInfosByDate:array ascending:YES];
+        [self sortRoundInfos:array byKey:@"date" ascending:YES];
     }
     
     return favRounds;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Creates an array of rounds used in a given set of rounds.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)arrayOfUsedRounds
+{
+    NSMutableArray *usedRounds = [NSMutableArray new];
+    
+    // Parse through all past rounds and record each unique round used.
+    for( RoundInfo *pastRound in _pastRounds )
+    {
+        BOOL unique = YES;
+        
+        for( RoundInfo *usedRound in usedRounds )
+        {
+            if( [usedRound      isTypeOfRound:pastRound]  &&
+                [usedRound.bow  isTypeOfBow:pastRound.bow] )
+            {
+                unique = NO;
+                break;
+            }
+        }
+        
+        if( unique )
+            [usedRounds addObject:pastRound];
+    }
+    
+    if( [usedRounds count] == 0 )
+        usedRounds = nil;
+    
+    return usedRounds;
 }
 
 
@@ -642,18 +636,18 @@
     // Parse through all past rounds and record each unique bow used.
     for( RoundInfo *pastRound in _pastRounds )
     {
-        BOOL uniqueBow = YES;
+        BOOL unique = YES;
         
         for( BowInfo *usedBow in usedBows )
         {
             if( [usedBow isTypeOfBow:pastRound.bow] )
             {
-                uniqueBow = NO;
+                unique = NO;
                 break;
             }
         }
         
-        if( uniqueBow )
+        if( unique )
             [usedBows addObject:pastRound.bow];
     }
     
@@ -661,6 +655,37 @@
         usedBows = nil;
     
     return usedBows;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Creates an array of custom rounds grouped by first name (first word before a
+// space.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)arrayOfCustomRoundsByFirstName
+{
+    NSMutableArray *groupedArray = [NSMutableArray new];
+    NSString       *prevName     = @"";
+
+    [self sortRoundInfos:self.customRounds byKey:@"name" ascending:YES];
+    
+    // Parse through customRounds - create a new array for each new name
+    for( RoundInfo *roundInfo in self.customRounds )
+    {
+        NSString *name = roundInfo.name;
+        
+        // New month was found: create a new array
+        if( ![prevName isEqualToString:name] )
+            [groupedArray addObject:[NSMutableArray new]];
+        
+        // Add the temp round into it's correct group
+        [[groupedArray lastObject] addObject:roundInfo];
+        
+        prevName = name;
+    }
+    
+    return groupedArray;
 }
 
 
@@ -674,7 +699,7 @@
     NSInteger       prevMonth    = -1;
     NSInteger       prevYear     = -1;
     
-    [self sortRoundInfosByDate:self.pastRounds ascending:NO];
+    [self sortRoundInfos:self.pastRounds byKey:@"date" ascending:NO];
     
     // Parse through pastRounds - create a new array for each new month
     for( RoundInfo *roundInfo in self.pastRounds )

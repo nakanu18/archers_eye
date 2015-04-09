@@ -471,8 +471,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     if( !labelText )
     {
-        labelText       = [[CPTMutableTextStyle alloc] init];
-        labelText.color = [CPTColor greenColor];
+        labelText           = [[CPTMutableTextStyle alloc] init];
+        labelText.fontName  = @"Helvetica-Bold";
+        labelText.color     = [CPTColor greenColor];
     }
     
     NSString *labelValue = [NSString stringWithFormat:@"%ld", (long)[self.favRounds[self.favRoundID][index] getRealTotalScore]];
