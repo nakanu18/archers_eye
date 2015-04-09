@@ -198,13 +198,13 @@
                             <outlet property="delegate" destination="WBN-EH-NFu" id="ecK-eq-Dpg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Past Rounds" prompt="Select a round to edit" id="JFD-WI-VLH">
+                    <navigationItem key="navigationItem" title="Past Rounds" id="JFD-WI-VLH">
                         <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="LDl-06-Ptb">
                             <connections>
                                 <segue destination="WBN-EH-NFu" kind="custom" customClass="DismissSegue" id="rZR-3L-dFV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Show X's" id="bzJ-3y-3rB">
+                        <barButtonItem key="rightBarButtonItem" title="X's" id="bzJ-3y-3rB">
                             <connections>
                                 <action selector="showX:" destination="WBN-EH-NFu" id="68l-C9-4B3"/>
                             </connections>
@@ -283,7 +283,7 @@
                             <outlet property="delegate" destination="5jW-yF-o1r" id="7df-L3-0Fk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bows" prompt="Select a bow to edit or Add a new one" id="Qrl-mR-FWp">
+                    <navigationItem key="navigationItem" title="Bows" id="Qrl-mR-FWp">
                         <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="0bY-FE-bO9">
                             <connections>
                                 <segue destination="5jW-yF-o1r" kind="custom" customClass="DismissSegue" id="YH2-Rs-rsr"/>
@@ -560,7 +560,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-Y8-8mM">
-                                <rect key="frame" x="0.0" y="94" width="600" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="200"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="300" id="2Go-Cj-ZhK">
@@ -660,7 +660,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-8Y-OWG" userLabel="GraphView">
-                                <rect key="frame" x="0.0" y="294" width="600" height="306"/>
+                                <rect key="frame" x="0.0" y="264" width="600" height="336"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -704,13 +704,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Points Breakdown" prompt="Select a round to graph" id="1ms-ld-DJu">
+                    <navigationItem key="navigationItem" title="Points Breakdown" id="1ms-ld-DJu">
                         <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="j5o-5W-gJM">
                             <connections>
                                 <segue destination="gvb-MG-dZm" kind="custom" customClass="DismissSegue" id="pxf-az-7ke"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Show X's" id="CEG-sp-kaq">
+                        <barButtonItem key="rightBarButtonItem" title="X's" id="CEG-sp-kaq">
                             <connections>
                                 <action selector="showX:" destination="gvb-MG-dZm" id="8pU-Rh-fTl"/>
                             </connections>
@@ -1757,7 +1757,7 @@
                             <outlet property="delegate" destination="0oa-iB-ZUe" id="qh0-bB-tjg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Live Round" prompt="Select a round to start or Add a new one" id="9Fl-YP-rWe">
+                    <navigationItem key="navigationItem" title="New Live Round" id="9Fl-YP-rWe">
                         <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="hRl-IZ-zQT">
                             <connections>
                                 <segue destination="0oa-iB-ZUe" kind="custom" customClass="DismissSegue" id="zVM-Jz-qVg"/>
@@ -2362,7 +2362,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="fiS-qf-3BO">
-                                <rect key="frame" x="0.0" y="94" width="600" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="200"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="300" id="9bc-hf-c2w">
@@ -2387,7 +2387,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 yds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoQ-Eb-Scv">
-                                                    <rect key="frame" x="16" y="24.5" width="50" height="14.5"/>
+                                                    <rect key="frame" x="16" y="24" width="50" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="ZkR-ve-Igx"/>
                                                     </constraints>
@@ -2396,7 +2396,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOw-q1-W7E">
-                                                    <rect key="frame" x="74" y="24.5" width="90" height="14.5"/>
+                                                    <rect key="frame" x="74" y="24" width="90" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="cp6-xC-99l"/>
                                                     </constraints>
@@ -2413,7 +2413,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BowType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="qYg-FP-WNt">
-                                                    <rect key="frame" x="464" y="24.5" width="80" height="14"/>
+                                                    <rect key="frame" x="464" y="24" width="80" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="EAq-HM-zgj"/>
                                                     </constraints>
@@ -2425,7 +2425,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-Vb-TFg">
-                                                    <rect key="frame" x="552" y="24.5" width="60" height="14.5"/>
+                                                    <rect key="frame" x="552" y="24" width="60" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="EKL-I0-Ie5"/>
                                                     </constraints>
@@ -2476,7 +2476,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCH-2c-Orb" userLabel="GraphView">
-                                <rect key="frame" x="0.0" y="294" width="600" height="306"/>
+                                <rect key="frame" x="0.0" y="264" width="600" height="336"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2520,7 +2520,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Progress" prompt="Select a round to see the progress" id="kzp-Az-DAC">
+                    <navigationItem key="navigationItem" title="Progress" id="kzp-Az-DAC">
                         <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="DxB-Aa-cbp">
                             <connections>
                                 <segue destination="Oeq-hC-I2e" kind="custom" customClass="DismissSegue" id="86X-OC-dMp"/>
@@ -2541,14 +2541,14 @@
         <image name="target_cap_dgray" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Wmh-qa-w2H"/>
+        <segue reference="7Mq-gy-2U7"/>
+        <segue reference="upc-ag-KoX"/>
         <segue reference="tYL-4e-FWa"/>
         <segue reference="KxS-dp-uYj"/>
         <segue reference="mVz-ha-6Ui"/>
         <segue reference="UDk-Mg-dBq"/>
         <segue reference="BUw-Gj-nuY"/>
-        <segue reference="Wmh-qa-w2H"/>
         <segue reference="9dM-LP-hRo"/>
-        <segue reference="7Mq-gy-2U7"/>
-        <segue reference="upc-ag-KoX"/>
     </inferredMetricsTieBreakers>
 </document>

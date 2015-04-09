@@ -224,9 +224,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     _showXs = !_showXs;
     
     if( _showXs )
-        self.showXsButton.title = @"Show Avg";
+        self.showXsButton.title = @"Avg";
     else
-        self.showXsButton.title = @"Show X's";
+        self.showXsButton.title = @"X's";
     
     [self.tableView reloadData];
 }
