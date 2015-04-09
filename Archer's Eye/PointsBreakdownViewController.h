@@ -11,14 +11,16 @@
 
 @interface PointsBreakdownViewController : UIViewController <CPTPlotDataSource, CPTPieChartDataSource, UITableViewDelegate, UITableViewDataSource>
 {
-    
+    BOOL _showXs;    
 }
 
 @property (nonatomic, weak)             AppDelegate         *appDelegate;
 @property (nonatomic, weak)             ArchersEyeInfo      *archersEyeInfo;
+@property (nonatomic, strong)           NSMutableArray      *groupedRounds;
 @property (nonatomic, weak)             RoundInfo           *currPastRound;
 @property (nonatomic, weak)   IBOutlet  UITableView         *tableView;
 @property (nonatomic, weak)   IBOutlet  UIView              *graphView;
+@property (nonatomic, weak)   IBOutlet  UIBarButtonItem     *showXsButton;
 
 @property (nonatomic, strong)           CPTGraphHostingView *hostView;
 @property (nonatomic, strong)           CPTTheme            *selectedTheme;
@@ -33,5 +35,7 @@
 - (void)configureGraph;
 - (void)configureChart;
 - (void)configureLegend;
+
+- (IBAction)showX:(id)sender;
 
 @end

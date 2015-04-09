@@ -12,17 +12,20 @@
 
 @interface PastRoundsViewController : UITableViewController <RoundEditorViewControllerDelegate>
 {
+    BOOL _showXs;
 }
 
-@property (nonatomic, weak)     AppDelegate     *appDelegate;
-@property (nonatomic, weak)     ArchersEyeInfo  *archersEyeInfo;
-@property (nonatomic, strong)   NSMutableArray  *groupedPastRounds;
+@property (nonatomic, weak)              AppDelegate     *appDelegate;
+@property (nonatomic, weak)              ArchersEyeInfo  *archersEyeInfo;
+@property (nonatomic, strong)            NSMutableArray  *groupedRounds;
+@property (nonatomic, weak)     IBOutlet UIBarButtonItem *showXsButton;
 
 
 
 
 
 
+- (IBAction)showX:(id)sender;
 - (IBAction)unwindToPastRounds:(UIStoryboardSegue *)segue;
 
 @end

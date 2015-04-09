@@ -22,34 +22,11 @@
 - (void)viewDidLoad
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
+    self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
+    self.groupedRounds  = [self.archersEyeInfo arrayOfPastRoundsByMonth];
     
-    // Sort the past rounds so that the newest one is first
-    [self.archersEyeInfo sortRoundInfosByDate:self.archersEyeInfo.pastRounds ascending:NO];
+    _showXs = NO;
     
-    
-    
-    self.groupedPastRounds = [NSMutableArray new];
-    
-    NSInteger prevMonth = -1;
-    NSInteger prevYear  = -1;
-    
-    // Parse through pastRounds - create a new array for each new month
-    for( RoundInfo *roundInfo in self.archersEyeInfo.pastRounds )
-    {
-        NSInteger month = [roundInfo.date month];
-        NSInteger year  = [roundInfo.date year];
-        
-        // New month was found: create a new array
-        if( prevMonth != month  ||  prevYear != year )
-            [self.groupedPastRounds addObject:[NSMutableArray new]];
-        
-        // Add the temp round into it's correct group
-        [[self.groupedPastRounds lastObject] addObject:roundInfo];
-        
-        prevMonth = month;
-        prevYear  = year;
-    }
     [super viewDidLoad];
 }
 
@@ -60,6 +37,7 @@
 {
     // Reload the data;  This is in case we created a live round and need to add
     // that into our list
+    self.groupedRounds = [self.archersEyeInfo arrayOfPastRoundsByMonth];
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -95,9 +73,7 @@
 //------------------------------------------------------------------------------
 - (void)currItemChanged
 {
-    // Sort the past rounds so that the newest one is first
-    [self.archersEyeInfo sortRoundInfosByDate:self.archersEyeInfo.pastRounds ascending:NO];
-
+    self.groupedRounds = [self.archersEyeInfo arrayOfPastRoundsByMonth];
     [self.tableView reloadData];
 }
 
@@ -127,7 +103,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.groupedPastRounds count];
+    return [self.groupedRounds count];
 }
 
 
@@ -137,7 +113,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.groupedPastRounds[section] count];
+    return [self.groupedRounds[section] count];
 }
 
 
@@ -149,9 +125,9 @@
 {
     NSString *title = @"";
     
-    if( [self.groupedPastRounds[section] count] > 0 )
+    if( [self.groupedRounds[section] count] > 0 )
     {
-        RoundInfo       *pastRoundInfo  = self.groupedPastRounds[section][0];
+        RoundInfo       *pastRoundInfo  = self.groupedRounds[section][0];
         NSDateFormatter *formatter      = [NSDateFormatter new];
         
         [formatter setDateFormat:@"MMMM yyyy"];
@@ -169,8 +145,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RoundDescCell   *cell           = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-    RoundInfo       *pastRoundInfo  = self.groupedPastRounds[indexPath.section][indexPath.row];
-    RoundInfo       *info           = pastRoundInfo;
+    RoundInfo       *info           = self.groupedRounds[indexPath.section][indexPath.row];
     NSInteger        totalScore     = [info getRealTotalScore];
     NSInteger        totalArrows    = info.numEnds * info.numArrowsPerEnd;
 
@@ -178,8 +153,12 @@
     cell.date.text  = [AppDelegate basicDate:info.date];
     cell.dist.text  = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
-    cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
     cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
+    
+    if( _showXs )
+        cell.avg.text = [NSString stringWithFormat:@"%ld X's", [info getNumberOfArrowsWithScore:11]];
+    else
+        cell.avg.text = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
     
     return cell;
 }
@@ -192,7 +171,9 @@
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.archersEyeInfo selectRound:indexPath.row andCategory:eRoundCategory_Past];
+    RoundInfo *info = self.groupedRounds[indexPath.section][indexPath.row];
+
+    [self.archersEyeInfo selectRoundInfo:info andCategory:eRoundCategory_Past];
 }
 
 
@@ -206,11 +187,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( editingStyle == UITableViewCellEditingStyleDelete )
     {
-        RoundInfo *pastRoundInfo = self.groupedPastRounds[indexPath.section][indexPath.row];
+        RoundInfo *pastRoundInfo = self.groupedRounds[indexPath.section][indexPath.row];
         
         // Delete the row from the data source
         [self.archersEyeInfo.pastRounds removeObject:pastRoundInfo];
-        [self.groupedPastRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
+        [self.groupedRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if( editingStyle == UITableViewCellEditingStyleInsert )
@@ -235,6 +216,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     return 44;
 }
 
+
+
+//------------------------------------------------------------------------------
+- (IBAction)showX:(id)sender
+{
+    _showXs = !_showXs;
+    
+    if( _showXs )
+        self.showXsButton.title = @"Show Avg";
+    else
+        self.showXsButton.title = @"Show X's";
+    
+    [self.tableView reloadData];
+}
 
 
 

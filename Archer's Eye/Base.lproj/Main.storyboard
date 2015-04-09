@@ -204,7 +204,15 @@
                                 <segue destination="WBN-EH-NFu" kind="custom" customClass="DismissSegue" id="rZR-3L-dFV"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Show X's" id="bzJ-3y-3rB">
+                            <connections>
+                                <action selector="showX:" destination="WBN-EH-NFu" id="68l-C9-4B3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="showXsButton" destination="bzJ-3y-3rB" id="CQW-BB-OcS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jO-fs-Oyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -585,7 +593,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 yds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMR-kV-Ahc">
-                                                    <rect key="frame" x="126" y="13.5" width="50" height="17"/>
+                                                    <rect key="frame" x="126" y="13" width="50" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="AGt-p1-Sf6"/>
                                                     </constraints>
@@ -594,16 +602,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.4 avg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yt-Dq-5W9">
-                                                    <rect key="frame" x="512" y="0.0" width="80" height="23.5"/>
+                                                    <rect key="frame" x="512" y="0.0" width="80" height="63.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="Lst-PW-g52"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="253/300 pts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45c-KW-tIx">
-                                                    <rect key="frame" x="512" y="23" width="80" height="17"/>
+                                                    <rect key="frame" x="512" y="3" width="80" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="ycB-Fq-exZ"/>
                                                     </constraints>
@@ -617,13 +625,13 @@
                                                 <constraint firstItem="2yt-Dq-5W9" firstAttribute="top" secondItem="5Bg-VI-8kD" secondAttribute="topMargin" constant="-8" id="73P-Sc-lEL"/>
                                                 <constraint firstAttribute="centerY" secondItem="WHY-8B-TNO" secondAttribute="centerY" constant="10" id="NAg-nt-3tu"/>
                                                 <constraint firstItem="EbJ-fc-rRN" firstAttribute="leading" secondItem="5Bg-VI-8kD" secondAttribute="leadingMargin" constant="10" id="Ubm-pH-SvW"/>
-                                                <constraint firstAttribute="centerY" secondItem="2yt-Dq-5W9" secondAttribute="centerY" constant="10" id="YoT-Zf-uNM"/>
+                                                <constraint firstAttribute="centerY" secondItem="2yt-Dq-5W9" secondAttribute="centerY" constant="-10" id="YoT-Zf-uNM"/>
                                                 <constraint firstAttribute="centerY" secondItem="UMR-kV-Ahc" secondAttribute="centerY" id="ZAp-ZT-UAP"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="45c-KW-tIx" secondAttribute="trailing" id="bzY-kd-D2G"/>
                                                 <constraint firstItem="UMR-kV-Ahc" firstAttribute="leading" secondItem="WHY-8B-TNO" secondAttribute="trailing" constant="8" id="daR-G9-ARJ"/>
                                                 <constraint firstAttribute="centerY" secondItem="EbJ-fc-rRN" secondAttribute="centerY" constant="-10" id="otH-79-pUn"/>
                                                 <constraint firstItem="WHY-8B-TNO" firstAttribute="leading" secondItem="5Bg-VI-8kD" secondAttribute="leadingMargin" constant="10" id="qaM-on-jMR"/>
-                                                <constraint firstAttribute="centerY" secondItem="45c-KW-tIx" secondAttribute="centerY" constant="-10" id="utC-7j-Njs"/>
+                                                <constraint firstAttribute="centerY" secondItem="45c-KW-tIx" secondAttribute="centerY" constant="10" id="utC-7j-Njs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -702,9 +710,15 @@
                                 <segue destination="gvb-MG-dZm" kind="custom" customClass="DismissSegue" id="pxf-az-7ke"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Show X's" id="CEG-sp-kaq">
+                            <connections>
+                                <action selector="showX:" destination="gvb-MG-dZm" id="8pU-Rh-fTl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="graphView" destination="xGM-8Y-OWG" id="3HD-6O-4dp"/>
+                        <outlet property="showXsButton" destination="CEG-sp-kaq" id="UTt-p7-t8r"/>
                         <outlet property="tableView" destination="6pd-Y8-8mM" id="qZQ-IX-cv5"/>
                     </connections>
                 </viewController>

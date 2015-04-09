@@ -332,6 +332,35 @@
 }
 
 
+//------------------------------------------------------------------------------
+// Select an already created round from the given category.
+//------------------------------------------------------------------------------
+- (void)selectRoundInfo:(RoundInfo *)info andCategory:(eRoundCategory)category
+{
+    NSMutableArray *roundArray;
+    
+    _currRoundCategory  = category;
+    _currRoundID        = -1;
+    
+    // Select the array to use
+    switch( _currRoundCategory )
+    {
+        case eRoundCategory_Custom: roundArray = _customRounds;     break;
+        case eRoundCategory_Common: roundArray = _commonRounds;     break;
+        case eRoundCategory_Past:   roundArray = _pastRounds;       break;
+        default:                    roundArray = nil;               break;
+    }
+
+    NSUInteger ID = [roundArray indexOfObject:info];
+    
+    if( ID != NSNotFound )
+    {
+        self.currRound  = info;
+        _currRoundID    = ID;      // Save the ID so we can replace it later
+    }
+}
+
+
 
 //------------------------------------------------------------------------------
 // End the current round and discard.
@@ -511,6 +540,20 @@
 #pragma mark - Arrays for graphs
 
 //------------------------------------------------------------------------------
+// Sorts the given array of RoundInfos by date.
+//------------------------------------------------------------------------------
+- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending
+{
+    // Finally, let's sort the subarrays so that the dates are ascending
+    NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:ascending];
+    NSArray          *descs = [NSArray arrayWithObject:desc];
+    
+    [roundInfos sortUsingDescriptors:descs];
+}
+
+
+
+//------------------------------------------------------------------------------
 // Creates a 2D array of commonly used rounds.
 //------------------------------------------------------------------------------
 - (NSMutableArray *)arrayOfFavoritePastRounds
@@ -623,15 +666,33 @@
 
 
 //------------------------------------------------------------------------------
-// Sorts the given array of RoundInfos by date.
+// Creates an array of past months grouped by month.
 //------------------------------------------------------------------------------
-- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending
+- (NSMutableArray *)arrayOfPastRoundsByMonth
 {
-    // Finally, let's sort the subarrays so that the dates are ascending
-    NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:ascending];
-    NSArray          *descs = [NSArray arrayWithObject:desc];
+    NSMutableArray *groupedArray = [NSMutableArray new];
+    NSInteger       prevMonth    = -1;
+    NSInteger       prevYear     = -1;
     
-    [roundInfos sortUsingDescriptors:descs];
+    [self sortRoundInfosByDate:self.pastRounds ascending:NO];
+    
+    // Parse through pastRounds - create a new array for each new month
+    for( RoundInfo *roundInfo in self.pastRounds )
+    {
+        NSInteger month = [roundInfo.date month];
+        NSInteger year  = [roundInfo.date year];
+        
+        // New month was found: create a new array
+        if( prevMonth != month  ||  prevYear != year )
+            [groupedArray addObject:[NSMutableArray new]];
+        
+        // Add the temp round into it's correct group
+        [[groupedArray lastObject] addObject:roundInfo];
+        
+        prevMonth = month;
+        prevYear  = year;
+    }
+    return groupedArray;
 }
 
 @end

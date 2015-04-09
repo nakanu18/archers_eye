@@ -24,7 +24,10 @@
     // Do any additional setup after loading the view.
 
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.archersEyeInfo = self.appDelegate.archersEyeInfo;
+    self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
+    self.groupedRounds  = [self.archersEyeInfo arrayOfPastRoundsByMonth];
+
+    _showXs = NO;
 }
 
 
@@ -73,18 +76,7 @@
 //------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
-}
-
-
-
-//------------------------------------------------------------------------------
-// Title for a section.
-//------------------------------------------------------------------------------
-- (NSString *)tableView:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section
-{
-    return @"Past Rounds";
+    return [self.groupedRounds count];
 }
 
 
@@ -94,7 +86,27 @@ titleForHeaderInSection:(NSInteger)section
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.archersEyeInfo.pastRounds count];
+    return [self.groupedRounds[section] count];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Section name.
+//------------------------------------------------------------------------------
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = @"";
+    
+    if( [self.groupedRounds[section] count] > 0 )
+    {
+        RoundInfo       *pastRoundInfo  = self.groupedRounds[section][0];
+        NSDateFormatter *formatter      = [NSDateFormatter new];
+        
+        [formatter setDateFormat:@"MMMM yyyy"];
+        title = [formatter stringFromDate:pastRoundInfo.date];
+    }
+    return title;
 }
 
 
@@ -105,9 +117,8 @@ titleForHeaderInSection:(NSInteger)section
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray  *scores      = self.archersEyeInfo.pastRounds;
     RoundDescCell   *cell        = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-    RoundInfo       *info        = scores[indexPath.row];
+    RoundInfo       *info        = self.groupedRounds[indexPath.section][indexPath.row];
     NSInteger        totalScore  = [info getRealTotalScore];
     NSInteger        totalArrows = info.numEnds * info.numArrowsPerEnd;
     
@@ -115,8 +126,12 @@ titleForHeaderInSection:(NSInteger)section
     cell.date.text  = [AppDelegate basicDate:info.date];
     cell.dist.text  = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
-    cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
     cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
+    
+    if( _showXs )
+        cell.avg.text = [NSString stringWithFormat:@"%ld X's", [info getNumberOfArrowsWithScore:11]];
+    else
+        cell.avg.text = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
     
     return cell;
 }
@@ -129,7 +144,7 @@ titleForHeaderInSection:(NSInteger)section
 -       (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.currPastRound = _archersEyeInfo.pastRounds[indexPath.row];
+    self.currPastRound = self.groupedRounds[indexPath.section][indexPath.row];
     
     [self initPlot];
 }
@@ -469,6 +484,42 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     endColor = color;
     
     return [CPTFill fillWithGradient:[CPTGradient gradientWithBeginningColor:color endingColor:endColor]];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)showX:(id)sender
+{
+    _showXs = !_showXs;
+    
+    if( _showXs )
+        self.showXsButton.title = @"Show Avg";
+    else
+        self.showXsButton.title = @"Show X's";
+    
+    [self.tableView reloadData];
 }
 
 @end

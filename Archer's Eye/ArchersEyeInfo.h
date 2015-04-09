@@ -66,6 +66,7 @@ typedef enum
 // Generic
 - (void)createNewCustomRound:(RoundInfo *)newRound;
 - (void)selectRound:(NSInteger)ID andCategory:(eRoundCategory)category;
+- (void)selectRoundInfo:(RoundInfo *)info andCategory:(eRoundCategory)category;
 - (void)endCurrRoundAndDiscard;
 - (void)endCurrRoundAndSave;
 
@@ -76,9 +77,10 @@ typedef enum
 - (void)saveCurrBow;
 - (void)discardCurrBow;
 
+- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending;
 - (NSMutableArray *)arrayOfFavoritePastRounds;
 - (NSMutableArray *)arrayOfUsedBows;
-- (void)sortRoundInfosByDate:(NSMutableArray *)roundInfos ascending:(BOOL)ascending;
+- (NSMutableArray *)arrayOfPastRoundsByMonth;
 
 @end
 
