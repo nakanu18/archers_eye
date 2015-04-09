@@ -24,26 +24,23 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Fha-6T-aHe" kind="presentation" modalTransitionStyle="crossDissolve" id="dAS-57-89d"/>
+                                    <segue destination="Fha-6T-aHe" kind="presentation" id="dAS-57-89d"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v99-OK-F4s">
-                                <rect key="frame" x="241" y="285" width="118" height="30"/>
-                                <state key="normal" title="Point Breakdown">
+                                <rect key="frame" x="274" y="285" width="51" height="30"/>
+                                <state key="normal" title="Graphs">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ix8-rE-fNh" kind="presentation" modalTransitionStyle="crossDissolve" id="5f1-Vb-fwP"/>
+                                    <segue destination="wub-fP-4cI" kind="presentation" id="ATk-rP-nKg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfd-9i-UHL">
-                                <rect key="frame" x="269" y="385" width="61" height="30"/>
-                                <state key="normal" title="Progress">
+                                <rect key="frame" x="271" y="385" width="57" height="30"/>
+                                <state key="normal" title="Settings">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="LR9-5h-fh5" kind="presentation" modalTransitionStyle="crossDissolve" id="dCG-dR-SLT"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dt5-np-dun">
                                 <rect key="frame" x="546" y="562" width="46" height="30"/>
@@ -73,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="-490" y="2587"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Progress Nav-->
         <scene sceneID="zeq-6A-wXB">
             <objects>
-                <navigationController id="LR9-5h-fh5" sceneMemberID="viewController">
+                <navigationController title="Progress Nav" id="LR9-5h-fh5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qVb-GI-mzl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -88,7 +85,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3W-rh-XWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="3593"/>
+            <point key="canvasLocation" x="3592" y="3705"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="L0d-qX-lwP">
@@ -300,10 +297,10 @@
             </objects>
             <point key="canvasLocation" x="2591" y="1638"/>
         </scene>
-        <!--Bow Info-->
+        <!--Bow Info Nav-->
         <scene sceneID="2tg-kS-Kpy">
             <objects>
-                <navigationController id="9C6-Gy-3j5" userLabel="Bow Info" sceneMemberID="viewController">
+                <navigationController title="Bow Info Nav" id="9C6-Gy-3j5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K9w-i2-EWN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -512,10 +509,10 @@
             </objects>
             <point key="canvasLocation" x="4356" y="1638"/>
         </scene>
-        <!--Bows-->
+        <!--Bows Nav-->
         <scene sceneID="oDr-3X-weZ">
             <objects>
-                <navigationController id="qTI-Ax-UHk" sceneMemberID="viewController">
+                <navigationController title="Bows Nav" id="qTI-Ax-UHk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Bows" id="0PW-kx-nF3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9B3-6S-Lhc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -530,10 +527,121 @@
             </objects>
             <point key="canvasLocation" x="1870" y="1638"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="aGd-Kk-tFT">
+            <objects>
+                <tableViewController id="Nwx-iH-dpw" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="79D-dC-8eO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8RE-Jf-2u7">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8RE-Jf-2u7" id="ebU-UB-Xwi">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Nwx-iH-dpw" id="CoP-v1-QYb"/>
+                            <outlet property="delegate" destination="Nwx-iH-dpw" id="1vg-Uw-c77"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="GSA-Af-hzn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EE6-yG-VZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2690" y="4895"/>
+        </scene>
         <!--Navigation Controller-->
+        <scene sceneID="oL9-N6-SCD">
+            <objects>
+                <navigationController id="MVj-EL-zrO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mmL-I9-QYH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Nwx-iH-dpw" kind="relationship" relationship="rootViewController" id="HiB-3Z-byp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YHT-cs-U34" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="4895"/>
+        </scene>
+        <!--Graphs Nav-->
+        <scene sceneID="ZHA-xu-arb">
+            <objects>
+                <navigationController title="Graphs Nav" id="wub-fP-4cI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rvo-6R-ytR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="auu-pE-bXj" kind="relationship" relationship="rootViewController" id="16S-2d-hA7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IZR-Qm-y8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="3012"/>
+        </scene>
+        <!--Graphs-->
+        <scene sceneID="dlh-Kr-Sal">
+            <objects>
+                <viewController id="auu-pE-bXj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LmG-pU-gjN"/>
+                        <viewControllerLayoutGuide type="bottom" id="M5E-oN-ScJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YAK-wX-fHr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY2-KT-Pdq">
+                                <rect key="frame" x="151" y="345" width="298" height="30"/>
+                                <state key="normal" title="Progress Through Commonly Used Rounds">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LR9-5h-fh5" kind="show" id="QTV-Pa-0XF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPi-f6-zsE">
+                                <rect key="frame" x="202" y="225" width="196" height="30"/>
+                                <state key="normal" title="Points Breakdown by Round">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ix8-rE-fNh" kind="show" id="TT1-qL-P2k"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="oY2-KT-Pdq" secondAttribute="centerX" id="1EH-rt-jCg"/>
+                            <constraint firstAttribute="centerY" secondItem="MPi-f6-zsE" secondAttribute="centerY" constant="60" id="SBc-IM-oba"/>
+                            <constraint firstAttribute="centerX" secondItem="MPi-f6-zsE" secondAttribute="centerX" id="riQ-ce-QpE"/>
+                            <constraint firstAttribute="centerY" secondItem="oY2-KT-Pdq" secondAttribute="centerY" constant="-60" id="ux8-Ri-ed8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Graphs" id="F8d-VZ-WFd">
+                        <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="Dnb-8O-Gmw">
+                            <connections>
+                                <segue destination="auu-pE-bXj" kind="custom" customClass="DismissSegue" id="1LL-Pc-Z9c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IaG-Ze-zfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2591" y="3012"/>
+        </scene>
+        <!--Points Breakdown Nav-->
         <scene sceneID="THj-Re-KfG">
             <objects>
-                <navigationController id="ix8-rE-fNh" sceneMemberID="viewController">
+                <navigationController title="Points Breakdown Nav" id="ix8-rE-fNh" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Bq-Ho-dXL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -545,7 +653,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39F-0f-o0i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="2587"/>
+            <point key="canvasLocation" x="3592" y="2699"/>
         </scene>
         <!--Points Breakdown-->
         <scene sceneID="7pg-YF-RCY">
@@ -705,11 +813,6 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Points Breakdown" id="1ms-ld-DJu">
-                        <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="j5o-5W-gJM">
-                            <connections>
-                                <segue destination="gvb-MG-dZm" kind="custom" customClass="DismissSegue" id="pxf-az-7ke"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="X's" id="CEG-sp-kaq">
                             <connections>
                                 <action selector="showX:" destination="gvb-MG-dZm" id="8pU-Rh-fTl"/>
@@ -724,12 +827,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1S-FJ-tAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2591" y="2587"/>
+            <point key="canvasLocation" x="4313" y="2699"/>
         </scene>
-        <!--Live Round-->
+        <!--Round Editor Nav-->
         <scene sceneID="1q7-Yg-ZMM">
             <objects>
-                <navigationController id="aNf-Uz-wPI" sceneMemberID="viewController">
+                <navigationController title="Round Editor Nav" id="aNf-Uz-wPI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Live Round" id="Si1-0L-wHZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zwn-3Q-ILl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1603,10 +1706,10 @@
             </objects>
             <point key="canvasLocation" x="4356" y="-791"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Choose Bow to Use Nav-->
         <scene sceneID="LVH-bD-HKe">
             <objects>
-                <navigationController id="vaE-VT-Moj" sceneMemberID="viewController">
+                <navigationController title="Choose Bow to Use Nav" id="vaE-VT-Moj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wie-CP-UEC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1774,10 +1877,10 @@
             </objects>
             <point key="canvasLocation" x="2591" y="-281"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Round Info Nav-->
         <scene sceneID="Yc0-rZ-vjN">
             <objects>
-                <navigationController modalTransitionStyle="crossDissolve" id="CZf-Sf-t6M" sceneMemberID="viewController">
+                <navigationController title="Round Info Nav" modalTransitionStyle="crossDissolve" id="CZf-Sf-t6M" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fxg-3i-ClU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2046,10 +2149,10 @@
             </objects>
             <point key="canvasLocation" x="1870" y="-279"/>
         </scene>
-        <!--Past Rounds-->
+        <!--Past Rounds Nav-->
         <scene sceneID="bXR-zf-PHd">
             <objects>
-                <navigationController id="cM5-6g-Wq1" sceneMemberID="viewController">
+                <navigationController title="Past Rounds Nav" id="cM5-6g-Wq1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Past Rounds" id="D1s-An-zFM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9vo-rf-t3c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2064,10 +2167,10 @@
             </objects>
             <point key="canvasLocation" x="1870" y="700"/>
         </scene>
-        <!--Bow Info-->
+        <!--Bow Info Nav-->
         <scene sceneID="Pge-Rn-ndk">
             <objects>
-                <navigationController id="Rdk-fn-SMZ" userLabel="Bow Info" sceneMemberID="viewController">
+                <navigationController title="Bow Info Nav" id="Rdk-fn-SMZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nnM-nI-jGk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2276,10 +2379,10 @@
             </objects>
             <point key="canvasLocation" x="7636" y="-791"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Date Nav-->
         <scene sceneID="SEI-5g-09a">
             <objects>
-                <navigationController id="b5w-b4-uAy" sceneMemberID="viewController">
+                <navigationController title="Edit Date Nav" id="b5w-b4-uAy" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QS4-c6-YDO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2520,13 +2623,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Progress" id="kzp-Az-DAC">
-                        <barButtonItem key="leftBarButtonItem" title="Home" style="done" id="DxB-Aa-cbp">
-                            <connections>
-                                <segue destination="Oeq-hC-I2e" kind="custom" customClass="DismissSegue" id="86X-OC-dMp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Progress" id="kzp-Az-DAC"/>
                     <connections>
                         <outlet property="graphView" destination="HCH-2c-Orb" id="HGE-hf-5sz"/>
                         <outlet property="tableView" destination="fiS-qf-3BO" id="Vzj-sl-a0g"/>
@@ -2534,21 +2631,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6q-HO-Pe0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2591" y="3593"/>
+            <point key="canvasLocation" x="4313" y="3705"/>
         </scene>
     </scenes>
     <resources>
         <image name="target_cap_dgray" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wmh-qa-w2H"/>
-        <segue reference="7Mq-gy-2U7"/>
-        <segue reference="upc-ag-KoX"/>
         <segue reference="tYL-4e-FWa"/>
-        <segue reference="JDt-XP-Eus"/>
-        <segue reference="KxS-dp-uYj"/>
-        <segue reference="BUw-Gj-nuY"/>
-        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="16S-2d-hA7"/>
+        <segue reference="Wmh-qa-w2H"/>
         <segue reference="9dM-LP-hRo"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="UDk-Mg-dBq"/>
+        <segue reference="BUw-Gj-nuY"/>
+        <segue reference="KxS-dp-uYj"/>
     </inferredMetricsTieBreakers>
 </document>
