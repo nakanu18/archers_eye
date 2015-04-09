@@ -28,6 +28,16 @@ typedef enum
     eBowCategory_Inventory,
 } eBowCategory;
 
+typedef enum
+{
+    eHint_BnA_NewLiveRound,
+    eHint_BnA_PastRounds,
+    eHint_BnA_Bows,
+    eHint_Graphs_PointsBreakdown,
+    eHint_Graphs_Progress,
+    eHint_Count,
+} eHint;
+
 @interface ArchersEyeInfo : NSObject
 {
     eBowCategory    _currBowCategory;
@@ -44,6 +54,7 @@ typedef enum
 @property (nonatomic, strong)    NSMutableArray  *pastRounds;
 @property (nonatomic, copy)      BowInfo         *currBow;
 @property (nonatomic, strong)    NSMutableArray  *allBows;
+@property (nonatomic, strong)    NSMutableArray  *showHints;
 
 
 
@@ -81,6 +92,12 @@ typedef enum
 - (NSMutableArray *)arrayOfUsedBows;
 - (NSMutableArray *)arrayOfCustomRoundsByFirstName;
 - (NSMutableArray *)arrayOfPastRoundsByMonth;
+
+- (void)resetAllHints;
+- (void)setShowHint:(eHint)hint toBool:(BOOL)show;
+- (BOOL)showHint:(eHint)hint;
+- (void)showHintPopupIfNecessary:(eHint)hint;
+- (NSString *)hintAsString:(eHint)hint;
 
 @end
 

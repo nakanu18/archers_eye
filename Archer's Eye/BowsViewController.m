@@ -41,6 +41,15 @@
 
 
 //------------------------------------------------------------------------------
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_Bows];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

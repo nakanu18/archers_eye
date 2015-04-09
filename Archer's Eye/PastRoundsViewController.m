@@ -46,6 +46,15 @@
 
 
 //------------------------------------------------------------------------------
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_PastRounds];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

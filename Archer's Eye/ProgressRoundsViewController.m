@@ -33,6 +33,15 @@
 
 
 //------------------------------------------------------------------------------
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_Progress];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];

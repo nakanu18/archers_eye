@@ -32,11 +32,17 @@
     [_customRounds addObject:nfaa300Round];
     [_customRounds addObject:shortRound];
     
-    
     BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Recurve  andDrawWeight:28];
     BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound andDrawWeight:60];
     [_allBows addObject:whiteFlute];
     [_allBows addObject:blackPSE];
+    
+    self.showHints      = [NSMutableArray new];
+    
+    for( NSInteger i = 0; i < eHint_Count; ++i )
+    {
+        [self.showHints addObject:[NSNumber numberWithBool:YES]];
+    }
 }
 
 
@@ -63,13 +69,25 @@
         DLog( @"ArchersEyeInfo: userDefaults save data found - loading (v%.2f) - %@", [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue], [unarchiver decodeObjectForKey:@"saveDate"] );
         
         self.version        = [[unarchiver decodeObjectForKey:@"saveVersion"] floatValue];
-        self.liveRound      = [unarchiver decodeObjectForKey:@"liveRound"];
-        self.customRounds   = [unarchiver decodeObjectForKey:@"customRounds"];
-        self.currRound      = [unarchiver decodeObjectForKey:@"currRound"];
-        self.pastRounds     = [unarchiver decodeObjectForKey:@"pastRounds"];
-        self.currBow        = [unarchiver decodeObjectForKey:@"currBow"];
-        self.allBows        = [unarchiver decodeObjectForKey:@"allBows"];
+        self.liveRound      =  [unarchiver decodeObjectForKey:@"liveRound"];
+        self.customRounds   =  [unarchiver decodeObjectForKey:@"customRounds"];
+        self.currRound      =  [unarchiver decodeObjectForKey:@"currRound"];
+        self.pastRounds     =  [unarchiver decodeObjectForKey:@"pastRounds"];
+        self.currBow        =  [unarchiver decodeObjectForKey:@"currBow"];
+        self.allBows        =  [unarchiver decodeObjectForKey:@"allBows"];
+        self.showHints      =  [unarchiver decodeObjectForKey:@"allHints"];
         [unarchiver finishDecoding];
+        
+        // ERROR CHECK: Make sure showHints has enough values
+        if( [self.showHints count] < eHint_Count )
+        {
+            self.showHints = [NSMutableArray new];
+            for( NSInteger i = 0; i < eHint_Count; ++i )
+            {
+                [self.showHints addObject:[NSNumber numberWithBool:YES]];
+            }
+        }
+        
         DLog( @"\n" );
     }
 }
@@ -116,6 +134,25 @@
         
         [self.allBows addObject:newBow];
     }
+    
+    
+    
+    self.showHints = [NSMutableArray new];
+    for( NSInteger i = 0; i < [dict[@"showHints"] count]; ++i )
+    {
+        [self.showHints addObject:dict[@"showHints"][i]];
+    }
+    
+    // ERROR CHECK: Make sure showHints has enough values
+    if( [self.showHints count] < eHint_Count )
+    {
+        self.showHints = [NSMutableArray new];
+        for( NSInteger i = 0; i < eHint_Count; ++i )
+        {
+            [self.showHints addObject:[NSNumber numberWithBool:YES]];
+        }
+    }
+        
     DLog( @"\n" );
 }
 
@@ -136,6 +173,7 @@
     [dict setObject:[self infosToDictionary:self.customRounds]   forKey:@"customRounds"];
     [dict setObject:[self infosToDictionary:self.pastRounds]     forKey:@"pastRounds"];
     [dict setObject:[self infosToDictionary:self.allBows]        forKey:@"allBows"];
+    [dict setObject:self.showHints                               forKey:@"showHints"];
     
     json = [NSJSONSerialization dataWithJSONObject:dict
                                            options:NSJSONWritingPrettyPrinted
@@ -185,6 +223,7 @@
     [keyedArchiver encodeObject:_pastRounds     forKey:@"pastRounds"];
     [keyedArchiver encodeObject:_currBow        forKey:@"currBow"];
     [keyedArchiver encodeObject:_allBows        forKey:@"allBows"];
+    [keyedArchiver encodeObject:_showHints      forKey:@"showHints"];
     [keyedArchiver finishEncoding];
     [[NSUserDefaults standardUserDefaults] setObject:saveData forKey:@"archersEyeInfo"];
     DLog( @"\n" );
@@ -718,6 +757,108 @@
         prevYear  = year;
     }
     return groupedArray;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Hints
+
+
+
+//------------------------------------------------------------------------------
+// Resets the flags for all hints.
+//------------------------------------------------------------------------------
+- (void)resetAllHints
+{
+    for( NSInteger i = 0; i < [self.showHints count]; ++i )
+    {
+        self.showHints[i] = [NSNumber numberWithBool:YES];
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+// Sets the value of a particular hint flag.
+//------------------------------------------------------------------------------
+- (void)setShowHint:(eHint)hint toBool:(BOOL)show
+{
+    if( hint < eHint_Count )
+        self.showHints[hint] = [NSNumber numberWithBool:show];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Sets the value of a particular hint flag.
+//------------------------------------------------------------------------------
+- (BOOL)showHint:(eHint)hint
+{
+    BOOL show = NO;
+    
+    if( hint < eHint_Count )
+        show = [self.showHints[hint] boolValue];
+    
+    return show;
+}
+
+
+
+//------------------------------------------------------------------------------
+// Message for a particular hint.
+//------------------------------------------------------------------------------
+- (void)showHintPopupIfNecessary:(eHint)hint
+{
+    if( [self showHint:hint] )
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hint"
+                                                            message:[self hintAsString:hint]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+        [self setShowHint:hint toBool:NO];
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+// Message for a particular hint.
+//------------------------------------------------------------------------------
+- (NSString *)hintAsString:(eHint)hint
+{
+    NSString *string = nil;
+    
+    switch( hint )
+    {
+        case eHint_BnA_NewLiveRound:        string = @"SELECT a round to start or ADD a custom round or EDIT an existing one.";    break;
+        case eHint_BnA_PastRounds:          string = @"VIEW and EDIT past rounds.";    break;
+        case eHint_BnA_Bows:                string = @"ADD a new bow template or EDIT an existing one.";    break;
+        case eHint_Graphs_PointsBreakdown:  string = @"SELECT a past round to view the points breakdown.";    break;
+        case eHint_Graphs_Progress:         string = @"Shoot 2 or more of the SAME round with the SAME bow to monitor your progress.";    break;
+        default:                            string = nil;   break;
+    }
+    
+    return string;
 }
 
 @end

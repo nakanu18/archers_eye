@@ -44,8 +44,17 @@
         [self.groupedRounds insertObject:[NSMutableArray new] atIndex:0];
     
     [self.tableView reloadData];
-    
+
     [super viewWillAppear:animated];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_NewLiveRound];
 }
 
 

@@ -247,6 +247,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     {
         if( buttonIndex == 1 )
         {
+            [self.archersEyeInfo resetAllHints];
         }
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
