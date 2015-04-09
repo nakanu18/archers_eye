@@ -35,6 +35,7 @@
 		FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927AE1AAD12780017D069 /* RoundEditorViewController.m */; };
 		FA9C05431AD4D4AB00047DC9 /* RoundDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C05421AD4D4AB00047DC9 /* RoundDateViewController.m */; };
 		FA9C05491AD5D46900047DC9 /* NSDate+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C05481AD5D46900047DC9 /* NSDate+Info.m */; };
+		FA9C054D1AD6E58C00047DC9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C054C1AD6E58C00047DC9 /* SettingsViewController.m */; };
 		FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */; };
 		FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFB1ABBF3FB00B79AB3 /* BowInfo.m */; };
 		FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */; };
@@ -183,6 +184,8 @@
 		FA9C05421AD4D4AB00047DC9 /* RoundDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundDateViewController.m; sourceTree = "<group>"; };
 		FA9C05471AD5D46900047DC9 /* NSDate+Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Info.h"; sourceTree = "<group>"; };
 		FA9C05481AD5D46900047DC9 /* NSDate+Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Info.m"; sourceTree = "<group>"; };
+		FA9C054B1AD6E58C00047DC9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		FA9C054C1AD6E58C00047DC9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowsViewController.h; sourceTree = "<group>"; };
 		FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowsViewController.m; sourceTree = "<group>"; };
 		FAF52EFA1ABBF3FB00B79AB3 /* BowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowInfo.h; sourceTree = "<group>"; };
@@ -407,6 +410,7 @@
 				FA00175E1ACC801D006D8399 /* CorePlot */,
 				FA99279D1AABB0EE0017D069 /* Models */,
 				FA633DF01AB5691C0090AD12 /* Cells */,
+				FA9C054A1AD6E53E00047DC9 /* Menus */,
 				FA8DEEBE1AB94279006CED5A /* Rounds */,
 				FA92B7C21ABDF7C60075EF1F /* Bows */,
 				FA05D8A71AD07BF600F5F36C /* Graphs */,
@@ -414,8 +418,6 @@
 				FA9927781AABA1510017D069 /* AppDelegate.h */,
 				FA9927791AABA1510017D069 /* AppDelegate.m */,
 				FA4CA9B91AD456C600B8B60A /* Defines.h */,
-				FA4CA9B11AD321FF00B8B60A /* MenuViewController.h */,
-				FA4CA9B21AD321FF00B8B60A /* MenuViewController.m */,
 				FA9927811AABA1510017D069 /* Images.xcassets */,
 				FA9927831AABA1510017D069 /* LaunchScreen.xib */,
 				FA633DFD1AB5768B0090AD12 /* Main.storyboard */,
@@ -463,6 +465,17 @@
 				FAF52EFB1ABBF3FB00B79AB3 /* BowInfo.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		FA9C054A1AD6E53E00047DC9 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				FA4CA9B11AD321FF00B8B60A /* MenuViewController.h */,
+				FA4CA9B21AD321FF00B8B60A /* MenuViewController.m */,
+				FA9C054B1AD6E58C00047DC9 /* SettingsViewController.h */,
+				FA9C054C1AD6E58C00047DC9 /* SettingsViewController.m */,
+			);
+			name = Menus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +606,7 @@
 				FA285DAF1AC605C30055BBE3 /* ReplaceSegue.m in Sources */,
 				FA9927A91AABB5340017D069 /* PastRoundsViewController.m in Sources */,
 				FA4CA9B31AD321FF00B8B60A /* MenuViewController.m in Sources */,
+				FA9C054D1AD6E58C00047DC9 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

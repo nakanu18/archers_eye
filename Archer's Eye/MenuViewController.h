@@ -8,21 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import <MessageUI/MFMailComposeViewController.h>
 
-@interface MenuViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface MenuViewController : UIViewController
 {
     
 }
 
 @property (nonatomic, weak) AppDelegate     *appDelegate;
 @property (nonatomic, weak) ArchersEyeInfo  *archersEyeInfo;
-
-
-
-
-
-
-- (IBAction)exportSaveData:(id)sender;
 
 @end
