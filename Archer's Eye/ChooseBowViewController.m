@@ -131,36 +131,4 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     return 44;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark - Buttons
-
-//------------------------------------------------------------------------------
-- (IBAction)cancel:(id)sender
-{
-    [self.archersEyeInfo endLiveRoundAndDiscard];
-    
-    // Programmatically run the unwind segue.
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 @end

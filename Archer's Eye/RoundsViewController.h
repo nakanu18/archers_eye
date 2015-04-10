@@ -1,5 +1,5 @@
 //
-//  NewLiveRoundViewController.h
+//  RoundsViewController.h
 //  Archer's Eye
 //
 //  Created by Alex de Vera on 3/15/15.
@@ -9,19 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface NewLiveRoundViewController : UITableViewController
+@interface RoundsViewController : UITableViewController
 {
 }
 
 @property (nonatomic, weak)    AppDelegate     *appDelegate;
 @property (nonatomic, weak)    ArchersEyeInfo  *archersEyeInfo;
 @property (nonatomic, strong)  NSMutableArray  *groupedRounds;
-
-
-
-
-
-
-- (IBAction)unwindToNewLiveRound:(UIStoryboardSegue *)segue;
 
 @end
