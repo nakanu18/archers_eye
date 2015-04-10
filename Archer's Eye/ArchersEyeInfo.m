@@ -75,7 +75,7 @@
         self.pastRounds     =  [unarchiver decodeObjectForKey:@"pastRounds"];
         self.currBow        =  [unarchiver decodeObjectForKey:@"currBow"];
         self.allBows        =  [unarchiver decodeObjectForKey:@"allBows"];
-        self.showHints      =  [unarchiver decodeObjectForKey:@"allHints"];
+        self.showHints      =  [unarchiver decodeObjectForKey:@"showHints"];
         [unarchiver finishDecoding];
         
         // ERROR CHECK: Make sure showHints has enough values
