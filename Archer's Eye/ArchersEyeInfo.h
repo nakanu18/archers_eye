@@ -30,8 +30,8 @@ typedef enum
 
 typedef enum
 {
-    eHint_BnA_NewLiveRound,
-    eHint_BnA_PastRounds,
+    eHint_BnA_Results,
+    eHint_BnA_Rounds,
     eHint_BnA_Bows,
     eHint_Graphs_PointsBreakdown,
     eHint_Graphs_Progress,

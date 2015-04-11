@@ -49,7 +49,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_PastRounds];
+    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_Results];
 }
 
 

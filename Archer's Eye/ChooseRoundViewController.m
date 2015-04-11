@@ -28,23 +28,15 @@
 }
 
 
+
 //------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Reload the data;  This is in case we created a live round and need to add
-    // that into our list
+    // Reload the data.
     self.groupedRounds  = [self.archersEyeInfo arrayOfCustomRoundsByFirstName];
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
-}
-
-
-
-//------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 }
 
 

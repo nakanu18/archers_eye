@@ -45,7 +45,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_NewLiveRound];
+    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_Rounds];
 }
 
 

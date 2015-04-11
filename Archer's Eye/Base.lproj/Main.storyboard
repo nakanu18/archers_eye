@@ -1773,7 +1773,13 @@
                             <outlet property="delegate" destination="gKk-3j-ABe" id="RK4-bB-xny"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Choose Bow to Use" id="2ar-CH-5If"/>
+                    <navigationItem key="navigationItem" title="Choose Bow to Use" id="2ar-CH-5If">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DSc-2G-Vk2">
+                            <connections>
+                                <segue destination="9C6-Gy-3j5" kind="presentation" id="hb6-Fd-Mqf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sY-ga-Kdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2007,6 +2013,11 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="I7J-NK-gCO">
                             <connections>
                                 <action selector="cancel:" destination="UfE-1w-acU" id="xX3-Km-gz0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="AUK-pR-IeD">
+                            <connections>
+                                <segue destination="CZf-Sf-t6M" kind="presentation" modalTransitionStyle="coverVertical" id="geg-jP-cAL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2998,7 +3009,6 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="5Lf-yV-9w6"/>
                                 <exclude reference="A3r-d8-use"/>
                                 <exclude reference="SPX-O2-L2W"/>
                                 <include reference="kqX-Fb-P10"/>
@@ -3007,6 +3017,7 @@
                                 <exclude reference="R1M-ow-XBA"/>
                                 <exclude reference="Xhn-oP-uI8"/>
                                 <include reference="wQD-6k-SKC"/>
+                                <exclude reference="5Lf-yV-9w6"/>
                                 <include reference="y2M-m0-qp5"/>
                             </mask>
                         </variation>
@@ -3033,15 +3044,15 @@
         <image name="target_cap_dgray" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="geg-jP-cAL"/>
+        <segue reference="2LU-OI-U7s"/>
+        <segue reference="16S-2d-hA7"/>
         <segue reference="HiB-3Z-byp"/>
         <segue reference="tYL-4e-FWa"/>
-        <segue reference="hLd-DK-Hnl"/>
         <segue reference="mVz-ha-6Ui"/>
         <segue reference="Wmh-qa-w2H"/>
-        <segue reference="9dM-LP-hRo"/>
-        <segue reference="2LU-OI-U7s"/>
-        <segue reference="gPV-QA-lS7"/>
+        <segue reference="QD9-wa-RGj"/>
+        <segue reference="hb6-Fd-Mqf"/>
         <segue reference="BUw-Gj-nuY"/>
-        <segue reference="16S-2d-hA7"/>
     </inferredMetricsTieBreakers>
 </document>

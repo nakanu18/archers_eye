@@ -850,12 +850,12 @@
     
     switch( hint )
     {
-        case eHint_BnA_NewLiveRound:        string = @"SELECT a round to start or ADD a custom round or EDIT an existing one.";    break;
-        case eHint_BnA_PastRounds:          string = @"VIEW and EDIT past rounds.";    break;
-        case eHint_BnA_Bows:                string = @"ADD a new bow template or EDIT an existing one.";    break;
-        case eHint_Graphs_PointsBreakdown:  string = @"SELECT a past round to view the points breakdown.";    break;
-        case eHint_Graphs_Progress:         string = @"Shoot 2 or more of the SAME round with the SAME bow to monitor your progress.";    break;
-        default:                            string = nil;   break;
+        case eHint_BnA_Results:             string = @"VIEW and EDIT past rounds."; break;
+        case eHint_BnA_Rounds:              string = @"ADD a new round template or EDIT an existing one."; break;
+        case eHint_BnA_Bows:                string = @"ADD a new bow template or EDIT an existing one."; break;
+        case eHint_Graphs_PointsBreakdown:  string = @"SELECT a past round to view the points breakdown."; break;
+        case eHint_Graphs_Progress:         string = @"Shoot 2 or more of the SAME round with the SAME bow to monitor your progress."; break;
+        default:                            string = nil; break;
     }
     
     return string;

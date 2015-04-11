@@ -43,15 +43,6 @@
 
 
 //------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.archersEyeInfo showHintPopupIfNecessary:eHint_BnA_NewLiveRound];
-}
-
-
-
-//------------------------------------------------------------------------------
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];

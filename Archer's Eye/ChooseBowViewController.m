@@ -35,6 +35,17 @@
 
 
 //------------------------------------------------------------------------------
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Reload the data.
+    [self.tableView reloadData];
+    
+    [super viewWillAppear:animated];
+}
+
+
+
+//------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
