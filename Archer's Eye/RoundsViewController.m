@@ -22,7 +22,7 @@
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.groupedRounds  = [self.archersEyeInfo arrayOfCustomRoundsByFirstName];
+    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByFirstName:self.archersEyeInfo.customRounds];
 
     [super viewDidLoad];
 }
@@ -33,7 +33,7 @@
 {
     // Reload the data;  This is in case we created a live round and need to add
     // that into our list
-    self.groupedRounds  = [self.archersEyeInfo arrayOfCustomRoundsByFirstName];
+    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByFirstName:self.archersEyeInfo.customRounds];
     [self.tableView reloadData];
 
     [super viewWillAppear:animated];

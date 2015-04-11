@@ -23,7 +23,7 @@
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.groupedRounds  = [self.archersEyeInfo arrayOfPastRoundsByMonth];
+    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
     
     _showXs = NO;
     
@@ -37,7 +37,7 @@
 {
     // Reload the data;  This is in case we created a live round and need to add
     // that into our list
-    self.groupedRounds = [self.archersEyeInfo arrayOfPastRoundsByMonth];
+    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -82,7 +82,7 @@
 //------------------------------------------------------------------------------
 - (void)currItemChanged
 {
-    self.groupedRounds = [self.archersEyeInfo arrayOfPastRoundsByMonth];
+    self.groupedRounds = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
     [self.tableView reloadData];
 }
 

@@ -90,8 +90,9 @@ typedef enum
 - (NSMutableArray *)arrayOfFavoritePastRounds;
 - (NSMutableArray *)arrayOfUsedRounds;
 - (NSMutableArray *)arrayOfUsedBows;
-- (NSMutableArray *)arrayOfCustomRoundsByFirstName;
-- (NSMutableArray *)arrayOfPastRoundsByMonth;
+- (NSMutableArray *)arrayOfRoundsByFirstName:(NSMutableArray *)array;
+- (NSMutableArray *)arrayOfRoundsByFullName:(NSMutableArray *)array;
+- (NSMutableArray *)arrayOfRoundsByMonth:(NSMutableArray *)array;
 
 - (void)resetAllHints;
 - (void)setShowHint:(eHint)hint toBool:(BOOL)show;

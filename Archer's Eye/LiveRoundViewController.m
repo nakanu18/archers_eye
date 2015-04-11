@@ -277,7 +277,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     graph.titleDisplacement         = CGPointMake(0.0f, -12.0f);
     
     // 4 - Set theme
-    self.selectedTheme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
+    self.selectedTheme = [CPTTheme themeNamed:kCPTSlateTheme];
     [graph applyTheme:self.selectedTheme];
 }
 
@@ -295,7 +295,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     CPTPieChart *pieChart   = [[CPTPieChart alloc] init];
     pieChart.dataSource     = self;
     pieChart.delegate       = self;
-    pieChart.pieRadius      = (self.hostView.bounds.size.width * 0.475) / 2;
+    pieChart.pieRadius      = (self.hostView.bounds.size.width * 0.43) / 2;
     pieChart.identifier     = graph.title;
     pieChart.startAngle     = 0;
     pieChart.sliceDirection = CPTPieDirectionClockwise;
@@ -404,7 +404,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if( !labelText )
     {
         labelText       = [[CPTMutableTextStyle alloc] init];
-        labelText.color = [CPTColor whiteColor];
+        labelText.color = [CPTColor blackColor];
     }
     
     // 2 - Calculate the number of arrows

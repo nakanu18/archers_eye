@@ -699,20 +699,19 @@
 
 
 //------------------------------------------------------------------------------
-// Creates an array of custom rounds grouped by first name (first word before a
-// space.
+// Creates an array of rounds grouped by name.
 //------------------------------------------------------------------------------
-- (NSMutableArray *)arrayOfCustomRoundsByFirstName
+- (NSMutableArray *)arrayOfRoundsByFirstName:(NSMutableArray *)array
 {
     NSMutableArray *groupedArray = [NSMutableArray new];
     NSString       *prevName     = @"";
 
-    [self sortRoundInfos:self.customRounds byKey:@"name" ascending:YES];
+    [self sortRoundInfos:array byKey:@"firstName" ascending:YES];
     
     // Parse through customRounds - create a new array for each new name
-    for( RoundInfo *roundInfo in self.customRounds )
+    for( RoundInfo *roundInfo in array )
     {
-        NSString *name = roundInfo.name;
+        NSString *name = [roundInfo firstName];
         
         // New month was found: create a new array
         if( ![prevName isEqualToString:name] )
@@ -730,18 +729,47 @@
 
 
 //------------------------------------------------------------------------------
-// Creates an array of past months grouped by month.
+// Creates an array of rounds grouped by name.
 //------------------------------------------------------------------------------
-- (NSMutableArray *)arrayOfPastRoundsByMonth
+- (NSMutableArray *)arrayOfRoundsByFullName:(NSMutableArray *)array
+{
+    NSMutableArray *groupedArray = [NSMutableArray new];
+    NSString       *prevName     = @"";
+    
+    [self sortRoundInfos:array byKey:@"name" ascending:YES];
+    
+    // Parse through customRounds - create a new array for each new name
+    for( RoundInfo *roundInfo in array )
+    {
+        NSString *name = [roundInfo name];
+        
+        // New month was found: create a new array
+        if( ![prevName isEqualToString:name] )
+            [groupedArray addObject:[NSMutableArray new]];
+        
+        // Add the temp round into it's correct group
+        [[groupedArray lastObject] addObject:roundInfo];
+        
+        prevName = name;
+    }
+    
+    return groupedArray;
+}
+
+
+//------------------------------------------------------------------------------
+// Creates an array of rounds grouped by month.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)arrayOfRoundsByMonth:(NSMutableArray *)array
 {
     NSMutableArray *groupedArray = [NSMutableArray new];
     NSInteger       prevMonth    = -1;
     NSInteger       prevYear     = -1;
     
-    [self sortRoundInfos:self.pastRounds byKey:@"date" ascending:NO];
+    [self sortRoundInfos:array byKey:@"date" ascending:NO];
     
     // Parse through pastRounds - create a new array for each new month
-    for( RoundInfo *roundInfo in self.pastRounds )
+    for( RoundInfo *roundInfo in array )
     {
         NSInteger month = [roundInfo.date month];
         NSInteger year  = [roundInfo.date year];

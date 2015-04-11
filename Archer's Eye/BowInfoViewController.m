@@ -112,7 +112,7 @@
     [super textFieldDidEndEditing:textField];
     
     if( textField == _textBowName )
-        self.archersEyeInfo.currBow.name = textField.text;
+        self.archersEyeInfo.currBow.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [self toggleSaveButtonIfReady];
 }
