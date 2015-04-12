@@ -24,7 +24,7 @@
 
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.favRounds      = [self.archersEyeInfo arrayOfFavoritePastRounds];
+    self.favRounds      = [self.archersEyeInfo matrixOfFavoritePastRounds];
     self.favRoundID     = -1;
     
 //    [self.archersEyeInfo jsonData];

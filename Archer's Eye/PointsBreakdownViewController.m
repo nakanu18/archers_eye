@@ -25,7 +25,7 @@
 
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByMonth:self.archersEyeInfo.pastRounds];
 
     _showXs = NO;
 }

@@ -568,65 +568,19 @@
 //------------------------------------------------------------------------------
 // Sorts the given array of RoundInfos by date.
 //------------------------------------------------------------------------------
-- (void)sortRoundInfos:(NSMutableArray *)roundInfos byKey:(NSString *)key ascending:(BOOL)ascending
+- (void)sortRoundInfos:(NSMutableArray *)roundInfos byKeys:(NSArray *)keys ascending:(BOOL)ascending
 {
-    // Finally, let's sort the subarrays so that the dates are ascending
-    NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:key ascending:ascending];
-    NSArray          *descs = [NSArray arrayWithObject:desc];
+    NSMutableArray *descs = [NSMutableArray new];
+    
+    // Iterate through the keys and add them as sorting descriptors
+    for( NSString *string in keys )
+    {
+        NSSortDescriptor *desc  = [[NSSortDescriptor alloc] initWithKey:string ascending:ascending];
+
+        [descs addObject:desc];
+    }
     
     [roundInfos sortUsingDescriptors:descs];
-}
-
-
-
-//------------------------------------------------------------------------------
-// Creates a 2D array of commonly used rounds.
-//------------------------------------------------------------------------------
-- (NSMutableArray *)arrayOfFavoritePastRounds
-{
-    NSMutableArray *favRounds   = [NSMutableArray new];
-    NSMutableArray *usedRounds  = [self arrayOfUsedRounds];
-    
-    // Sort the past rounds into favRounds based on the type and bow type
-    for( RoundInfo *usedRound in usedRounds )
-    {
-        NSMutableArray *newFav = [NSMutableArray new];
-        
-        for( RoundInfo *pastRound in _pastRounds )
-        {
-            if( [usedRound     isTypeOfRound:pastRound]  &&
-                [usedRound.bow isTypeOfBow:pastRound.bow] )
-                [newFav addObject:pastRound];
-        }
-        [favRounds addObject:newFav];
-    }
-    
-    
-    
-    // Remove any rounds that are played less than x amount
-    for( NSInteger i = 0; i < [favRounds count]; ++i )
-    {
-        NSMutableArray *favRound = favRounds[i];
-        
-//        if( [favRound count] > 0 )
-//            DLog( @"ArchersEyeInfo: %@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
-        
-        if( [favRound count] < 2 )
-        {
-            [favRounds removeObject:favRound];
-            --i;
-        }
-    }
-    
-    
-    
-    // Finally, let's sort the subarrays so that the dates are ascending
-    for( NSMutableArray *array in favRounds )
-    {
-        [self sortRoundInfos:array byKey:@"date" ascending:YES];
-    }
-    
-    return favRounds;
 }
 
 
@@ -699,14 +653,82 @@
 
 
 //------------------------------------------------------------------------------
+// Creates a 2D array of commonly used rounds.
+//------------------------------------------------------------------------------
+- (NSMutableArray *)matrixOfFavoritePastRounds
+{
+    NSMutableArray *favRounds   = [NSMutableArray new];
+    NSMutableArray *usedRounds  = [self arrayOfUsedRounds];
+    
+    // Sort the past rounds into favRounds based on the type and bow type
+    for( RoundInfo *usedRound in usedRounds )
+    {
+        NSMutableArray *newFav = [NSMutableArray new];
+        
+        for( RoundInfo *pastRound in _pastRounds )
+        {
+            if( [usedRound     isTypeOfRound:pastRound]  &&
+               [usedRound.bow isTypeOfBow:pastRound.bow] )
+                [newFav addObject:pastRound];
+        }
+        [favRounds addObject:newFav];
+    }
+    
+    
+    
+    // Remove any rounds that are played less than x amount
+    for( NSInteger i = 0; i < [favRounds count]; ++i )
+    {
+        NSMutableArray *favRound = favRounds[i];
+        
+        //        if( [favRound count] > 0 )
+        //            DLog( @"ArchersEyeInfo: %@ / %@ - %ld", [favRound[0] name], [[favRound[0] bow] name], [favRound count] );
+        
+        if( [favRound count] < 2 )
+        {
+            [favRounds removeObject:favRound];
+            --i;
+        }
+    }
+    
+    
+    
+    // Let's sort the subarrays so that the dates are ascending
+    for( NSMutableArray *array in favRounds )
+    {
+        [self sortRoundInfos:array byKeys:@[@"date"] ascending:YES];
+    }
+    
+    // Finally let's sort the rows by full name and then distance
+    [favRounds sortUsingComparator:^( NSMutableArray *a, NSMutableArray *b )
+    {
+        NSComparisonResult result = [[a[0] name] compare:[b[0] name] options:0];
+        
+        if( result == NSOrderedSame )
+        {
+            if( [a[0] distance] > [b[0] distance] )
+                result = NSOrderedDescending;
+            else
+                result = NSOrderedAscending;
+        }
+        
+        return result;
+    }];
+    
+    return favRounds;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Creates an array of rounds grouped by name.
 //------------------------------------------------------------------------------
-- (NSMutableArray *)arrayOfRoundsByFirstName:(NSMutableArray *)array
+- (NSMutableArray *)matrixOfRoundsByFirstName:(NSMutableArray *)array
 {
     NSMutableArray *groupedArray = [NSMutableArray new];
     NSString       *prevName     = @"";
 
-    [self sortRoundInfos:array byKey:@"firstName" ascending:YES];
+    [self sortRoundInfos:array byKeys:@[@"firstName", @"lastName", @"distance"] ascending:YES];
     
     // Parse through customRounds - create a new array for each new name
     for( RoundInfo *roundInfo in array )
@@ -731,12 +753,12 @@
 //------------------------------------------------------------------------------
 // Creates an array of rounds grouped by name.
 //------------------------------------------------------------------------------
-- (NSMutableArray *)arrayOfRoundsByFullName:(NSMutableArray *)array
+- (NSMutableArray *)matrixOfRoundsByFullName:(NSMutableArray *)array
 {
     NSMutableArray *groupedArray = [NSMutableArray new];
     NSString       *prevName     = @"";
     
-    [self sortRoundInfos:array byKey:@"name" ascending:YES];
+    [self sortRoundInfos:array byKeys:@[@"name"] ascending:YES];
     
     // Parse through customRounds - create a new array for each new name
     for( RoundInfo *roundInfo in array )
@@ -760,13 +782,13 @@
 //------------------------------------------------------------------------------
 // Creates an array of rounds grouped by month.
 //------------------------------------------------------------------------------
-- (NSMutableArray *)arrayOfRoundsByMonth:(NSMutableArray *)array
+- (NSMutableArray *)matrixOfRoundsByMonth:(NSMutableArray *)array
 {
     NSMutableArray *groupedArray = [NSMutableArray new];
     NSInteger       prevMonth    = -1;
     NSInteger       prevYear     = -1;
     
-    [self sortRoundInfos:array byKey:@"date" ascending:NO];
+    [self sortRoundInfos:array byKeys:@[@"date"] ascending:NO];
     
     // Parse through pastRounds - create a new array for each new month
     for( RoundInfo *roundInfo in array )

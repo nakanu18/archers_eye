@@ -22,7 +22,7 @@
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByFirstName:self.archersEyeInfo.customRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByFirstName:self.archersEyeInfo.customRounds];
     
     [super viewDidLoad];
 }
@@ -33,7 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // Reload the data.
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByFirstName:self.archersEyeInfo.customRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByFirstName:self.archersEyeInfo.customRounds];
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -104,7 +104,7 @@ titleForHeaderInSection:(NSInteger)section
     {
         RoundInfo *pastRoundInfo  = self.groupedRounds[section][0];
         
-        title = [pastRoundInfo name];
+        title = [pastRoundInfo firstName];
     }
     return title;
 }

@@ -86,13 +86,13 @@ typedef enum
 - (void)saveCurrBow;
 - (void)discardCurrBow;
 
-- (void)sortRoundInfos:(NSMutableArray *)roundInfos byKey:(NSString *)key ascending:(BOOL)ascending;
-- (NSMutableArray *)arrayOfFavoritePastRounds;
+- (void)sortRoundInfos:(NSMutableArray *)roundInfos byKeys:(NSArray *)keys ascending:(BOOL)ascending;
 - (NSMutableArray *)arrayOfUsedRounds;
 - (NSMutableArray *)arrayOfUsedBows;
-- (NSMutableArray *)arrayOfRoundsByFirstName:(NSMutableArray *)array;
-- (NSMutableArray *)arrayOfRoundsByFullName:(NSMutableArray *)array;
-- (NSMutableArray *)arrayOfRoundsByMonth:(NSMutableArray *)array;
+- (NSMutableArray *)matrixOfFavoritePastRounds;
+- (NSMutableArray *)matrixOfRoundsByFirstName:(NSMutableArray *)array;
+- (NSMutableArray *)matrixOfRoundsByFullName:(NSMutableArray *)array;
+- (NSMutableArray *)matrixOfRoundsByMonth:(NSMutableArray *)array;
 
 - (void)resetAllHints;
 - (void)setShowHint:(eHint)hint toBool:(BOOL)show;

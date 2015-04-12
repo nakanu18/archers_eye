@@ -263,6 +263,20 @@
 
 
 //------------------------------------------------------------------------------
+// Returns a substring of name ending at the first space.
+//------------------------------------------------------------------------------
+- (NSString *)lastName
+{
+    NSString *s = [self.name stringByReplacingOccurrencesOfString:[self firstName] withString:@""];
+    
+    s = [s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return s;
+}
+
+
+
+//------------------------------------------------------------------------------
 // Validate round properties.
 //------------------------------------------------------------------------------
 - (BOOL)isInfoValid

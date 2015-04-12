@@ -65,6 +65,7 @@ typedef enum
 - (NSDictionary *)dictionary;
 
 - (NSString *)firstName;
+- (NSString *)lastName;
 - (BOOL)isInfoValid;
 - (BOOL)isTypeOfRound:(RoundInfo *)rhs;
 - (void)clearScorecard;

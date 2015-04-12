@@ -23,7 +23,7 @@
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByMonth:self.archersEyeInfo.pastRounds];
     
     _showXs = NO;
     
@@ -37,7 +37,7 @@
 {
     // Reload the data;  This is in case we created a live round and need to add
     // that into our list
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByMonth:self.archersEyeInfo.pastRounds];
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -82,7 +82,7 @@
 //------------------------------------------------------------------------------
 - (void)currItemChanged
 {
-    self.groupedRounds = [self.archersEyeInfo arrayOfRoundsByMonth:self.archersEyeInfo.pastRounds];
+    self.groupedRounds = [self.archersEyeInfo matrixOfRoundsByMonth:self.archersEyeInfo.pastRounds];
     [self.tableView reloadData];
 }
 
@@ -202,10 +202,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [self.archersEyeInfo.pastRounds removeObject:pastRoundInfo];
         [self.groupedRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if( editingStyle == UITableViewCellEditingStyleInsert )
-    {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        
+        // Group is now empty - delete this section
+        if( [self.groupedRounds[indexPath.section] count] == 0 )
+        {
+            [self.groupedRounds removeObjectAtIndex:indexPath.section];
+            [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
 }
 

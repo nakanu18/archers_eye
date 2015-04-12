@@ -22,7 +22,7 @@
 {
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByFirstName:self.archersEyeInfo.customRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByFirstName:self.archersEyeInfo.customRounds];
 
     [super viewDidLoad];
 }
@@ -33,7 +33,7 @@
 {
     // Reload the data;  This is in case we created a live round and need to add
     // that into our list
-    self.groupedRounds  = [self.archersEyeInfo arrayOfRoundsByFirstName:self.archersEyeInfo.customRounds];
+    self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByFirstName:self.archersEyeInfo.customRounds];
     [self.tableView reloadData];
 
     [super viewWillAppear:animated];
@@ -113,7 +113,7 @@ titleForHeaderInSection:(NSInteger)section
     {
         RoundInfo *pastRoundInfo  = self.groupedRounds[section][0];
         
-        title = [pastRoundInfo name];
+        title = [pastRoundInfo firstName];
     }
     return title;
 }
@@ -159,11 +159,22 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
   forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoundInfo *roundTemplate = self.groupedRounds[indexPath.section][indexPath.row];
-    
-    [self.archersEyeInfo.customRounds removeObject:roundTemplate];
-    [self.groupedRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if( editingStyle == UITableViewCellEditingStyleDelete )
+    {
+        RoundInfo *roundTemplate = self.groupedRounds[indexPath.section][indexPath.row];
+        
+        // Delete this row
+        [self.archersEyeInfo.customRounds removeObject:roundTemplate];
+        [self.groupedRounds[indexPath.section] removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        // Group is now empty - delete this section
+        if( [self.groupedRounds[indexPath.section] count] == 0 )
+        {
+            [self.groupedRounds removeObjectAtIndex:indexPath.section];
+            [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
 }
 
 
