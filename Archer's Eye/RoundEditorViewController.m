@@ -707,7 +707,7 @@
         else
         {
             [self.archersEyeInfo endLiveRoundAndSave];
-            unwindSegueName = @"unwindToNewLiveRound";
+            unwindSegueName = @"unwindToLiveRound";
         }
         
 //        [_tableView reloadData];
