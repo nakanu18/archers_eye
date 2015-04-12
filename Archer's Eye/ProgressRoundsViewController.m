@@ -37,6 +37,18 @@
 {
     [super viewDidAppear:animated];
     [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_Progress];
+    
+    // Select the first item if it exists
+    if( [self.favRounds count] > 0 )
+    {
+        if( [self.favRounds[0] count] > 0 )
+        {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+        }
+    }
 }
 
 

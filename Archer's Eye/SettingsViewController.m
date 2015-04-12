@@ -131,7 +131,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         NSString                     *body;
         NSString                     *saveFile;
         
-        body     = @"The attached .aed file is save data for Archer's Eye.\n\nMail this to yourself for safe keeping.\n\nPLEASE SAVE REGULARLY.\n\nTo load, open this mail on your iOS device.  Press and hold on the .aed file.  From the list of apps that appears, pick Archer's Eye.";
+        body     = @"The attached .aed file is save data for Archer's Eye.\n\nMail this to yourself for safe keeping.\n\nPlease save REGULARLY.\n\nTo load, open this mail on your iOS device.  Press and hold on the .aed file.  From the list of apps that appears, pick Archer's Eye.";
         saveFile = [NSString stringWithFormat:@"ArchersEye - %@.aed", [AppDelegate shortDate:[NSDate date]]];
         
         [picker setSubject:@"Archer's Eye Data"];

@@ -37,6 +37,18 @@
 {
     [super viewDidAppear:animated];
     [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_PointsBreakdown];
+
+    // Select the first item if it exists
+    if( [self.groupedRounds count] > 0 )
+    {
+        if( [self.groupedRounds[0] count] > 0 )
+        {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+        }   
+    }
 }
 
 
