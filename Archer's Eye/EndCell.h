@@ -12,16 +12,16 @@
 {
 }
 
-@property (nonatomic, strong) NSMutableArray *arrowLabels;
+@property (nonatomic, strong) NSMutableArray *arrowButtons;
 
 @property (nonatomic, weak) IBOutlet UILabel *endNumLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel *arrow0Label;
-@property (nonatomic, weak) IBOutlet UILabel *arrow1Label;
-@property (nonatomic, weak) IBOutlet UILabel *arrow2Label;
-@property (nonatomic, weak) IBOutlet UILabel *arrow3Label;
-@property (nonatomic, weak) IBOutlet UILabel *arrow4Label;
-@property (nonatomic, weak) IBOutlet UILabel *arrow5Label;
+@property (nonatomic, weak) IBOutlet UIButton *arrow0Button;
+@property (nonatomic, weak) IBOutlet UIButton *arrow1Button;
+@property (nonatomic, weak) IBOutlet UIButton *arrow2Button;
+@property (nonatomic, weak) IBOutlet UIButton *arrow3Button;
+@property (nonatomic, weak) IBOutlet UIButton *arrow4Button;
+@property (nonatomic, weak) IBOutlet UIButton *arrow5Button;
 
 @property (nonatomic, weak) IBOutlet UILabel *endXLabel;
 @property (nonatomic, weak) IBOutlet UILabel *endScoreLabel;

@@ -14,14 +14,19 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    [self setArrowLabels:[NSMutableArray new]];
+    [self setArrowButtons:[NSMutableArray new]];
     
-    [_arrowLabels addObject:_arrow0Label];
-    [_arrowLabels addObject:_arrow1Label];
-    [_arrowLabels addObject:_arrow2Label];
-    [_arrowLabels addObject:_arrow3Label];
-    [_arrowLabels addObject:_arrow4Label];
-    [_arrowLabels addObject:_arrow5Label];
+    [_arrowButtons addObject:_arrow0Button];
+    [_arrowButtons addObject:_arrow1Button];
+    [_arrowButtons addObject:_arrow2Button];
+    [_arrowButtons addObject:_arrow3Button];
+    [_arrowButtons addObject:_arrow4Button];
+    [_arrowButtons addObject:_arrow5Button];
+    
+    for( UIButton *button in self.arrowButtons )
+    {
+        [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    }
 }
 
 

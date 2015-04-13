@@ -42,38 +42,6 @@
     {
         _doneButton.enabled = YES;
     }
-    
-    // Enable the appropriate controls
-    if( _currRound.type == eRoundType_FITA )
-    {
-        _controlsFITA.hidden    = NO;
-        _controlsNFAA.hidden    = YES;
-    }
-    else if( _currRound.type == eRoundType_NFAA )
-    {
-        _controlsFITA.hidden    = YES;
-        _controlsNFAA.hidden    = NO;
-    }
-}
-
-
-
-//------------------------------------------------------------------------------
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    // Enable the appropriate controls
-    if( _currRound.type == eRoundType_FITA )
-    {
-        [self.view removeConstraint:_constraintNFAA];
-        [self.view addConstraint:_constraintFITA];
-    }
-    else if( _currRound.type == eRoundType_NFAA )
-    {
-        [self.view removeConstraint:_constraintFITA];
-        [self.view addConstraint:_constraintNFAA];
-    }
 }
 
 
@@ -172,7 +140,9 @@
         // Initialize the arrow scores
         for( NSInteger i = 0; i < _currRound.numArrowsPerEnd; ++i )
         {
-            [self setVisualScore:[_currRound getScoreForEnd:row andArrow:i] forLabel:cell.arrowLabels[i]];
+            [self setVisualScore:[_currRound getScoreForEnd:row andArrow:i] forButton:cell.arrowButtons[i]];
+            
+            [cell.arrowButtons[i] setTag:(row * _currRound.numArrowsPerEnd) + i];
         }
         
         if( row > _currEndID )
@@ -187,15 +157,18 @@
         }
         
         if( row == _currEndID )
-            [cell.arrowLabels[_currArrowID] setBackgroundColor:[UIColor greenColor]];
+        {
+            [cell.arrowButtons[_currArrowID] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [cell.arrowButtons[_currArrowID] setBackgroundColor:[UIColor greenColor]];
+        }
 
         // Hide any slots we're not using
-        if( _currRound.numArrowsPerEnd < 1 )    cell.arrow0Label.hidden = YES;
-        if( _currRound.numArrowsPerEnd < 2 )    cell.arrow1Label.hidden = YES;
-        if( _currRound.numArrowsPerEnd < 3 )    cell.arrow2Label.hidden = YES;
-        if( _currRound.numArrowsPerEnd < 4 )    cell.arrow3Label.hidden = YES;
-        if( _currRound.numArrowsPerEnd < 5 )    cell.arrow4Label.hidden = YES;
-        if( _currRound.numArrowsPerEnd < 6 )    cell.arrow5Label.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 1 )    cell.arrow0Button.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 2 )    cell.arrow1Button.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 3 )    cell.arrow2Button.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 4 )    cell.arrow3Button.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 5 )    cell.arrow4Button.hidden = YES;
+        if( _currRound.numArrowsPerEnd < 6 )    cell.arrow5Button.hidden = YES;
     }
     // Total cells
     else
@@ -217,7 +190,7 @@
 -               (CGFloat)tableView:(UITableView *)tableView
   estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPathXF
 {
-    return 24;
+    return 38;
 }
 
 
@@ -226,7 +199,7 @@
 -       (CGFloat)tableView:(UITableView *)tableView
    heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 24;
+    return 38;
 }
 
 
@@ -271,14 +244,14 @@
 //------------------------------------------------------------------------------
 // Returns the current arrow label for the current end.
 //------------------------------------------------------------------------------
-- (UILabel *)getCurrArrowLabel
+- (UIButton *)getCurrArrowButton
 {
-    UILabel *label = nil;
-    EndCell *cell  = [self getCurrEndCell];
+    UIButton *button = nil;
+    EndCell  *cell  = [self getCurrEndCell];
     
-    label = cell.arrowLabels[_currArrowID];
+    button = cell.arrowButtons[_currArrowID];
     
-    return label;
+    return button;
 }
 
 
@@ -289,17 +262,18 @@
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID
 {
     // Get the score of the currently selected slot
-    NSInteger    score = [_currRound getRealScoreForEnd:_currEndID andArrow:_currArrowID];
-    EndCell     *cell  = [self getCurrEndCell];
-    UILabel     *label = cell.arrowLabels[_currArrowID];
+    NSInteger    score  = [_currRound getRealScoreForEnd:_currEndID andArrow:_currArrowID];
+    EndCell     *cell   = [self getCurrEndCell];
+    UIButton    *button = cell.arrowButtons[_currArrowID];
     
     // Visually reset the old slot
-    [self setVisualScore:score forLabel:label];
+    [self setVisualScore:score forButton:button];
     
     // Highlight the new slot
     _currEndID   = currEndID;
     _currArrowID = currArrowID;
-    [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
+    [[self getCurrArrowButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[self getCurrArrowButton] setBackgroundColor:[UIColor greenColor]];
 }
 
 
@@ -329,7 +303,8 @@
             _currArrowID += 1;
     }
 
-    [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
+    [[self getCurrArrowButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[self getCurrArrowButton] setBackgroundColor:[UIColor greenColor]];
 }
 
 
@@ -342,8 +317,8 @@
 //    NSInteger numEnds         = _currRound.numEnds;
     NSInteger numArrowsPerEnd = _currRound.numArrowsPerEnd;
     
-    [[self getCurrArrowLabel] setBackgroundColor:_buttonErase.currentTitleColor];
-    [[self getCurrArrowLabel] setBackgroundColor:_buttonErase.backgroundColor];
+    [[self getCurrArrowButton] setBackgroundColor:_buttonErase.currentTitleColor];
+    [[self getCurrArrowButton] setBackgroundColor:_buttonErase.backgroundColor];
     
     if( _currArrowID - 1 < 0 )
     {
@@ -362,7 +337,8 @@
     
     _doneButton.enabled = NO;
     
-    [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
+    [[self getCurrArrowButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[self getCurrArrowButton] setBackgroundColor:[UIColor greenColor]];
 }
 
 
@@ -374,14 +350,14 @@
 {
     if( _currEndID < _currRound.numEnds )
     {
-        EndCell *cell  = [self getCurrEndCell];
-        UILabel *label = cell.arrowLabels[_currArrowID];
+        EndCell  *cell   = [self getCurrEndCell];
+        UIButton *button = cell.arrowButtons[_currArrowID];
 
         // Set the score in the data
         [_currRound setScore:score forEnd:_currEndID andArrow:_currArrowID];
         
         // Visually set the score
-        [self setVisualScore:score forLabel:label];
+        [self setVisualScore:score forButton:button];
         [self updateTotalScores];
         
         [self incArrowID];
@@ -402,16 +378,16 @@
 //------------------------------------------------------------------------------
 // Changes the color of the current arrow according to the score.
 //------------------------------------------------------------------------------
-- (void)setVisualScore:(NSInteger)score forLabel:(UILabel *)label
+- (void)setVisualScore:(NSInteger)score forButton:(UIButton *)cellButton
 {
     UIButton *buttonTemplate;
 
     if( score >= 11 )
-        label.text = @"X";
+       [cellButton setTitle:@"X" forState:UIControlStateNormal];
     else if( score >= 0 )
-        label.text = [NSString stringWithFormat:@"%ld", (long)score];
+        [cellButton setTitle:[NSString stringWithFormat:@"%ld", (long)score] forState:UIControlStateNormal];
     else
-        label.text = @"?";
+        [cellButton setTitle:@"?" forState:UIControlStateNormal];
     
     if( _currRound.type == eRoundType_FITA )
     {
@@ -441,8 +417,8 @@
         else
             buttonTemplate = _buttonErase;
     }
-    [label setTextColor:buttonTemplate.currentTitleColor];
-    [label setBackgroundColor:buttonTemplate.backgroundColor];
+    [cellButton setTitleColor:buttonTemplate.currentTitleColor forState:UIControlStateNormal];
+    [cellButton setBackgroundColor:buttonTemplate.backgroundColor];
 }
 
 
@@ -456,15 +432,16 @@
 
     [self decArrowID];
 
-    EndCell *cell  = [self getCurrEndCell];
-    UILabel *label = cell.arrowLabels[_currArrowID];
+    EndCell  *cell   = [self getCurrEndCell];
+    UIButton *button = cell.arrowButtons[_currArrowID];
     
     // Set the score in the data
     [_currRound setScore:-1 forEnd:_currEndID andArrow:_currArrowID];
     
     // Visually set the score
-    [self setVisualScore:-1 forLabel:label];
-    [[self getCurrArrowLabel] setBackgroundColor:[UIColor greenColor]];
+    [self setVisualScore:-1 forButton:button];
+    [[self getCurrArrowButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[self getCurrArrowButton] setBackgroundColor:[UIColor greenColor]];
     
     [self updateTotalScores];
     
@@ -610,7 +587,20 @@
 
 
 //------------------------------------------------------------------------------
+// Button in a EndCell was pressed.  Set our cursor to that arrow.
+//------------------------------------------------------------------------------
+- (IBAction)arrowButtonPressed:(id)sender
+{
+    NSInteger buttonTag = [sender tag];
+    NSInteger endID     = buttonTag / self.currRound.numArrowsPerEnd;
+    NSInteger arrowID   = buttonTag % self.currRound.numArrowsPerEnd;
+    
+    [self setCurrEndID:endID andCurrArrowID:arrowID];
+}
 
+
+
+//------------------------------------------------------------------------------
 - (IBAction)eraseButtonPressed:(id)sender
 {
     [self eraseScoreForCurrArrow];

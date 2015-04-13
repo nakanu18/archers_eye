@@ -39,10 +39,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *exitButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
 @property (nonatomic, weak) IBOutlet UIButton           *buttonConfigureBow;
-@property (nonatomic, weak) IBOutlet UIView             *controlsFITA;
-@property (nonatomic, weak) IBOutlet UIView             *controlsNFAA;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintFITA;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintNFAA;
 
 @property (nonatomic, weak) IBOutlet UIButton           *buttonErase;
 
@@ -64,13 +60,13 @@
 
 
 - (EndCell *)getCurrEndCell;
-- (UILabel *)getCurrArrowLabel;
+- (UIButton *)getCurrArrowButton;
 
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID;
 - (void)incArrowID;
 - (void)decArrowID;
 - (void)setScoreForCurrArrow:(NSInteger)score;
-- (void)setVisualScore:(NSInteger)score forLabel:(UILabel *)label;
+- (void)setVisualScore:(NSInteger)score forButton:(UIButton *)cellButton;
 - (void)eraseScoreForCurrArrow;
 
 - (void)updateTotalScores;
@@ -87,6 +83,7 @@
 - (IBAction)score2ButtonPressed:(id)sender;
 - (IBAction)score1ButtonPressed:(id)sender;
 - (IBAction)score0ButtonPressed:(id)sender;
+- (IBAction)arrowButtonPressed:(id)sender;
 
 - (IBAction)eraseButtonPressed:(id)sender;
 - (IBAction)exitButtonPressed:(id)sender;
