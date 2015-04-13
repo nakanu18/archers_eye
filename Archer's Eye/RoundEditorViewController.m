@@ -42,6 +42,26 @@
     {
         _doneButton.enabled = YES;
     }
+
+    // Enable the appropriate controls
+    if( _currRound.type == eRoundType_FITA )
+    {
+        _controlsFITA.hidden    = NO;
+        _controlsNFAA.hidden    = YES;
+    }
+    else if( _currRound.type == eRoundType_NFAA )
+    {
+        _controlsFITA.hidden    = YES;
+        _controlsNFAA.hidden    = NO;
+    }
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
 }
 
 
@@ -145,16 +165,8 @@
             [cell.arrowButtons[i] setTag:(row * _currRound.numArrowsPerEnd) + i];
         }
         
-        if( row > _currEndID )
-        {
-            cell.endXLabel.text     = @"0";
-            cell.endScoreLabel.text = @"0";
-        }
-        else
-        {
-            cell.endXLabel.text     = [NSString stringWithFormat:@"%ld", (long)[_currRound getNumberOfArrowsWithScore:11 forEnd:row]];
-            cell.endScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)[_currRound getRealScoreForEnd:row]];
-        }
+        cell.endXLabel.text     = [NSString stringWithFormat:@"%ld", (long)[_currRound getNumberOfArrowsWithScore:11 forEnd:row]];
+        cell.endScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)[_currRound getRealScoreForEnd:row]];
         
         if( row == _currEndID )
         {
@@ -262,7 +274,7 @@
 - (void)setCurrEndID:(NSInteger)currEndID andCurrArrowID:(NSInteger)currArrowID
 {
     // Get the score of the currently selected slot
-    NSInteger    score  = [_currRound getRealScoreForEnd:_currEndID andArrow:_currArrowID];
+    NSInteger    score  = [_currRound getScoreForEnd:_currEndID andArrow:_currArrowID];
     EndCell     *cell   = [self getCurrEndCell];
     UIButton    *button = cell.arrowButtons[_currArrowID];
     
@@ -359,17 +371,8 @@
         // Visually set the score
         [self setVisualScore:score forButton:button];
         [self updateTotalScores];
-        
+        [self makeEndVisible];
         [self incArrowID];
-        
-        // Make sure the currently selected arrow is in view
-        if( _currEndID < _currRound.numEnds )
-        {
-            NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
-            [_tableView scrollToRowAtIndexPath:path
-                              atScrollPosition:UITableViewScrollPositionMiddle
-                                      animated:YES];
-        }
     }
 }
 
@@ -430,7 +433,8 @@
 {
 //    EndCell *prevCell  = [self getCurrEndCell];
 
-    [self decArrowID];
+    if( [_currRound getScoreForEnd:_currEndID andArrow:_currArrowID] == -1 )
+        [self decArrowID];
 
     EndCell  *cell   = [self getCurrEndCell];
     UIButton *button = cell.arrowButtons[_currArrowID];
@@ -445,11 +449,7 @@
     
     [self updateTotalScores];
     
-    // Make sure the currently selected arrow is in view
-    NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
-    [_tableView scrollToRowAtIndexPath:path
-                      atScrollPosition:UITableViewScrollPositionMiddle
-                              animated:YES];
+    [self makeEndVisible];
 }
 
 
@@ -463,7 +463,7 @@
     NSInteger    xScore              = [_currRound getNumberOfArrowsWithScore:11 forEnd:_currEndID];
     NSInteger    endScore            = [_currRound getRealScoreForEnd:_currEndID];
     NSInteger    totalXScore         = [_currRound getNumberOfArrowsWithScore:11];
-    NSInteger    totalScore          = [_currRound getRealTotalScoreUpToEnd:_currEndID];
+    NSInteger    totalScore          = [_currRound getRealTotalScore];
     
     cell.endXLabel.text              = [NSString stringWithFormat:@"%ld", (long)xScore];
     cell.endScoreLabel.text          = [NSString stringWithFormat:@"%ld", (long)endScore];
@@ -472,6 +472,44 @@
     _totalsCell.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)totalScore];
 }
 
+
+
+//------------------------------------------------------------------------------
+// Scroll to the row to make it visible if necessary.
+//------------------------------------------------------------------------------
+- (void)makeEndVisible
+{
+    // Make sure the currently selected arrow is in view
+    if( _currEndID < _currRound.numEnds )
+    {
+        NSArray  *visibleRows = [self.tableView indexPathsForVisibleRows];
+        BOOL      visible     = NO;
+        NSInteger i           = 0;
+        
+        // Check if the current end is visible
+        for( NSIndexPath *indexPath in visibleRows )
+        {
+            if( i > 0  &&  i < [visibleRows count] - 2 )
+            {
+                if( indexPath.section == 0  &&  indexPath.row == _currEndID )
+                {
+                    visible = YES;
+                    break;
+                }
+            }
+            ++i;
+        }
+        
+        // Make it visible if it's not on the screen
+        if( !visible )
+        {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:_currEndID inSection:0];
+            [_tableView scrollToRowAtIndexPath:path
+                              atScrollPosition:UITableViewScrollPositionMiddle
+                                      animated:YES];
+        }
+    }
+}
 
 
 

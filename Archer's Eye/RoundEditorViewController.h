@@ -39,6 +39,8 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *exitButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *doneButton;           // Not currently used
 @property (nonatomic, weak) IBOutlet UIButton           *buttonConfigureBow;
+@property (nonatomic, weak) IBOutlet UIView             *controlsFITA;
+@property (nonatomic, weak) IBOutlet UIView             *controlsNFAA;
 
 @property (nonatomic, weak) IBOutlet UIButton           *buttonErase;
 
@@ -68,6 +70,7 @@
 - (void)setScoreForCurrArrow:(NSInteger)score;
 - (void)setVisualScore:(NSInteger)score forButton:(UIButton *)cellButton;
 - (void)eraseScoreForCurrArrow;
+- (void)makeEndVisible;
 
 - (void)updateTotalScores;
 
