@@ -1269,6 +1269,7 @@
                                     <constraint firstItem="7Sa-RY-r0e" firstAttribute="top" secondItem="SfG-Zb-0qY" secondAttribute="bottom" constant="8" id="HBN-lr-yRg"/>
                                     <constraint firstItem="7Sa-RY-r0e" firstAttribute="top" secondItem="ddg-8k-vef" secondAttribute="top" id="Hy8-iF-cXp"/>
                                     <constraint firstItem="SfG-Zb-0qY" firstAttribute="leading" secondItem="7Sa-RY-r0e" secondAttribute="leading" id="OYA-PZ-hcZ"/>
+                                    <constraint firstAttribute="height" constant="104" id="TOk-Ic-K7E"/>
                                     <constraint firstItem="7Sa-RY-r0e" firstAttribute="top" secondItem="cIK-ax-Ia2" secondAttribute="top" id="Ylk-Og-ZjA"/>
                                     <constraint firstItem="2nr-Mv-VGp" firstAttribute="leading" secondItem="7Sa-RY-r0e" secondAttribute="trailing" constant="8" id="cND-30-b8t"/>
                                     <constraint firstItem="7Sa-RY-r0e" firstAttribute="leading" secondItem="6QW-oF-zRJ" secondAttribute="leading" constant="8" id="e6r-8N-Fom"/>
@@ -1281,6 +1282,17 @@
                                     <constraint firstAttribute="bottom" secondItem="7Sa-RY-r0e" secondAttribute="bottom" constant="8" id="wfG-x9-fHt"/>
                                     <constraint firstItem="2nr-Mv-VGp" firstAttribute="top" secondItem="7Sa-RY-r0e" secondAttribute="top" id="wtg-E9-UF9"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="TOk-Ic-K7E"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="DyO-5S-j3X"/>
+                                        <include reference="TOk-Ic-K7E"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whL-Do-d8w" userLabel="ControlsView_FITA">
                                 <rect key="frame" x="0.0" y="448" width="600" height="152"/>
@@ -1490,20 +1502,27 @@
                                     <constraint firstItem="acm-Rz-R1k" firstAttribute="leading" secondItem="dwc-rE-crz" secondAttribute="leading" id="6bA-dK-Ank"/>
                                     <constraint firstItem="Z3q-My-s6E" firstAttribute="top" secondItem="D9M-ha-aSi" secondAttribute="top" id="E9T-Mq-SRG"/>
                                     <constraint firstItem="gMp-m4-xuS" firstAttribute="leading" secondItem="HhF-ui-ljg" secondAttribute="leading" id="EJB-kt-cyA"/>
-                                    <constraint firstItem="6g8-TA-3hu" firstAttribute="top" secondItem="UHw-cR-tOl" secondAttribute="bottom" constant="8" id="ES3-nl-owC"/>
+                                    <constraint firstItem="6g8-TA-3hu" firstAttribute="top" secondItem="UHw-cR-tOl" secondAttribute="bottom" constant="8" id="ES3-nl-owC">
+                                        <variation key="heightClass=compact" constant="-88"/>
+                                    </constraint>
                                     <constraint firstItem="dwc-rE-crz" firstAttribute="leading" secondItem="lhI-z9-DXp" secondAttribute="trailing" constant="8" id="Gxa-Bi-T2z"/>
                                     <constraint firstItem="6g8-TA-3hu" firstAttribute="top" secondItem="HhF-ui-ljg" secondAttribute="top" id="IEe-oG-3MR"/>
                                     <constraint firstAttribute="height" constant="152" id="IcO-EP-er8"/>
                                     <constraint firstItem="6g8-TA-3hu" firstAttribute="top" secondItem="2jx-dG-Haj" secondAttribute="top" id="MGa-r2-PdH"/>
                                     <constraint firstItem="D9M-ha-aSi" firstAttribute="leading" secondItem="whL-Do-d8w" secondAttribute="leading" constant="8" id="MUI-Rh-e41"/>
-                                    <constraint firstItem="D9M-ha-aSi" firstAttribute="leading" secondItem="UHw-cR-tOl" secondAttribute="leading" id="QWF-4C-uV7"/>
-                                    <constraint firstItem="gMp-m4-xuS" firstAttribute="leading" secondItem="D9M-ha-aSi" secondAttribute="trailing" constant="8" id="RFR-72-RnR"/>
+                                    <constraint firstItem="D9M-ha-aSi" firstAttribute="leading" secondItem="UHw-cR-tOl" secondAttribute="leading" id="QWF-4C-uV7">
+                                        <variation key="heightClass=compact" constant="-48"/>
+                                    </constraint>
+                                    <constraint firstItem="gMp-m4-xuS" firstAttribute="leading" secondItem="D9M-ha-aSi" secondAttribute="trailing" constant="8" id="RFR-72-RnR">
+                                        <variation key="heightClass=compact" constant="56"/>
+                                    </constraint>
                                     <constraint firstItem="6g8-TA-3hu" firstAttribute="leading" secondItem="D9M-ha-aSi" secondAttribute="leading" id="Sfm-kx-Xl0"/>
                                     <constraint firstItem="Z3q-My-s6E" firstAttribute="leading" secondItem="bFZ-XT-uyu" secondAttribute="leading" id="TV8-Sk-A06"/>
                                     <constraint firstAttribute="bottom" secondItem="D9M-ha-aSi" secondAttribute="bottom" constant="8" id="YG5-qS-6x1"/>
                                     <constraint firstItem="gMp-m4-xuS" firstAttribute="top" secondItem="D9M-ha-aSi" secondAttribute="top" id="ZXO-yv-l3k"/>
                                     <constraint firstItem="1Dv-GL-rjy" firstAttribute="leading" secondItem="pP4-LP-dSg" secondAttribute="leading" id="b4z-17-dtT"/>
                                     <constraint firstItem="D9M-ha-aSi" firstAttribute="top" secondItem="6g8-TA-3hu" secondAttribute="bottom" constant="8" id="bmw-v2-6LF"/>
+                                    <constraint firstAttribute="height" constant="104" id="gr1-Jc-MzT"/>
                                     <constraint firstItem="1Dv-GL-rjy" firstAttribute="top" secondItem="6g8-TA-3hu" secondAttribute="top" id="h7V-yz-u3Q"/>
                                     <constraint firstItem="6g8-TA-3hu" firstAttribute="top" secondItem="bFZ-XT-uyu" secondAttribute="top" id="tF0-BZ-eqR"/>
                                     <constraint firstItem="acm-Rz-R1k" firstAttribute="top" secondItem="6g8-TA-3hu" secondAttribute="top" id="ueu-3Z-3nH"/>
@@ -1511,6 +1530,17 @@
                                     <constraint firstItem="lhI-z9-DXp" firstAttribute="leading" secondItem="2jx-dG-Haj" secondAttribute="leading" id="y0f-lh-Aay"/>
                                     <constraint firstItem="Z3q-My-s6E" firstAttribute="leading" secondItem="gMp-m4-xuS" secondAttribute="trailing" constant="8" id="zUH-fN-5So"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gr1-Jc-MzT"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="IcO-EP-er8"/>
+                                        <include reference="gr1-Jc-MzT"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mw-C0-WlK" userLabel="HeaderView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="28"/>
