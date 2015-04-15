@@ -22,6 +22,7 @@
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* RoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* RoundsViewController.m */; };
 		FA633DFF1AB5768B0090AD12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA633DFD1AB5768B0090AD12 /* Main.storyboard */; };
+		FA6D1CB51ADDFA560012C829 /* BreakdownGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D1CB41ADDFA560012C829 /* BreakdownGraphView.m */; };
 		FA8DEEBD1AB94264006CED5A /* RoundInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */; };
 		FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA92B7C41ABDFA470075EF1F /* TextFieldDismisserView.m */; };
 		FA9927771AABA1510017D069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9927761AABA1510017D069 /* main.m */; };
@@ -160,6 +161,8 @@
 		FA633DF71AB56ADD0090AD12 /* RoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundsViewController.h; sourceTree = "<group>"; };
 		FA633DF81AB56ADD0090AD12 /* RoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundsViewController.m; sourceTree = "<group>"; };
 		FA633DFE1AB5768B0090AD12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FA6D1CB31ADDFA560012C829 /* BreakdownGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakdownGraphView.h; sourceTree = "<group>"; };
+		FA6D1CB41ADDFA560012C829 /* BreakdownGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakdownGraphView.m; sourceTree = "<group>"; };
 		FA8DEEBB1AB94264006CED5A /* RoundInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundInfoViewController.h; sourceTree = "<group>"; };
 		FA8DEEBC1AB94264006CED5A /* RoundInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundInfoViewController.m; sourceTree = "<group>"; };
 		FA92B7C31ABDFA470075EF1F /* TextFieldDismisserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDismisserView.h; sourceTree = "<group>"; };
@@ -325,6 +328,8 @@
 				FA0017B81ACC868F006D8399 /* PointsBreakdownViewController.m */,
 				FA05D8A81AD07C7800F5F36C /* ProgressRoundsViewController.h */,
 				FA05D8A91AD07C7800F5F36C /* ProgressRoundsViewController.m */,
+				FA6D1CB31ADDFA560012C829 /* BreakdownGraphView.h */,
+				FA6D1CB41ADDFA560012C829 /* BreakdownGraphView.m */,
 			);
 			name = Graphs;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				FA47A2681ACE2D7100593AD4 /* TotalsCell.m in Sources */,
 				FA92B7C51ABDFA470075EF1F /* TextFieldDismisserView.m in Sources */,
 				FA0017091ACB867A006D8399 /* ArchersEyeInfo.m in Sources */,
+				FA6D1CB51ADDFA560012C829 /* BreakdownGraphView.m in Sources */,
 				FAF52F021ABC05AB00B79AB3 /* BowInfoViewController.m in Sources */,
 				FA9C05541AD7753000047DC9 /* ChooseRoundViewController.m in Sources */,
 				FA9C05431AD4D4AB00047DC9 /* RoundDateViewController.m in Sources */,

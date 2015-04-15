@@ -289,13 +289,24 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     CPTXYPlotSpace  *plotSpace  = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     
     // 2 - Create chart
-    CPTScatterPlot *scatterPlot      = [[CPTScatterPlot alloc] init];
-    CPTColor       *scatterPlotColor = [CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:1.0f];
+    CPTScatterPlot *scatterPlot = [[CPTScatterPlot alloc] init];
+    RoundInfo      *round       = self.favRounds[self.favRoundID][0];
+    
+    if( [round type] == eRoundType_FITA )
+    {
+        self.lineColor = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:1.0f];
+        self.fillColor = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:0.3f];
+    }
+    else if( [round type] == eRoundType_NFAA )
+    {
+        self.lineColor = [CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:1.0f];
+        self.fillColor = [CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:0.3f];
+    }
     
     scatterPlot.dataSource      = self;
     scatterPlot.delegate        = self;
     scatterPlot.identifier      = @"DATA";
-    scatterPlot.areaFill        = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:0.3f]];
+    scatterPlot.areaFill        = [CPTFill fillWithColor:self.fillColor];
     scatterPlot.areaBaseValue   = CPTDecimalFromInteger( 0 );
     [graph addPlot:scatterPlot toPlotSpace:plotSpace];
     
@@ -303,7 +314,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSInteger totalArrows    = [self.favRounds[self.favRoundID][0] getTotalArrows];
     NSInteger maxArrowScore  = [self.favRounds[self.favRoundID][0] getMaxArrowRealScore];
     float     xStart         = -((float)[self.favRounds[_favRoundID] count]) * 0.2f;
-    float     xLength        =  ((float)[self.favRounds[_favRoundID] count]) * 1.1f;
+    float     xLength        =  ((float)[self.favRounds[_favRoundID] count]) * 1.2f;
     float     yStart         = -(totalArrows * maxArrowScore) * 0.2f;
     float     yLength        =  (totalArrows * maxArrowScore) * 1.3f;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( xStart ) length:CPTDecimalFromFloat( xLength )];
@@ -312,14 +323,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     // 4 - Create styles and symbols
     CPTMutableLineStyle *lineStyle  = [scatterPlot.dataLineStyle mutableCopy];
     lineStyle.lineWidth             = 2.5;
-    lineStyle.lineColor             = scatterPlotColor;
+    lineStyle.lineColor             = self.lineColor;
     scatterPlot.dataLineStyle       = lineStyle;
     
     CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
-    symbolLineStyle.lineColor            = scatterPlotColor;
+    symbolLineStyle.lineColor            = self.lineColor;
     
     CPTPlotSymbol *symbol   = [CPTPlotSymbol ellipsePlotSymbol];
-    symbol.fill             = [CPTFill fillWithColor:scatterPlotColor];
+    symbol.fill             = [CPTFill fillWithColor:self.lineColor];
     symbol.lineStyle        = symbolLineStyle;
     symbol.size             = CGSizeMake(6.0f, 6.0f);
     scatterPlot.plotSymbol  = symbol;

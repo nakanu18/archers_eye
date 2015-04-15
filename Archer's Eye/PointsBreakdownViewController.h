@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "BreakdownGraphView.h"
 
-@interface PointsBreakdownViewController : UIViewController <CPTPlotDataSource, CPTPieChartDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface PointsBreakdownViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
     BOOL _showXs;    
 }
@@ -19,11 +20,8 @@
 @property (nonatomic, strong)           NSMutableArray      *groupedRounds;
 @property (nonatomic, weak)             RoundInfo           *currPastRound;
 @property (nonatomic, weak)   IBOutlet  UITableView         *tableView;
-@property (nonatomic, weak)   IBOutlet  UIView              *graphView;
+@property (nonatomic, weak)   IBOutlet  BreakdownGraphView  *breakdownView;
 @property (nonatomic, weak)   IBOutlet  UIBarButtonItem     *showXsButton;
-
-@property (nonatomic, strong)           CPTGraphHostingView *hostView;
-@property (nonatomic, strong)           CPTTheme            *selectedTheme;
 
 
 
@@ -31,10 +29,6 @@
 
 
 - (void)initPlot;
-- (void)configureHost;
-- (void)configureGraph;
-- (void)configureChart;
-- (void)configureLegend;
 
 - (IBAction)showX:(id)sender;
 

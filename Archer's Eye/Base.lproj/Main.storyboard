@@ -846,7 +846,7 @@
                                     <outlet property="delegate" destination="gvb-MG-dZm" id="ARO-8m-nIC"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-8Y-OWG" userLabel="GraphView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-8Y-OWG" customClass="BreakdownGraphView">
                                 <rect key="frame" x="0.0" y="264" width="600" height="336"/>
                             </view>
                         </subviews>
@@ -899,7 +899,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="graphView" destination="xGM-8Y-OWG" id="3HD-6O-4dp"/>
+                        <outlet property="breakdownView" destination="xGM-8Y-OWG" id="GQ6-2g-mmd"/>
                         <outlet property="showXsButton" destination="CEG-sp-kaq" id="UTt-p7-t8r"/>
                         <outlet property="tableView" destination="6pd-Y8-8mM" id="qZQ-IX-cv5"/>
                     </connections>
@@ -2927,7 +2927,7 @@
                                     <outlet property="delegate" destination="wC8-Nt-67q" id="2qr-me-265"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJ2-1a-0VD" userLabel="GraphView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJ2-1a-0VD" customClass="BreakdownGraphView">
                                 <rect key="frame" x="0.0" y="225" width="600" height="326"/>
                             </view>
                         </subviews>
@@ -2988,7 +2988,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="graphView" destination="fJ2-1a-0VD" id="gAB-9D-lSL"/>
+                        <outlet property="breakdownView" destination="fJ2-1a-0VD" id="xcB-va-bVK"/>
                         <outlet property="startButton" destination="Qtw-ja-0Ho" id="KKH-1a-mEH"/>
                         <outlet property="tableView" destination="fsm-Mx-af3" id="1ky-VW-ohm"/>
                     </connections>
@@ -2999,15 +2999,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Wmh-qa-w2H"/>
-        <segue reference="HiB-3Z-byp"/>
         <segue reference="16S-2d-hA7"/>
-        <segue reference="mVz-ha-6Ui"/>
-        <segue reference="UDk-Mg-dBq"/>
-        <segue reference="BUw-Gj-nuY"/>
-        <segue reference="2LU-OI-U7s"/>
-        <segue reference="hb6-Fd-Mqf"/>
+        <segue reference="HiB-3Z-byp"/>
         <segue reference="tYL-4e-FWa"/>
         <segue reference="hLd-DK-Hnl"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="Wmh-qa-w2H"/>
+        <segue reference="2LU-OI-U7s"/>
+        <segue reference="gPV-QA-lS7"/>
+        <segue reference="hb6-Fd-Mqf"/>
+        <segue reference="BUw-Gj-nuY"/>
     </inferredMetricsTieBreakers>
 </document>

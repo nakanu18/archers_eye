@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "BreakdownGraphView.h"
 
-@interface LiveRoundViewController : UIViewController <CPTPlotDataSource, CPTPieChartDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface LiveRoundViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
     
 }
@@ -17,11 +18,8 @@
 @property (nonatomic, weak)             AppDelegate         *appDelegate;
 @property (nonatomic, weak)             ArchersEyeInfo      *archersEyeInfo;
 @property (nonatomic, weak)   IBOutlet  UITableView         *tableView;
-@property (nonatomic, weak)   IBOutlet  UIView              *graphView;
+@property (nonatomic, weak)   IBOutlet  BreakdownGraphView  *breakdownView;
 @property (nonatomic, weak)   IBOutlet  UIButton            *startButton;
-
-@property (nonatomic, strong)           CPTGraphHostingView *hostView;
-@property (nonatomic, strong)           CPTTheme            *selectedTheme;
 
 
 
@@ -29,10 +27,6 @@
 
 
 - (void)initPlot;
-- (void)configureHost;
-- (void)configureGraph;
-- (void)configureChart;
-- (void)configureLegend;
 
 - (IBAction)unwindToLiveRound:(UIStoryboardSegue *)segue;
 

@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong)               CPTGraphHostingView *hostView;
 @property (nonatomic, strong)               CPTTheme            *selectedTheme;
+@property (nonatomic, strong)               CPTColor            *lineColor;
+@property (nonatomic, strong)               CPTColor            *fillColor;
 
 
 
