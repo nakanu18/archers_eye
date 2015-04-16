@@ -1807,7 +1807,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 pts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjS-fc-O5d">
-                                            <rect key="frame" x="504" y="13" width="50" height="17"/>
+                                            <rect key="frame" x="509" y="13" width="50" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="fnh-R9-B5p"/>
                                             </constraints>
@@ -1816,10 +1816,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20x3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyA-dm-bCe">
-                                            <rect key="frame" x="18" y="24.5" width="50" height="14.5"/>
+                                            <rect key="frame" x="18" y="24" width="40" height="14.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="50" id="PA2-XS-SOC"/>
+                                                <constraint firstAttribute="width" constant="40" id="PA2-XS-SOC"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X+1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-FV-6pe">
+                                            <rect key="frame" x="475" y="14.5" width="22" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1827,10 +1832,12 @@
                                     <constraints>
                                         <constraint firstItem="REA-WM-bnT" firstAttribute="leading" secondItem="FyA-dm-bCe" secondAttribute="leading" id="22i-g2-5LQ"/>
                                         <constraint firstAttribute="centerY" secondItem="tf7-AA-ATr" secondAttribute="centerY" id="3Kf-A7-BYj"/>
+                                        <constraint firstItem="RYs-FV-6pe" firstAttribute="centerY" secondItem="XjS-fc-O5d" secondAttribute="centerY" id="VIu-Eo-2GX"/>
+                                        <constraint firstItem="XjS-fc-O5d" firstAttribute="leading" secondItem="RYs-FV-6pe" secondAttribute="trailing" constant="12" id="Vxh-Nh-Ucx"/>
                                         <constraint firstItem="tf7-AA-ATr" firstAttribute="leading" secondItem="REA-WM-bnT" secondAttribute="trailing" constant="8" id="X9s-eM-M3h"/>
                                         <constraint firstAttribute="centerY" secondItem="XjS-fc-O5d" secondAttribute="centerY" id="YGa-Oo-rGi"/>
                                         <constraint firstItem="REA-WM-bnT" firstAttribute="leading" secondItem="v7w-Fi-jBn" secondAttribute="leadingMargin" constant="10" id="cqJ-UX-14d"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="XjS-fc-O5d" secondAttribute="trailing" constant="5" id="eOK-hP-zUU"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XjS-fc-O5d" secondAttribute="trailing" id="eOK-hP-zUU"/>
                                         <constraint firstAttribute="centerY" secondItem="REA-WM-bnT" secondAttribute="centerY" constant="10" id="fzf-SP-hlJ"/>
                                         <constraint firstAttribute="centerY" secondItem="FyA-dm-bCe" secondAttribute="centerY" constant="-10" id="zRc-SV-S9q"/>
                                     </constraints>
@@ -1840,6 +1847,7 @@
                                     <outlet property="dist" destination="tf7-AA-ATr" id="jA2-3s-jKU"/>
                                     <outlet property="name" destination="REA-WM-bnT" id="qZv-yP-X4m"/>
                                     <outlet property="score" destination="XjS-fc-O5d" id="ATN-tS-KSc"/>
+                                    <outlet property="xPlusOne" destination="RYs-FV-6pe" id="mat-ty-Gvg"/>
                                     <segue destination="CZf-Sf-t6M" kind="presentation" modalTransitionStyle="flipHorizontal" id="hLd-DK-Hnl"/>
                                 </connections>
                             </tableViewCell>

@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *desc;
 @property (nonatomic, weak) IBOutlet UILabel *avg;
 @property (nonatomic, weak) IBOutlet UILabel *score;
+@property (nonatomic, weak) IBOutlet UILabel *xPlusOne;
 
 @property (nonatomic, weak) IBOutlet UILabel *bowName;
 @property (nonatomic, weak) IBOutlet UILabel *bowType;

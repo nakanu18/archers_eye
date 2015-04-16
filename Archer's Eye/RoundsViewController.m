@@ -126,13 +126,15 @@ titleForHeaderInSection:(NSInteger)section
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoundDescCell *cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-    RoundInfo     *template = self.groupedRounds[indexPath.section][indexPath.row];
+    RoundDescCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
+    RoundInfo     *info = self.groupedRounds[indexPath.section][indexPath.row];
 
-    cell.name.text      = template.name;
-    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", (long)template.distance];
-    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", (long)template.numEnds,  (long)template.numArrowsPerEnd];
-    cell.score.text     = [NSString stringWithFormat:@"%ld pts", (long)template.numEnds * (long)template.numArrowsPerEnd * [template getMaxArrowRealScore]];
+    cell.name.text      = info.name;
+    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
+    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
+    cell.score.text     = [NSString stringWithFormat:@"%ld pts", (long)info.numEnds * (long)info.numArrowsPerEnd * [info getMaxArrowRealScore]];
+
+    cell.xPlusOne.hidden = !info.xPlusOnePoint;
     
     return cell;
 }
