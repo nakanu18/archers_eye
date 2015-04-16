@@ -39,6 +39,7 @@ typedef enum
 @property (nonatomic, readwrite)   NSInteger       distance;
 @property (nonatomic, readwrite)   NSInteger       numEnds;
 @property (nonatomic, readwrite)   NSInteger       numArrowsPerEnd;
+@property (nonatomic, readwrite)   BOOL            xPlusOnePoint;
 @property (nonatomic, strong)      NSMutableArray *endScores;
 @property (nonatomic, strong)      NSDate         *date;
 
@@ -59,7 +60,8 @@ typedef enum
            andType:(eRoundType)type
            andDist:(NSInteger)dist
         andNumEnds:(NSInteger)numEnds
-   andArrowsPerEnd:(NSInteger)numArrowsPerEnd;
+   andArrowsPerEnd:(NSInteger)numArrowsPerEnd
+  andXPlusOnePoint:(BOOL)xPlusOnePoint;
 
 - (id)initFromDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionary;

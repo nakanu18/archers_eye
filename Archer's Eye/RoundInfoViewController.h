@@ -29,6 +29,7 @@
 @property (nonatomic, weak) IBOutlet   UIStepper           *stepperNumEnds;
 @property (nonatomic, weak) IBOutlet   UIStepper           *stepperNumArrows;
 @property (nonatomic, weak) IBOutlet   UIStepper           *stepperDefaultDist;
+@property (nonatomic, weak) IBOutlet   UISwitch            *switchXExtraPoint;
 
 
 
@@ -37,6 +38,8 @@
 - (IBAction)numEndsChanged:(id)sender;
 - (IBAction)numArrowsChanged:(id)sender;
 - (IBAction)defaultDistChanged:(id)sender;
+- (IBAction)xExtraPointChanged:(id)sender;
+
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 

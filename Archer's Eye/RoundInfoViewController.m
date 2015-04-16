@@ -33,7 +33,12 @@
     
     // Create a new Round if we don't have a currently selected one
     if( [self.archersEyeInfo currRound] == nil )
-        [self.archersEyeInfo createNewCustomRound:[[RoundInfo alloc] initWithName:@"" andType:eRoundType_NFAA andDist:20 andNumEnds:1 andArrowsPerEnd:6]];
+        [self.archersEyeInfo createNewCustomRound:[[RoundInfo alloc] initWithName:@""
+                                                                          andType:eRoundType_NFAA
+                                                                          andDist:20
+                                                                       andNumEnds:1
+                                                                  andArrowsPerEnd:6
+                                                                 andXPlusOnePoint:NO]];
 
     // Populate the fields with it's data
     _textName.text                              = self.archersEyeInfo.currRound.name;
@@ -56,6 +61,8 @@
     _stepperDefaultDist.value                   = _sliderDefaultDist.value;
     _stepperDefaultDist.minimumValue            = _sliderDefaultDist.minimumValue;
     _stepperDefaultDist.maximumValue            = _sliderDefaultDist.maximumValue;
+    
+    _switchXExtraPoint.on                       = self.archersEyeInfo.currRound.xPlusOnePoint;
 
     [self toggleSaveButtonIfReady];
 }
@@ -269,6 +276,37 @@
     [_activeTextField resignFirstResponder];
     _activeTextField = nil;
 }
+
+
+
+//------------------------------------------------------------------------------
+- (IBAction)xExtraPointChanged:(id)sender
+{
+    UISwitch *switcher = (UISwitch *)sender;
+    
+    self.archersEyeInfo.currRound.xPlusOnePoint = switcher.on;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

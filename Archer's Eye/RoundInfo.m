@@ -16,6 +16,9 @@
 
 
 
+
+
+
 @implementation RoundInfo
 
 //------------------------------------------------------------------------------
@@ -86,6 +89,7 @@
            andDist:(NSInteger)dist
         andNumEnds:(NSInteger)numEnds
    andArrowsPerEnd:(NSInteger)numArrowsPerEnd
+  andXPlusOnePoint:(BOOL)xPlusOnePoint
 {
     if( (self = [super init]) )
     {
@@ -94,6 +98,7 @@
         _distance        = dist;
         _numEnds         = numEnds;
         _numArrowsPerEnd = numArrowsPerEnd;
+        _xPlusOnePoint   = xPlusOnePoint;
         
         // Create the array that will hold the array of scores for each end
         [self clearScorecard];
@@ -113,7 +118,8 @@
                                         andType:self.type
                                         andDist:self.distance
                                      andNumEnds:self.numEnds
-                                andArrowsPerEnd:self.numArrowsPerEnd];
+                                andArrowsPerEnd:self.numArrowsPerEnd
+                               andXPlusOnePoint:self.xPlusOnePoint];
     
     if( obj )
     {
@@ -150,6 +156,7 @@
         self.distance           =             [[aDecoder decodeObjectForKey:@"distance"]        integerValue];
         self.numEnds            =             [[aDecoder decodeObjectForKey:@"numEnds"]         integerValue];
         self.numArrowsPerEnd    =             [[aDecoder decodeObjectForKey:@"numArrowsPerEnd"] integerValue];
+        self.xPlusOnePoint      =             [[aDecoder decodeObjectForKey:@"xPlusOnePoint"]   boolValue];
         self.endScores          =              [aDecoder decodeObjectForKey:@"endScores"];
         self.date               =              [aDecoder decodeObjectForKey:@"date"];
         self.bow                =              [aDecoder decodeObjectForKey:@"bow"];
@@ -171,6 +178,7 @@
     [aCoder encodeObject:[NSNumber numberWithInteger:_distance]         forKey:@"distance"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_numEnds]          forKey:@"numEnds"];
     [aCoder encodeObject:[NSNumber numberWithInteger:_numArrowsPerEnd]  forKey:@"numArrowsPerEnd"];
+    [aCoder encodeObject:[NSNumber numberWithBool:_xPlusOnePoint]       forKey:@"xPlusOnePoint"];
     [aCoder encodeObject:_endScores                                     forKey:@"endScores"];
     [aCoder encodeObject:_date                                          forKey:@"date"];
     [aCoder encodeObject:_bow                                           forKey:@"bow"];
@@ -195,6 +203,7 @@
         self.distance           =             [dictionary[@"distance"]        integerValue];
         self.numEnds            =             [dictionary[@"numEnds"]         integerValue];
         self.numArrowsPerEnd    =             [dictionary[@"numArrowsPerEnd"] integerValue];
+        self.xPlusOnePoint      =             [dictionary[@"xPlusOnePoint"]   boolValue];
         self.date               = [format dateFromString:dictionary[@"date"]];
         
         if( dictionary[@"bow"] != nil )
@@ -237,6 +246,7 @@
     [dm setObject:[NSNumber numberWithInteger:self.distance]        forKey:@"distance"];
     [dm setObject:[NSNumber numberWithInteger:self.numEnds]         forKey:@"numEnds"];
     [dm setObject:[NSNumber numberWithInteger:self.numArrowsPerEnd] forKey:@"numArrowsPerEnd"];
+    [dm setObject:[NSNumber numberWithBool:self.xPlusOnePoint]      forKey:@"xPlusOnePoint"];
     [dm setObject:self.endScores                                    forKey:@"endScores"];
 
     if( self.date != nil )
@@ -505,8 +515,8 @@
     
     switch( _type )
     {
-        case eRoundType_NFAA: max = 5;  break;
-        case eRoundType_FITA: max = 10; break;
+        case eRoundType_NFAA: max = self.xPlusOnePoint ? 6  : 5;  break;
+        case eRoundType_FITA: max = self.xPlusOnePoint ? 11 : 10; break;
         default:              max = 10; break;
     }    
     return max;
@@ -619,9 +629,9 @@
         
         // Take care of the bullseyes
         if( _type == eRoundType_FITA  &&  realValue >= 11 )
-            realValue = 10;
+            realValue = self.xPlusOnePoint ? 11 : 10;
         else if( _type == eRoundType_NFAA  && realValue >= 6 )
-            realValue = 5;
+            realValue = self.xPlusOnePoint ? 6 : 5;
     }
     
     return realValue;

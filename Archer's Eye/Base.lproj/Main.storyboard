@@ -2121,7 +2121,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="IBn-8P-rPz">
-                                                <rect key="frame" x="8" y="347.5" width="584" height="31"/>
+                                                <rect key="frame" x="8" y="347" width="584" height="31"/>
                                                 <connections>
                                                     <action selector="defaultDistChanged:" destination="cQw-gI-tED" eventType="valueChanged" id="SdH-Mb-xt6"/>
                                                 </connections>
@@ -2180,12 +2180,28 @@
                                             <constraint firstItem="pkM-hL-b8D" firstAttribute="centerY" secondItem="bTP-Xw-6NJ" secondAttribute="centerY" constant="-0.25" id="v9U-MU-Rcc"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X gives Extra Point" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efr-dX-Os4">
+                                        <rect key="frame" x="155" y="408" width="145" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ri3-Ll-3Gh">
+                                        <rect key="frame" x="325" y="403" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="xExtraPointChanged:" destination="cQw-gI-tED" eventType="valueChanged" id="F6h-m8-odz"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="75L-Bz-iEi" secondAttribute="bottom" id="1Qd-Nr-v6F"/>
                                     <constraint firstItem="75L-Bz-iEi" firstAttribute="leading" secondItem="KRv-vo-xIl" secondAttribute="leading" id="TgG-DH-0sc"/>
+                                    <constraint firstItem="Ri3-Ll-3Gh" firstAttribute="leading" secondItem="efr-dX-Os4" secondAttribute="trailing" constant="25" id="XrO-tA-l9S"/>
                                     <constraint firstAttribute="trailing" secondItem="75L-Bz-iEi" secondAttribute="trailing" id="eOF-oh-PYl"/>
+                                    <constraint firstItem="efr-dX-Os4" firstAttribute="top" secondItem="IBn-8P-rPz" secondAttribute="bottom" constant="31" id="lR3-8o-eUB"/>
                                     <constraint firstItem="75L-Bz-iEi" firstAttribute="top" secondItem="KRv-vo-xIl" secondAttribute="top" id="qxe-ua-gXH"/>
+                                    <constraint firstItem="efr-dX-Os4" firstAttribute="centerY" secondItem="Ri3-Ll-3Gh" secondAttribute="centerY" id="viv-Mm-0Sn"/>
+                                    <constraint firstAttribute="centerX" secondItem="efr-dX-Os4" secondAttribute="trailing" id="ylB-A6-odF"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -2223,6 +2239,7 @@
                         <outlet property="stepperDefaultDist" destination="DVo-Na-Qqa" id="dyb-DJ-UuL"/>
                         <outlet property="stepperNumArrows" destination="2aR-aQ-FgR" id="gbd-ZT-Cz2"/>
                         <outlet property="stepperNumEnds" destination="djE-o0-vyZ" id="jqP-mF-RkO"/>
+                        <outlet property="switchXExtraPoint" destination="Ri3-Ll-3Gh" id="PZQ-Xe-DRx"/>
                         <outlet property="textName" destination="CKj-AU-JCc" id="fiD-Vo-0Rb"/>
                     </connections>
                 </viewController>
