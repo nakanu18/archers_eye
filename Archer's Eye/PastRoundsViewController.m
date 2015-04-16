@@ -24,8 +24,7 @@
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
     self.groupedRounds  = [self.archersEyeInfo matrixOfRoundsByMonth:self.archersEyeInfo.pastRounds];
-    
-    _showXs = NO;
+    self.roundExInfo    = ePastRoundEx_Average;
     
     [super viewDidLoad];
 }
@@ -162,12 +161,24 @@
     cell.date.text  = [AppDelegate basicDate:info.date];
     cell.dist.text  = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
     cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
-    cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
     
-    if( _showXs )
-        cell.avg.text = [NSString stringWithFormat:@"%ld X's", [info getNumberOfArrowsWithScore:11]];
-    else
-        cell.avg.text = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
+    switch( self.roundExInfo )
+    {
+        case ePastRoundEx_Average:
+            cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
+            cell.avg.text   = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (totalArrows)];
+            break;
+        case ePastRoundEx_Bullseyes:
+            cell.score.text = [NSString stringWithFormat:@"%ld/%ld pts", (long)totalScore, (long)totalArrows * [info getMaxArrowRealScore]];
+            cell.avg.text   = [NSString stringWithFormat:@"%ld X's", [info getNumberOfArrowsWithScore:11]];
+            break;
+        case ePastRoundEx_BowName:
+            cell.score.text = info.bow.name;
+            cell.avg.text   = [NSString stringWithFormat:@"%ld lbs", info.bow.drawWeight];
+            break;
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -233,12 +244,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------
 - (IBAction)showX:(id)sender
 {
-    _showXs = !_showXs;
+    self.roundExInfo = (self.roundExInfo + 1) % ePastRoundEx_Count;
     
-    if( _showXs )
-        self.showXsButton.title = @"Avg";
-    else
-        self.showXsButton.title = @"X's";
+    switch( (self.roundExInfo + 1) % ePastRoundEx_Count )
+    {
+        case ePastRoundEx_Average:      self.showXsButton.title = @"Avg";   break;
+        case ePastRoundEx_Bullseyes:    self.showXsButton.title = @"X's";   break;
+        case ePastRoundEx_BowName:      self.showXsButton.title = @"Bow";   break;
+        default:                        self.showXsButton.title = @"";      break;
+    }
     
     [self.tableView reloadData];
 }

@@ -120,14 +120,17 @@ titleForHeaderInSection:(NSInteger)section
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoundDescCell *cell     = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
-    RoundInfo     *template = self.archersEyeInfo.liveRound;
+    RoundDescCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoundDescCell"];
+    RoundInfo     *info = self.archersEyeInfo.liveRound;
     
-    cell.name.text  = template.name;
-    cell.dist.text  = [NSString stringWithFormat:@"%ld yds", (long)template.distance];
-    cell.desc.text  = [NSString stringWithFormat:@"%ldx%ld", (long)template.numEnds,  (long)template.numArrowsPerEnd];
-    cell.score.text = [NSString stringWithFormat:@"%ld pts", (long)template.numEnds * (long)template.numArrowsPerEnd * [template getMaxArrowRealScore]];
-
+    cell.name.text      = info.name;
+    cell.dist.text      = [NSString stringWithFormat:@"%ld yds", (long)info.distance];
+    cell.desc.text      = [NSString stringWithFormat:@"%ldx%ld", (long)info.numEnds,  (long)info.numArrowsPerEnd];
+    cell.score.text     = [NSString stringWithFormat:@"%ld pts", (long)info.numEnds * (long)info.numArrowsPerEnd * [info getMaxArrowRealScore]];
+    cell.bowName.text   = info.bow.name;
+    cell.bowType.text   = [BowInfo typeAsString:info.bow.type];
+    cell.bowWeight.text = [NSString stringWithFormat:@"%ld lbs", (long)info.bow.drawWeight];
+    
     return cell;
 }
 

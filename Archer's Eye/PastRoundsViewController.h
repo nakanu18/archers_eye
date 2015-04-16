@@ -10,15 +10,23 @@
 #import "AppDelegate.h"
 #import "RoundEditorViewController.h"
 
+typedef enum
+{
+    ePastRoundEx_Average,
+    ePastRoundEx_Bullseyes,
+    ePastRoundEx_BowName,
+    ePastRoundEx_Count,
+} ePastRoundEx;
+
 @interface PastRoundsViewController : UITableViewController <RoundEditorViewControllerDelegate>
 {
-    BOOL _showXs;
 }
 
 @property (nonatomic, weak)              AppDelegate     *appDelegate;
 @property (nonatomic, weak)              ArchersEyeInfo  *archersEyeInfo;
 @property (nonatomic, strong)            NSMutableArray  *groupedRounds;
 @property (nonatomic, weak)     IBOutlet UIBarButtonItem *showXsButton;
+@property (nonatomic, readwrite)         ePastRoundEx     roundExInfo;
 
 
 

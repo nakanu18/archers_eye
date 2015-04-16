@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "BreakdownGraphView.h"
+#import "PastRoundsViewController.h"
 
 @interface PointsBreakdownViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    BOOL _showXs;    
 }
 
 @property (nonatomic, weak)             AppDelegate         *appDelegate;
@@ -22,6 +22,7 @@
 @property (nonatomic, weak)   IBOutlet  UITableView         *tableView;
 @property (nonatomic, weak)   IBOutlet  BreakdownGraphView  *breakdownView;
 @property (nonatomic, weak)   IBOutlet  UIBarButtonItem     *showXsButton;
+@property (nonatomic, readwrite)         ePastRoundEx     roundExInfo;
 
 
 
