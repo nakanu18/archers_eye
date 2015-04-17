@@ -18,6 +18,8 @@
 		FA4CA9B31AD321FF00B8B60A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4CA9B21AD321FF00B8B60A /* MenuViewController.m */; };
 		FA4CA9B51AD3934600B8B60A /* Save.aed in Resources */ = {isa = PBXBuildFile; fileRef = FA4CA9B41AD3934600B8B60A /* Save.aed */; };
 		FA4CA9B71AD3BD7A00B8B60A /* Save_default.aed in Resources */ = {isa = PBXBuildFile; fileRef = FA4CA9B61AD3BD7A00B8B60A /* Save_default.aed */; };
+		FA5A31021AE098F700DF35B8 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A31011AE098F700DF35B8 /* iAd.framework */; };
+		FA5A31051AE0A77F00DF35B8 /* GraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A31041AE0A77F00DF35B8 /* GraphsViewController.m */; };
 		FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */; };
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* RoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* RoundsViewController.m */; };
@@ -154,6 +156,9 @@
 		FA4CA9B41AD3934600B8B60A /* Save.aed */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Save.aed; sourceTree = "<group>"; };
 		FA4CA9B61AD3BD7A00B8B60A /* Save_default.aed */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Save_default.aed; sourceTree = "<group>"; };
 		FA4CA9B91AD456C600B8B60A /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		FA5A31011AE098F700DF35B8 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		FA5A31031AE0A77F00DF35B8 /* GraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsViewController.h; sourceTree = "<group>"; };
+		FA5A31041AE0A77F00DF35B8 /* GraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphsViewController.m; sourceTree = "<group>"; };
 		FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandlerViewController.h; sourceTree = "<group>"; };
 		FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHandlerViewController.m; sourceTree = "<group>"; };
 		FA633DF11AB569880090AD12 /* RoundDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDescCell.h; sourceTree = "<group>"; };
@@ -212,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5A31021AE098F700DF35B8 /* iAd.framework in Frameworks */,
 				FA00175D1ACC7DD9006D8399 /* QuartzCore.framework in Frameworks */,
 				FA00185B1ACDA723006D8399 /* libCorePlot-CocoaTouch.a in Frameworks */,
 			);
@@ -397,6 +403,7 @@
 		FA9927681AABA1510017D069 = {
 			isa = PBXGroup;
 			children = (
+				FA5A31011AE098F700DF35B8 /* iAd.framework */,
 				FA00175C1ACC7DD9006D8399 /* QuartzCore.framework */,
 				FA9927731AABA1510017D069 /* Archer's Eye */,
 				FA99278D1AABA1520017D069 /* Archer's EyeTests */,
@@ -482,6 +489,8 @@
 			children = (
 				FA4CA9B11AD321FF00B8B60A /* MenuViewController.h */,
 				FA4CA9B21AD321FF00B8B60A /* MenuViewController.m */,
+				FA5A31031AE0A77F00DF35B8 /* GraphsViewController.h */,
+				FA5A31041AE0A77F00DF35B8 /* GraphsViewController.m */,
 				FA9C054B1AD6E58C00047DC9 /* SettingsViewController.h */,
 				FA9C054C1AD6E58C00047DC9 /* SettingsViewController.m */,
 			);
@@ -615,6 +624,7 @@
 				FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
 				FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */,
+				FA5A31051AE0A77F00DF35B8 /* GraphsViewController.m in Sources */,
 				FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */,
 				FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */,
 				FA9927AC1AAD118E0017D069 /* EndCell.m in Sources */,

@@ -1,32 +1,32 @@
 //
-//  MenuViewController.m
+//  GraphsViewController.m
 //  Archer's Eye
 //
-//  Created by Alex de Vera on 4/6/15.
+//  Created by Alex de Vera on 4/16/15.
 //  Copyright (c) 2015 Alex de Vera. All rights reserved.
 //
 
-#import "MenuViewController.h"
+#import "GraphsViewController.h"
 
-@interface MenuViewController ()
+@interface GraphsViewController ()
 
 @end
 
 
 
-@implementation MenuViewController
+@implementation GraphsViewController
 
 //------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view.
     self.appDelegate    = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.archersEyeInfo =  self.appDelegate.archersEyeInfo;
     
     self.bannerView.delegate = self;
-
+    
 }
 
 
