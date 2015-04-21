@@ -20,6 +20,7 @@
 		FA4CA9B71AD3BD7A00B8B60A /* Save_default.aed in Resources */ = {isa = PBXBuildFile; fileRef = FA4CA9B61AD3BD7A00B8B60A /* Save_default.aed */; };
 		FA5A31021AE098F700DF35B8 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A31011AE098F700DF35B8 /* iAd.framework */; };
 		FA5A31051AE0A77F00DF35B8 /* GraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A31041AE0A77F00DF35B8 /* GraphsViewController.m */; };
+		FA5A31081AE16A2900DF35B8 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A31071AE16A2900DF35B8 /* IAPHelper.m */; };
 		FA6072D71AC3525F0011B9F1 /* KeyboardHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */; };
 		FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF21AB569880090AD12 /* RoundDescCell.m */; };
 		FA633DF91AB56ADD0090AD12 /* RoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA633DF81AB56ADD0090AD12 /* RoundsViewController.m */; };
@@ -159,6 +160,8 @@
 		FA5A31011AE098F700DF35B8 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		FA5A31031AE0A77F00DF35B8 /* GraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsViewController.h; sourceTree = "<group>"; };
 		FA5A31041AE0A77F00DF35B8 /* GraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphsViewController.m; sourceTree = "<group>"; };
+		FA5A31061AE16A2900DF35B8 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		FA5A31071AE16A2900DF35B8 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandlerViewController.h; sourceTree = "<group>"; };
 		FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHandlerViewController.m; sourceTree = "<group>"; };
 		FA633DF11AB569880090AD12 /* RoundDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDescCell.h; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 		FA92B7C61ABE05A60075EF1F /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				FA5A31061AE16A2900DF35B8 /* IAPHelper.h */,
+				FA5A31071AE16A2900DF35B8 /* IAPHelper.m */,
 				FA6072D51AC3525F0011B9F1 /* KeyboardHandlerViewController.h */,
 				FA6072D61AC3525F0011B9F1 /* KeyboardHandlerViewController.m */,
 				FA285DAD1AC605C30055BBE3 /* ReplaceSegue.h */,
@@ -619,6 +624,7 @@
 				FA05D8AA1AD07C7800F5F36C /* ProgressRoundsViewController.m in Sources */,
 				FA0017B91ACC868F006D8399 /* PointsBreakdownViewController.m in Sources */,
 				FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */,
+				FA5A31081AE16A2900DF35B8 /* IAPHelper.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
 				FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */,
 				FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */,
@@ -770,6 +776,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Archer's Eye/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -787,9 +794,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = "Archer's Eye/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

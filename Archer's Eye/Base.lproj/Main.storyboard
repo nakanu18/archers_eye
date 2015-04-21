@@ -46,9 +46,6 @@
                                     <segue destination="wub-fP-4cI" kind="presentation" id="ATk-rP-nKg"/>
                                 </connections>
                             </button>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="o9r-f6-Jrq">
-                                <rect key="frame" x="0.0" y="568" width="480" height="32"/>
-                            </adBannerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfd-9i-UHL">
                                 <rect key="frame" x="249.5" y="410" width="100" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,7 +63,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o9r-f6-Jrq" firstAttribute="width" secondItem="SO3-9f-m6V" secondAttribute="width" id="5Q7-LS-gkx"/>
                             <constraint firstAttribute="centerY" secondItem="Mfd-9i-UHL" secondAttribute="centerY" id="7M0-Es-nGE"/>
                             <constraint firstItem="Mfd-9i-UHL" firstAttribute="leading" secondItem="v99-OK-F4s" secondAttribute="trailing" constant="56.5" id="FvL-fA-Ita">
                                 <variation key="heightClass=compact" constant="60"/>
@@ -76,10 +72,8 @@
                                 <variation key="heightClass=compact" constant="60"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="2Ui-vY-XU2" secondAttribute="centerX" id="PDd-ol-XHw"/>
-                            <constraint firstAttribute="centerX" secondItem="o9r-f6-Jrq" secondAttribute="centerX" id="cQB-1Y-uRU"/>
                             <constraint firstAttribute="centerY" secondItem="v99-OK-F4s" secondAttribute="centerY" id="cQS-eE-Lrn"/>
                             <constraint firstItem="v99-OK-F4s" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="60" id="gpm-RA-bHp"/>
-                            <constraint firstItem="r3V-y8-umB" firstAttribute="top" secondItem="o9r-f6-Jrq" secondAttribute="bottom" id="ksL-En-cZE"/>
                             <constraint firstAttribute="centerX" secondItem="v99-OK-F4s" secondAttribute="centerX" id="lqq-vb-EpT"/>
                             <constraint firstItem="Mfd-9i-UHL" firstAttribute="top" secondItem="v99-OK-F4s" secondAttribute="bottom" constant="60" id="sd4-jh-Xvz"/>
                             <constraint firstAttribute="centerX" secondItem="Mfd-9i-UHL" secondAttribute="centerX" id="vDh-V7-hPI"/>
@@ -106,9 +100,6 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="M00-O7-Yby"/>
-                    <connections>
-                        <outlet property="bannerView" destination="o9r-f6-Jrq" id="5rx-nr-Q85"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="svP-GS-1Ui" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -755,21 +746,15 @@
                                     <segue destination="ix8-rE-fNh" kind="show" id="TT1-qL-P2k"/>
                                 </connections>
                             </button>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="szL-yV-oal">
-                                <rect key="frame" x="0.0" y="568" width="480" height="32"/>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="oY2-KT-Pdq" secondAttribute="centerX" id="1EH-rt-jCg"/>
-                            <constraint firstAttribute="centerX" secondItem="szL-yV-oal" secondAttribute="centerX" id="8r6-SZ-VAi"/>
-                            <constraint firstItem="M5E-oN-ScJ" firstAttribute="top" secondItem="szL-yV-oal" secondAttribute="bottom" id="J9q-88-6YY"/>
                             <constraint firstAttribute="centerX" secondItem="MPi-f6-zsE" secondAttribute="centerX" constant="-90" id="Jon-eJ-WcF">
                                 <variation key="heightClass=compact" constant="90"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="oY2-KT-Pdq" secondAttribute="centerY" id="Pq4-vk-fll"/>
                             <constraint firstAttribute="centerY" secondItem="MPi-f6-zsE" secondAttribute="centerY" constant="90" id="SBc-IM-oba"/>
-                            <constraint firstAttribute="width" secondItem="szL-yV-oal" secondAttribute="width" id="h5S-oE-Fuh"/>
                             <constraint firstAttribute="centerX" secondItem="oY2-KT-Pdq" secondAttribute="centerX" constant="-90" id="i5D-ZM-YUc"/>
                             <constraint firstAttribute="centerX" secondItem="MPi-f6-zsE" secondAttribute="centerX" id="riQ-ce-QpE"/>
                             <constraint firstAttribute="centerY" secondItem="MPi-f6-zsE" secondAttribute="centerY" id="sSJ-ee-GGy"/>
@@ -803,9 +788,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="bannerView" destination="szL-yV-oal" id="pIE-19-DdF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaG-Ze-zfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

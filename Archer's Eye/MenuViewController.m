@@ -60,7 +60,7 @@
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    NSLog( @"didFailToReceiveAdWithError %@", error );
+    NSLog( @"MenuVC: didFailToReceiveAdWithError %@", error );
 }
 
 @end
