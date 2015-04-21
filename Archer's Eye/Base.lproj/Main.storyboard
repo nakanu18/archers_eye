@@ -18,52 +18,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-vY-XU2">
-                                <rect key="frame" x="249.5" y="90" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-vY-XU2">
+                                <rect key="frame" x="250" y="90" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="AxU-Sq-efM"/>
                                     <constraint firstAttribute="height" constant="100" id="e9q-eI-n9s"/>
                                 </constraints>
-                                <state key="normal" title="Bows">
+                                <state key="normal" title="Bows" image="pm_arrows">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Fha-6T-aHe" kind="presentation" id="dAS-57-89d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v99-OK-F4s">
-                                <rect key="frame" x="249.5" y="250" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v99-OK-F4s">
+                                <rect key="frame" x="250" y="250" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="rZ4-NB-AFO"/>
                                     <constraint firstAttribute="width" constant="100" id="u4v-hy-cSY"/>
                                 </constraints>
-                                <state key="normal" title="Graphs">
+                                <state key="normal" title="Graphs" image="pm_bars">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="wub-fP-4cI" kind="presentation" id="ATk-rP-nKg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfd-9i-UHL">
-                                <rect key="frame" x="249.5" y="410" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfd-9i-UHL">
+                                <rect key="frame" x="250" y="410" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="00o-AT-gIQ"/>
                                     <constraint firstAttribute="height" constant="100" id="obs-Kn-c2n"/>
                                 </constraints>
-                                <state key="normal" title="Settings">
+                                <state key="normal" title="Settings" image="pm_gear">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="MVj-EL-zrO" kind="presentation" id="TM8-nL-1nv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88s-oW-1xD">
+                                <rect key="frame" x="284" y="198" width="33" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graphs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urn-1k-ELg">
+                                <rect key="frame" x="272" y="358" width="57" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72J-1e-EGA">
+                                <rect key="frame" x="269" y="518" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Mfd-9i-UHL" secondAttribute="centerY" id="7M0-Es-nGE"/>
+                            <constraint firstItem="88s-oW-1xD" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="8" id="8kx-cb-pec"/>
                             <constraint firstItem="Mfd-9i-UHL" firstAttribute="leading" secondItem="v99-OK-F4s" secondAttribute="trailing" constant="56.5" id="FvL-fA-Ita">
                                 <variation key="heightClass=compact" constant="60"/>
                             </constraint>
@@ -71,12 +87,17 @@
                             <constraint firstItem="v99-OK-F4s" firstAttribute="leading" secondItem="2Ui-vY-XU2" secondAttribute="trailing" constant="53.5" id="Leh-JU-G9b">
                                 <variation key="heightClass=compact" constant="60"/>
                             </constraint>
+                            <constraint firstItem="Urn-1k-ELg" firstAttribute="centerX" secondItem="v99-OK-F4s" secondAttribute="centerX" constant="0.5" id="O6u-9R-i21"/>
                             <constraint firstAttribute="centerX" secondItem="2Ui-vY-XU2" secondAttribute="centerX" id="PDd-ol-XHw"/>
+                            <constraint firstItem="72J-1e-EGA" firstAttribute="top" secondItem="Mfd-9i-UHL" secondAttribute="bottom" constant="8" id="Qi7-SN-QWP"/>
                             <constraint firstAttribute="centerY" secondItem="v99-OK-F4s" secondAttribute="centerY" id="cQS-eE-Lrn"/>
+                            <constraint firstItem="72J-1e-EGA" firstAttribute="centerX" secondItem="Mfd-9i-UHL" secondAttribute="centerX" constant="0.5" id="dym-ps-pKu"/>
                             <constraint firstItem="v99-OK-F4s" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="60" id="gpm-RA-bHp"/>
+                            <constraint firstItem="88s-oW-1xD" firstAttribute="centerX" secondItem="2Ui-vY-XU2" secondAttribute="centerX" constant="0.5" id="lfh-Ux-Kgv"/>
                             <constraint firstAttribute="centerX" secondItem="v99-OK-F4s" secondAttribute="centerX" id="lqq-vb-EpT"/>
                             <constraint firstItem="Mfd-9i-UHL" firstAttribute="top" secondItem="v99-OK-F4s" secondAttribute="bottom" constant="60" id="sd4-jh-Xvz"/>
                             <constraint firstAttribute="centerX" secondItem="Mfd-9i-UHL" secondAttribute="centerX" id="vDh-V7-hPI"/>
+                            <constraint firstItem="Urn-1k-ELg" firstAttribute="top" secondItem="v99-OK-F4s" secondAttribute="bottom" constant="8" id="vwu-ae-ebr"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -718,46 +739,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY2-KT-Pdq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY2-KT-Pdq">
                                 <rect key="frame" x="250" y="340" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="gZF-LO-2Uy"/>
                                     <constraint firstAttribute="width" constant="100" id="mdC-wa-3kZ"/>
                                 </constraints>
-                                <state key="normal" title="Progress">
+                                <state key="normal" title="Progress" image="pm_bars">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="LR9-5h-fh5" kind="show" id="QTV-Pa-0XF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPi-f6-zsE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPi-f6-zsE">
                                 <rect key="frame" x="250" y="160" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="xQY-72-lD8"/>
                                     <constraint firstAttribute="width" constant="100" id="ybm-TY-LF7"/>
                                 </constraints>
-                                <state key="normal" title="Breakdown">
+                                <state key="normal" title="Breakdown" image="pm_pie">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="ix8-rE-fNh" kind="show" id="TT1-qL-P2k"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wna-kK-7TS">
+                                <rect key="frame" x="266" y="454" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breakdown" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qD-g4-FBN">
+                                <rect key="frame" x="257" y="268" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="oY2-KT-Pdq" secondAttribute="centerX" id="1EH-rt-jCg"/>
+                            <constraint firstItem="wna-kK-7TS" firstAttribute="top" secondItem="oY2-KT-Pdq" secondAttribute="bottom" constant="14" id="AmX-1F-1Lk"/>
                             <constraint firstAttribute="centerX" secondItem="MPi-f6-zsE" secondAttribute="centerX" constant="-90" id="Jon-eJ-WcF">
                                 <variation key="heightClass=compact" constant="90"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="oY2-KT-Pdq" secondAttribute="centerY" id="Pq4-vk-fll"/>
                             <constraint firstAttribute="centerY" secondItem="MPi-f6-zsE" secondAttribute="centerY" constant="90" id="SBc-IM-oba"/>
+                            <constraint firstItem="5qD-g4-FBN" firstAttribute="centerX" secondItem="MPi-f6-zsE" secondAttribute="centerX" constant="0.5" id="g7C-af-QGU"/>
                             <constraint firstAttribute="centerX" secondItem="oY2-KT-Pdq" secondAttribute="centerX" constant="-90" id="i5D-ZM-YUc"/>
+                            <constraint firstItem="oY2-KT-Pdq" firstAttribute="centerX" secondItem="wna-kK-7TS" secondAttribute="centerX" id="jGs-xs-6Vc"/>
                             <constraint firstAttribute="centerX" secondItem="MPi-f6-zsE" secondAttribute="centerX" id="riQ-ce-QpE"/>
                             <constraint firstAttribute="centerY" secondItem="MPi-f6-zsE" secondAttribute="centerY" id="sSJ-ee-GGy"/>
+                            <constraint firstItem="5qD-g4-FBN" firstAttribute="top" secondItem="MPi-f6-zsE" secondAttribute="bottom" constant="8" id="tCE-jL-dgc"/>
                             <constraint firstAttribute="centerY" secondItem="oY2-KT-Pdq" secondAttribute="centerY" constant="-90" id="ux8-Ri-ed8"/>
                         </constraints>
                         <variation key="default">
@@ -3132,6 +3167,12 @@
             <point key="canvasLocation" x="2591" y="-1297"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pm_arrows" width="100" height="100"/>
+        <image name="pm_bars" width="100" height="100"/>
+        <image name="pm_gear" width="100" height="100"/>
+        <image name="pm_pie" width="100" height="100"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2LU-OI-U7s"/>
         <segue reference="HiB-3Z-byp"/>
