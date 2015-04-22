@@ -35,7 +35,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_PointsBreakdown];
+
+    // Only show the hint if we have no rounds to show
+    if( [self.groupedRounds count] == 0 )
+        [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_PointsBreakdown];
 
     // Select the first item if it exists
     if( [self.groupedRounds count] > 0 )

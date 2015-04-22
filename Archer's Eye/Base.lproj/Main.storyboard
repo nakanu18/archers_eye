@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archer's Eye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lt-VQ-3Oo">
+                                <rect key="frame" x="226" y="20" width="149" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-vY-XU2">
                                 <rect key="frame" x="250" y="90" width="100" height="100"/>
                                 <constraints>
@@ -58,28 +64,29 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88s-oW-1xD">
-                                <rect key="frame" x="284" y="198" width="33" height="21"/>
+                                <rect key="frame" x="284" y="198" width="33" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graphs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urn-1k-ELg">
-                                <rect key="frame" x="272" y="358" width="57" height="21"/>
+                                <rect key="frame" x="272" y="358" width="56.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72J-1e-EGA">
-                                <rect key="frame" x="269" y="518" width="63" height="21"/>
+                                <rect key="frame" x="269" y="518" width="63" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Mfd-9i-UHL" secondAttribute="centerY" id="7M0-Es-nGE"/>
                             <constraint firstItem="88s-oW-1xD" firstAttribute="top" secondItem="2Ui-vY-XU2" secondAttribute="bottom" constant="8" id="8kx-cb-pec"/>
+                            <constraint firstAttribute="centerX" secondItem="2Lt-VQ-3Oo" secondAttribute="centerX" id="BxO-Dz-zyw"/>
                             <constraint firstItem="Mfd-9i-UHL" firstAttribute="leading" secondItem="v99-OK-F4s" secondAttribute="trailing" constant="56.5" id="FvL-fA-Ita">
                                 <variation key="heightClass=compact" constant="60"/>
                             </constraint>
@@ -87,6 +94,7 @@
                             <constraint firstItem="v99-OK-F4s" firstAttribute="leading" secondItem="2Ui-vY-XU2" secondAttribute="trailing" constant="53.5" id="Leh-JU-G9b">
                                 <variation key="heightClass=compact" constant="60"/>
                             </constraint>
+                            <constraint firstItem="2Lt-VQ-3Oo" firstAttribute="top" secondItem="SgG-7v-AaV" secondAttribute="bottom" id="NpY-iT-DbP"/>
                             <constraint firstItem="Urn-1k-ELg" firstAttribute="centerX" secondItem="v99-OK-F4s" secondAttribute="centerX" constant="0.5" id="O6u-9R-i21"/>
                             <constraint firstAttribute="centerX" secondItem="2Ui-vY-XU2" secondAttribute="centerX" id="PDd-ol-XHw"/>
                             <constraint firstItem="72J-1e-EGA" firstAttribute="top" secondItem="Mfd-9i-UHL" secondAttribute="bottom" constant="8" id="Qi7-SN-QWP"/>

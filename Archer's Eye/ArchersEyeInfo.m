@@ -876,7 +876,9 @@
 //------------------------------------------------------------------------------
 - (void)showHintPopupIfNecessary:(eHint)hint
 {
-    if( [self showHint:hint] )
+    NSString *hintString = [self hintAsString:hint];
+    
+    if( [self showHint:hint]  &&  ![hintString isEqualToString:@""] )
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hint"
                                                             message:[self hintAsString:hint]
@@ -885,8 +887,8 @@
                                                   otherButtonTitles:nil];
         
         [alertView show];
-        [self setShowHint:hint toBool:NO];
     }
+    [self setShowHint:hint toBool:NO];
 }
 
 
@@ -900,10 +902,10 @@
     
     switch( hint )
     {
-        case eHint_BnA_Results:             string = @"VIEW and EDIT past rounds."; break;
-        case eHint_BnA_Rounds:              string = @"ADD a new round template or EDIT an existing one."; break;
-        case eHint_BnA_Bows:                string = @"ADD a new bow template or EDIT an existing one."; break;
-        case eHint_Graphs_PointsBreakdown:  string = @"SELECT a past round to view the points breakdown."; break;
+        case eHint_BnA_Results:             string = @""; break;
+        case eHint_BnA_Rounds:              string = @""; break;
+        case eHint_BnA_Bows:                string = @""; break;
+        case eHint_Graphs_PointsBreakdown:  string = @"Shoot a round first to view how the points breakdown."; break;
         case eHint_Graphs_Progress:         string = @"Shoot 2 or more of the SAME round with the SAME bow to monitor your progress."; break;
         default:                            string = nil; break;
     }

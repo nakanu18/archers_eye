@@ -1,41 +1,96 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6214" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6207"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+        <view contentMode="scaleToFill" id="dv7-b3-GTt">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Alex de Vera. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="439" width="441" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archer's Eye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehB-6R-8eF">
+                    <rect key="frame" x="226" y="20" width="149" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archer's Eye" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="140" width="441" height="43"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siz-tl-eNy">
+                    <rect key="frame" x="250" y="90" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="FQ3-HY-wXc"/>
+                        <constraint firstAttribute="width" constant="100" id="dlx-Sq-xxO"/>
+                    </constraints>
+                    <state key="normal" title="Bows" image="pm_arrows">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiF-XS-ceE">
+                    <rect key="frame" x="250" y="250" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="8xH-66-BSk"/>
+                        <constraint firstAttribute="height" constant="100" id="QeT-Im-ZMF"/>
+                    </constraints>
+                    <state key="normal" title="Graphs" image="pm_bars">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7J7-n6-98K">
+                    <rect key="frame" x="250" y="410" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="ZcI-ZC-Njo"/>
+                        <constraint firstAttribute="height" constant="100" id="k3i-IN-YPa"/>
+                    </constraints>
+                    <state key="normal" title="Settings" image="pm_gear">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
-                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+                <constraint firstAttribute="centerX" secondItem="7J7-n6-98K" secondAttribute="centerX" id="E0d-iW-ddd"/>
+                <constraint firstAttribute="centerY" secondItem="siz-tl-eNy" secondAttribute="centerY" id="Gc0-m1-eFt"/>
+                <constraint firstAttribute="centerX" secondItem="uiF-XS-ceE" secondAttribute="centerX" id="NKy-IT-ttZ"/>
+                <constraint firstAttribute="centerX" secondItem="ehB-6R-8eF" secondAttribute="centerX" id="NYM-yi-ZoJ"/>
+                <constraint firstItem="7J7-n6-98K" firstAttribute="top" secondItem="uiF-XS-ceE" secondAttribute="bottom" constant="60" id="QI8-ip-rCe"/>
+                <constraint firstItem="7J7-n6-98K" firstAttribute="leading" secondItem="uiF-XS-ceE" secondAttribute="trailing" constant="56.5" id="TZH-cf-5xI">
+                    <variation key="heightClass=compact" constant="60"/>
+                </constraint>
+                <constraint firstAttribute="centerY" secondItem="uiF-XS-ceE" secondAttribute="centerY" id="hbb-3z-YSY"/>
+                <constraint firstItem="uiF-XS-ceE" firstAttribute="leading" secondItem="siz-tl-eNy" secondAttribute="trailing" constant="53.5" id="rqO-TA-Q1z">
+                    <variation key="heightClass=compact" constant="60"/>
+                </constraint>
+                <constraint firstAttribute="centerX" secondItem="siz-tl-eNy" secondAttribute="centerX" id="s5t-j5-zB0"/>
+                <constraint firstAttribute="centerY" secondItem="7J7-n6-98K" secondAttribute="centerY" id="uhE-ZS-cE1"/>
+                <constraint firstItem="ehB-6R-8eF" firstAttribute="top" secondItem="dv7-b3-GTt" secondAttribute="top" constant="20" id="v5h-fk-Ya1"/>
+                <constraint firstItem="uiF-XS-ceE" firstAttribute="top" secondItem="siz-tl-eNy" secondAttribute="bottom" constant="60" id="xr0-6K-5Hd"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="548" y="455"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Gc0-m1-eFt"/>
+                    <exclude reference="rqO-TA-Q1z"/>
+                    <exclude reference="TZH-cf-5xI"/>
+                    <exclude reference="uhE-ZS-cE1"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="constraints">
+                    <include reference="Gc0-m1-eFt"/>
+                    <exclude reference="s5t-j5-zB0"/>
+                    <include reference="rqO-TA-Q1z"/>
+                    <exclude reference="xr0-6K-5Hd"/>
+                    <exclude reference="E0d-iW-ddd"/>
+                    <exclude reference="QI8-ip-rCe"/>
+                    <include reference="TZH-cf-5xI"/>
+                    <include reference="uhE-ZS-cE1"/>
+                </mask>
+            </variation>
         </view>
     </objects>
+    <resources>
+        <image name="pm_arrows" width="100" height="100"/>
+        <image name="pm_bars" width="100" height="100"/>
+        <image name="pm_gear" width="100" height="100"/>
+    </resources>
 </document>

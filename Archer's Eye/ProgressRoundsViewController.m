@@ -36,7 +36,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_Progress];
+
+    if( [self.favRounds count] > 0 )
+        [self.archersEyeInfo showHintPopupIfNecessary:eHint_Graphs_Progress];
     
     // Select the first item if it exists
     if( [self.favRounds count] > 0 )
