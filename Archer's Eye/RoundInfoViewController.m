@@ -33,7 +33,7 @@
     
     // Create a new Round if we don't have a currently selected one
     if( [self.archersEyeInfo currRound] == nil )
-        [self.archersEyeInfo createNewCustomRound:[[RoundInfo alloc] initWithName:@""
+        [self.archersEyeInfo createNewCustomRound:[[RoundInfo alloc] initWithName:@"NewRound"
                                                                           andType:eRoundType_NFAA
                                                                           andDist:20
                                                                        andNumEnds:1
@@ -44,24 +44,9 @@
     _textName.text                              = self.archersEyeInfo.currRound.name;
     _segControlRoundType.selectedSegmentIndex   = self.archersEyeInfo.currRound.type;
 
-    _labelNumEnds.text                          = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.numEnds];
-    _sliderNumEnds.value                        = self.archersEyeInfo.currRound.numEnds;
-    _stepperNumEnds.value                       = _sliderNumEnds.value;
-    _stepperNumEnds.minimumValue                = _sliderNumEnds.minimumValue;
-    _stepperNumEnds.maximumValue                = _sliderNumEnds.maximumValue;
-
-    _labelNumArrows.text                        = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.numArrowsPerEnd];
-    _sliderNumArrows.value                      = self.archersEyeInfo.currRound.numArrowsPerEnd;
-    _stepperNumArrows.value                     = _sliderNumArrows.value;
-    _stepperNumArrows.minimumValue              = _sliderNumArrows.minimumValue;
-    _stepperNumArrows.maximumValue              = _sliderNumArrows.maximumValue;
-
-    _labelDefaultDist.text                      = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.distance];
-    _sliderDefaultDist.value                    = self.archersEyeInfo.currRound.distance;
-    _stepperDefaultDist.value                   = _sliderDefaultDist.value;
-    _stepperDefaultDist.minimumValue            = _sliderDefaultDist.minimumValue;
-    _stepperDefaultDist.maximumValue            = _sliderDefaultDist.maximumValue;
-    
+    _textNumEnds.text                           = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.numEnds];
+    _textNumArrows.text                         = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.numArrowsPerEnd];
+    _textDistance.text                          = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currRound.distance];
     _switchXExtraPoint.on                       = self.archersEyeInfo.currRound.xPlusOnePoint;
 
     [self toggleSaveButtonIfReady];
@@ -97,14 +82,80 @@
 
 
 
+
+#pragma mark - Table view data source
+
+//------------------------------------------------------------------------------
+-               (CGFloat)tableView:(UITableView *)tableView
+  estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+
+
+//------------------------------------------------------------------------------
+-       (CGFloat)tableView:(UITableView *)tableView
+   heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #pragma - mark BowName (UITextField)
 
 //------------------------------------------------------------------------------
 // Text editting started.
+//
+// Show a UIAlertView with TextField and correct descs.
 //------------------------------------------------------------------------------
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [super textFieldDidBeginEditing:textField];
+    NSArray     *title  = @[@"Name", @"Number of Ends", @"Number of Arrows", @"Distance"];
+    NSArray     *desc   = @[@"Tip: Rounds are sorted by first name",
+                            @"Enter the number of ends [1-40]",
+                            @"Enter the number of ends [1-6]",
+                            @"Enter the distance [>0]"];
+    NSArray     *fields = @[_textName, _textNumEnds, _textNumArrows, _textDistance];
+    NSUInteger   ID     = [fields indexOfObject:textField];
+    UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:title[ID]
+                                                     message:desc[ID]
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"Save", nil];
+
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    if( textField == self.textName )
+        [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeDefault;
+    else
+        [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+    
+     self.textActive = textField;
+    [self.textActive endEditing:YES];
+    [alert textFieldAtIndex:0].text = self.textActive.text;
+    [alert show];
+//    [[alert textFieldAtIndex:0] selectAll:nil];       // Doesn't work?????
     
     _barButtonSave.enabled = NO;
 }
@@ -116,12 +167,6 @@
 //------------------------------------------------------------------------------
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [super textFieldDidEndEditing:textField];
-    
-    if( textField == _textName )
-        self.archersEyeInfo.currRound.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    [self toggleSaveButtonIfReady];
 }
 
 
@@ -131,7 +176,7 @@
 //------------------------------------------------------------------------------
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    BOOL ans = [super textFieldShouldReturn:textField];
+    BOOL ans = YES;
     
     return ans;
 }
@@ -166,9 +211,6 @@
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     
     self.archersEyeInfo.currRound.type = (eRoundType)seg.selectedSegmentIndex;
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
 }
 
 
@@ -205,86 +247,70 @@
 
 
 //------------------------------------------------------------------------------
-- (IBAction)numEndsChanged:(id)sender
-{
-    NSInteger value = 0;
-    
-    if( [sender isKindOfClass:[UISlider class]] )
-        value = [(UISlider *)sender value];
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        value = [(UIStepper *)sender value];
-    
-    _labelNumEnds.text                     = [NSString stringWithFormat:@"%ld", (long)value];
-    self.archersEyeInfo.currRound.numEnds  = value;
-
-    // Resync the values of the slider and stepper
-    if( [sender isKindOfClass:[UISlider class]] )
-        _stepperNumEnds.value = _sliderNumEnds.value;
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        _sliderNumEnds.value = _stepperNumEnds.value;
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
-}
-
-
-
-//------------------------------------------------------------------------------
-- (IBAction)numArrowsChanged:(id)sender
-{
-    NSInteger value = 0;
-    
-    if( [sender isKindOfClass:[UISlider class]] )
-        value = [(UISlider *)sender value];
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        value = [(UIStepper *)sender value];
-    
-    _labelNumArrows.text                           = [NSString stringWithFormat:@"%ld", (long)value];
-    self.archersEyeInfo.currRound.numArrowsPerEnd  = value;
-
-    // Resync the values of the slider and stepper
-    if( [sender isKindOfClass:[UISlider class]] )
-        _stepperNumArrows.value = _sliderNumArrows.value;
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        _sliderNumArrows.value = _stepperNumArrows.value;
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
-}
-
-
-
-//------------------------------------------------------------------------------
-- (IBAction)defaultDistChanged:(id)sender
-{
-    NSInteger value = 0;
-    
-    if( [sender isKindOfClass:[UISlider class]] )
-        value = [(UISlider *)sender value];
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        value = [(UIStepper *)sender value];
-    
-    _labelDefaultDist.text                 = [NSString stringWithFormat:@"%ld", (long)value];
-    self.archersEyeInfo.currRound.distance = value;
-
-    // Resync the values of the slider and stepper
-    if( [sender isKindOfClass:[UISlider class]] )
-        _stepperDefaultDist.value = _sliderDefaultDist.value;
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        _sliderDefaultDist.value = _stepperDefaultDist.value;
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
-}
-
-
-
-//------------------------------------------------------------------------------
 - (IBAction)xExtraPointChanged:(id)sender
 {
     UISwitch *switcher = (UISwitch *)sender;
     
     self.archersEyeInfo.currRound.xPlusOnePoint = switcher.on;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - UIAlertView
+
+//------------------------------------------------------------------------------
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // Save clicked
+    if( buttonIndex == 1 )
+    {
+        self.textActive.text = [alertView textFieldAtIndex:0].text;
+        
+        if( self.textActive == self.textName )
+            self.archersEyeInfo.currRound.name = self.textActive.text;
+        else
+        {
+            NSInteger num = [self.textActive.text integerValue];
+            
+            if( self.textActive == self.textNumEnds )
+            {
+                self.archersEyeInfo.currRound.numEnds = MAX(MIN(num, 40), 1);
+                self.textActive.text = [@(self.archersEyeInfo.currRound.numEnds) stringValue];
+            }
+            else if( self.textActive == self.textNumArrows )
+            {
+                self.archersEyeInfo.currRound.numArrowsPerEnd = MAX(MIN(num, 6), 1);
+                self.textActive.text = [@(self.archersEyeInfo.currRound.numArrowsPerEnd) stringValue];
+            }
+            else if( self.textActive == self.textDistance )
+            {
+                self.archersEyeInfo.currRound.distance = MAX(num, 0);
+                self.textActive.text = [@(self.archersEyeInfo.currRound.distance) stringValue];
+            }
+        }
+    }
+
+     self.textActive = nil;
+    [self.textActive resignFirstResponder];
+    [self toggleSaveButtonIfReady];
 }
 
 
