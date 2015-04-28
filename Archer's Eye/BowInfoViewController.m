@@ -26,36 +26,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // NOTE: This is the fix some weirdness with the top offset of scrollview.
-    // Without this set, if the top of the scrollview is flush with the nav bar,
-    // the scrollview will actually be moved down by the size of the nav bar
-    //
-    // Commented out because there is a setting in InterfaceBuilder.
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    // Make sure the segmented control has the proper names
-    for( int i = 0; i < eBowType_Count; ++i )
-    {
-        [_segControlBowType setTitle:[BowInfo typeAsString:i] forSegmentAtIndex:i];
-    }
-    
     // Create a new Bow if we don't have a currently selected one
     if( [self.archersEyeInfo currBow] == nil )
         [self.archersEyeInfo createNewCurrBow:[BowInfo new]];
 
     // Populate the fields with it's data
-    _textBowName.text                       = self.archersEyeInfo.currBow.name;
-    _switchBowClicker.on                    = self.archersEyeInfo.currBow.clicker;
-    _switchBowStabilizers.on                = self.archersEyeInfo.currBow.stabilizers;
-    _segControlBowType.selectedSegmentIndex = self.archersEyeInfo.currBow.type;
-    [_pickerBowAim selectRow:self.archersEyeInfo.currBow.aim inComponent:0 animated:YES];
-    
-    _labelBowDrawWeight.text                = [NSString stringWithFormat:@"%ld", (long)self.archersEyeInfo.currBow.drawWeight];
-    _sliderBowDrawWeight.value              = self.archersEyeInfo.currBow.drawWeight;
-    _stepperBowDrawWeight.value             = _sliderBowDrawWeight.value;
-    _stepperBowDrawWeight.minimumValue      = _sliderBowDrawWeight.minimumValue;
-    _stepperBowDrawWeight.maximumValue      = _sliderBowDrawWeight.maximumValue;
-    
+    _textBowName.text           = self.archersEyeInfo.currBow.name;
+    _textBowDrawWeight.text     = [@(self.archersEyeInfo.currBow.drawWeight) stringValue];
+    _labelBowType.text          = [BowInfo typeAsString:self.archersEyeInfo.currBow.type];
+    _switchBowClicker.on        = self.archersEyeInfo.currBow.clicker;
+    _switchBowStabilizers.on    = self.archersEyeInfo.currBow.stabilizers;
+    _labelAiming.text           = [BowInfo aimAsString:self.archersEyeInfo.currBow.aim];
     
     [self toggleSaveButtonIfReady];
 }
@@ -67,6 +48,91 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+//    BowAccessoryViewController *bowAcc = segue.destinationViewController;
+    UINavigationController     *nav    = segue.destinationViewController;
+    BowAccessoryViewController *bowAcc = (BowAccessoryViewController *)[nav topViewController];
+    NSMutableArray             *array  = [NSMutableArray new];
+
+    if( [segue.identifier isEqualToString:@"BowTypeSegue"] )
+    {
+        // Populate the array with bow types
+        for( NSInteger i = 0; i < eBowType_Count; ++i )
+        {
+            [array addObject:[BowInfo typeAsString:(eBowType)i]];
+        }
+        bowAcc.ID    = 0;
+        bowAcc.title = @"Bow Type";
+    }
+    else if( [segue.identifier isEqualToString:@"BowAimSegue"] )
+    {
+        // Populate the array with bow aim types
+        for( NSInteger i = 0; i < eBowAim_Count; ++i )
+        {
+            [array addObject:[BowInfo aimAsString:(eBowAim)i]];
+        }
+        bowAcc.ID    = 1;
+        bowAcc.title = @"Method of Aiming";
+    }
+    bowAcc.delegate   = self;
+    bowAcc.arrayNames = array;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Table view data source
+
+//------------------------------------------------------------------------------
+- (NSIndexPath *)tableView:(UITableView *)tableView
+  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if( indexPath.row == 2  || indexPath.row == 5 )
+        return indexPath;
+    else
+        return nil;
+}
+
+
+
+//------------------------------------------------------------------------------
+-               (CGFloat)tableView:(UITableView *)tableView
+  estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+
+
+//------------------------------------------------------------------------------
+-       (CGFloat)tableView:(UITableView *)tableView
+   heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
 }
 
 
@@ -97,24 +163,41 @@
 //------------------------------------------------------------------------------
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [super textFieldDidBeginEditing:textField];
-
+    NSArray     *title  = @[@"Name",
+                            @"Draw Weight"];
+    NSArray     *desc   = @[@"Choose a name for your bow",
+                            @"Enter the draw weight [1-100]"];
+    NSArray     *fields = @[_textBowName, _textBowDrawWeight];
+    NSUInteger   ID     = [fields indexOfObject:textField];
+    UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:title[ID]
+                                                     message:desc[ID]
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"Save", nil];
+    
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    if( textField == self.textBowName )
+        [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeDefault;
+    else
+        [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+    
+     self.textActive = textField;
+    [self.textActive endEditing:YES];
+    [alert textFieldAtIndex:0].text = self.textActive.text;
+    [alert show];
+//    [[alert textFieldAtIndex:0] selectAll:nil];       // Doesn't work?????
+    
     _barButtonSave.enabled = NO;
 }
 
 
 
 //------------------------------------------------------------------------------
-// Text editting did end.
+// Text editting ended.
 //------------------------------------------------------------------------------
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [super textFieldDidEndEditing:textField];
-    
-    if( textField == _textBowName )
-        self.archersEyeInfo.currBow.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    [self toggleSaveButtonIfReady];
 }
 
 
@@ -124,9 +207,7 @@
 //------------------------------------------------------------------------------
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    BOOL ans = [super textFieldShouldReturn:textField];
-    
-    return ans;
+    return YES;
 }
 
 
@@ -174,61 +255,9 @@
 #pragma mark - Bow Values Changed
 
 //------------------------------------------------------------------------------
-- (IBAction)bowDrawWeightChanged:(id)sender
-{
-    NSInteger value = 0;
-    
-    if( [sender isKindOfClass:[UISlider class]] )
-        value = [(UISlider *)sender value];
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        value = [(UIStepper *)sender value];
-    
-    _labelBowDrawWeight.text        = [NSString stringWithFormat:@"%ld", (long)value];
-    self.archersEyeInfo.currBow.drawWeight = value;
-    
-    // Resync the values of the slider and stepper
-    if( [sender isKindOfClass:[UISlider class]] )
-        _stepperBowDrawWeight.value = _sliderBowDrawWeight.value;
-    else if( [sender isKindOfClass:[UIStepper class]] )
-        _sliderBowDrawWeight.value = _stepperBowDrawWeight.value;
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
-}
-
-
-
-//------------------------------------------------------------------------------
-- (IBAction)bowTypeChanged:(id)sender
-{
-    UISegmentedControl *seg = (UISegmentedControl *)sender;
-    
-    self.archersEyeInfo.currBow.type = (eBowType)seg.selectedSegmentIndex;
-    
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
-}
-
-
-
-//------------------------------------------------------------------------------
-- (IBAction)bowSightSwitched:(id)sender
-{
-//    self.archersEyeInfo.currBow.sight = [sender isOn];
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
-}
-
-
-
-//------------------------------------------------------------------------------
 - (IBAction)bowClickerSwitched:(id)sender
 {
     self.archersEyeInfo.currBow.clicker = [sender isOn];
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
 }
 
 
@@ -237,9 +266,6 @@
 - (IBAction)bowStabilizersSwitched:(id)sender
 {
     self.archersEyeInfo.currBow.stabilizers = [sender isOn];
-
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
 }
 
 
@@ -262,53 +288,75 @@
 
 
 
-
-#pragma mark - Picker
+#pragma mark - UIAlertView
 
 //------------------------------------------------------------------------------
-// Number of sections.
-//------------------------------------------------------------------------------
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    return 1;
-}
-
-
-
-//------------------------------------------------------------------------------
-// Number of rows in a section.
-//------------------------------------------------------------------------------
-- (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component
-{
-    return eBowAim_Count;
-}
-
-
-
-//------------------------------------------------------------------------------
-// Title for a row in a section.
-//------------------------------------------------------------------------------
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-    return [BowInfo aimAsString:(eBowAim)row];
-}
-
-
-
-//------------------------------------------------------------------------------
-// Did select a row.
-//------------------------------------------------------------------------------
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
-    _archersEyeInfo.currBow.aim = (eBowAim)row;
+    // Save clicked
+    if( buttonIndex == 1 )
+    {
+        self.textActive.text = [alertView textFieldAtIndex:0].text;
+        
+        if( self.textActive == self.textBowName )
+            self.archersEyeInfo.currBow.name = self.textActive.text;
+        else if( self.textActive == self.textBowDrawWeight )
+        {
+            NSInteger num = [self.textActive.text integerValue];
+            
+            self.archersEyeInfo.currBow.drawWeight = MAX(MIN(num, 100), 1);
+            self.textActive.text = [@(self.archersEyeInfo.currBow.drawWeight) stringValue];
+        }
+    }
     
-    [_activeTextField resignFirstResponder];
-    _activeTextField = nil;
+     self.textActive = nil;
+    [self.textActive resignFirstResponder];
+    [self toggleSaveButtonIfReady];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - BowAccessoryViewControllerDelegate
+
+//------------------------------------------------------------------------------
+// Receives a value for a bow accessory (either BowType or BowAim).
+//------------------------------------------------------------------------------
+- (void)setAccessoryForCurrentBow:(NSInteger)accessoryID forID:(NSInteger)ID
+{
+    // BowType
+    if( ID == 0 )
+    {
+        eBowType bowType = (eBowType)accessoryID;
+        
+        self.archersEyeInfo.currBow.type = bowType;
+        self.labelBowType.text           = [BowInfo typeAsString:bowType];
+    }
+    // BowAim
+    else
+    {
+        eBowAim bowAim = (eBowAim)accessoryID;
+        
+        self.archersEyeInfo.currBow.aim  = bowAim;
+        self.labelAiming.text            = [BowInfo aimAsString:bowAim];
+    }
 }
 
 
@@ -354,9 +402,6 @@ numberOfRowsInComponent:(NSInteger)component
 //------------------------------------------------------------------------------
 - (IBAction)save:(id)sender
 {
-    if( _activeTextField != nil )
-        [self textFieldShouldReturn:_activeTextField];
-    
     [self.archersEyeInfo saveCurrBow];
 
     [self dismissViewControllerAnimated:YES completion:nil];

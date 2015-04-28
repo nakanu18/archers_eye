@@ -121,16 +121,6 @@
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------
-// Number of sections.
-//------------------------------------------------------------------------------
-- (NSInteger)numberOfSectionsNSIntegerableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-
-
-//------------------------------------------------------------------------------
 // Number of rows in a section.
 //------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "KeyboardHandlerViewController.h"
 #import "BowInfo.h"
+#import "BowAccessoryViewController.h"
 
-@interface BowInfoViewController : KeyboardHandlerViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface BowInfoViewController : UITableViewController <UITextFieldDelegate, BowAccessoryViewControllerDelegate>
 {
 }
 
@@ -20,21 +20,18 @@
 @property (nonatomic, weak) IBOutlet   UIBarButtonItem    *barButtonSave;
 
 @property (nonatomic, weak) IBOutlet   UITextField        *textBowName;
-@property (nonatomic, weak) IBOutlet   UILabel            *labelBowDrawWeight;
-@property (nonatomic, weak) IBOutlet   UISlider           *sliderBowDrawWeight;
-@property (nonatomic, weak) IBOutlet   UIStepper          *stepperBowDrawWeight;
-@property (nonatomic, weak) IBOutlet   UISegmentedControl *segControlBowType;
-@property (nonatomic, weak) IBOutlet   UIPickerView       *pickerBowAim;
+@property (nonatomic, weak) IBOutlet   UITextField        *textBowDrawWeight;
+@property (nonatomic, weak) IBOutlet   UILabel            *labelBowType;
 @property (nonatomic, weak) IBOutlet   UISwitch           *switchBowClicker;
 @property (nonatomic, weak) IBOutlet   UISwitch           *switchBowStabilizers;
+@property (nonatomic, weak) IBOutlet   UILabel            *labelAiming;
+
+@property (nonatomic, weak)            UITextField        *textActive;
 
 
 
 
 
-
-- (IBAction)bowDrawWeightChanged:(id)sender;
-- (IBAction)bowTypeChanged:(id)sender;
 - (IBAction)bowClickerSwitched:(id)sender;
 - (IBAction)bowStabilizersSwitched:(id)sender;
 

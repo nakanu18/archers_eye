@@ -131,7 +131,10 @@
 //------------------------------------------------------------------------------
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSArray     *title  = @[@"Name", @"Number of Ends", @"Number of Arrows", @"Distance"];
+    NSArray     *title  = @[@"Name",
+                            @"Number of Ends",
+                            @"Number of Arrows",
+                            @"Distance"];
     NSArray     *desc   = @[@"Tip: Rounds are sorted by first name",
                             @"Enter the number of ends [1-40]",
                             @"Enter the number of ends [1-6]",
@@ -176,41 +179,7 @@
 //------------------------------------------------------------------------------
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    BOOL ans = YES;
-    
-    return ans;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark - BowType (UISegmentedControl)
-
-//------------------------------------------------------------------------------
-- (IBAction)targetTypeChanged:(id)sender
-{
-    UISegmentedControl *seg = (UISegmentedControl *)sender;
-    
-    self.archersEyeInfo.currRound.type = (eRoundType)seg.selectedSegmentIndex;
+    return YES;
 }
 
 

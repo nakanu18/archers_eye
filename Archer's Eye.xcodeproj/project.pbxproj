@@ -42,6 +42,8 @@
 		FA9C054D1AD6E58C00047DC9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C054C1AD6E58C00047DC9 /* SettingsViewController.m */; };
 		FA9C05511AD76FF100047DC9 /* LiveRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C05501AD76FF100047DC9 /* LiveRoundViewController.m */; };
 		FA9C05541AD7753000047DC9 /* ChooseRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C05531AD7753000047DC9 /* ChooseRoundViewController.m */; };
+		FAA5D4D61AEF3F480051DE4A /* BowAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5D4D51AEF3F480051DE4A /* BowAccessoryViewController.m */; };
+		FAA5D4D91AEF40AE0051DE4A /* LabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5D4D81AEF40AE0051DE4A /* LabelCell.m */; };
 		FAF52EF91ABBF21E00B79AB3 /* BowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */; };
 		FAF52EFC1ABBF3FB00B79AB3 /* BowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFB1ABBF3FB00B79AB3 /* BowInfo.m */; };
 		FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */; };
@@ -203,6 +205,10 @@
 		FA9C05501AD76FF100047DC9 /* LiveRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveRoundViewController.m; sourceTree = "<group>"; };
 		FA9C05521AD7753000047DC9 /* ChooseRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRoundViewController.h; sourceTree = "<group>"; };
 		FA9C05531AD7753000047DC9 /* ChooseRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRoundViewController.m; sourceTree = "<group>"; };
+		FAA5D4D41AEF3F480051DE4A /* BowAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowAccessoryViewController.h; sourceTree = "<group>"; };
+		FAA5D4D51AEF3F480051DE4A /* BowAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowAccessoryViewController.m; sourceTree = "<group>"; };
+		FAA5D4D71AEF40AE0051DE4A /* LabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelCell.h; sourceTree = "<group>"; };
+		FAA5D4D81AEF40AE0051DE4A /* LabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelCell.m; sourceTree = "<group>"; };
 		FAF52EF71ABBF21E00B79AB3 /* BowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowsViewController.h; sourceTree = "<group>"; };
 		FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BowsViewController.m; sourceTree = "<group>"; };
 		FAF52EFA1ABBF3FB00B79AB3 /* BowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowInfo.h; sourceTree = "<group>"; };
@@ -354,6 +360,8 @@
 				FA47A2671ACE2D7100593AD4 /* TotalsCell.m */,
 				FAF52EFD1ABBFCF800B79AB3 /* BowDescCell.h */,
 				FAF52EFE1ABBFCF800B79AB3 /* BowDescCell.m */,
+				FAA5D4D71AEF40AE0051DE4A /* LabelCell.h */,
+				FAA5D4D81AEF40AE0051DE4A /* LabelCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -382,6 +390,8 @@
 				FAF52EF81ABBF21E00B79AB3 /* BowsViewController.m */,
 				FAF52F001ABC05AB00B79AB3 /* BowInfoViewController.h */,
 				FAF52F011ABC05AB00B79AB3 /* BowInfoViewController.m */,
+				FAA5D4D41AEF3F480051DE4A /* BowAccessoryViewController.h */,
+				FAA5D4D51AEF3F480051DE4A /* BowAccessoryViewController.m */,
 			);
 			name = Bows;
 			sourceTree = "<group>";
@@ -626,8 +636,10 @@
 				FA633DF31AB569880090AD12 /* RoundDescCell.m in Sources */,
 				FA5A31081AE16A2900DF35B8 /* IAPHelper.m in Sources */,
 				FA99277A1AABA1510017D069 /* AppDelegate.m in Sources */,
+				FAA5D4D91AEF40AE0051DE4A /* LabelCell.m in Sources */,
 				FAF52EFF1ABBFCF800B79AB3 /* BowDescCell.m in Sources */,
 				FA9927AF1AAD12780017D069 /* RoundEditorViewController.m in Sources */,
+				FAA5D4D61AEF3F480051DE4A /* BowAccessoryViewController.m in Sources */,
 				FA99279C1AABA9070017D069 /* RoundInfo.m in Sources */,
 				FAF52F051ABC846500B79AB3 /* DismissSegue.m in Sources */,
 				FA5A31051AE0A77F00DF35B8 /* GraphsViewController.m in Sources */,
