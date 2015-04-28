@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rpi-9K-v3J">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1775,7 +1774,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="configureBowPressed:" destination="6L9-5s-kM4" eventType="touchUpInside" id="PNc-jS-BwA"/>
+                                            <segue destination="9C6-Gy-3j5" kind="presentation" identifier="gotoBowInfo" modalTransitionStyle="flipHorizontal" id="179-ag-UZa"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uz-MP-Hpl">
@@ -1870,7 +1869,6 @@
                         <outlet property="tableView" destination="tRo-ig-N6a" id="tzi-rp-9bW"/>
                         <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToLiveRound" unwindAction="unwindToLiveRound:" id="8uf-ab-Cgm"/>
                         <segue destination="HWr-3L-HlX" kind="unwind" identifier="unwindToPastRounds" unwindAction="unwindToPastRounds:" id="iRi-ON-cNQ"/>
-                        <segue destination="Rdk-fn-SMZ" kind="presentation" identifier="segueToBowInfo" modalTransitionStyle="flipHorizontal" id="cMB-6R-L7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prq-aM-wEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2484,218 +2482,6 @@
             </objects>
             <point key="canvasLocation" x="1870" y="700"/>
         </scene>
-        <!--Bow Info Nav-->
-        <scene sceneID="Pge-Rn-ndk">
-            <objects>
-                <navigationController title="Bow Info Nav" id="Rdk-fn-SMZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nnM-nI-jGk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="nDC-us-SZ4" kind="relationship" relationship="rootViewController" id="1u4-Je-vx3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5R-vz-pKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7556" y="-795"/>
-        </scene>
-        <!--Bow Info-->
-        <scene sceneID="Zm9-BP-bIZ">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="nDC-us-SZ4" customClass="BowInfoViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="khC-MP-rnJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="OrE-Jn-qNK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="H9b-wg-VEl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="24w-Ap-siB">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spu-fW-7l9" userLabel="ScrollViewContent" customClass="TextFieldDismisserView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNK-ua-b1Q">
-                                                <rect key="frame" x="249" y="16" width="45.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KY3-b1-U7e">
-                                                <rect key="frame" x="305" y="12" width="100" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="AKP-8J-EnC"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="nDC-us-SZ4" id="foV-fP-5zV"/>
-                                                </connections>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draw Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZG-Kg-GGp">
-                                                <rect key="frame" x="197" y="57" width="97.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt5-ue-yZy" userLabel="W0">
-                                                <rect key="frame" x="305" y="57" width="30" height="20.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="iD8-tE-dTI"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="5UW-gk-4W4">
-                                                <rect key="frame" x="8" y="85" width="584" height="31"/>
-                                                <connections>
-                                                    <action selector="bowDrawWeightChanged:" destination="nDC-us-SZ4" eventType="valueChanged" id="VOo-rx-uLg"/>
-                                                </connections>
-                                            </slider>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AGZ-IS-DSb">
-                                                <rect key="frame" x="170" y="145" width="260" height="41"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="gLV-NO-C80"/>
-                                                </constraints>
-                                                <segments>
-                                                    <segment title="tRecurve"/>
-                                                    <segment title="tCompound"/>
-                                                    <segment title="tTraditional"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="bowTypeChanged:" destination="nDC-us-SZ4" eventType="valueChanged" id="bNO-uH-qtw"/>
-                                                </connections>
-                                            </segmentedControl>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Using Clicker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="065-y7-RbL">
-                                                <rect key="frame" x="193" y="211" width="102" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bdk-iy-zDe">
-                                                <rect key="frame" x="305" y="205" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="bowClickerSwitched:" destination="nDC-us-SZ4" eventType="valueChanged" id="pZK-xh-9ug"/>
-                                                </connections>
-                                            </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Using Stabilizers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNG-xp-hGp">
-                                                <rect key="frame" x="167" y="254" width="128" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFQ-uS-8zp">
-                                                <rect key="frame" x="305" y="248" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="bowStabilizersSwitched:" destination="nDC-us-SZ4" eventType="valueChanged" id="Nyz-3I-YdI"/>
-                                                </connections>
-                                            </switch>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="10" maximumValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="CSj-qn-OmR">
-                                                <rect key="frame" x="343" y="53" width="94" height="29"/>
-                                                <connections>
-                                                    <action selector="bowDrawWeightChanged:" destination="nDC-us-SZ4" eventType="valueChanged" id="l1t-LT-iFQ"/>
-                                                </connections>
-                                            </stepper>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aiming Method" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1N-rr-crP">
-                                                <rect key="frame" x="242.5" y="309" width="116.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JQ-Aj-JiU">
-                                                <rect key="frame" x="200" y="329.5" width="200" height="162"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="JkP-FI-kIU"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="nDC-us-SZ4" id="FTR-rO-pw8"/>
-                                                    <outlet property="delegate" destination="nDC-us-SZ4" id="oHs-oK-Rgc"/>
-                                                </connections>
-                                            </pickerView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="centerX" secondItem="R1N-rr-crP" secondAttribute="centerX" id="2Ru-FU-G28"/>
-                                            <constraint firstAttribute="centerX" secondItem="7JQ-Aj-JiU" secondAttribute="centerX" id="5EI-fu-rkL"/>
-                                            <constraint firstAttribute="centerX" secondItem="rNG-xp-hGp" secondAttribute="trailing" constant="5" id="6QB-sW-KLz"/>
-                                            <constraint firstItem="5UW-gk-4W4" firstAttribute="top" secondItem="Kt5-ue-yZy" secondAttribute="bottom" constant="8" id="7Ah-Af-zj3"/>
-                                            <constraint firstItem="Kt5-ue-yZy" firstAttribute="centerY" secondItem="CSj-qn-OmR" secondAttribute="centerY" id="88R-lB-Smz"/>
-                                            <constraint firstAttribute="centerX" secondItem="Bdk-iy-zDe" secondAttribute="leading" constant="-5" id="9qU-P7-bwN"/>
-                                            <constraint firstAttribute="centerX" secondItem="qZG-Kg-GGp" secondAttribute="trailing" constant="5" id="ISS-2P-8qy"/>
-                                            <constraint firstAttribute="centerX" secondItem="KY3-b1-U7e" secondAttribute="leading" constant="-5" id="IhJ-1e-fh2"/>
-                                            <constraint firstItem="aFQ-uS-8zp" firstAttribute="centerY" secondItem="rNG-xp-hGp" secondAttribute="centerY" id="Je0-ii-K5P"/>
-                                            <constraint firstItem="aFQ-uS-8zp" firstAttribute="top" secondItem="Bdk-iy-zDe" secondAttribute="bottom" constant="12" id="Mv1-wE-uTA"/>
-                                            <constraint firstItem="7JQ-Aj-JiU" firstAttribute="top" secondItem="R1N-rr-crP" secondAttribute="bottom" id="NBm-mr-FWB"/>
-                                            <constraint firstItem="5UW-gk-4W4" firstAttribute="width" secondItem="Spu-fW-7l9" secondAttribute="width" constant="-20" id="RZz-bu-zWK"/>
-                                            <constraint firstAttribute="centerX" secondItem="AGZ-IS-DSb" secondAttribute="centerX" id="RgF-rI-Vdt"/>
-                                            <constraint firstAttribute="centerX" secondItem="SNK-ua-b1Q" secondAttribute="trailing" constant="5" id="TT1-6H-Jzs"/>
-                                            <constraint firstItem="Bdk-iy-zDe" firstAttribute="centerY" secondItem="065-y7-RbL" secondAttribute="centerY" id="WRN-WL-1qt"/>
-                                            <constraint firstAttribute="centerX" secondItem="Kt5-ue-yZy" secondAttribute="leading" constant="-5" id="WZS-EP-eHQ"/>
-                                            <constraint firstAttribute="centerX" secondItem="5UW-gk-4W4" secondAttribute="centerX" id="bfa-oU-O7l"/>
-                                            <constraint firstAttribute="centerX" secondItem="065-y7-RbL" secondAttribute="trailing" constant="5" id="epD-Po-cOr"/>
-                                            <constraint firstItem="CSj-qn-OmR" firstAttribute="leading" secondItem="Kt5-ue-yZy" secondAttribute="trailing" constant="8" id="fB3-wi-afH"/>
-                                            <constraint firstAttribute="centerX" secondItem="aFQ-uS-8zp" secondAttribute="leading" constant="-5" id="gEp-Pe-vI4"/>
-                                            <constraint firstItem="R1N-rr-crP" firstAttribute="top" secondItem="aFQ-uS-8zp" secondAttribute="bottom" constant="30" id="gkV-hB-dKg"/>
-                                            <constraint firstItem="Kt5-ue-yZy" firstAttribute="top" secondItem="KY3-b1-U7e" secondAttribute="bottom" constant="15" id="h7M-Sa-TpM"/>
-                                            <constraint firstAttribute="height" constant="600" id="j5P-6F-WT9"/>
-                                            <constraint firstItem="Bdk-iy-zDe" firstAttribute="top" secondItem="AGZ-IS-DSb" secondAttribute="bottom" constant="20" id="pfn-Wy-1kr"/>
-                                            <constraint firstItem="SNK-ua-b1Q" firstAttribute="centerY" secondItem="KY3-b1-U7e" secondAttribute="centerY" id="ssm-i7-Pb5"/>
-                                            <constraint firstItem="AGZ-IS-DSb" firstAttribute="top" secondItem="5UW-gk-4W4" secondAttribute="bottom" constant="30" id="uSr-gW-jpb"/>
-                                            <constraint firstItem="KY3-b1-U7e" firstAttribute="top" secondItem="Spu-fW-7l9" secondAttribute="top" constant="12" id="wHj-f9-tpN"/>
-                                            <constraint firstItem="Kt5-ue-yZy" firstAttribute="centerY" secondItem="qZG-Kg-GGp" secondAttribute="centerY" constant="0.25" id="yke-mT-rXq"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Spu-fW-7l9" firstAttribute="leading" secondItem="24w-Ap-siB" secondAttribute="leading" id="5zF-Zt-9XU"/>
-                                    <constraint firstAttribute="bottom" secondItem="Spu-fW-7l9" secondAttribute="bottom" id="8eP-z5-l6z"/>
-                                    <constraint firstAttribute="trailing" secondItem="Spu-fW-7l9" secondAttribute="trailing" id="8jB-tS-SY7"/>
-                                    <constraint firstItem="Spu-fW-7l9" firstAttribute="top" secondItem="24w-Ap-siB" secondAttribute="top" id="sPf-Yb-Vqq"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="OrE-Jn-qNK" firstAttribute="top" secondItem="24w-Ap-siB" secondAttribute="bottom" id="OWJ-M1-Qr3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="24w-Ap-siB" secondAttribute="trailing" constant="-16" id="Usq-4c-Vsn"/>
-                            <constraint firstItem="24w-Ap-siB" firstAttribute="top" secondItem="khC-MP-rnJ" secondAttribute="bottom" id="dIL-uU-1tV"/>
-                            <constraint firstItem="24w-Ap-siB" firstAttribute="leading" secondItem="H9b-wg-VEl" secondAttribute="leadingMargin" constant="-16" id="dfa-VC-2Qs"/>
-                            <constraint firstAttribute="width" secondItem="Spu-fW-7l9" secondAttribute="width" id="oGu-D1-ZKx"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Bow Info" id="5bz-I0-wLg">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vFP-f7-wqP">
-                            <connections>
-                                <action selector="cancel:" destination="nDC-us-SZ4" id="b43-c5-Hnh"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="GsB-Fg-2Gg">
-                            <connections>
-                                <action selector="save:" destination="nDC-us-SZ4" id="1P9-OT-kSQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="barButtonSave" destination="GsB-Fg-2Gg" id="5kG-EV-oBl"/>
-                        <outlet property="labelBowDrawWeight" destination="Kt5-ue-yZy" id="NfX-BF-Xyh"/>
-                        <outlet property="pickerBowAim" destination="7JQ-Aj-JiU" id="GYa-fc-5Xt"/>
-                        <outlet property="scrollView" destination="24w-Ap-siB" id="q1l-9y-n8D"/>
-                        <outlet property="segControlBowType" destination="AGZ-IS-DSb" id="0Sy-KO-nxS"/>
-                        <outlet property="sliderBowDrawWeight" destination="5UW-gk-4W4" id="LPN-PO-S4h"/>
-                        <outlet property="stepperBowDrawWeight" destination="CSj-qn-OmR" id="S0E-Xg-pPH"/>
-                        <outlet property="switchBowClicker" destination="Bdk-iy-zDe" id="rdF-eJ-yhH"/>
-                        <outlet property="switchBowStabilizers" destination="aFQ-uS-8zp" id="Jol-go-Puv"/>
-                        <outlet property="textBowName" destination="KY3-b1-U7e" id="MDc-Du-fmk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9fV-1M-8Pd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8292" y="-795"/>
-        </scene>
         <!--Edit Date Nav-->
         <scene sceneID="SEI-5g-09a">
             <objects>
@@ -3258,12 +3044,12 @@
         <segue reference="tYL-4e-FWa"/>
         <segue reference="hLd-DK-Hnl"/>
         <segue reference="Wmh-qa-w2H"/>
-        <segue reference="IjB-BZ-ts9"/>
-        <segue reference="ZkQ-Qx-ZUn"/>
-        <segue reference="ebz-pA-Pls"/>
         <segue reference="2LU-OI-U7s"/>
         <segue reference="mVz-ha-6Ui"/>
         <segue reference="UDk-Mg-dBq"/>
+        <segue reference="179-ag-UZa"/>
+        <segue reference="ZkQ-Qx-ZUn"/>
+        <segue reference="ebz-pA-Pls"/>
         <segue reference="BUw-Gj-nuY"/>
     </inferredMetricsTieBreakers>
 </document>

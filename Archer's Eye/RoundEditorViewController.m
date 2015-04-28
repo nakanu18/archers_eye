@@ -86,6 +86,13 @@
         roundDate.delegate = self;
         roundDate.currDate = self.currRound.date;
     }
+    else if( [segue.identifier isEqualToString:@"gotoBowInfo"] )
+    {
+        if( self.archersEyeInfo.currRound != nil )
+            [self.archersEyeInfo selectBowFromPastRound];
+        else if( self.archersEyeInfo.liveRound != nil )
+            [self.archersEyeInfo selectBowFromLiveRound];
+    }
 }
 
 
@@ -671,19 +678,6 @@
                                                 otherButtonTitles:@"Save", nil];
     
     [confirmDone show];
-}
-
-
-
-//------------------------------------------------------------------------------
-- (IBAction)configureBowPressed:(id)sender
-{
-    if( self.archersEyeInfo.currRound != nil )
-        [self.archersEyeInfo selectBowFromPastRound];
-    else if( self.archersEyeInfo.liveRound != nil )
-        [self.archersEyeInfo selectBowFromLiveRound];
-    
-    [self performSegueWithIdentifier:@"segueToBowInfo" sender:self];
 }
 
 
