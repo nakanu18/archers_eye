@@ -37,6 +37,15 @@
     _switchBowClicker.on        = self.archersEyeInfo.currBow.clicker;
     _switchBowStabilizers.on    = self.archersEyeInfo.currBow.stabilizers;
     _labelAiming.text           = [BowInfo aimAsString:self.archersEyeInfo.currBow.aim];
+
+    // Make certain rows unselectable
+    for( NSInteger i = 0; i < [self.tableView numberOfRowsInSection:0]; ++i )
+    {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        
+        if( i != 2  &&  i != 5 )
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     
     [self toggleSaveButtonIfReady];
 }
@@ -55,7 +64,6 @@
 //------------------------------------------------------------------------------
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    BowAccessoryViewController *bowAcc = segue.destinationViewController;
     UINavigationController     *nav    = segue.destinationViewController;
     BowAccessoryViewController *bowAcc = (BowAccessoryViewController *)[nav topViewController];
     NSMutableArray             *array  = [NSMutableArray new];
@@ -67,8 +75,9 @@
         {
             [array addObject:[BowInfo typeAsString:(eBowType)i]];
         }
-        bowAcc.ID    = 0;
-        bowAcc.title = @"Bow Type";
+        bowAcc.title            = @"Bow Type";
+        bowAcc.selectedNameID   = self.archersEyeInfo.currBow.type;
+        bowAcc.ID               = 0;               // Identifier for bow property
     }
     else if( [segue.identifier isEqualToString:@"BowAimSegue"] )
     {
@@ -77,8 +86,9 @@
         {
             [array addObject:[BowInfo aimAsString:(eBowAim)i]];
         }
-        bowAcc.ID    = 1;
-        bowAcc.title = @"Method of Aiming";
+        bowAcc.title            = @"Method of Aiming";
+        bowAcc.selectedNameID   = self.archersEyeInfo.currBow.aim;
+        bowAcc.ID               = 1;               // Identifier for bow property
     }
     bowAcc.delegate   = self;
     bowAcc.arrayNames = array;

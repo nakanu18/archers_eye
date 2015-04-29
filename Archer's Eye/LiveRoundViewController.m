@@ -7,6 +7,7 @@
 //
 
 #import "LiveRoundViewController.h"
+#import "RoundEditorViewController.h"
 #import "RoundDescCell.h"
 
 @interface LiveRoundViewController ()
@@ -56,6 +57,20 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+
+//------------------------------------------------------------------------------
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if( [segue.identifier isEqualToString:@"gotoRoundEditorFromLiveRound"] )
+    {
+        UINavigationController    *nav    = segue.destinationViewController;
+        RoundEditorViewController *editor = (RoundEditorViewController *)[nav topViewController];
+        
+        editor.editorType = eRoundEditorType_Live;
+    }
 }
 
 

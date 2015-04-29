@@ -23,6 +23,12 @@
 
 
 
+typedef enum
+{
+    eRoundEditorType_Live,
+    eRoundEditorType_Past,
+} eRoundEditorType;
+
 @interface RoundEditorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, RoundDateViewControllerDelegate>
 {
     NSInteger _currEndID;
@@ -33,6 +39,7 @@
 
 @property (nonatomic, weak)          AppDelegate        *appDelegate;
 @property (nonatomic, weak)          ArchersEyeInfo     *archersEyeInfo;
+@property (nonatomic, readwrite)     eRoundEditorType    editorType;
 @property (nonatomic, weak)          RoundInfo          *currRound;
 @property (nonatomic, weak) IBOutlet UITableView        *tableView;
 @property (nonatomic, weak)          TotalsCell         *totalsCell;
@@ -91,7 +98,6 @@
 - (IBAction)eraseButtonPressed:(id)sender;
 - (IBAction)exitButtonPressed:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
-- (IBAction)configureBowPressed:(id)sender;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 

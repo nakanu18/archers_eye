@@ -204,6 +204,38 @@
 
 
 
+#pragma mark - BowType (UISegmentedControl)
+
+//------------------------------------------------------------------------------
+- (IBAction)targetTypeChanged:(id)sender
+{
+    UISegmentedControl *seg = (UISegmentedControl *)sender;
+    
+    self.archersEyeInfo.currRound.type = (eRoundType)seg.selectedSegmentIndex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - Buttons
 
@@ -259,16 +291,19 @@
         {
             NSInteger num = [self.textActive.text integerValue];
             
+            // Number of ends
             if( self.textActive == self.textNumEnds )
             {
                 self.archersEyeInfo.currRound.numEnds = MAX(MIN(num, 40), 1);
                 self.textActive.text = [@(self.archersEyeInfo.currRound.numEnds) stringValue];
             }
+            // Number of arrows per end
             else if( self.textActive == self.textNumArrows )
             {
                 self.archersEyeInfo.currRound.numArrowsPerEnd = MAX(MIN(num, 6), 1);
                 self.textActive.text = [@(self.archersEyeInfo.currRound.numArrowsPerEnd) stringValue];
             }
+            // Distance
             else if( self.textActive == self.textDistance )
             {
                 self.archersEyeInfo.currRound.distance = MAX(num, 0);

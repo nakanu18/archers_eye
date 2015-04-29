@@ -70,7 +70,8 @@
         UINavigationController    *nav         = (UINavigationController    *)segue.destinationViewController;
         RoundEditorViewController *roundEditor = (RoundEditorViewController *)nav.topViewController;
         
-        roundEditor.delegate = self;
+        roundEditor.delegate    = self;
+        roundEditor.editorType  = eRoundEditorType_Past;
     }
 }
 

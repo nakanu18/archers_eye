@@ -32,10 +32,10 @@
     _currArrowID = currEmpty.x;
     
     // We are always going to use our own back button.  Rename it accordingly.
-    if( self.archersEyeInfo.currRound != nil )
-        _exitButton.title = @"Cancel";
-    else
+    if( self.editorType == eRoundEditorType_Live )
         _exitButton.title = @"Back";
+    else if( self.editorType == eRoundEditorType_Past )
+        _exitButton.title = @"Cancel";
     
     // Fix the erase/done button enabled states
     if( _currEndID >= [_currRound numEnds] )
@@ -88,10 +88,10 @@
     }
     else if( [segue.identifier isEqualToString:@"gotoBowInfo"] )
     {
-        if( self.archersEyeInfo.currRound != nil )
-            [self.archersEyeInfo selectBowFromPastRound];
-        else if( self.archersEyeInfo.liveRound != nil )
+        if( self.editorType == eRoundEditorType_Live )
             [self.archersEyeInfo selectBowFromLiveRound];
+        else if( self.editorType == eRoundEditorType_Past )
+            [self.archersEyeInfo selectBowFromPastRound];
     }
 }
 
@@ -648,18 +648,15 @@
 {
     NSString *unwindSegueName;
     
-    if( self.archersEyeInfo.currRound != nil )
+    if( self.editorType == eRoundEditorType_Live )
+    {
+        unwindSegueName = @"unwindToLiveRound";
+    }
+    else if( self.editorType == eRoundEditorType_Past )
     {
         [self.archersEyeInfo endCurrRoundAndDiscard];
         unwindSegueName = @"unwindToPastRounds";
     }
-    else
-    {
-//        [self.archersEyeInfo endLiveRoundAndDiscard];
-        unwindSegueName = @"unwindToLiveRound";
-    }
-    
-//    [_tableView reloadData];
     
     // Programmatically run the unwind segue because we have to wait for the
     // AlertView.
@@ -711,18 +708,16 @@
     {
         NSString *unwindSegueName;
         
-        if( self.archersEyeInfo.currRound != nil )
-        {
-            [self.archersEyeInfo endCurrRoundAndSave];
-            unwindSegueName = @"unwindToPastRounds";
-        }
-        else
+        if( self.editorType == eRoundEditorType_Live )
         {
             [self.archersEyeInfo endLiveRoundAndSave];
             unwindSegueName = @"unwindToLiveRound";
         }
-        
-//        [_tableView reloadData];
+        else if( self.editorType == eRoundEditorType_Past )
+        {
+            [self.archersEyeInfo endCurrRoundAndSave];
+            unwindSegueName = @"unwindToPastRounds";
+        }
         
         // Send data to our delegate
         if( self.delegate != nil )

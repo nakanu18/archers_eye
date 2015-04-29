@@ -22,6 +22,8 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self selectRowWithCheckmark:self.selectedNameID];
 }
 
 
@@ -85,15 +87,13 @@
 //------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [self selectRowWithCheckmark:indexPath.row];
     
     // Send our data to the delegate
     if( self.delegate != nil )
     {
         if( [self.delegate respondsToSelector:@selector(setAccessoryForCurrentBow:forID:)] )
-            [self.delegate setAccessoryForCurrentBow:indexPath.row forID:self.ID];
+            [self.delegate setAccessoryForCurrentBow:self.selectedNameID forID:self.ID];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -114,6 +114,43 @@
    heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+// Set the checkmark for the given row.
+//------------------------------------------------------------------------------
+- (void)selectRowWithCheckmark:(NSInteger)rowID
+{
+    self.selectedNameID = rowID;
+    
+    for( NSInteger i = 0; i < [self.tableView numberOfRowsInSection:0]; ++i )
+    {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        
+        cell.accessoryType = (i == self.selectedNameID) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    }
 }
 
 @end

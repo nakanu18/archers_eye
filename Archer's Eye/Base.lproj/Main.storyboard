@@ -2941,7 +2941,7 @@
                                             <outlet property="desc" destination="VqC-1a-Qno" id="ciZ-dT-S2T"/>
                                             <outlet property="dist" destination="lss-EJ-lRC" id="aIC-ks-Ko7"/>
                                             <outlet property="name" destination="opI-vV-eIK" id="OQu-RB-C15"/>
-                                            <segue destination="aNf-Uz-wPI" kind="presentation" modalTransitionStyle="flipHorizontal" id="18M-JZ-ZuM"/>
+                                            <segue destination="aNf-Uz-wPI" kind="presentation" identifier="gotoRoundEditorFromLiveRound" modalTransitionStyle="flipHorizontal" id="18M-JZ-ZuM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3039,17 +3039,17 @@
         <image name="pm_pie" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="16S-2d-hA7"/>
         <segue reference="HiB-3Z-byp"/>
         <segue reference="tYL-4e-FWa"/>
         <segue reference="hLd-DK-Hnl"/>
         <segue reference="Wmh-qa-w2H"/>
         <segue reference="2LU-OI-U7s"/>
-        <segue reference="mVz-ha-6Ui"/>
-        <segue reference="UDk-Mg-dBq"/>
+        <segue reference="18M-JZ-ZuM"/>
         <segue reference="179-ag-UZa"/>
+        <segue reference="BUw-Gj-nuY"/>
         <segue reference="ZkQ-Qx-ZUn"/>
         <segue reference="ebz-pA-Pls"/>
-        <segue reference="BUw-Gj-nuY"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="16S-2d-hA7"/>
     </inferredMetricsTieBreakers>
 </document>

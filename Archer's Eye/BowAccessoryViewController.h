@@ -29,6 +29,12 @@
 @property (nonatomic, weak)      ArchersEyeInfo  *archersEyeInfo;
 
 @property (nonatomic, strong)    NSMutableArray  *arrayNames;
+@property (nonatomic, readwrite) NSInteger        selectedNameID;
 @property (nonatomic, readwrite) NSInteger        ID;
+
+
+
+
+- (void)selectRowWithCheckmark:(NSInteger)rowID;
 
 @end
