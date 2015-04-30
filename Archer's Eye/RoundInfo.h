@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UIKit.h>
 #import "Defines.h"
 #import "BowInfo.h"
 #import "NSDate+Info.h"
@@ -51,6 +52,8 @@ typedef enum
 
 
 + (NSString *)typeAsString:(eRoundType)type;
++ (UIColor *)typeAsColor:(eRoundType)type;
++ (UIColor *)typeAsFontColor:(eRoundType)type;
 + (NSRange)rangeForSection:(NSInteger)section forType:(eRoundType)roundType;
 + (NSString *)stringForSection:(NSInteger)section forType:(eRoundType)roundType;
 

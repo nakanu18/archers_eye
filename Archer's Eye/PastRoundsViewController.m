@@ -181,6 +181,10 @@
             break;
     }
     
+    // Set the colors for each round
+    cell.name.textColor  = [RoundInfo typeAsFontColor:info.type];
+    cell.score.textColor = [RoundInfo typeAsFontColor:info.type];
+
     return cell;
 }
 

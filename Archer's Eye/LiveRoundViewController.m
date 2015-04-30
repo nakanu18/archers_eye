@@ -146,6 +146,10 @@ titleForHeaderInSection:(NSInteger)section
     cell.bowType.text   = [BowInfo typeAsString:info.bow.type];
     cell.bowWeight.text = [NSString stringWithFormat:@"%ld lbs", (long)info.bow.drawWeight];
     
+    // Set the colors for each round
+    cell.name.textColor     = [RoundInfo typeAsFontColor:info.type];
+//    cell.bowName.textColor  = [RoundInfo typeAsFontColor:info.type];
+    
     return cell;
 }
 

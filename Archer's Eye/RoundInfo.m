@@ -34,6 +34,32 @@
 
 
 //------------------------------------------------------------------------------
+// Convert eRoundType to a color.
+//------------------------------------------------------------------------------
++ (UIColor *)typeAsColor:(eRoundType)type
+{
+    if( type == eRoundType_NFAA )
+        return [UIColor colorWithRed:0.0f green:0.45f blue:0.9f alpha:1.0f];
+    else
+        return [UIColor colorWithRed:0.9f green:0.9f blue:0.0f alpha:1.0f];
+}
+
+
+
+//------------------------------------------------------------------------------
+// Convert eRoundType to a color.
+//------------------------------------------------------------------------------
++ (UIColor *)typeAsFontColor:(eRoundType)type
+{
+    if( type == eRoundType_NFAA )
+        return [UIColor colorWithRed:0.0f green:0.45f blue:0.9f alpha:1.0f];
+    else
+        return [UIColor colorWithRed:0.65f green:0.65f blue:0.0f alpha:1.0f];
+}
+
+
+
+//------------------------------------------------------------------------------
 // Get the range of a current section.
 //------------------------------------------------------------------------------
 + (NSRange)rangeForSection:(NSInteger)section forType:(eRoundType)roundType
@@ -308,11 +334,12 @@
 {
     BOOL ans = NO;
     
-    if( [_name isEqualToString:rhs.name]    &&
-        _type            == rhs.type        &&
-        _distance        == rhs.distance    &&
-        _numEnds         == rhs.numEnds     &&
-        _numArrowsPerEnd == rhs.numArrowsPerEnd )
+    if( [_name isEqualToString:rhs.name]         &&
+        _type            == rhs.type             &&
+        _distance        == rhs.distance         &&
+        _numEnds         == rhs.numEnds          &&
+        _numArrowsPerEnd == rhs.numArrowsPerEnd  &&
+        _xPlusOnePoint   == rhs.xPlusOnePoint )
         ans = YES;
     
     return ans;

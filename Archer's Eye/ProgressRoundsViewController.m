@@ -146,6 +146,10 @@ titleForHeaderInSection:(NSInteger)section
     cell.bowType.text   = [BowInfo typeAsString:info.bow.type];
     cell.bowWeight.text = [NSString stringWithFormat:@"%ld lbs", (long)info.bow.drawWeight];
     
+    // Set the colors for each round
+    cell.name.textColor     = [RoundInfo typeAsFontColor:info.type];
+//    cell.bowName.textColor  = [RoundInfo typeAsFontColor:info.type];
+    
     return cell;
 }
 
@@ -293,17 +297,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     // 2 - Create chart
     CPTScatterPlot *scatterPlot = [[CPTScatterPlot alloc] init];
     RoundInfo      *round       = self.favRounds[self.favRoundID][0];
+    UIColor        *color       = [RoundInfo typeAsColor:round.type];
+    CGFloat        red          = 1.0f;
+    CGFloat        blue         = 1.0f;
+    CGFloat        green        = 1.0f;
+    CGFloat        alpha        = 1.0f;
     
-    if( [round type] == eRoundType_FITA )
-    {
-        self.lineColor = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:1.0f];
-        self.fillColor = [CPTColor colorWithComponentRed:0.9f green:0.9f blue:0.0f alpha:0.3f];
-    }
-    else if( [round type] == eRoundType_NFAA )
-    {
-        self.lineColor = [CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:1.0f];
-        self.fillColor = [CPTColor colorWithComponentRed:0.0f green:0.5f blue:1.0f alpha:0.3f];
-    }
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    self.lineColor = [CPTColor colorWithComponentRed:red green:green blue:blue alpha:1.0f];
+    self.fillColor = [CPTColor colorWithComponentRed:red green:green blue:blue alpha:0.3f];
     
     scatterPlot.dataSource      = self;
     scatterPlot.delegate        = self;

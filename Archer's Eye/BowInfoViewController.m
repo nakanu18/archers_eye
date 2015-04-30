@@ -38,13 +38,16 @@
     _switchBowStabilizers.on    = self.archersEyeInfo.currBow.stabilizers;
     _labelAiming.text           = [BowInfo aimAsString:self.archersEyeInfo.currBow.aim];
 
-    // Make certain rows unselectable
-    for( NSInteger i = 0; i < [self.tableView numberOfRowsInSection:0]; ++i )
+    for( NSInteger i = 0; i < [self.tableView numberOfSections]; ++i )
     {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        
-        if( i != 2  &&  i != 5 )
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        // Make certain rows unselectable
+        for( NSInteger j = 0; j < [self.tableView numberOfRowsInSection:i]; ++j )
+        {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+            
+            if( j != 2 )
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }        
     }
     
     [self toggleSaveButtonIfReady];
@@ -121,7 +124,7 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView
   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if( indexPath.row == 2  || indexPath.row == 5 )
+    if( indexPath.row == 2 )
         return indexPath;
     else
         return nil;

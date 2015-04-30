@@ -298,7 +298,6 @@
                                                 <constraint firstAttribute="width" constant="80" id="IYN-aG-0Od"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BowType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0p0-Rn-2Re">
@@ -385,7 +384,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="ber-Li-eKb">
+                            <tableViewSection headerTitle="Unique Features" id="ber-Li-eKb">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8Oj-yR-FUy">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -481,6 +480,10 @@
                                             <segue destination="k4u-BY-h2j" kind="presentation" identifier="BowTypeSegue" id="ZkQ-Qx-ZUn"/>
                                         </connections>
                                     </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Optional Features" id="HBA-zG-XGf">
+                                <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WfC-8f-HH6">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WfC-8f-HH6" id="DYF-4c-M58">
@@ -1897,7 +1900,6 @@
                                                 <constraint firstAttribute="width" constant="80" id="eHi-JF-DtB"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BowType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8Js-R3-INj">
@@ -2228,7 +2230,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="AAt-dN-eMr">
+                            <tableViewSection headerTitle="Unique Features" id="AAt-dN-eMr">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NGD-D4-4EW">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -2616,7 +2618,6 @@
                                                         <constraint firstAttribute="width" constant="120" id="pXd-gk-A6R"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BowType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="qYg-FP-WNt">
@@ -2896,7 +2897,6 @@
                                                         <constraint firstAttribute="width" constant="120" id="GRw-fB-xEH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BowType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="lKk-g6-qkj">
@@ -3039,17 +3039,17 @@
         <image name="pm_pie" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HiB-3Z-byp"/>
-        <segue reference="tYL-4e-FWa"/>
         <segue reference="hLd-DK-Hnl"/>
+        <segue reference="tYL-4e-FWa"/>
+        <segue reference="HiB-3Z-byp"/>
+        <segue reference="16S-2d-hA7"/>
         <segue reference="Wmh-qa-w2H"/>
+        <segue reference="mVz-ha-6Ui"/>
         <segue reference="2LU-OI-U7s"/>
-        <segue reference="18M-JZ-ZuM"/>
-        <segue reference="179-ag-UZa"/>
+        <segue reference="QD9-wa-RGj"/>
+        <segue reference="hb6-Fd-Mqf"/>
         <segue reference="BUw-Gj-nuY"/>
         <segue reference="ZkQ-Qx-ZUn"/>
         <segue reference="ebz-pA-Pls"/>
-        <segue reference="mVz-ha-6Ui"/>
-        <segue reference="16S-2d-hA7"/>
     </inferredMetricsTieBreakers>
 </document>
