@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,13 +11,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archer's Eye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehB-6R-8eF">
-                    <rect key="frame" x="226" y="20" width="149" height="33"/>
+                    <rect key="frame" x="226.5" y="20" width="148.5" height="32.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siz-tl-eNy">
-                    <rect key="frame" x="250" y="90" width="100" height="100"/>
+                    <rect key="frame" x="250" y="115" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="FQ3-HY-wXc"/>
                         <constraint firstAttribute="width" constant="100" id="dlx-Sq-xxO"/>
@@ -37,7 +37,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7J7-n6-98K">
-                    <rect key="frame" x="250" y="410" width="100" height="100"/>
+                    <rect key="frame" x="250" y="385" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="ZcI-ZC-Njo"/>
                         <constraint firstAttribute="height" constant="100" id="k3i-IN-YPa"/>
@@ -53,7 +53,7 @@
                 <constraint firstAttribute="centerY" secondItem="siz-tl-eNy" secondAttribute="centerY" id="Gc0-m1-eFt"/>
                 <constraint firstAttribute="centerX" secondItem="uiF-XS-ceE" secondAttribute="centerX" id="NKy-IT-ttZ"/>
                 <constraint firstAttribute="centerX" secondItem="ehB-6R-8eF" secondAttribute="centerX" id="NYM-yi-ZoJ"/>
-                <constraint firstItem="7J7-n6-98K" firstAttribute="top" secondItem="uiF-XS-ceE" secondAttribute="bottom" constant="60" id="QI8-ip-rCe"/>
+                <constraint firstItem="7J7-n6-98K" firstAttribute="top" secondItem="uiF-XS-ceE" secondAttribute="bottom" constant="35" id="QI8-ip-rCe"/>
                 <constraint firstItem="7J7-n6-98K" firstAttribute="leading" secondItem="uiF-XS-ceE" secondAttribute="trailing" constant="56.5" id="TZH-cf-5xI">
                     <variation key="heightClass=compact" constant="60"/>
                 </constraint>
@@ -64,7 +64,7 @@
                 <constraint firstAttribute="centerX" secondItem="siz-tl-eNy" secondAttribute="centerX" id="s5t-j5-zB0"/>
                 <constraint firstAttribute="centerY" secondItem="7J7-n6-98K" secondAttribute="centerY" id="uhE-ZS-cE1"/>
                 <constraint firstItem="ehB-6R-8eF" firstAttribute="top" secondItem="dv7-b3-GTt" secondAttribute="top" constant="20" id="v5h-fk-Ya1"/>
-                <constraint firstItem="uiF-XS-ceE" firstAttribute="top" secondItem="siz-tl-eNy" secondAttribute="bottom" constant="60" id="xr0-6K-5Hd"/>
+                <constraint firstItem="uiF-XS-ceE" firstAttribute="top" secondItem="siz-tl-eNy" secondAttribute="bottom" constant="35" id="xr0-6K-5Hd"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

@@ -27,10 +27,10 @@
     
     RoundInfo *fita600Round = [[RoundInfo alloc] initWithName:@"FITA 600" andType:eRoundType_FITA andDist:20 andNumEnds:20 andArrowsPerEnd:3 andXPlusOnePoint:NO];
     RoundInfo *nfaa300Round = [[RoundInfo alloc] initWithName:@"NFAA 300" andType:eRoundType_NFAA andDist:20 andNumEnds:12 andArrowsPerEnd:5 andXPlusOnePoint:NO];
-    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andDist:20 andNumEnds:1  andArrowsPerEnd:5 andXPlusOnePoint:NO];
+//    RoundInfo *shortRound   = [[RoundInfo alloc] initWithName:@"TEST 25"  andType:eRoundType_FITA andDist:20 andNumEnds:1  andArrowsPerEnd:5 andXPlusOnePoint:NO];
     [_customRounds addObject:fita600Round];
     [_customRounds addObject:nfaa300Round];
-    [_customRounds addObject:shortRound];
+//    [_customRounds addObject:shortRound];
     
     BowInfo *whiteFlute = [[BowInfo alloc] initWithName:@"White Flute" andType:eBowType_Recurve  andDrawWeight:28];
     BowInfo *blackPSE   = [[BowInfo alloc] initWithName:@"Black PSE"   andType:eBowType_Compound andDrawWeight:60];

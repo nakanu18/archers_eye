@@ -11,7 +11,7 @@
 #import "RoundInfo.h"
 #import "BowInfo.h"
 
-#define SAVE_DATA_VERSION 0.8
+#define SAVE_DATA_VERSION 1.0
 
 typedef enum
 {
