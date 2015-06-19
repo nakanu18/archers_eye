@@ -36,6 +36,7 @@
     // that into our list
     [self.tableView reloadData];
     [self initPlot];
+    [self updateScores];
     self.startButton.enabled = !self.archersEyeInfo.liveRound;
     
     [super viewWillAppear:animated];
@@ -233,6 +234,59 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.breakdownView.currRound = self.archersEyeInfo.liveRound;
     [self.breakdownView initPlot];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Score view
+
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
+- (void)updateScores
+{
+    if( _archersEyeInfo.liveRound != nil )
+    {
+        long totalScore = [_archersEyeInfo.liveRound getRealTotalScore];
+        long maxScore   = [_archersEyeInfo.liveRound getTotalArrows] * [_archersEyeInfo.liveRound getMaxArrowRealScore];
+        long xScore     = [_archersEyeInfo.liveRound getNumberOfArrowsWithScore:11];
+        long arrowsShot = [_archersEyeInfo.liveRound getNumberOfArrowsWithMinScore:0 andMaxScore:11];
+        
+        _scoreTotalLabel.text   = [NSString stringWithFormat:@"%ld / %ld", totalScore, maxScore];
+        _xTotalLabel.text       = [NSString stringWithFormat:@"%ld X's", xScore];
+        
+        if( arrowsShot > 0 )
+            _scoreAvgLabel.text = [NSString stringWithFormat:@"%.2f avg", (float)totalScore / (float)arrowsShot];
+        else
+            _scoreAvgLabel.text = @"0.00 avg";
+    }
+    else
+    {
+        _scoreTotalLabel.text   = @"";
+        _xTotalLabel.text       = @"";
+        _scoreAvgLabel.text     = @"";
+    }
 }
 
 

@@ -21,12 +21,18 @@
 @property (nonatomic, weak)   IBOutlet  BreakdownGraphView  *breakdownView;
 @property (nonatomic, weak)   IBOutlet  UIButton            *startButton;
 
+@property (nonatomic, weak)   IBOutlet  UILabel             *scoreTotalLabel;
+@property (nonatomic, weak)   IBOutlet  UILabel             *xTotalLabel;
+@property (nonatomic, weak)   IBOutlet  UILabel             *scoreAvgLabel;
+
 
 
 
 
 
 - (void)initPlot;
+
+- (void)updateScores;
 
 - (IBAction)unwindToLiveRound:(UIStoryboardSegue *)segue;
 
