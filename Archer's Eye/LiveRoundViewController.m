@@ -181,6 +181,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         self.startButton.enabled = YES;
         [self initPlot];
+        [self updateScores];
     }
 }
 
