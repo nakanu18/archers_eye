@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rpi-9K-v3J">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -132,23 +133,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="svP-GS-1Ui" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-490" y="2587"/>
-        </scene>
-        <!--Progress Nav-->
-        <scene sceneID="zeq-6A-wXB">
-            <objects>
-                <navigationController title="Progress Nav" id="LR9-5h-fh5" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qVb-GI-mzl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Oeq-hC-I2e" kind="relationship" relationship="rootViewController" id="upc-ag-KoX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v3W-rh-XWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3592" y="3705"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="L0d-qX-lwP">
@@ -803,19 +787,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY2-KT-Pdq">
-                                <rect key="frame" x="250" y="340" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="gZF-LO-2Uy"/>
-                                    <constraint firstAttribute="width" constant="100" id="mdC-wa-3kZ"/>
-                                </constraints>
-                                <state key="normal" title="Progress" image="pm_bars">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="LR9-5h-fh5" kind="show" id="QTV-Pa-0XF"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPi-f6-zsE">
                                 <rect key="frame" x="250" y="160" width="100" height="100"/>
                                 <constraints>
@@ -826,7 +797,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ix8-rE-fNh" kind="show" id="TT1-qL-P2k"/>
+                                    <segue destination="gvb-MG-dZm" kind="show" id="2gd-1O-Pp3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY2-KT-Pdq">
+                                <rect key="frame" x="250" y="340" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gZF-LO-2Uy"/>
+                                    <constraint firstAttribute="width" constant="100" id="mdC-wa-3kZ"/>
+                                </constraints>
+                                <state key="normal" title="Progress" image="pm_bars">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Oeq-hC-I2e" kind="show" id="TXY-iY-5YU"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wna-kK-7TS">
@@ -891,23 +875,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaG-Ze-zfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2591" y="3012"/>
-        </scene>
-        <!--Points Breakdown Nav-->
-        <scene sceneID="THj-Re-KfG">
-            <objects>
-                <navigationController title="Points Breakdown Nav" id="ix8-rE-fNh" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Bq-Ho-dXL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="gvb-MG-dZm" kind="relationship" relationship="rootViewController" id="7Mq-gy-2U7"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="39F-0f-o0i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3592" y="2699"/>
         </scene>
         <!--Points Breakdown-->
         <scene sceneID="7pg-YF-RCY">
@@ -1072,7 +1039,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1S-FJ-tAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4313" y="2699"/>
+            <point key="canvasLocation" x="3592" y="2659"/>
         </scene>
         <!--Round Editor Nav-->
         <scene sceneID="1q7-Yg-ZMM">
@@ -2605,15 +2572,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="fiS-qf-3BO">
-                                <rect key="frame" x="0.0" y="64" width="600" height="200"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="fiS-qf-3BO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="236"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" priority="999" constant="300" id="9bc-hf-c2w">
-                                        <variation key="heightClass=compact" constant="275"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="200" id="ewg-YH-ew1"/>
-                                </constraints>
                                 <color key="separatorColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoundDescCell" id="cvA-zD-Bcl" customClass="RoundDescCell">
@@ -2701,46 +2662,48 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="9bc-hf-c2w"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="9bc-hf-c2w"/>
-                                        <exclude reference="ewg-YH-ew1"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="Oeq-hC-I2e" id="szr-Et-Mf1"/>
                                     <outlet property="delegate" destination="Oeq-hC-I2e" id="ke0-do-lRu"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCH-2c-Orb" userLabel="GraphView">
-                                <rect key="frame" x="0.0" y="264" width="600" height="336"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCH-2c-Orb" userLabel="GraphView">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="M6h-9m-ELb"/>
+                                    <constraint firstAttribute="height" constant="300" id="qnX-n1-Qe7"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="M6h-9m-ELb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="M6h-9m-ELb"/>
+                                        <exclude reference="qnX-n1-Qe7"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HCH-2c-Orb" firstAttribute="leading" secondItem="9xN-J9-pnC" secondAttribute="leadingMargin" constant="-16" id="9yH-Nz-QlD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HCH-2c-Orb" secondAttribute="trailing" constant="-16" id="GYX-uf-Dxp"/>
+                            <constraint firstAttribute="trailing" secondItem="fiS-qf-3BO" secondAttribute="trailing" id="5ZI-o5-uml"/>
+                            <constraint firstItem="HCH-2c-Orb" firstAttribute="leading" secondItem="9xN-J9-pnC" secondAttribute="leading" id="9yH-Nz-QlD"/>
+                            <constraint firstAttribute="trailing" secondItem="HCH-2c-Orb" secondAttribute="trailing" id="GYX-uf-Dxp"/>
                             <constraint firstItem="HCH-2c-Orb" firstAttribute="leading" secondItem="fiS-qf-3BO" secondAttribute="trailing" constant="-600" id="RBk-BI-1UG">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="fiS-qf-3BO" firstAttribute="top" secondItem="Rzb-Q9-ZW1" secondAttribute="bottom" id="SRh-9D-adX"/>
+                            <constraint firstItem="fiS-qf-3BO" firstAttribute="leading" secondItem="9xN-J9-pnC" secondAttribute="leading" id="WHm-kE-rQo"/>
                             <constraint firstItem="l8y-Xs-yUr" firstAttribute="top" secondItem="fiS-qf-3BO" secondAttribute="bottom" constant="100" id="dda-us-jkq">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="HCH-2c-Orb" firstAttribute="top" secondItem="Rzb-Q9-ZW1" secondAttribute="bottom" constant="236" id="fyy-7x-hBB">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstAttribute="centerX" secondItem="HCH-2c-Orb" secondAttribute="centerX" id="glQ-Uh-JxU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fiS-qf-3BO" secondAttribute="trailing" constant="-16" id="pjf-0q-ITo"/>
                             <constraint firstItem="l8y-Xs-yUr" firstAttribute="top" secondItem="HCH-2c-Orb" secondAttribute="bottom" id="tss-k5-E3v"/>
-                            <constraint firstItem="fiS-qf-3BO" firstAttribute="leading" secondItem="9xN-J9-pnC" secondAttribute="leadingMargin" constant="-16" id="udz-Vh-klT"/>
                             <constraint firstItem="HCH-2c-Orb" firstAttribute="top" secondItem="fiS-qf-3BO" secondAttribute="bottom" id="wET-Ne-cxC"/>
-                            <constraint firstAttribute="centerX" secondItem="fiS-qf-3BO" secondAttribute="centerX" id="xj5-an-o4w"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -2751,12 +2714,10 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="pjf-0q-ITo"/>
-                                <exclude reference="xj5-an-o4w"/>
+                                <exclude reference="5ZI-o5-uml"/>
                                 <exclude reference="9yH-Nz-QlD"/>
                                 <include reference="RBk-BI-1UG"/>
                                 <include reference="fyy-7x-hBB"/>
-                                <exclude reference="glQ-Uh-JxU"/>
                                 <exclude reference="wET-Ne-cxC"/>
                                 <include reference="dda-us-jkq"/>
                             </mask>
@@ -2770,7 +2731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6q-HO-Pe0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4313" y="3705"/>
+            <point key="canvasLocation" x="3592" y="3421"/>
         </scene>
         <!--How to Import Data Nav-->
         <scene sceneID="AsP-MQ-gi5">
