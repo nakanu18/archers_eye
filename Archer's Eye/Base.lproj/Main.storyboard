@@ -654,7 +654,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="lm7-Nm-Mee" kind="show" id="5rS-mS-UAX"/>
+                                            <segue destination="oV2-4A-9Dd" kind="show" id="6Vn-BE-0Xg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8RE-Jf-2u7">
@@ -1112,6 +1112,7 @@
         <!--Bow Accessory Nav-->
         <scene sceneID="oef-sw-bZu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pSG-E3-Iti" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="k4u-BY-h2j" userLabel="Bow Accessory Nav" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jG6-pX-Ila">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1122,7 +1123,6 @@
                         <segue destination="liD-VG-459" kind="relationship" relationship="rootViewController" id="ebz-pA-Pls"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pSG-E3-Iti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5908" y="1638"/>
         </scene>
@@ -2733,23 +2733,6 @@
             </objects>
             <point key="canvasLocation" x="3592" y="3421"/>
         </scene>
-        <!--How to Import Data Nav-->
-        <scene sceneID="AsP-MQ-gi5">
-            <objects>
-                <navigationController title="How to Import Data Nav" id="lm7-Nm-Mee" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="osD-dx-w6O">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="oV2-4A-9Dd" kind="relationship" relationship="rootViewController" id="uIH-Y4-yVg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0yf-o4-yDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3592" y="4895"/>
-        </scene>
         <!--How to Import Data-->
         <scene sceneID="iZ4-tq-cet">
             <objects>
@@ -2762,32 +2745,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1: Find the email you sent to yourself containing the .aed file." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smh-vl-09U">
-                                <rect key="frame" x="24" y="188.5" width="552" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1: Find the email you sent to yourself containing the .aed file." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smh-vl-09U">
+                                <rect key="frame" x="28" y="188" width="544" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2: Open the mail on your iOS device." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-I6-Do7">
-                                <rect key="frame" x="24" y="224.5" width="552" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2: Open the mail on your iOS device." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-I6-Do7">
+                                <rect key="frame" x="28" y="224" width="544" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3: Press and hold on the attached .aed file." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoe-an-3vq">
-                                <rect key="frame" x="24" y="261.5" width="552" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3: Press and hold on the attached .aed file." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoe-an-3vq">
+                                <rect key="frame" x="28" y="261" width="544" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4: Pick Archer's Eye from the list of apps that appears." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-FA-KzD">
-                                <rect key="frame" x="24" y="297.5" width="552" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4: Pick Archer's Eye from the list of apps that appears." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-FA-KzD">
+                                <rect key="frame" x="28" y="297" width="544" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Archer's Eye data is stored in a file with the extension .aed.  To import your old data:" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMl-Fr-7mh">
-                                <rect key="frame" x="24" y="84" width="552" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archer's Eye data is stored in a file with the extension .aed.  To import your old data:" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMl-Fr-7mh">
+                                <rect key="frame" x="28" y="84" width="544" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2822,7 +2805,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWf-xR-jOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4313" y="4895"/>
+            <point key="canvasLocation" x="3592" y="4895"/>
         </scene>
         <!--Live Round-->
         <scene sceneID="fc4-58-typ">
@@ -3086,17 +3069,17 @@
         <image name="pm_pie" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2LU-OI-U7s"/>
-        <segue reference="HiB-3Z-byp"/>
         <segue reference="16S-2d-hA7"/>
-        <segue reference="Wmh-qa-w2H"/>
         <segue reference="tYL-4e-FWa"/>
         <segue reference="hLd-DK-Hnl"/>
-        <segue reference="mVz-ha-6Ui"/>
-        <segue reference="18M-JZ-ZuM"/>
-        <segue reference="179-ag-UZa"/>
-        <segue reference="ZkQ-Qx-ZUn"/>
+        <segue reference="Wmh-qa-w2H"/>
+        <segue reference="IjB-BZ-ts9"/>
+        <segue reference="nBA-8q-cgM"/>
         <segue reference="ebz-pA-Pls"/>
+        <segue reference="2LU-OI-U7s"/>
+        <segue reference="18M-JZ-ZuM"/>
         <segue reference="BUw-Gj-nuY"/>
+        <segue reference="mVz-ha-6Ui"/>
+        <segue reference="HiB-3Z-byp"/>
     </inferredMetricsTieBreakers>
 </document>
