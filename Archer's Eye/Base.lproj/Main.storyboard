@@ -2507,9 +2507,6 @@
                                 <date key="date" timeIntervalSinceReferenceDate="450155359.98160702">
                                     <!--2015-04-08 03:09:19 +0000-->
                                 </date>
-                                <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="140" y="100" width="320" height="200"/>
-                                </variation>
                                 <connections>
                                     <action selector="dateChanged:" destination="kfs-fp-ZuD" eventType="valueChanged" id="Kgw-dI-3KN"/>
                                 </connections>
