@@ -311,18 +311,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     scatterPlot.delegate        = self;
     scatterPlot.identifier      = @"DATA";
     scatterPlot.areaFill        = [CPTFill fillWithColor:self.fillColor];
-    scatterPlot.areaBaseValue   = CPTDecimalFromInteger( 0 );
+    scatterPlot.areaBaseValue   = @0.0;
     [graph addPlot:scatterPlot toPlotSpace:plotSpace];
     
     // 3 - Set up plot space
     NSInteger totalArrows    = [self.favRounds[self.favRoundID][0] getTotalArrows];
     NSInteger maxArrowScore  = [self.favRounds[self.favRoundID][0] getMaxArrowRealScore];
-    float     xStart         = -((float)[self.favRounds[_favRoundID] count]) * 0.2f;
-    float     xLength        =  ((float)[self.favRounds[_favRoundID] count]) * 1.2f;
-    float     yStart         = -(totalArrows * maxArrowScore) * 0.2f;
-    float     yLength        =  (totalArrows * maxArrowScore) * 1.3f;
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( xStart ) length:CPTDecimalFromFloat( xLength )];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat( yStart ) length:CPTDecimalFromFloat( yLength )];
+    NSNumber *xStart         = [NSNumber numberWithFloat:-((float)[self.favRounds[_favRoundID] count]) * 0.2f];
+    NSNumber *xLength        = [NSNumber numberWithFloat:((float)[self.favRounds[_favRoundID] count]) * 1.2f];
+    NSNumber *yStart         = [NSNumber numberWithFloat:-(totalArrows * maxArrowScore) * 0.2f];
+    NSNumber *yLength        = [NSNumber numberWithFloat:(totalArrows * maxArrowScore) * 1.3f];
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:xStart length:xLength];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:yStart length:yLength];
 
     // 4 - Create styles and symbols
     CPTMutableLineStyle *lineStyle  = [scatterPlot.dataLineStyle mutableCopy];
@@ -386,13 +386,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     for( NSInteger i = 0; i < [self.favRounds[self.favRoundID] count]; ++i )
     {
         CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%ld", i] textStyle:x.labelTextStyle];
-        CGFloat location = j++;
-        label.tickLocation = CPTDecimalFromCGFloat(location);
+        NSNumber *location = [NSNumber numberWithInteger:j++];
+        label.tickLocation = location;
         label.offset = x.majorTickLength;
         if (label)
         {
             [xLabels addObject:label];
-            [xLocations addObject:[NSNumber numberWithFloat:location]];
+            [xLocations addObject:location];
         }
     }
     x.axisLabels         = xLabels;
@@ -425,14 +425,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         if (mod == 0)
         {
             CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%ld", (long)j] textStyle:y.labelTextStyle];
-            NSDecimal location  = CPTDecimalFromInteger(j);
+            NSNumber *location  = [NSNumber numberWithInteger:j];
             label.tickLocation  = location;
             label.offset        = -y.majorTickLength - y.labelOffset;
             if (label)
             {
                 [yLabels addObject:label];
             }
-            [yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
+            [yMajorLocations addObject:location];
         }
         else
         {
